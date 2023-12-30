@@ -21,7 +21,8 @@ export class MCDMActor extends Actor {
             this.system.abilities[`${abilityType}`] = abilities.filter((ability) => ability.system.type === abilityType);
         });
 
-        this.system.kit = this.items.find((item) => item.type === 'kit');
+        this.system.highest = Math.max(...Object.values(this.system.characteristics));
+        this.system.chanceHit = '@Damage[1d4 + @highest]';
     }
 
     prepareDerivedData() {
@@ -44,7 +45,6 @@ export class MCDMActor extends Actor {
     }
 
     async _preUpdate(changed, options, user) {
-        await super._preUpdate(changed, options, user);
         if ('hp' in (changed.system || {})) {
             const currentHp = this.system.hp.current;
             const changedHp = changed.system.hp.current;
@@ -53,11 +53,46 @@ export class MCDMActor extends Actor {
             changed.system.hp.current = newHp;
             options.hpDelta = hpDelta;
         }
+
+        await super._preUpdate(changed, options, user);
     }
 
     _onUpdate(data, options, userId) {
         super._onUpdate(data, options, userId);
         this._displayScrollingDamage(options.hpDelta);
+    }
+
+    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+
+        if (collection === 'items') {
+            if (documents.find((document) => document.type === 'class') || documents.find((document) => document.type === 'kit')) {
+                this._updateActorResources(this.system.class);
+            }
+        }
+    }
+    async _onCreateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+        super._onCreateDescendantDocuments(parent, collection, documents, changes, options, userId);
+
+        let newClass;
+        let classDeletions = [];
+        let newKit;
+        let kitDeletions = [];
+
+        if (collection === 'items' && documents.find((document) => document.type === 'class')) {
+            classDeletions = this.items.filter((item) => item.type === 'class');
+            newClass = classDeletions.pop();
+
+            this._updateActorResources(newClass);
+        }
+
+        if (collection === 'items' && documents.find((document) => document.type === 'kit')) {
+            kitDeletions = this.items.filter((item) => item.type === 'kit');
+            newKit = kitDeletions.pop();
+        }
+
+        let deletionIds = [...classDeletions, ...kitDeletions].map((item) => item._id);
+        if (deletionIds.length) this.deleteEmbeddedDocuments('Item', deletionIds);
     }
 
     _displayScrollingDamage(hpDelta) {
@@ -76,5 +111,22 @@ export class MCDMActor extends Actor {
                 jitter: 0.25,
             });
         }
+    }
+
+    _updateActorResources(newClass) {
+        if (!newClass) return;
+        let updateData = [];
+        let existingResources = this.system.currentResources;
+        let newCurrentValue;
+
+        newClass.system.resources.forEach((resource) => {
+            let existingCurrent = existingResources.find((existingResource) => resource.name === existingResource.name);
+            updateData.push({
+                name: resource.name,
+                current: existingCurrent?.current ?? 0,
+            });
+        });
+
+        this.update({ 'system.currentResources': updateData });
     }
 }

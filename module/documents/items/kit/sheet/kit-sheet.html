@@ -1,29 +1,42 @@
 <form>
-    <div class="ability-icon">
-        {{!-- <img src="{{img}}" data-tooltip="{{name}}" data-edit="img"/><br> --}}
+    <div class="kit-name kit-trait">
+        <div class="kit-property">Name</div>
+        <div class="kit-value"><input type="text" name="name" value="{{name}}" /></div>
     </div>
-    <div class="name">
-        <input type="text" name="name" value="{{name}}">
-        Name
-        <input type="text" name="system.type" value="{{type}}">
-        Type
-        <input type="text" name="system.armor" value="{{armor}}">
-        Armor
-        <input type="text" name="system.weapon" value="{{weapon}}">
-        Weapon
-        <input type="text" name="system.area" value="{{area}}">
-        Area
-        <input type="text" name="system.health" value="{{health}}">
-        Health
-        <input type="text" name="system.damage" value="{{damage}}">
-        Damage
-        <input type="text" name="system.reach" value="{{reach}}">
-        Reach
-        <input type="text" name="system.speed" value="{{speed}}">
-        Speed
-        <input type="text" name="system.range" value="{{range}}">
-        Range
-        <input type="text" name="system.resistanceTN" value="{{resistanceTN}}">
-        Resistance TN
+    <div class="kit-type kit-trait">
+        <div class="kit-property">Type:</div>
+        <div class="kit-value"><input type="text" name="system.type" value="{{type}}" /></div>
+    </div>
+    <div class="kit-armor kit-trait">
+        <div class="kit-property">Armor:</div>
+        <div class="kit-value"><input type="text" name="system.armor" value="{{armor}}" /></div>
+    </div>
+    <div class="kit-weapon kit-trait">
+        <div class="kit-property">Weapon:</div>
+        <div class="kit-value"><input type="text" name="system.weapon" value="{{weapon}}" /></div>
+    </div>
+    <div class="kit-area kit-trait">
+        <div class="kit-property">Area:</div>
+        <div class="kit-value"><input type="text" name="system.area" value="{{area}}" /></div>
+    </div>
+    <div class="kit-health kit-trait">
+        <div class="kit-property">Health:</div>
+        <div class="kit-value"><input type="text" name="system.health" value="{{health}}" /></div>
+    </div>
+    <div class="kit-damage kit-trait">
+        <div class="kit-property">Damage:</div>
+        <div class="kit-value"><input type="text" name="system.damage" value="{{damage}}" /></div>
+    </div>
+    <div class="kit-reach kit-trait">
+        <div class="kit-property">Reach:</div>
+        <div class="kit-value"><input type="text" name="system.reach" value="{{reach}}" /></div>
+    </div>
+    <div class="kit-speed kit-trait">
+        <div class="kit-property">Speed</div>
+        <div class="kit-value"><input type="text" name="system.speed" value="{{speed}}" /></div>
+    </div>
+    <div class="kit-resistance-tn kit-trait">
+        <div class="kit-property">Resistance TN:</div>
+        <div class="kit-value"><input type="text" name="system.resistanceTN" value="{{resistanceTN}}" /></div>
     </div>
 </form>

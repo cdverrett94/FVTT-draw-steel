@@ -3,6 +3,7 @@ import { HeroData } from './module/documents/actors/heroes/data-model.js';
 import { HeroSheet } from './module/documents/actors/heroes/sheet/sheet.js';
 import { AbilityData } from './module/documents/items/ability/data-model.js';
 import { AbilitySheet } from './module/documents/items/ability/sheet/sheet.js';
+import { ClassSheet } from './module/documents/items/class/sheet/sheet.js';
 import { MCDMItemProxy } from './module/documents/items/item-proxy.js';
 import { KitData } from './module/documents/items/kit/data-model.js';
 import { KitSheet } from './module/documents/items/kit/sheet/sheet.js';
@@ -10,7 +11,6 @@ import { DamageRoll } from './module/documents/rolls/damage-roll.js';
 import { registerCustomEnrichers } from './module/enrichers.js';
 
 Hooks.on('init', () => {
-    console.log('game is init');
     // Set module Data Models
     CONFIG.Actor.dataModels.hero = HeroData;
     CONFIG.Item.dataModels.ability = AbilityData;
@@ -26,6 +26,7 @@ Hooks.on('init', () => {
         'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/skills.html',
         'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/abilities.html',
         'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/sidebar.html',
+        'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/header.html',
     ];
     loadTemplates(templatePaths);
 
@@ -37,6 +38,11 @@ Hooks.on('init', () => {
     });
 
     Items.unregisterSheet('core', ItemSheet);
+    Items.registerSheet('mcdmrpg', ClassSheet, {
+        types: ['class'],
+        makeDefault: true,
+        label: 'Class Sheet',
+    });
     Items.registerSheet('mcdmrpg', AbilitySheet, {
         types: ['ability'],
         makeDefault: true,
@@ -59,4 +65,5 @@ Hooks.on('init', () => {
 
 Hooks.on('ready', async () => {
     game.actors.contents[0].sheet.render(true);
+    // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
 });

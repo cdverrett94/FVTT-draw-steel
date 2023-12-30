@@ -7,7 +7,7 @@ export class KitSheet extends ItemSheet {
         const defaults = super.defaultOptions;
 
         const overrides = {
-            classes: ['mcdmrpg', 'sheet', 'item', 'ability'],
+            classes: ['mcdmrpg', 'sheet', 'item', 'kit'],
             template: `/systems/mcdmrpg/module/documents/items/kit/sheet/kit-sheet.html`,
             tabs: [
                 /*{
@@ -16,9 +16,8 @@ export class KitSheet extends ItemSheet {
                     initial: 'skills',
                 },*/
             ],
-            scrollY: [
-                /*'.equipment-list', '.skills-container'*/
-            ],
+            scrollY: ['.tabbed-content'],
+            width: 400,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);

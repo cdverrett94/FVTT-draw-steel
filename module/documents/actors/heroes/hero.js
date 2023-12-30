@@ -5,6 +5,25 @@ export class HeroActor extends MCDMActor {
     prepareBaseData() {
         super.prepareBaseData();
 
+        this.system.class = this.items.find((item) => item.type === 'class');
+        this.system.kit = this.items.find((item) => item.type === 'kit');
+
+        this.system.resources = {};
+        this.system.currentResources.forEach((currentResource) => {
+            let max;
+            let classResource = this.system.class.system.resources.find((resource) => resource.name === currentResource.name);
+
+            max = Number(classResource?.max ?? 0);
+            if (max) {
+                max = Roll.create(max, this.getRollData())._evaluateSync().total;
+            }
+
+            this.system.resources[currentResource.name] = {
+                current: currentResource.current,
+                max,
+            };
+        });
+
         this.system.grappleTN = 7 + this.system.might;
         this.system.reach = 1;
         this.system.speed = 6;

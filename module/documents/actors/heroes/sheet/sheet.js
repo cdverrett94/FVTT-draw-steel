@@ -16,11 +16,10 @@ export class HeroSheet extends ActorSheet {
                     initial: 'skills',
                 },*/
             ],
-            scrollY: [
-                /*'.equipment-list', '.skills-container'*/
-            ],
-            width: 1202,
-            height: 768,
+            scrollY: ['.skills', '.tabbed-content'],
+            width: 1230,
+            height: 930,
+            resizable: false,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
@@ -34,18 +33,22 @@ export class HeroSheet extends ActorSheet {
             ...this.actor.system,
         };
 
+        // Enrich Content
+        let enrichContext = {
+            async: true,
+            actor: this.actor,
+            replaceCharacteristic: true,
+            applyKitDamage: true,
+        };
+
         for (const [group, abilities] of Object.entries(data.abilities)) {
             for (const [index, ability] of abilities.entries()) {
-                let enrichContext = {
-                    async: true,
-                    actor: this.actor,
-                    replaceCharacteristic: true,
-                    applyKitDamage: true,
-                };
                 data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(ability.system.damage, enrichContext);
                 data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, enrichContext);
             }
         }
+
+        data.chanceHit = await TextEditor.enrichHTML(data.chanceHit, enrichContext);
 
         return data;
     }
@@ -101,6 +104,13 @@ export class HeroSheet extends ActorSheet {
             element.addEventListener('click', (event) => {
                 let abilityId = element.dataset.abilityId;
                 this.actor.deleteEmbeddedDocuments('Item', [abilityId]);
+            });
+        });
+
+        html.querySelectorAll('.kit, .class').forEach((element) => {
+            element.addEventListener('click', (event) => {
+                let type = element.classList.contains('kit') ? 'kit' : 'class';
+                this.actor.system[type].sheet.render(true);
             });
         });
     }

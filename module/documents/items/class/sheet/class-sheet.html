@@ -1,0 +1,46 @@
+<form>
+    <div class="class-name"><input type="text" name="name" value="{{name}}" /></div>
+
+    <div class="class-resources">
+        <div class="mcdmrpg-header">Class Resources</div>
+        <div class="class-resource-list">
+            {{#each resources as |resource|}}
+            <div class="class-resource">
+                <div class="name resource-trait">
+                    <div class="resource-property">Name:</div>
+                    <div class="resource-value">
+                        <input type="text" name="system.resources.{{@index}}.name" value="{{name}}" />
+                    </div>
+                </div>
+                <div class="max resource-trait">
+                    <div class="resource-property">Max:</div>
+                    <div class="resource-value">
+                        <input type="text" name="system.resources.{{@index}}.max" value="{{max}}" />
+                    </div>
+                </div>
+                <div class="delete-class-resource resource-trait" data-resource-index="{{@index}}">
+                    <i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="Delete Resource"></i>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div><button class="add-class-resource">Add Class Resource</button></div>
+    </div>
+    <div class="class-details">
+        <div class="class-description">
+            <div class="mcdmrpg-header">Class Description</div>
+            <div>{{editor enrichedDescription target="system.description" editable=true collaborate=true button=true engine="prosemirror"}}</div>
+        </div>
+        <div class="class-right-column">
+            <div class="class-victory-benefits">
+                <div class="mcdmrpg-header">Victory Benefits</div>
+                <div>{{{editor enrichedVictoryBenefits target="system.victoryBenefits" editable=true collaborate=true button=true engine="prosemirror"}}}</div>
+            </div>
+
+            <div class="class-resource-gain">
+                <div class="mcdmrpg-header">Resource Gain</div>
+                <div>{{{editor enrichedResourceGain target="system.resourceGain" editable=true collaborate=true button=true engine="prosemirror"}}}</div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -10,6 +10,9 @@ export class ClassData extends MCDMItemData {
                     max: new fields.StringField(),
                 })
             ),
+            description: new fields.StringField(),
+            victoryBenefits: new fields.StringField(),
+            resourceGain: new fields.StringField(),
         };
     }
 }
