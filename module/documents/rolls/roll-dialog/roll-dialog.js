@@ -34,7 +34,6 @@ export class MCDMRollDialog extends Application {
     }
 
     async getData() {
-        console.log(this.context);
         this.context.applyKitDamage ??= false;
         let data = {
             ...this.context,

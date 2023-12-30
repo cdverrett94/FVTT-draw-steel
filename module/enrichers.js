@@ -21,8 +21,6 @@ function enrichDamage(match, options) {
         data[key] = value;
     });
 
-    console.log(data, options);
-
     data.type = damageTypes.includes(data.type) ? data.type : 'untyped';
     data.formula = formula;
     data.actor = options.actor;
@@ -40,8 +38,6 @@ function createRollLink(formula, dataset) {
 
     _addDataset(link, dataset);
     link.innerHTML = `<i class="fa-solid fa-dice-d6"></i> ${formula}${dataset.type !== 'untyped' ? ' ' + dataset.type : ''}`;
-
-    console.log(link.dataset);
 
     return link;
 }
