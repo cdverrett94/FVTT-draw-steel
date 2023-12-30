@@ -1,6 +1,8 @@
 <div class="portrait"><img src="{{img}}" data-tooltip="{{name}}" data-edit="img" /></div>
 
-<div class="kit">{{kit.name}}</div>
+<div class="kit">Kit: {{kit.name}}</div>
+<div class="class">Class: {{class.name}}</div>
+<div class="change-hit">Chance Hit: {{{chanceHit}}}</div>
 
 <div class="hp">
     <div class="mcdmrpg-header">Health</div>
@@ -28,7 +30,7 @@
         <div class="weight">Weight: {{size.weight}}</div>
         <div class="speed">Speed: {{speed}}</div>
         <div class="reach">Reach: {{reach}}</div>
-        <div class="grapple-tn">Grapple/Knockback TN: {{grappleTN}}</div>
+        <div class="grapple-tn">GP/KB TN: {{grappleTN}}</div>
     </div>
 </div>
 
@@ -59,6 +61,17 @@
 <div class="resources">
     <div class="mcdmrpg-header">Resources</div>
     {{#each resources as |resource|}}
-    <div>{{resource}}</div>
+    <div class="resource{{#if resource.max}} has-max{{/if}}">
+        <div class="resource-current">
+            <div class="resource-title"><input style="display: none" name="system.currentResources.{{@index}}.name" value="{{@key}}" />{{@key}}</div>
+            <div class="resource-value"><input type="number" name="system.currentResources.{{@index}}.current" value="{{resource.current}}" /></div>
+        </div>
+        {{#if resource.max}}
+        <div class="resource-max">
+            <div class="resource-title">Max</div>
+            <div class="resource-value">{{resource.max}}</div>
+        </div>
+        {{/if}}
+    </div>
     {{/each}}
 </div>

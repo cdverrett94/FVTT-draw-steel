@@ -1,35 +1,9 @@
 <form>
     <div class="actor-sheet">
         <div class="sidebar">{{> "systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/sidebar.html"}}</div>
-
-        <div class="main">
-            <div class="character-info">
-                <div class="name">
-                    <input type="text" name="name" value="{{name}}" />
-                    Name
-                </div>
-                <div class="level">
-                    <input type="number" name="system.level" value="{{level}}" />
-                    Level
-                </div>
-                <div class="xp">
-                    <input type="number" name="system.xp" value="{{xp}}" />
-                    XP
-                </div>
-            </div>
-
-            <div class="characteristics">
-                {{#each characteristics as |characteristic|}}
-                <div class="characteristic mcdmrpg-container" data-characteristic="{{@key}}">
-                    <div class="mcdmrpg-subheader">{{localize (concat "characteristics." @key ".label")}}</div>
-                    <div class="characteristic-value">
-                        <input type="number" name="system.characteristics.{{@key}}" value="{{characteristic}}" />
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-
-            <div class="sub-main">
+        <div class="main-content">
+            <div class="content-header">{{> "systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/header.html"}}</div>
+            <div class="content-body">
                 <div class="skills">
                     <div class="mcdmrpg-header">Skills</div>
 
@@ -45,7 +19,7 @@
                 <div class="tabbed-content">
                     {{#each abilities as |abilityGroup|}}
                     <div class="abilities">
-                        <div class="mcdmrpg-header">{{@key}}</div>
+                        <div class="mcdmrpg-header">{{localize (concat 'abilityTypes.' @key '.label')}}</div>
                         <div class="ability-container">
                             {{#each abilityGroup as |ability|}} {{> "systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/abilities.html"
                             ability=ability }} {{/each}}
