@@ -1,0 +1,32 @@
+/* Character Info */
+.sheet.actor.hero .content-header .character-info {
+    display: grid;
+    grid-template-columns: 1fr 75px 75px;
+}
+.sheet.actor.hero .content-header .character-info input {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+}
+.sheet.actor.hero .content-header .character-info input:focus {
+    box-shadow: 0 0px 5px black;
+}
+
+/* Characteristics */
+.sheet.actor.hero .content-header .characteristics-container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+}
+
+.sheet.actor.hero .content-header .characteristics {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+}
+
+.sheet.actor.hero .content-header .characteristics .characteristic input {
+    text-align: center;
+    border: 0px;
+}

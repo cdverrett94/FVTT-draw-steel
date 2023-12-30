@@ -6,6 +6,7 @@
     color: white;
     text-align: center;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .mcdmrpg-header {
@@ -15,4 +16,10 @@
 
 .mcdmrpg-container {
     border: 1px solid black;
+}
+
+.content-body .skills,
+.content-body .tabbed-content {
+    height: 750px;
+    overflow-y: scroll;
 }

@@ -1,8 +1,8 @@
-.sheet.actor.hero .main .skills .skill-name input {
+.sheet.actor.hero .main-content .skills .skill-name input {
     width: 100px;
 }
 
-.sheet.actor.hero .main .skills .skill {
+.sheet.actor.hero .main-content .skills .skill {
     display: grid;
     grid-gap: 5px;
     grid-template-columns: auto 1fr auto 20px;
@@ -10,20 +10,20 @@
     align-items: center;
 }
 
-.sheet.actor.hero .main .skills .add-skill {
+.sheet.actor.hero .main-content .skills .add-skill {
     width: calc(50% - 5px);
 }
 
-.sheet.actor.hero .main .skills .skill .roll-skill:hover,
-.sheet.actor.hero .main .skills .skill .delete-skill:hover {
+.sheet.actor.hero .main-content .skills .skill .roll-skill:hover,
+.sheet.actor.hero .main-content .skills .skill .delete-skill:hover {
     cursor: pointer;
 }
 
-.sheet.actor.hero .main .skills .skill .delete-skill {
+.sheet.actor.hero .main-content .skills .skill .delete-skill {
     justify-content: right;
     text-align: right;
 }
 
-.sheet.actor.hero .main .skills .skill .delete-skill:hover {
+.sheet.actor.hero .main-content .skills .skill .delete-skill:hover {
     color: red;
 }

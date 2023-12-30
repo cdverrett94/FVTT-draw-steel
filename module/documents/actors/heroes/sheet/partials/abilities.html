@@ -15,7 +15,9 @@
 
         <div class="keywords ability-trait">
             <div class="title">Keywords:</div>
-            <div class="value">{{#each ability.system.keywords as |keyword|}} {{keyword}}{{#unless @last}}, {{/unless}} {{/each}}</div>
+            <div class="value">
+                {{#each ability.system.keywords as |keyword|}} {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}} {{/each}}
+            </div>
         </div>
         <div class="trigger ability-trait">
             <div class="title">Trigger:</div>
