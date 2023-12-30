@@ -1,0 +1,27 @@
+<div class="skill">
+    {{!-- <div class="roll-skill" data-skill="{{#if special}}{{prefix}}{{else}}{{skill}}{{/if}}" {{#if special}}data-subskill="{{skill}}{{/if}}">
+        <i class="fa-light fa-dice-d6"></i>
+    </div> --}}
+    <div class="charcteristic-select">
+        <select name="system.skills.{{#if special}}{{prefix}}.{{index}}{{else}}{{skill}}{{/if}}.characteristic">
+                {{#each characteristics as |characteristic|}}
+                <option value="{{@key}}" {{#if (eq @key ../this.characteristic)}}selected{{/if}}>{{localize (concat "characteristics." @key ".abbreviation")}}</option>
+                {{/each}}
+        </select>
+    </div>
+    <div class="skill-name">
+        {{#if special}}
+            {{localize (concat "skills." prefix ".label")}} ( <input type="text" name="system.skills.{{prefix}}.{{index}}.subskill" value="{{skill}}" /> )
+        {{else}}
+            {{localize (concat "skills." skill ".label")}}
+        {{/if}}
+    </div>
+    <div class="skill-proficient">
+        <input type="checkbox" data-tooltip-direction="RIGHT" data-tooltip="Is character proficient in the skill?" name="system.skills.{{#if special}}{{prefix}}.{{index}}{{else}}{{skill}}{{/if}}.proficient" {{#if skillData.proficient}}checked{{/if}}>
+    </div>
+    <div class="delete-skill">
+        {{#if special}}
+            <i class="fa-solid fa-trash" data-skill="{{prefix}}" data-subskill="{{skill}}" data-tooltip-direction="RIGHT" data-tooltip="Delete skill?"></i>
+        {{/if}}
+    </div>
+</div>

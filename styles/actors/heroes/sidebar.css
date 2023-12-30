@@ -1,0 +1,26 @@
+.sheet.actor.hero .sidebar > div {
+    margin-bottom: 5px;
+}
+
+.sheet.actor.hero .sidebar .portrait img {
+    width: 100%;
+}
+
+.sheet.actor.hero .sidebar .hp .hp-values,
+.sheet.actor.hero .sidebar .recoveries .recoveries-values {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.sheet.actor.hero .sidebar .hp .hp-values .current input,
+.sheet.actor.hero .sidebar .recoveries .recoveries-values .current input {
+    height: 100%;
+    font-size: 2rem;
+}
+
+.sheet.actor.hero .sidebar .hp .hp-values input,
+.sheet.actor.hero .sidebar .hp .hp-values .other-hp > div div,
+.sheet.actor.hero .sidebar .recoveries .recoveries-values input,
+.sheet.actor.hero .sidebar .recoveries .recoveries-values .other-recoveries > div div {
+    text-align: center;
+}

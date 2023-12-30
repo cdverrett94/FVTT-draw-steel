@@ -1,0 +1,97 @@
+{
+    "characteristics": {
+        "might": {
+            "label": "Might",
+            "abbreviation": "MGT"
+        },
+        "agility": {
+            "label": "Agility",
+            "abbreviation": "AGL"
+        },
+        "endurance": {
+            "label": "Endurance",
+            "abbreviation": "END"
+        },
+        "reason": {
+            "label": "Reason",
+            "abbreviation": "REA"
+        },
+        "intuition": {
+            "label": "Intuition",
+            "abbreviation": "INU"
+        },
+        "presence": {
+            "label": "Presence",
+            "abbreviation": "PRS"
+        }
+    },
+    "skills": {
+        "acrobatics": {
+            "label": "Acrobatics"
+        },
+        "athletics": {
+            "label": "Athletics"
+        },
+        "charm": {
+            "label": "Charm"
+        },
+        "craft": {
+            "label": "Craft"
+        },
+        "deceive": {
+            "label": "Deceive"
+        },
+        "empathy": {
+            "label": "Empathy"
+        },
+        "intimidate": {
+            "label": "Intimidate"
+        },
+        "knowledge": {
+            "label": "Knowledge"
+        },
+        "notice": {
+            "label": "Notice"
+        },
+        "skulduggery": {
+            "label": "Skulduggery"
+        },
+        "stealth": {
+            "label": "Stealth"
+        },
+        "vigor": {
+            "label": "Vigor"
+        }
+    },
+    "abilityTypes": {
+        "basic": {
+            "label": "Basic Attack"
+        },
+        "signature": {
+            "label": "Signature Ability"
+        },
+        "heroic": {
+            "label": "Heroic Abilitiy"
+        },
+        "triggered": {
+            "label": "Triggered Ability"
+        }
+    },
+    "keywords": {
+        "attack": {
+            "label": "Attack"
+        },
+        "kit": {
+            "label": "Kit"
+        },
+        "magic": {
+            "label": "Magic"
+        },
+        "psionic": {
+            "label": "Psionic"
+        },
+        "weapon": {
+            "label": "Weapon"
+        }
+    }
+}

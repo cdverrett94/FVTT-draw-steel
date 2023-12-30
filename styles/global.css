@@ -1,0 +1,18 @@
+.mcdmrpg-header,
+.mcdmrpg-subheader {
+    padding: 5px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.mcdmrpg-header {
+    clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(10px 0, calc(100%-10px) 0, 100% 100%, 0% 100%);
+}
+
+.mcdmrpg-container {
+    border: 1px solid black;
+}

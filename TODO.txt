@@ -1,0 +1,6 @@
+Hero Data Model
+- redo resources after reading more
+
+Add class items
+Add ancestry items
+factor in kit damage to damage rolls

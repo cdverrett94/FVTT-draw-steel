@@ -1,0 +1,14 @@
+.sheet.item.ability form > div {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    grid-gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+.sheet.item.ability .ability-property {
+    text-align: right;
+}
+
+.sheet.item.ability .ability-keywords .ability-value input:nth-child(1) {
+    margin-left: 0px;
+}

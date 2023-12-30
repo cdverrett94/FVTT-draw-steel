@@ -1,0 +1,64 @@
+<div class="portrait"><img src="{{img}}" data-tooltip="{{name}}" data-edit="img" /></div>
+
+<div class="kit">{{kit.name}}</div>
+
+<div class="hp">
+    <div class="mcdmrpg-header">Health</div>
+    <div class="hp-values">
+        <div class="current">
+            <input type="number" name="system.hp.current" value="{{hp.current}}" />
+        </div>
+        <div class="other-hp">
+            <div class="max">
+                <div>Max</div>
+                <div><input type="number" name="system.hp.max" value="{{hp.max}}" /></div>
+            </div>
+            <div class="bloodied">
+                <div>Bloodied</div>
+                <div>{{hp.bloodied}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="size">
+    <div class="mcdmrpg-header">Size</div>
+    <div class="size-values">
+        <div class="width">Size: {{size.width}}</div>
+        <div class="weight">Weight: {{size.weight}}</div>
+        <div class="speed">Speed: {{speed}}</div>
+        <div class="reach">Reach: {{reach}}</div>
+        <div class="grapple-tn">Grapple/Knockback TN: {{grappleTN}}</div>
+    </div>
+</div>
+
+<div class="victories">
+    <div class="mcdmrpg-header">Victories</div>
+    <input type="number" name="system.victories" value="{{victories}}" />
+</div>
+
+<div class="recoveries">
+    <div class="mcdmrpg-header">Recoveries</div>
+    <div class="recoveries-values">
+        <div class="current">
+            <input type="number" name="system.recoveries.current" value="{{recoveries.current}}" />
+        </div>
+        <div class="other-recoveries">
+            <div class="max">
+                <div>Max</div>
+                <div><input type="number" name="system.recoveries.max" value="{{recoveries.max}}" /></div>
+            </div>
+            <div class="healing">
+                <div>Healing Value</div>
+                <div>{{hp.healing}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="resources">
+    <div class="mcdmrpg-header">Resources</div>
+    {{#each resources as |resource|}}
+    <div>{{resource}}</div>
+    {{/each}}
+</div>

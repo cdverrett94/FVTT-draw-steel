@@ -1,0 +1,8 @@
+{
+    "Actor": {
+        "types": ["hero", "monster"]
+    },
+    "Item": {
+        "types": ["ancestry", "kit", "class", "background", "weapon", "armor", "gear", "skill", "ability"]
+    }
+}

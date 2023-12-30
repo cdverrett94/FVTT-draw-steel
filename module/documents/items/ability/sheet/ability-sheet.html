@@ -1,0 +1,64 @@
+<form>
+    <div class="ability-name">
+        <div class="ability-property">Name:</div>
+        <div class="ability-value">
+            <input type="text" name="name" value="{{name}}">
+        </div>
+    </div>
+
+    <div class="ability-type">
+        <div class="ability-property">Type:</div>
+        <div class="ability-value">
+            <select name="system.type">
+                {{#each abilityTypes as |abilityType|}}
+                    <option value="{{abilityType}}"{{#if (eq ../type abilityType)}} selected{{/if}}>{{localize (concat "abilityTypes." abilityType ".label")}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+    <div class="ability-keywords">
+        <div class="ability-property">Keywords:</div>
+        <div class="ability-value">
+            {{#each keywordsList as |keyword|}}
+            <input type="checkbox" name="system.keywords" value="{{keyword}}"{{#if (includes ../keywords keyword)}} checked{{/if}}>
+            <label for="{{keyword}}">{{localize (concat 'keywords.' keyword '.label')}}</label>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="ability-trigger">
+        <div class="ability-property">Trigger:</div>
+        <div class="ability-value"><input type="text" name="system.cost" value="{{trigger}}"></div>
+    </div>
+
+    <div class="ability-cost">
+        <div class="ability-property">Cost:</div>
+        <div class="ability-value"><input type="text" name="system.cost" value="{{cost}}"></div>
+    </div>
+
+    <div class="ability-time">
+        <div class="ability-property">Time: </div>
+        <div class="ability-value"><input type="text" name="system.time" value="{{time}}"></div>
+    </div>
+
+    <div class="ability-distance">
+        <div class="ability-property">Distance:</div>
+        <div class="ability-value"><input type="text" name="system.distance" value="{{distance}}"></div>
+    </div>
+
+    <div class="ability-target">
+        <div class="ability-property">Target:</div>
+        <div class="ability-value"><input type="text" name="system.target" value="{{target}}"></div>
+    </div>
+
+    <div class="ability-damage">
+        <div class="ability-property">Damage:</div>
+        <div class="ability-value"><input type="text" name="system.damage" value="{{damage}}"></div>
+    </div>
+
+    <div class="ability-effect">
+        <div class="ability-property">Effect:</div>
+        <div class="ability-value"><input type="text" name="system.effect" value="{{effect}}"></div>
+    </div>
+</form>

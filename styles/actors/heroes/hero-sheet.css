@@ -1,0 +1,57 @@
+@import url('sidebar.css');
+@import url('abilities.css');
+@import url('skills.css');
+
+.sheet.actor.hero .actor-sheet {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-gap: 10px;
+}
+
+.sheet.actor.hero .sidebar > div,
+.sheet.actor.hero .main > div {
+    margin-bottom: 10px;
+}
+
+.sheet.actor.hero .main .character-info {
+    display: grid;
+    grid-template-columns: 1fr 75px 75px;
+}
+.sheet.actor.hero .main .character-info input {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+}
+
+.sheet.actor.hero .main .character-info input:focus {
+    box-shadow: 0 0px 5px black;
+}
+
+.sheet.actor.hero .main .characteristics-container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+}
+
+.sheet.actor.hero .main .characteristics {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+}
+
+.sheet.actor.hero .main .characteristics .mcdmrpg-header {
+    grid-column: 1/-1;
+}
+
+.sheet.actor.hero .main .characteristics .characteristic input {
+    text-align: center;
+    border: 0px;
+    width: 100%;
+}
+
+.sheet.actor.hero .main .sub-main {
+    display: grid;
+    grid-template-columns: 310px auto;
+    grid-gap: 10px;
+}
