@@ -25,7 +25,6 @@ export class HeroActor extends MCDMActor {
             };
         });
 
-        this.system.grappleTN = 7 + this.system.might;
         this.system.reach = Number(this.system.ancestry?.system.reach ?? 1) + Number(this.system.kit?.system.reach ?? 0);
         this.system.speed = Number(this.system.ancestry?.system.speed ?? 1) + Number(this.system.kit?.system.speed ?? 0);
         this.system.size.width = this.system.ancestry?.system.size.width ?? 1;

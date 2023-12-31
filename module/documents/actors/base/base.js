@@ -23,6 +23,8 @@ export class MCDMActor extends Actor {
 
         this.system.highest = Math.max(...Object.values(this.system.characteristics));
         this.system.chanceHit = '@Damage[1d4 + @highest]';
+
+        this.system.grappleTN = 7 + this.system.might;
     }
 
     prepareDerivedData() {
