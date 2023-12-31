@@ -11,7 +11,7 @@ export class MCDMRollDialog extends Application {
 
         const overrides = {
             classes: ['mcdmrpg', 'roll-dialog'],
-            template: `/systems/mcdmrpg/module/documents/rolls/roll-dialog/sheet/roll-dialog-sheet.html`,
+            template: `/systems/mcdmrpg/module/documents/rolls/roll-dialog/sheet/roll-dialog-sheet.hbs`,
             resizable: true,
         };
 

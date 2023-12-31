@@ -10,7 +10,7 @@ export class AbilitySheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'ability'],
-            template: `/systems/mcdmrpg/module/documents/items/ability/sheet/ability-sheet.html`,
+            template: `/systems/mcdmrpg/module/documents/items/ability/sheet/ability-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',

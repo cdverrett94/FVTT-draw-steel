@@ -8,7 +8,7 @@ export class AncestrySheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'ancestry'],
-            template: `/systems/mcdmrpg/module/documents/items/ancestry/sheet/ancestry-sheet.html`,
+            template: `/systems/mcdmrpg/module/documents/items/ancestry/sheet/ancestry-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',

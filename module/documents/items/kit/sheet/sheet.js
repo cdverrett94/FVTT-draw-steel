@@ -8,7 +8,7 @@ export class KitSheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'kit'],
-            template: `/systems/mcdmrpg/module/documents/items/kit/sheet/kit-sheet.html`,
+            template: `/systems/mcdmrpg/module/documents/items/kit/sheet/kit-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',

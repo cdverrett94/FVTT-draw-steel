@@ -8,7 +8,7 @@ export class ClassSheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'class'],
-            template: `/systems/mcdmrpg/module/documents/items/class/sheet/class-sheet.html`,
+            template: `/systems/mcdmrpg/module/documents/items/class/sheet/class-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',

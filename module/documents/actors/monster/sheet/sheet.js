@@ -8,7 +8,7 @@ export class MonsterSheet extends ActorSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'actor', 'monster'],
-            template: `/systems/mcdmrpg/module/documents/actors/monster/sheet/monster-sheet.html`,
+            template: `/systems/mcdmrpg/module/documents/actors/monster/sheet/monster-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',
@@ -19,7 +19,7 @@ export class MonsterSheet extends ActorSheet {
             // scrollY: ['.skill-list', '.tabbed-content'],
             width: 1230,
             height: 930,
-            resizable: false,
+            resizable: true,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
@@ -31,6 +31,8 @@ export class MonsterSheet extends ActorSheet {
             img: this.actor.img,
             ...this.actor.system,
         };
+
+        console.log(data.abilities);
 
         // Enrich Content
         let enrichContext = {

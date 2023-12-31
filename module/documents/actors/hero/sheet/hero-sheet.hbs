@@ -1,16 +1,16 @@
 <form>
     <div class="actor-sheet">
-        <div class="sidebar">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.html"}}</div>
+        <div class="sidebar">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.hbs"}}</div>
         <div class="main-content">
-            <div class="content-header">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.html"}}</div>
+            <div class="content-header">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.hbs"}}</div>
             <div class="content-body">
                 <div class="skills">
                     <div class="mcdmrpg-header">Skills</div>
                     <div class="skill-list">
                         {{#each skills as |skill|}} {{#if (or (eq @key "craft") (eq @key "knowledge"))}} {{#each skill as |subskill| }} {{>
-                        "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.html" skillData=subskill skill=subskill.subskill
+                        "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" skillData=subskill skill=subskill.subskill
                         characteristics=../../characteristics prefix=@../key index=@index special=true}} {{/each}} {{else}} {{>
-                        "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.html" skillData=this skill=@key characteristics=../characteristics
+                        "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" skillData=this skill=@key characteristics=../characteristics
                         }} {{/if}} {{/each}}
                     </div>
                     <div class="skill-buttons">
@@ -23,7 +23,7 @@
                     <div class="abilities {{@key}}-abilities">
                         <div class="mcdmrpg-header">{{localize (concat 'abilityTypes.' @key '.label')}}</div>
                         <div class="ability-container">
-                            {{#each abilityGroup as |ability|}} {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.html" ability=ability
+                            {{#each abilityGroup as |ability|}} {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.hbs" ability=ability
                             }} {{/each}}
                         </div>
                     </div>
