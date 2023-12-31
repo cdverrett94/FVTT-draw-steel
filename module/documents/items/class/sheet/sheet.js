@@ -32,7 +32,6 @@ export class ClassSheet extends ItemSheet {
             img: this.item.img,
             ...this.item.system,
         };
-        console.log(this.item);
         // Enrich Content
         let enrichContext = {
             async: true,
