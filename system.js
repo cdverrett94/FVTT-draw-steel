@@ -30,10 +30,10 @@ Hooks.on('init', () => {
     // Load templates
     const templatePaths = [
         // Heroes
-        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.html',
-        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.html',
-        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.html',
-        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.html',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.hbs',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.hbs',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.hbs',
     ];
     loadTemplates(templatePaths);
 
