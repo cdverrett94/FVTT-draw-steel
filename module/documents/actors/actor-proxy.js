@@ -1,5 +1,5 @@
 import { MCDMActor } from './base/base.js';
-import { HeroActor } from './heroes/hero.js';
+import { HeroActor } from './hero/hero.js';
 
 const actorTypes = {
     hero: HeroActor,

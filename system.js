@@ -1,6 +1,6 @@
 import { MCDMActorProxy } from './module/documents/actors/actor-proxy.js';
-import { HeroData } from './module/documents/actors/heroes/data-model.js';
-import { HeroSheet } from './module/documents/actors/heroes/sheet/sheet.js';
+import { HeroData } from './module/documents/actors/hero/data-model.js';
+import { HeroSheet } from './module/documents/actors/hero/sheet/sheet.js';
 import { AbilityData } from './module/documents/items/ability/data-model.js';
 import { AbilitySheet } from './module/documents/items/ability/sheet/sheet.js';
 import { AncestryData } from './module/documents/items/ancestry/data-model.js';
@@ -26,10 +26,10 @@ Hooks.on('init', () => {
     // Load templates
     const templatePaths = [
         // Heroes
-        'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/skills.html',
-        'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/abilities.html',
-        'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/sidebar.html',
-        'systems/mcdmrpg/module/documents/actors/heroes/sheet/partials/header.html',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.html',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.html',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.html',
+        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.html',
     ];
     loadTemplates(templatePaths);
 

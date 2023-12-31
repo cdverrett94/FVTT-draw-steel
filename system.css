@@ -2,7 +2,7 @@
 @import url('styles/roll-dialog.css');
 
 /* Actor Imports */
-@import url('styles/actors/heroes/hero-sheet.css');
+@import url('styles/actors/hero/hero-sheet.css');
 
 /* Item Imports */
 @import url('styles/items/ancestry/ancestry-sheet.css');
