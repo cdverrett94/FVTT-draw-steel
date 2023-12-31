@@ -75,12 +75,13 @@
                 <div class='ability-group'>
                     <div class='ability-group-header'>{{@key}}</div>
                 </div>
-                {{@key}}
-                <br />
-                {{#each abilityGroup as |ability|}}
-                    {{ability.name}}
-                    <br />
-                {{/each}}
+                <div class='ability-list'>
+                    {{#each abilityGroup as |ability|}}
+                        <div class='ability'>
+                            {{ability.name}}
+                        </div>
+                    {{/each}}
+                </div>
             {{/if}}
         {{/each}}
     </div>
