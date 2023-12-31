@@ -64,17 +64,26 @@
         }
     },
     "abilityTypes": {
+        "action": {
+            "label": "Action"
+        },
         "basic": {
             "label": "Basic Attack"
-        },
-        "signature": {
-            "label": "Signature Ability"
         },
         "heroic": {
             "label": "Heroic Abilitiy"
         },
+        "manuever": {
+            "label": "Manuever"
+        },
+        "signature": {
+            "label": "Signature Ability"
+        },
         "triggered": {
             "label": "Triggered Ability"
+        },
+        "villain": {
+            "label": "Villain Ability"
         }
     },
     "keywords": {
