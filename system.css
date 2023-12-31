@@ -5,6 +5,7 @@
 @import url('styles/actors/heroes/hero-sheet.css');
 
 /* Item Imports */
+@import url('styles/items/ancestry/ancestry-sheet.css');
 @import url('styles/items/class/class-sheet.css');
 @import url('styles/items/kit/kit-sheet.css');
 @import url('styles/items/ability/ability-sheet.css');

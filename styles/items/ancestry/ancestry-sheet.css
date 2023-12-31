@@ -1,0 +1,10 @@
+.sheet.item.ancestry form > div {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    grid-gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+.sheet.item.ancestry .ancestry-property {
+    text-align: right;
+}

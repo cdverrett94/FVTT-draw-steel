@@ -3,6 +3,8 @@ import { HeroData } from './module/documents/actors/heroes/data-model.js';
 import { HeroSheet } from './module/documents/actors/heroes/sheet/sheet.js';
 import { AbilityData } from './module/documents/items/ability/data-model.js';
 import { AbilitySheet } from './module/documents/items/ability/sheet/sheet.js';
+import { AncestryData } from './module/documents/items/ancestry/data-model.js';
+import { AncestrySheet } from './module/documents/items/ancestry/sheet/sheet.js';
 import { ClassSheet } from './module/documents/items/class/sheet/sheet.js';
 import { MCDMItemProxy } from './module/documents/items/item-proxy.js';
 import { KitData } from './module/documents/items/kit/data-model.js';
@@ -15,6 +17,7 @@ Hooks.on('init', () => {
     CONFIG.Actor.dataModels.hero = HeroData;
     CONFIG.Item.dataModels.ability = AbilityData;
     CONFIG.Item.dataModels.kit = KitData;
+    CONFIG.Item.dataModels.ancestry = AncestryData;
 
     // Set module Document Classes
     CONFIG.Actor.documentClass = MCDMActorProxy;
@@ -53,7 +56,11 @@ Hooks.on('init', () => {
         makeDefault: true,
         label: 'Kit Sheet',
     });
-
+    Items.registerSheet('mcdmrpg', AncestrySheet, {
+        types: ['ancestry'],
+        makeDefault: true,
+        label: 'Ancestry Sheet',
+    });
     Handlebars.registerHelper('includes', function (array, value) {
         return array.includes(value);
     });
