@@ -3,6 +3,7 @@
 
 /* Actor Imports */
 @import url('styles/actors/hero/hero-sheet.css');
+@import url('styles/actors/monster/monster-sheet.css');
 
 /* Item Imports */
 @import url('styles/items/ancestry/ancestry-sheet.css');

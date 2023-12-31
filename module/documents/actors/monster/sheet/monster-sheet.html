@@ -1,0 +1,48 @@
+<form>
+    <div class="header">
+        <div class="name">
+            <input type="text" value="{{name}}" name="name" />
+        </div>
+        <div class="group-and-level">
+            <div class="group">Group: <input type="text" name="system.group" value="{{group}}" /></div>
+            <div class="level">Level: <input type="text" name="system.level" value="{{level}}" /></div>
+        </div>
+        <div class="health-size-and-chance-hit">
+            <div class="health">
+                <div class="current-health">
+                    <div class="property">Health</div>
+                    <div class="value">
+                        <input type="text" name="system.hp.current" value="{{hp.current}}" />
+                    </div>
+                </div>
+                <div class="other-health">
+                    max: <input type="text" name="system.hp.max" value="{{hp.max}}" />
+                    bloodied {{hp.bloodied}}
+                </div>
+            </div>
+            <div class="size-and-chance-hit">
+                <div class="size">
+                    <div class="width"><input type="text" name="system.size.width" value="{{size.width}}" /></div>
+                    <div class="separator">x</div>
+                    <div class="length"><input type="text" name="system.size.length" value="{{size.length}}" /></div>
+                </div>
+                <div class="speed">Speed: <input type="text" name="system.speed" value="{{speed}}" /></div>
+                <div class="weight">Weight<input type="text" name="system.size.weight" value="{{size.weight}}" /></div>
+                <div class="reach">Reach<input type="text" name="system.reach" value="{{reach}}" /></div>
+                <div class="chance-hit">{{{chanceHit}}}</div>
+            </div>
+            <div class="grapple-tn">Grapple/Knockback TN{{grappleTN}}</div>
+        </div>
+
+        <div class="characteristics">
+            {{#each characteristics as |characteristic|}}
+            <div class="characteristic">
+                <div class="characteristic-label">{{localize (concat 'characteristics.' @key '.abbreviation')}}</div>
+                <div class="characteristic-value">
+                    <input type="text" name="system.characteristics.{{@key}}" value="{{characteristic}}" />
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</form>

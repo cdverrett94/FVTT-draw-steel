@@ -1,6 +1,8 @@
 import { MCDMActorProxy } from './module/documents/actors/actor-proxy.js';
 import { HeroData } from './module/documents/actors/hero/data-model.js';
 import { HeroSheet } from './module/documents/actors/hero/sheet/sheet.js';
+import { MonsterData } from './module/documents/actors/monster/data-model.js';
+import { MonsterSheet } from './module/documents/actors/monster/sheet/sheet.js';
 import { AbilityData } from './module/documents/items/ability/data-model.js';
 import { AbilitySheet } from './module/documents/items/ability/sheet/sheet.js';
 import { AncestryData } from './module/documents/items/ancestry/data-model.js';
@@ -15,6 +17,8 @@ import { registerCustomEnrichers } from './module/enrichers.js';
 Hooks.on('init', () => {
     // Set module Data Models
     CONFIG.Actor.dataModels.hero = HeroData;
+    CONFIG.Actor.dataModels.monster = MonsterData;
+
     CONFIG.Item.dataModels.ability = AbilityData;
     CONFIG.Item.dataModels.kit = KitData;
     CONFIG.Item.dataModels.ancestry = AncestryData;
@@ -38,6 +42,11 @@ Hooks.on('init', () => {
         types: ['hero'],
         makeDefault: true,
         label: 'Hero Sheet',
+    });
+    Actors.registerSheet('mcdmrpg', MonsterSheet, {
+        types: ['monster'],
+        makeDefault: true,
+        label: 'Monster Sheet',
     });
 
     Items.unregisterSheet('core', ItemSheet);
@@ -71,6 +80,6 @@ Hooks.on('init', () => {
 });
 
 Hooks.on('ready', async () => {
-    game.actors.contents[0].sheet.render(true);
+    game.actors.contents.find((actor) => actor.type === 'monster').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
 });
