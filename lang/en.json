@@ -93,5 +93,17 @@
         "weapon": {
             "label": "Weapon"
         }
+    },
+    "TYPES": {
+        "Actor": {
+            "hero": "Hero",
+            "monster": "Monster"
+        },
+        "Item": {
+            "ancestry": "Ancestry",
+            "kit": "Kit",
+            "class": "Class",
+            "ability": "Ability"
+        }
     }
 }
