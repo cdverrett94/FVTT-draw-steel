@@ -1,16 +1,27 @@
 .sheet.actor.hero .abilities .ability-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 5px;
 }
 
-.sheet.actor.hero .abilities .ability .ability-header {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+.sheet.actor.hero .abilities:nth-child(even) .ability:nth-child(even),
+.sheet.actor.hero .abilities:nth-child(odd) .ability:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
 }
-
+.sheet.actor.hero .abilities .ability {
+    padding: 5px;
+}
 .sheet.actor.hero .abilities .ability .ability-trait {
     display: grid;
     grid-template-columns: 65px 1fr;
     grid-gap: 5px;
+}
+.sheet.actor.hero .abilities .ability .ability-header {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 5px;
+}
+
+.sheet.actor.hero .abilities .ability .ability-trait.cost {
+    display: grid;
+    grid-template-columns: 1fr;
 }

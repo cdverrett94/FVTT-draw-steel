@@ -16,7 +16,7 @@
 
 .sheet.actor.hero .main-content .content-body {
     display: grid;
-    grid-template-columns: 315px auto;
+    grid-template-columns: 250px auto;
     grid-gap: 10px;
 }
 

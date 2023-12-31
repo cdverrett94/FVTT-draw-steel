@@ -1,5 +1,6 @@
 <div class="portrait"><img src="{{img}}" data-tooltip="{{name}}" data-edit="img" /></div>
 
+<div class="ancestry">Ancestry: {{ancestry.name}}</div>
 <div class="kit">Kit: {{kit.name}}</div>
 <div class="class">Class: {{class.name}}</div>
 <div class="change-hit">Chance Hit: {{{chanceHit}}}</div>
@@ -59,7 +60,10 @@
 </div>
 
 <div class="resources">
-    <div class="mcdmrpg-header">Resources</div>
+    <div class="mcdmrpg-header">
+        Resources
+        <span class="resources-info" data-tooltip="{{class.system.resourceGain}}" data-tooltip-direction="UP"><i class="fa-solid fa-question"></i></span>
+    </div>
     {{#each resources as |resource|}}
     <div class="resource{{#if resource.max}} has-max{{/if}}">
         <div class="resource-current">

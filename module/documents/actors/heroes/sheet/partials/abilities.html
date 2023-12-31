@@ -1,53 +1,57 @@
 <div class="ability">
-    <div>
-        <div class="ability-header">
-            <div class="name ability-trait">
-                <div class="title">Name:</div>
-                <div class="value">{{ability.name}}</div>
-            </div>
-            {{#if ability.system.cost}}
-            <div class="cost ability-trait">
-                <div class="title">Cost:</div>
-                <div class="value">{{ability.system.cost}}</div>
-            </div>
-            {{/if}}
+    <div class="ability-header">
+        <div class="name ability-trait">
+            <div class="title">Name:</div>
+            <div class="value">{{ability.name}}</div>
         </div>
+        {{#if ability.system.cost}}
+        <div class="cost ability-trait">
+            <div class="value">{{ability.system.cost}}</div>
+        </div>
+        {{/if}}
+    </div>
 
-        <div class="keywords ability-trait">
-            <div class="title">Keywords:</div>
-            <div class="value">
-                {{#each ability.system.keywords as |keyword|}} {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}} {{/each}}
-            </div>
-        </div>
-        <div class="trigger ability-trait">
-            <div class="title">Trigger:</div>
-            <div class="value">{{ability.system.trigger}}</div>
-        </div>
-        <div class="time ability-trait">
-            <div class="title">Time:</div>
-            <div class="value">{{ability.system.time}}</div>
-        </div>
-        <div class="distance ability-trait">
-            <div class="title">Distance:</div>
-            <div class="value">{{ability.system.distance}}</div>
-        </div>
-        <div class="target ability-trait">
-            <div class="title">Target:</div>
-            <div class="value">{{ability.system.target}}</div>
-        </div>
-        <div class="damage ability-trait">
-            <div class="title">Damage:</div>
-            <div class="value">{{{ability.system.enrichedDamage}}}</div>
-        </div>
-        <div class="effect ability-trait">
-            <div class="title">Effect</div>
-            <div class="value">{{{ability.system.enrichedEffect}}}</div>
-        </div>
-        <div class="delete-ability" data-ability-id="{{ability.id}}">
-            <i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="Delete Ability"></i>
-        </div>
-        <div class="edit-ability" data-ability-id="{{ability.id}}">
-            <i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="Edit Ability"></i>
+    <div class="keywords ability-trait">
+        <div class="title">Keywords:</div>
+        <div class="value">
+            {{#each ability.system.keywords as |keyword|}} {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}} {{/each}}
         </div>
     </div>
+    {{#if ability.system.trigger}}
+    <div class="trigger ability-trait">
+        <div class="title">Trigger:</div>
+        <div class="value">{{ability.system.trigger}}</div>
+    </div>
+    {{/if}} {{#if ability.system.time}}
+    <div class="time ability-trait">
+        <div class="title">Time:</div>
+        <div class="value">{{ability.system.time}}</div>
+    </div>
+    {{/if}} {{#if ability.system.distance}}
+    <div class="distance ability-trait">
+        <div class="title">Distance:</div>
+        <div class="value">{{ability.system.distance}}</div>
+    </div>
+    {{/if}} {{#if ability.system.target}}
+    <div class="target ability-trait">
+        <div class="title">Target:</div>
+        <div class="value">{{ability.system.target}}</div>
+    </div>
+    {{/if}} {{#if ability.system.damage}}
+    <div class="damage ability-trait">
+        <div class="title">Damage:</div>
+        <div class="value">{{{ability.system.enrichedDamage}}}</div>
+    </div>
+    {{/if}} {{#if ability.system.effect}}
+    <div class="effect ability-trait">
+        <div class="title">Effect:</div>
+        <div class="value">{{{ability.system.enrichedEffect}}}</div>
+    </div>
+    {{/if}}
+    <span class="delete-ability" data-ability-id="{{ability.id}}">
+        <i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="Delete Ability"></i>
+    </span>
+    <span class="edit-ability" data-ability-id="{{ability.id}}">
+        <i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="Edit Ability"></i>
+    </span>
 </div>

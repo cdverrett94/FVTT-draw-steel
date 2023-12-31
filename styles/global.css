@@ -21,5 +21,8 @@
 .content-body .skills,
 .content-body .tabbed-content {
     height: 750px;
+}
+.content-body .skills .skill-list,
+.content-body .tabbed-content {
     overflow-y: scroll;
 }

@@ -11,9 +11,16 @@
     </div>
     <div class="skill-name">
         {{#if special}}
-            {{localize (concat "skills." prefix ".label")}} ( <input type="text" name="system.skills.{{prefix}}.{{index}}.subskill" value="{{skill}}" /> )
+            <div class="roll-skill" data-skill="{{prefix}}" data-subskill="{{skill}}">
+                {{localize (concat "skills." prefix ".label")}}
+            </div> 
+            <div class="subskill">
+                ( <input type="text" name="system.skills.{{prefix}}.{{index}}.subskill" value="{{skill}}" /> )
+            </div>
         {{else}}
-            {{localize (concat "skills." skill ".label")}}
+            <div class="roll-skill" data-skill="{{skill}}">
+                {{localize (concat "skills." skill ".label")}}
+            </div>
         {{/if}}
     </div>
     <div class="skill-proficient">

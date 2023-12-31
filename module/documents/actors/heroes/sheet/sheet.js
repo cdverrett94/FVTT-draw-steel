@@ -16,7 +16,7 @@ export class HeroSheet extends ActorSheet {
                     initial: 'skills',
                 },*/
             ],
-            scrollY: ['.skills', '.tabbed-content'],
+            scrollY: ['.skill-list', '.tabbed-content'],
             width: 1230,
             height: 930,
             resizable: false,
