@@ -62,39 +62,6 @@ export class MCDMActor extends Actor {
         this._displayScrollingDamage(options.hpDelta);
     }
 
-    _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
-
-        if (collection === 'items') {
-            if (documents.find((document) => document.type === 'class') || documents.find((document) => document.type === 'kit')) {
-                this._updateActorResources(this.system.class);
-            }
-        }
-    }
-    async _onCreateDescendantDocuments(parent, collection, documents, changes, options, userId) {
-        super._onCreateDescendantDocuments(parent, collection, documents, changes, options, userId);
-
-        let newClass;
-        let classDeletions = [];
-        let newKit;
-        let kitDeletions = [];
-
-        if (collection === 'items' && documents.find((document) => document.type === 'class')) {
-            classDeletions = this.items.filter((item) => item.type === 'class');
-            newClass = classDeletions.pop();
-
-            this._updateActorResources(newClass);
-        }
-
-        if (collection === 'items' && documents.find((document) => document.type === 'kit')) {
-            kitDeletions = this.items.filter((item) => item.type === 'kit');
-            newKit = kitDeletions.pop();
-        }
-
-        let deletionIds = [...classDeletions, ...kitDeletions].map((item) => item._id);
-        if (deletionIds.length) this.deleteEmbeddedDocuments('Item', deletionIds);
-    }
-
     _displayScrollingDamage(hpDelta) {
         if (!hpDelta) return;
         hpDelta = Number(hpDelta);
@@ -111,22 +78,5 @@ export class MCDMActor extends Actor {
                 jitter: 0.25,
             });
         }
-    }
-
-    _updateActorResources(newClass) {
-        if (!newClass) return;
-        let updateData = [];
-        let existingResources = this.system.currentResources;
-        let newCurrentValue;
-
-        newClass.system.resources.forEach((resource) => {
-            let existingCurrent = existingResources.find((existingResource) => resource.name === existingResource.name);
-            updateData.push({
-                name: resource.name,
-                current: existingCurrent?.current ?? 0,
-            });
-        });
-
-        this.update({ 'system.currentResources': updateData });
     }
 }
