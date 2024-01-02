@@ -41,8 +41,6 @@ export class AncestrySheet extends ItemSheet {
     _getSubmitData(updateData = {}) {
         updateData = super._getSubmitData(updateData);
 
-        console.log(updateData);
-
         return updateData;
     }
 }
