@@ -76,47 +76,13 @@
         </div>
     </div>
     <div class='monster-body'>
-        {{#each abilities as |abilityGroup|}}
-            {{#if abilityGroup}}
-                <div class='ability-group'>
-                    <div class='ability-group-header {{@key}}'>{{localize (concat 'abilityTypes.' @key '.label')}}</div>
-
-                    <div class='ability-list'>
-                        {{#each abilityGroup as |ability|}}
-                            <div class='ability'>
-                                <div class='property'>
-                                    <div class='label'>Name</div>
-                                    <div class='value'>{{ability.name}}</div>
-                                </div>
-                                <div class='property'>
-                                    <div class='label'>Keywords</div>
-                                    <div class='value'>
-                                        {{#each ability.system.keywords as |keyword|}}
-                                            {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
-                                        {{/each}}
-                                    </div>
-                                </div>
-                                <div class='property'>
-                                    <div class='label'>Distance</div>
-                                    <div class='value'>{{ability.system.distance}}</div>
-                                </div>
-                                <div class='property'>
-                                    <div class='label'>Target</div>
-                                    <div class='value'>{{ability.system.target}}</div>
-                                </div>
-                                <div class='property'>
-                                    <div class='label'>Damage</div>
-                                    <div class='value'>{{{ability.system.enrichedDamage}}}</div>
-                                </div>
-                                <div class='property'>
-                                    <div class='label'>Effect</div>
-                                    <div class='value'>{{{ability.system.enrichedEffect}}}</div>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                </div>
-            {{/if}}
-        {{/each}}
+        <div class="monster-abilities">
+            <div class="mcdmrpg-header">
+                Abilities
+            </div>
+            <div class="abilities-list">
+                {{> 'systems/mcdmrpg/module/documents/actors/base/sheet/partials/abilities.hbs'}}
+            </div>
+        </div>
     </div>
 </form>

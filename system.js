@@ -29,6 +29,9 @@ Hooks.on('init', () => {
 
     // Load templates
     const templatePaths = [
+        // Base
+        'systems/mcdmrpg/module/documents/actors/base/sheet/partials/abilities.hbs',
+
         // Heroes
         'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs',
         'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.hbs',

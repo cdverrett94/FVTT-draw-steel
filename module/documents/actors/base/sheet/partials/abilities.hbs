@@ -1,0 +1,42 @@
+{{#each abilities as |abilityGroup|}}
+    {{#if abilityGroup}}
+        {{#each abilityGroup as |ability|}}
+            <div class='ability {{@../key}}-ability' data-ability-group='{{@../key}}' data-ability-id="{{ability._id}}">
+                <div class='ability-group-label'>{{localize (concat 'abilityTypes.' @../key '.label')}}</div>
+                <div class='ability-header'>
+                    <div class="ability-name">{{ability.name}}</div>
+                    <div class="ability-edit"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="Edit Ability"></i></div>
+                    <div class="ability-delete"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="Delete Ability"></i></div>
+                </div>
+                <div class='property ability-keywords'>
+                    <div class='label'>Keywords</div>
+                    <div class='value'>
+                        {{#each ability.system.keywords as |keyword|}}
+                            {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
+                        {{/each}}
+                    </div>
+                </div>
+                <div class='property ability-time'>
+                    <div class='label'>Time</div>
+                    <div class='value'>{{ability.system.time}}</div>
+                </div>
+                <div class='property ability-distance'>
+                    <div class='label'>Distance</div>
+                    <div class='value'>{{ability.system.distance}}</div>
+                </div>
+                <div class='property ability-target'>
+                    <div class='label'>Target</div>
+                    <div class='value'>{{ability.system.target}}</div>
+                </div>
+                <div class='property ability-damage'>
+                    <div class='label'><i class="fa-duotone fa-arrow-pointer" style="--fa-secondary-color: #511f1f; --fa-secondary-opacity: 0;"></i>Damage</div>
+                    <div class='value'>{{{ability.system.enrichedDamage}}}</div>
+                </div>
+                <div class='property ability-effect'>
+                    <div class='label'>Effect</div>
+                    <div class='value'>{{{ability.system.enrichedEffect}}}</div>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+{{/each}}
