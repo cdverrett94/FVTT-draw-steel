@@ -34,3 +34,26 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
 }
+
+.sheet.actor.monster .monster-body .ability-group-header {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    padding: 5px;
+}
+
+.sheet.actor.monster .monster-body .ability-group-header.basic {
+    background-color: red;
+}
+
+.sheet.actor.monster .monster-body .ability-group-header.manuever {
+    background-color: blue;
+}
+
+.sheet.actor.monster .monster-body .ability-list .ability {
+    margin-bottom: 5px;
+}
+
+.sheet.actor.monster .monster-body .ability-list .ability .property {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
