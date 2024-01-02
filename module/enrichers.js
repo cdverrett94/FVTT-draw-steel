@@ -13,6 +13,15 @@ export function registerCustomEnrichers() {
 }
 
 function enrichDamage(match, options) {
+    /* Currently accounted for  config options
+
+    type = damage type
+    replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
+    applyKitDamage = should a kits damage apply to the roll - default true
+    boons = # of boons to apply to roll
+    banes = number of banes to apply to roll
+    impacts = number of impact dice to roll
+    */
     let { formula, config } = match.groups;
     let data = {};
     config = config.split('|');
@@ -57,12 +66,14 @@ async function rollAction(event) {
     let actorId = target.dataset.actorId;
     let boons = Math.abs(Number(target.dataset.boons) || 0);
     let banes = Math.abs(Number(target.dataset.banes) || 0);
+    let impacts = Math.abs(Number(target.dataset.impacts) || 0);
     let applyKitDamage = target.dataset.applyKitDamage;
 
     let context = {
         actor: await fromUuid(actorId),
         banes,
         boons,
+        impacts,
         baseFormula: formula,
         damageType,
         applyKitDamage,

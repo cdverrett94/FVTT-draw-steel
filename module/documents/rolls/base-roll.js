@@ -10,10 +10,12 @@ export class MCDMRoll extends Roll {
         if (!data.length) data = actor?.getRollData() || {};
         options.boons = Math.abs(Number(options.boons) || 0);
         options.banes = Math.abs(Number(options.banes) || 0);
+        options.impacts = Math.abs(Number(options.impacts) || 0);
 
         super(formula, data, options);
         this.boons = options.boons;
         this.banes = options.banes;
+        this.impacts = options.impacts;
         this.actor = actor;
     }
 
@@ -26,8 +28,8 @@ export class MCDMRoll extends Roll {
             if (boonBaneAdjustment !== 0) formula = `${formula} ${boonBaneAdjustment > 0 ? '+' : ''} ${boonBaneAdjustment}d4`;
         }
 
-        if (options.impact) {
-            formula = `${formula} + ${options.impact}d8`;
+        if (options.impacts) {
+            formula = `${formula} + ${options.impacts}d8`;
         }
 
         return formula;

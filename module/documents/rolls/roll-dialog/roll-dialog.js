@@ -12,7 +12,8 @@ export class MCDMRollDialog extends Application {
         const overrides = {
             classes: ['mcdmrpg', 'roll-dialog'],
             template: `/systems/mcdmrpg/module/documents/rolls/roll-dialog/sheet/roll-dialog-sheet.hbs`,
-            resizable: true,
+            height: 210,
+            width: 315,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
@@ -38,6 +39,7 @@ export class MCDMRollDialog extends Application {
     async getData() {
         this.context.applyKitDamage ??= false;
         this.context.actorId = this.actor.uuid;
+        console.log(this.context);
 
         let data = {
             ...this.context,
@@ -51,7 +53,7 @@ export class MCDMRollDialog extends Application {
         super.activateListeners($html);
         const html = $html[0];
 
-        html.querySelectorAll('.adjust-d4')?.forEach((element) => {
+        html.querySelectorAll('.adjust-dice')?.forEach((element) => {
             let type = element.dataset.type;
             let adjustment = element.dataset.adjustment;
             element.addEventListener('click', (event) => {

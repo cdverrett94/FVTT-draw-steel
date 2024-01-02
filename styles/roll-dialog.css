@@ -1,30 +1,35 @@
-.roll-dialog div.boons-and-banes {
+.roll-dialog .mcdmrpg-header {
+    margin-top: 10px;
+}
+
+.roll-dialog div.boons-banes-and-impacts {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
     justify-content: center;
     grid-gap: 10px;
+    margin-bottom: 10px;
 }
 
 .roll-dialog div.boons,
-.roll-dialog div.banes {
+.roll-dialog div.banes,
+.roll-dialog div.impact {
     width: 100%;
     text-align: center;
 }
 
-.roll-dialog div.boons > :nth-child(2),
-.roll-dialog div.banes > :nth-child(2) {
+.roll-dialog div.boons-banes-and-impacts > div > :nth-child(2) {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
 
-.roll-dialog div.add-d4:hover {
+.roll-dialog div.add-dice:hover {
     cursor: pointer;
     color: green;
 }
 
-.roll-dialog div.subtract-d4:hover {
+.roll-dialog div.subtract-dice:hover {
     cursor: pointer;
     color: red;
 }
