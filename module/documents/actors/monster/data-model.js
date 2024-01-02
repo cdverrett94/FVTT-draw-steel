@@ -6,7 +6,9 @@ export class MonsterData extends MCDMActorData {
         return {
             ...super.defineSchema(),
             group: new fields.StringField(),
-            bonusDamage: new fields.NumberField(),
+            bonusDamage: new fields.NumberField({
+                initial: 0,
+            }),
         };
     }
 }
