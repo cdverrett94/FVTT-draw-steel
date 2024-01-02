@@ -26,7 +26,7 @@ function enrichDamage(match, options) {
     data.actor = options.actor;
     data.actorId = data.actor?.uuid;
     data.replaceCharacteristic = data.replaceCharacteristic === 'false' ? false : true;
-    data.applyKitDamage = data.applyKitDamage ?? options.applyKitDamage ?? true;
+    data.applyKitDamage = data.applyKitDamage === 'false' ? false : true;
 
     return createRollLink(formula, data);
 }
