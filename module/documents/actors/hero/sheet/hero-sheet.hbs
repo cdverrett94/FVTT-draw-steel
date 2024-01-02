@@ -19,15 +19,12 @@
                     </div>
                 </div>
                 <div class="tabbed-content">
-                    {{#each abilities as |abilityGroup|}}
-                    <div class="abilities {{@key}}-abilities">
-                        <div class="mcdmrpg-header">{{localize (concat 'abilityTypes.' @key '.label')}}</div>
-                        <div class="ability-container">
-                            {{#each abilityGroup as |ability|}} {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.hbs" ability=ability
-                            }} {{/each}}
+                    <div class="hero-abilities actor-abilities">
+                        <div class="mcdmrpg-header">Abilities</div>
+                        <div class="abilities-list">
+                            {{> 'systems/mcdmrpg/module/documents/actors/base/sheet/partials/abilities.hbs'}}
                         </div>
                     </div>
-                    {{/each}}
                 </div>
             </div>
         </div>
