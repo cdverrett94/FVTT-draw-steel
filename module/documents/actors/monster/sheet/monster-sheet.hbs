@@ -3,14 +3,20 @@
         <div class='name'>
             <input type='text' value='{{name}}' name='name' />
         </div>
-        <div class='group-and-level'>
-            <div class='group'>Group: <input type='text' name='system.group' value='{{group}}' /></div>
+        <div class='role-and-level'>
+            <div class='role'>
+                <select name="system.role">
+                    {{#each monsterRoles as |monsterRole|}}
+                        <option value="{{monsterRole}}"{{#if (eq monsterRole ../role)}} selected{{/if}}>{{localize (concat 'monsterRoles.' monsterRole '.label')}}</option>
+                    {{/each}}
+                </select>
+            </div>
             <div class='level'>Level: <input type='text' name='system.level' value='{{level}}' /></div>
         </div>
         <div class='health-size-and-chance-hit'>
             <div class='health'>
-                <div class='current-health'>
-                    <div class='property'>Health</div>
+                <div class='current-health property'>
+                    <div class='label'>Health</div>
                     <div class='value'>
                         <input type='text' name='system.hp.current' value='{{hp.current}}' />
                     </div>
@@ -23,43 +29,49 @@
                 </div>
             </div>
             <div class='size-and-chance-hit'>
-                <div class='size'>
-                    <div class='property'>Size</div>
+                <div class='size property'>
+                    <div class='label'>Size</div>
                     <div class='value'>
                         <div class='width'><input type='text' name='system.size.width' value='{{size.width}}' /></div>
                         <div class='separator'>x</div>
                         <div class='length'><input type='text' name='system.size.length' value='{{size.length}}' /></div>
                     </div>
                 </div>
-                <div class='speed'>
-                    <div class='property'>Speed</div>
+                <div class='speed property'>
+                    <div class='label'>Speed</div>
                     <div class='value'>
                         <input type='text' name='system.speed' value='{{speed}}' />
                     </div>
-                    Speed:
                 </div>
-                <div class='weight'>
-                    <div class='property'>Weight</div>
+                <div class='weight property'>
+                    <div class='label'>Weight</div>
                     <div class='value'>
                         <input type='text' name='system.size.weight' value='{{size.weight}}' />
                     </div>
                 </div>
-                <div class='reach'>
-                    <div class='property'>Reach</div>
+                <div class='reach property'>
+                    <div class='label'>Reach</div>
                     <div class='value'>
                         <input type='text' name='system.reach' value='{{reach}}' />
                     </div>
                 </div>
-                <div class='chance-hit'>
-                    <div class='property'>Chance Hit</div>
+                <div class='bonus-damage property'>
+                    <div class='label'>Bonus Damage</div>
+                    <div class='value'><input type='text' name='system.bonusDamage' value='{{bonusDamage}}' /></div>
+                </div>
+                <div class='chance-hit property'>
+                    <div class='label'>Chance Hit</div>
                     <div class='value'>{{{chanceHit}}}</div>
                 </div>
-                <div class='grapple-tn'>Grapple/Knockback TN{{grappleTN}}</div>
-                <div class='bonus-damage'>
-                    <div class='property'>
-                        Bonus Damage
+                <div class='grapple-tn property'>
+                    <div class="label">
+                        <div class="grapple-knockback">
+                            <div class="grapple">Grapple</div>
+                            <div class="knockback">Knockback</div>
+                        </div>
+                        <div class="tn-text">TN</div>
                     </div>
-                    <div class='value'><input type='text' name='system.bonusDamage' value='{{bonusDamage}}' /></div>
+                    <div class="value">{{grappleTN}}</div>
                 </div>
             </div>
         </div>
@@ -76,10 +88,8 @@
         </div>
     </div>
     <div class='monster-body'>
-        <div class="monster-abilities">
-            <div class="mcdmrpg-header">
-                Abilities
-            </div>
+        <div class="monster-abilities actor-abilities">
+            <div class="mcdmrpg-header">Abilities</div>
             <div class="abilities-list">
                 {{> 'systems/mcdmrpg/module/documents/actors/base/sheet/partials/abilities.hbs'}}
             </div>

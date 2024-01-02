@@ -1,3 +1,13 @@
+.sheet.actor.monster .header .property {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-gap: 10px;
+    margin-bottom: 5px;
+}
+
+.sheet.actor.monster .header .property .label {
+    text-align: right;
+}
 .sheet.actor.monster .header .name input {
     height: 50px;
     font-weight: bold;
@@ -11,7 +21,8 @@
 
 .sheet.actor.monster .header .health-size-and-chance-hit {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
+    border-bottom: 2px solid black;
 }
 
 .sheet.actor.monster .header .health {
@@ -23,83 +34,39 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.sheet.actor.monster .header .size-and-chance-hit .size {
+.sheet.actor.monster .header .size-and-chance-hit .size .value {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     grid-gap: 5px;
 }
+.sheet.actor.monster .header .size-and-chance-hit .size .value input {
+    width: 100%;
+    text-align: center;
+}
+
+.sheet.actor.monster .header .size-and-chance-hit .size .width input {
+    width: 100%;
+}
+
+.sheet.actor.monster .header .size-and-chance-hit .size .value .separator {
+    text-align: center;
+}
+
+.sheet.actor.monster .header .size-and-chance-hit .grapple-tn .label {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    grid-gap: 2px;
+}
+
+.sheet.actor.monster .header .size-and-chance-hit .chance-hit,
+.sheet.actor.monster .header .size-and-chance-hit .grapple-tn {
+    grid-column-end: 3;
+    grid-column-start: 1;
+}
 
 .sheet.actor.monster .header .characteristics {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-}
-
-.sheet.actor.monster div.monster-abilities {
-    margin-top: 5px;
-}
-
-.sheet.actor.monster div.monster-abilities .abilities-list {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.sheet.actor.monster .ability-group-label {
-    font-weight: bold;
-}
-
-.sheet.actor.monster .monster-body .ability-header {
-    color: white;
-    text-shadow: 2px 2px 2px black;
-    padding: 5px;
-}
-
-.sheet.actor.monster .monster-body .ability-header .ability-edit:hover,
-.sheet.actor.monster .monster-body .ability-header .ability-delete:hover {
-    color: black;
-    cursor: pointer;
-    text-shadow: 0px 0px 0px black;
-}
-
-.sheet.actor.monster .monster-body .ability {
-    padding: 5px;
-    border-radius: 5px;
-    min-width: 360px;
-    max-width: 360px;
-    flex: 1 1 0px;
-}
-.sheet.actor.monster .monster-body .ability:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.sheet.actor.monster .monster-body .ability.basic-ability .ability-header {
-    background-color: rgba(255, 0, 0, 8);
-}
-
-.sheet.actor.monster .monster-body .ability.manuever-ability .ability-header {
-    background-color: rgba(0, 0, 255, 0.7);
-}
-.sheet.actor.monster .monster-body .ability .ability-header {
-    display: grid;
-    grid-template-columns: 1fr 25px 25px;
-    align-items: center;
-}
-
-.sheet.actor.monster .monster-body .abilities-list .ability {
-    margin-bottom: 5px;
-}
-
-.sheet.actor.monster .monster-body .abilities-list .ability .property {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-gap: 10px;
-}
-
-.sheet.actor.monster .monster-body .abilities-list .ability .property .label {
-    text-align: right;
-}
-
-.fa-arrow-pointer {
-    rotate: 115deg;
-    margin-right: 10px;
 }

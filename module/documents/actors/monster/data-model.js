@@ -1,3 +1,4 @@
+import { monsterRoles } from '../../../constants.js';
 import { MCDMActorData } from '../base/data-model.js';
 
 export class MonsterData extends MCDMActorData {
@@ -5,7 +6,9 @@ export class MonsterData extends MCDMActorData {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            group: new fields.StringField(),
+            role: new fields.StringField({
+                choices: monsterRoles,
+            }),
             bonusDamage: new fields.NumberField({
                 initial: 0,
             }),

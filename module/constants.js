@@ -5,7 +5,8 @@ const damageTypes = ['untyped', 'acid', 'cold', 'corruption', 'fire', 'holy', 'l
 const baseAbilityTypes = ['action', 'basic', 'manuever', 'triggered'];
 const heroAbilityTypes = ['signature', 'heroic'];
 const monsterAbilityTypes = ['villain'];
+const monsterRoles = ['ambusher', 'artillery', 'brute', 'bystander', 'controller', 'leader', 'minion', 'skirmisher', 'soldier', 'solo', 'support'];
 
 const abilityTypes = [...baseAbilityTypes, ...heroAbilityTypes, ...monsterAbilityTypes].sort();
 
-export { abilityTypes, characteristics, damageTypes, keywords, skills };
+export { abilityTypes, characteristics, damageTypes, keywords, monsterRoles, skills };
