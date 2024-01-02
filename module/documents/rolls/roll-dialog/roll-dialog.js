@@ -30,11 +30,15 @@ export class MCDMRollDialog extends Application {
     }
 
     damageFormula() {
-        return new DamageRoll(DamageRoll.constructFinalFormula(this.formula, this.context))._formula;
+        let damageRoll = new DamageRoll(DamageRoll.constructFinalFormula(this.formula, this.context), {}, this.context);
+
+        return damageRoll._formula;
     }
 
     async getData() {
         this.context.applyKitDamage ??= false;
+        this.context.actorId = this.actor.uuid;
+
         let data = {
             ...this.context,
             constructedFormula: this.damageFormula(),
