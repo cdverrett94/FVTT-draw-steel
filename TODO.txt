@@ -1,4 +1,0 @@
-fix roll dialog not getting characteristic
-
-inline applykitdamage false not working, applying regardless
-simplify damage formula
