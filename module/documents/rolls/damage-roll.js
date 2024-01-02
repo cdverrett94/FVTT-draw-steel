@@ -12,7 +12,11 @@ export class DamageRoll extends MCDMRoll {
     static constructFinalFormula(formula, options) {
         formula = MCDMRoll.constructFinalFormula(formula, options);
 
-        if (options.actor.system.kit?.system.damage && options.applyKitDamage) formula = `${formula} + ${options.actor.system.kit?.system.damage}`;
+        if (options.actor.type === 'hero' && options.actor.system.kit?.system.damage && options.applyKitDamage) {
+            formula = `${formula} + ${options.actor.system.kit?.system.damage}`;
+        } else if (options.actor.type === 'monster' && options.actor.system.bonusDamage && options.applyKitDamage) {
+            formula = `${formula} + ${options.actor.system.bonusDamage}`;
+        }
 
         return formula;
     }
