@@ -1,0 +1,91 @@
+:root {
+    --default-ability-bg-color: rgba(0, 0, 0, 0.8);
+    --basic-ability-bg-color: rgba(255, 0, 0, 0.8);
+    --maneuver-ability-bg-color: rgba(0, 0, 255, 0.8);
+    --heroic-ability-bg-color: rgba(255, 234, 0, 0.8);
+    --signature-ability-bg-color: rgba(255, 149, 0, 0.8);
+    --triggered-ability-bg-color: rgba(9, 130, 0, 0.8);
+    --villain-ability-bg-color: rgba(133, 0, 186, 0.8);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities {
+    margin-top: 5px;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .abilities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 5px;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability-group-label {
+    font-weight: bold;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability-header {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr auto 25px 25px;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability-header .ability-edit:hover,
+.mcdmrpg.sheet.actor div.actor-abilities .ability-header .ability-delete:hover {
+    color: black;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px black;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability {
+    padding: 5px;
+    border-radius: 5px;
+}
+.mcdmrpg.sheet.actor div.actor-abilities .ability {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability .ability-header {
+    background-color: var(--default-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability.basic-ability .ability-header {
+    background-color: var(--basic-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability.manuever-ability .ability-header {
+    background-color: var(--maneuver-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability.heroic-ability .ability-header {
+    background-color: var(--heroic-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability.signature-ability .ability-header {
+    background-color: var(--signature-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability.triggered-ability .ability-header {
+    background-color: var(--triggered-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .ability.villain-ability .ability-header {
+    background-color: var(--villain-ability-bg-color);
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .abilities-list .ability .property {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-gap: 10px;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .abilities-list .ability .property .label {
+    text-align: right;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .abilities-list .ability .ability-damage .fa-arrow-pointer {
+    rotate: 115deg;
+    margin-right: 10px;
+}

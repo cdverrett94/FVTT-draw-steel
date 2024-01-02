@@ -1,4 +1,6 @@
-export class HeroSheet extends ActorSheet {
+import { BaseMCDMRPGActorSheet } from '../../base/sheet/sheet.js';
+
+export class HeroSheet extends BaseMCDMRPGActorSheet {
     constructor(...args) {
         super(...args);
     }
@@ -19,36 +21,14 @@ export class HeroSheet extends ActorSheet {
             scrollY: ['.skill-list', '.tabbed-content'],
             width: 1230,
             height: 930,
-            resizable: false,
+            resizable: true,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
     }
 
     async getData() {
-        let { abilities } = this.actor.system;
-        const data = {
-            name: this.actor.name,
-            img: this.actor.img,
-            ...this.actor.system,
-        };
-
-        // Enrich Content
-        let enrichContext = {
-            async: true,
-            actor: this.actor,
-            replaceCharacteristic: true,
-            applyKitDamage: true,
-        };
-
-        for (const [group, abilities] of Object.entries(data.abilities)) {
-            for (const [index, ability] of abilities.entries()) {
-                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(ability.system.damage, enrichContext);
-                data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, enrichContext);
-            }
-        }
-
-        data.chanceHit = await TextEditor.enrichHTML(data.chanceHit, enrichContext);
+        let data = super.getData();
 
         return data;
     }
@@ -88,22 +68,6 @@ export class HeroSheet extends ActorSheet {
                 let skill = element.dataset.skill;
                 let subskill = element.dataset.subskill;
                 this.actor.deleteSkill({ skill, subskill });
-            });
-        });
-
-        // Edit Ability Item
-        html.querySelectorAll('.edit-ability').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let abilityId = element.dataset.abilityId;
-                this.actor.items.find((item) => item.id === abilityId).sheet.render(true);
-            });
-        });
-
-        // Delete Ability Item
-        html.querySelectorAll('.delete-ability').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let abilityId = element.dataset.abilityId;
-                this.actor.deleteEmbeddedDocuments('Item', [abilityId]);
             });
         });
 

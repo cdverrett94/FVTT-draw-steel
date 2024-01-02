@@ -2,6 +2,7 @@
 @import url('styles/roll-dialog.css');
 
 /* Actor Imports */
+@import url('styles/actors/base/base-sheet.css');
 @import url('styles/actors/hero/hero-sheet.css');
 @import url('styles/actors/monster/monster-sheet.css');
 

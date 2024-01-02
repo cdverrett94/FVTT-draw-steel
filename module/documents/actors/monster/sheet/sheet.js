@@ -1,4 +1,7 @@
-export class MonsterSheet extends ActorSheet {
+import { monsterRoles } from '../../../../constants.js';
+import { BaseMCDMRPGActorSheet } from '../../base/sheet/sheet.js';
+
+export class MonsterSheet extends BaseMCDMRPGActorSheet {
     constructor(...args) {
         super(...args);
     }
@@ -17,8 +20,8 @@ export class MonsterSheet extends ActorSheet {
                 },*/
             ],
             // scrollY: ['.skill-list', '.tabbed-content'],
-            width: 1230,
-            height: 930,
+            width: 745,
+            height: 'auto',
             resizable: true,
         };
 
@@ -26,28 +29,9 @@ export class MonsterSheet extends ActorSheet {
     }
 
     async getData() {
-        const data = {
-            name: this.actor.name,
-            img: this.actor.img,
-            ...this.actor.system,
-        };
+        let data = await super.getData();
 
-        // Enrich Content
-        let enrichContext = {
-            async: true,
-            actor: this.actor,
-            replaceCharacteristic: true,
-            applyKitDamage: true,
-        };
-
-        for (const [group, abilities] of Object.entries(data.abilities)) {
-            for (const [index, ability] of abilities.entries()) {
-                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(ability.system.damage, enrichContext);
-                data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, enrichContext);
-            }
-        }
-
-        data.chanceHit = await TextEditor.enrichHTML(data.chanceHit, enrichContext);
+        data.monsterRoles = monsterRoles;
 
         return data;
     }
