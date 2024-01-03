@@ -3,6 +3,7 @@
 
 /* Actor Imports */
 @import url('styles/actors/base/base-sheet.css');
+@import url('styles/actors/base/edit-skills-sheet.css');
 @import url('styles/actors/hero/hero-sheet.css');
 @import url('styles/actors/monster/monster-sheet.css');
 

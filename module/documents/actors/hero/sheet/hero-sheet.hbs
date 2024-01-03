@@ -5,17 +5,21 @@
             <div class="content-header">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.hbs"}}</div>
             <div class="content-body">
                 <div class="skills">
-                    <div class="mcdmrpg-header">Skills</div>
+                    <div class="mcdmrpg-header">Skills<span class="edit-skills">Edit Skills</span></div>
+
                     <div class="skill-list">
-                        {{#each skills as |skill|}} {{#if (or (eq @key "craft") (eq @key "knowledge"))}} {{#each skill as |subskill| }} {{>
-                        "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" skillData=subskill skill=subskill.subskill
-                        characteristics=../../characteristics prefix=@../key index=@index special=true}} {{/each}} {{else}} {{>
-                        "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" skillData=this skill=@key characteristics=../characteristics
-                        }} {{/if}} {{/each}}
-                    </div>
-                    <div class="skill-buttons">
-                        <button class="add-skill" data-skill="craft"><i class="fa-solid fa-plus"></i> Craft</button>
-                        <button class="add-skill" data-skill="knowledge"><i class="fa-solid fa-plus"></i> Knowledge</button>
+                        {{#each skills as |skill|}} 
+                            {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
+                                {{#each skill as |subskill| }} 
+                                    {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" 
+                                    skillData=subskill skill=subskill.subskill characteristics=../../characteristics 
+                                    prefix=@../key index=@index special=true}} 
+                                {{/each}} 
+                            {{else}} 
+                                {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" 
+                                skillData=this skill=@key characteristics=../characteristics}}
+                            {{/if}} 
+                        {{/each}}
                     </div>
                 </div>
                 <div class="tabbed-content">

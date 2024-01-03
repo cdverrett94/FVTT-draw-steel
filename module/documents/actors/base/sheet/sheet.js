@@ -1,3 +1,5 @@
+import { EditActorSkillsSheet } from './edits-skills-sheet.js';
+
 export class BaseMCDMRPGActorSheet extends ActorSheet {
     constructor(...args) {
         super(...args);
@@ -11,6 +13,7 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
         const data = {
             name: this.actor.name,
             img: this.actor.img,
+            actor: this.actor,
             ...this.actor.system,
         };
 
@@ -35,6 +38,15 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
     activateListeners($html) {
         super.activateListeners($html);
         const html = $html[0];
+
+        // Edit Ability
+        const editSkillButton = html.querySelector('.edit-skills');
+        editSkillButton.addEventListener('click', (event) => {
+            const context = {
+                actor: this.actor,
+            };
+            new EditActorSkillsSheet(this.actor).render(true);
+        });
 
         // Edit Ability
         html.querySelectorAll('.ability-edit').forEach((element) => {

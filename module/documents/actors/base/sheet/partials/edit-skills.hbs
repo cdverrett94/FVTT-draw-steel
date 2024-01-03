@@ -1,0 +1,45 @@
+<form>
+    <div class="skills">
+        <div class="skill-buttons">
+            <button class="add-skill" data-skill="craft" type="button"><i class="fa-solid fa-plus"></i> Craft</button>
+            <button class="add-skill" data-skill="knowledge" type="button"><i class="fa-solid fa-plus"></i> Knowledge</button>
+        </div>
+        <div class="skill-list">
+            <div class="skills-header"><div>Skill Name</div><div>Proficient</div><div></div></div>
+            {{#each skills as |skill|}}
+                {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
+                {{!- craft and knowledge --}}
+                    {{#each skill as |subskill| }}
+                        <div class="skill">
+                            <div class="skill-name">
+                                {{localize (concat "skills." @../key ".label")}} ( <input type="text" name="system.skills.{{@../key}}.{{@index}}.subskill" value="{{subskill.subskill}}" /> )
+                            </div>
+                            <div class="skill-proficient">
+                                <input type="checkbox" data-tooltip-direction="RIGHT" data-tooltip="Is character proficient in the skill?" name="system.skills.{{@../key}}.{{@index}}.proficient"{{#if subskill.proficient}} checked{{/if}}>
+                            </div>
+                            <div class="delete-skill">
+                                <i class="fa-solid fa-trash" data-skill="{{@../key}}" data-subskill="{{subskill.subskill}}" data-tooltip-direction="RIGHT" data-tooltip="Delete skill?"></i>
+                            </div>
+                        </div>
+                    {{/each}} 
+                {{else}} 
+                {{!-- other than craft or knowledge --}}
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <div class="roll-skill" data-skill="{{@key}}">
+                            {{localize (concat "skills." @key ".label")}}
+                        </div>
+                    </div>
+                    <div class="skill-proficient">
+                        <input type="checkbox" name="system.skills.{{@key}}.proficient"  data-tooltip-direction="RIGHT" data-tooltip="Is character proficient in the skill?" {{#if skill.proficient}}checked{{/if}}>
+                    </div>
+                    <div class="delete-skill">
+                    </div>
+                </div>
+
+                {{/if}} 
+            {{/each}}
+        </div>
+    </div>
+</form>

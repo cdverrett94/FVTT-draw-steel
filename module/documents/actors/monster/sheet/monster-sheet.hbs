@@ -5,7 +5,7 @@
         </div>
         <div class='role-and-level'>
             <div class='role'>
-                <select name="system.role" clas="{{role}}">
+                <select name="system.role" class="{{role}}">
                     {{#each monsterRoles as |monsterRole|}}
                         <option value="{{monsterRole}}"{{#if (eq monsterRole ../role)}} selected{{/if}}>{{localize (concat 'monsterRoles.' monsterRole '.label')}}</option>
                     {{/each}}
@@ -98,6 +98,20 @@
         </div>
     </div>
     <div class='monster-body'>
+        <div class="monster-skills">
+            <span class="edit-skills">Edit Skills</span>
+            <div class="proficient-skills">
+                {{#each proficientSkills as |skill|}}
+                    {{#if (or (eq @key 'craft') (eq @key 'knowledge'))}}
+                        {{#each skill as |subskill|}}
+                            <a class="roll-link roll-skill" data-skill="{{subskill.subskill}}" data-actor-id="{{@root.actor.uuid}}"{{#if subskill.proficient}} data-boons="1"{{/if}}><i class="fa-solid fa-dice-d6"></i> {{localize (concat 'skills.' @../key '.label')}} ({{subskill.subskill}})</a>
+                        {{/each}}
+                    {{else}}
+                        {{localize (concat 'skills.' @key '.label')}}
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
         <div class="monster-abilities actor-abilities">
             <div class="mcdmrpg-header">Abilities</div>
             <div class="abilities-list">

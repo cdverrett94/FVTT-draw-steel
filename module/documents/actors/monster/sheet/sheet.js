@@ -32,7 +32,17 @@ export class MonsterSheet extends BaseMCDMRPGActorSheet {
         let data = await super.getData();
 
         data.monsterRoles = monsterRoles;
-
+        let proficientSkills = {};
+        for (const [skill, data] of Object.entries(this.actor.system.skills)) {
+            if (['craft', 'knowledge'].includes(skill)) {
+                let specialSkills = data.filter((subskill) => subskill.proficient === true);
+                if (specialSkills.length) proficientSkills[skill] = specialSkills;
+            } else {
+                if (skill.proficient) proficientSkills[skill] = data;
+            }
+        }
+        data.proficientSkills = proficientSkills;
+        console.log(proficientSkills);
         return data;
     }
 
