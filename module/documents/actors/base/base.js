@@ -1,4 +1,4 @@
-import { abilityTypes } from '../../../constants.js';
+import { abilityTypes, characteristics } from '../../../constants.js';
 
 export class MCDMActor extends Actor {
     prepareData() {
@@ -44,6 +44,30 @@ export class MCDMActor extends Actor {
         if (this.system.hp.current === this.system.hp.bloodied) {
             // TODO mark dead
         }
+    }
+
+    async addSkill({ skill, subskill = 'New Skill', characteristic = 'reason', proficient = true } = {}) {
+        if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');
+        if (!characteristics.includes(characteristic)) return ui.notifications.error('The used characteristic must be a valid one.');
+        let skillArray = this.system.skills[skill];
+        skillArray.push({
+            subskill: subskill,
+            characteristic: characteristic,
+            proficient: proficient,
+        });
+
+        return await this.update({ [`system.skills.${skill}`]: skillArray });
+    }
+
+    async deleteSkill({ skill, subskill } = {}) {
+        if (!skill || !subskill) return ui.notifications.error('Must provide a skill and subskill');
+        if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');
+        let skillArray = this.system.skills[skill];
+        let skillIndex = skillArray.findIndex((s) => s.subskill === subskill);
+        if (skillIndex === -1) return ui.notifications.error(`No subskill ${subskill} found in ${skill}`);
+
+        skillArray.splice(skillIndex, 1);
+        return await this.update({ [`system.skills.${skill}`]: skillArray });
     }
 
     async _preUpdate(changed, options, user) {
