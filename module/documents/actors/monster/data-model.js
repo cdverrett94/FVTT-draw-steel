@@ -12,6 +12,9 @@ export class MonsterData extends MCDMActorData {
             bonusDamage: new fields.NumberField({
                 initial: 0,
             }),
+            bonusTN: new fields.NumberField({
+                initial: 0,
+            }),
         };
     }
 }

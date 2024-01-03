@@ -5,27 +5,33 @@
         </div>
         <div class='role-and-level'>
             <div class='role'>
-                <select name="system.role">
+                <select name="system.role" clas="{{role}}">
                     {{#each monsterRoles as |monsterRole|}}
                         <option value="{{monsterRole}}"{{#if (eq monsterRole ../role)}} selected{{/if}}>{{localize (concat 'monsterRoles.' monsterRole '.label')}}</option>
                     {{/each}}
                 </select>
             </div>
-            <div class='level'>Level: <input type='text' name='system.level' value='{{level}}' /></div>
+            <div class='level property'>
+                <div class="label">LVL</div>
+                <div class="value"><input type='text' name='system.level' value='{{level}}' /></div>
+            </div>
         </div>
         <div class='health-size-and-chance-hit'>
             <div class='health'>
-                <div class='current-health property'>
+                <div class='current-health'>
                     <div class='label'>Health</div>
                     <div class='value'>
                         <input type='text' name='system.hp.current' value='{{hp.current}}' />
                     </div>
                 </div>
                 <div class='other-health'>
-                    max:
-                    <input type='text' name='system.hp.max' value='{{hp.max}}' />
-                    bloodied
-                    {{hp.bloodied}}
+                    <div class="bloodied">
+                        <div class="bloodied-icon"><i class="fa-solid fa-droplet"></i><i class="fa-solid fa-droplet"></i><i class="fa-solid fa-droplet"></i></div>
+                        <div class="bloodied-value">{{hp.bloodied}}</div>
+                    </div>
+                    <div class="max-health">Max:
+                    <input type='text' name='system.hp.max' value='{{hp.max}}' /></div>
+                    
                 </div>
             </div>
             <div class='size-and-chance-hit'>
@@ -59,6 +65,10 @@
                     <div class='label'>Bonus Damage</div>
                     <div class='value'><input type='text' name='system.bonusDamage' value='{{bonusDamage}}' /></div>
                 </div>
+                <div class='bonus-tn property'>
+                    <div class='label'>Bonus TN</div>
+                    <div class='value'><input type='text' name='system.bonusTN' value='{{bonusTN}}' /></div>
+                </div>
                 <div class='chance-hit property'>
                     <div class='label'>Chance Hit</div>
                     <div class='value'>{{{chanceHit}}}</div>
@@ -79,8 +89,8 @@
         <div class='characteristics'>
             {{#each characteristics as |characteristic|}}
                 <div class='characteristic'>
-                    <div class='characteristic-label'>{{localize (concat 'characteristics.' @key '.abbreviation')}}</div>
-                    <div class='characteristic-value'>
+                    <div class='label'>{{localize (concat 'characteristics.' @key '.abbreviation')}}</div>
+                    <div class='value'>
                         <input type='text' name='system.characteristics.{{@key}}' value='{{characteristic}}' />
                     </div>
                 </div>
