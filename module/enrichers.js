@@ -8,7 +8,7 @@ export function registerCustomEnrichers() {
         enricher: enrichDamage,
     });
 
-    document.body.addEventListener('click', rollAction);
+    document.body.addEventListener('click', rollDamage);
     // @Damage[1d6+2|type=holy|traits=Attack,Magic]
 }
 
@@ -43,6 +43,7 @@ function enrichDamage(match, options) {
 function createRollLink(formula, dataset) {
     const link = document.createElement('a');
     link.classList.add('roll-link');
+    link.classList.add('roll-damage');
     if (dataset.replaceCharacteristic) formula = new DamageRoll(DamageRoll.constructFinalFormula(formula, dataset), {}, dataset)._formula;
 
     _addDataset(link, dataset);
@@ -57,8 +58,8 @@ function _addDataset(element, dataset) {
     }
 }
 
-async function rollAction(event) {
-    const target = event.target.closest('.roll-link');
+async function rollDamage(event) {
+    const target = event.target.closest('.roll-link.roll-damage');
     if (!target) return;
 
     let formula = target.dataset.formula;
@@ -78,5 +79,6 @@ async function rollAction(event) {
         damageType,
         applyKitDamage,
     };
+    console.log('actorId', actorId);
     await new MCDMRollDialog({ context }).render(true);
 }

@@ -26,3 +26,7 @@
 .content-body .tabbed-content {
     overflow-y: scroll;
 }
+
+a.roll-link {
+    display: inline-block;
+}
