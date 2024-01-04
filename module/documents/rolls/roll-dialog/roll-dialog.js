@@ -39,7 +39,6 @@ export class MCDMRollDialog extends Application {
     async getData() {
         this.context.applyKitDamage ??= false;
         this.context.actorId = this.actor.uuid;
-        console.log(this.context);
 
         let data = {
             ...this.context,

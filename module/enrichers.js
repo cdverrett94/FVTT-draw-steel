@@ -79,6 +79,5 @@ async function rollDamage(event) {
         damageType,
         applyKitDamage,
     };
-    console.log('actorId', actorId);
     await new MCDMRollDialog({ context }).render(true);
 }
