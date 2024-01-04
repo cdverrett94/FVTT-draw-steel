@@ -38,11 +38,10 @@ export class MonsterSheet extends BaseMCDMRPGActorSheet {
                 let specialSkills = data.filter((subskill) => subskill.proficient === true);
                 if (specialSkills.length) proficientSkills[skill] = specialSkills;
             } else {
-                if (skill.proficient) proficientSkills[skill] = data;
+                if (data.proficient) proficientSkills[skill] = data;
             }
         }
         data.proficientSkills = proficientSkills;
-        console.log(proficientSkills);
         return data;
     }
 

@@ -119,3 +119,26 @@
 .sheet.actor.monster .header .characteristics .characteristic .label {
     font-weight: bold;
 }
+
+.sheet.actor.monster .monster-body .monster-skills {
+    margin: 5px 0px;
+}
+
+.sheet.actor.monster .monster-body .monster-skills .edit-skills:hover {
+    cursor: pointer;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.sheet.actor.monster .monster-body .monster-skills .edit-skills:hover i {
+    animation: rotate 5s linear infinite;
+}
+
+.sheet.actor.monster .monster-body .monster-skills .skill-label {
+    display: inline-block;
+    margin-left: 5px;
+}
