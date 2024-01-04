@@ -1,0 +1,8 @@
+{{#each abilities as |abilityGroup|}}
+    {{#if abilityGroup}}
+        <div class='ability-filter{{#if (eq @key @root.activeFilter)}} active-filter{{/if}}' data-ability-type='{{@key}}'>
+            {{localize (concat 'abilityTypes.' @key '.label')}}
+        </div>
+    {{/if}}
+{{/each}}
+<div class='ability-filter' data-ability-type='clear'>Clear</div>

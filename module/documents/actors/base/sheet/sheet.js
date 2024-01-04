@@ -3,6 +3,8 @@ import { EditActorSkillsSheet } from './edits-skills-sheet.js';
 export class BaseMCDMRPGActorSheet extends ActorSheet {
     constructor(...args) {
         super(...args);
+
+        this.activeFilter = null;
     }
 
     static get defaultOptions() {
@@ -15,6 +17,7 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
             img: this.actor.img,
             actor: this.actor,
             ...this.actor.system,
+            activeFilter: this.activeFilter,
         };
 
         // Enrich Content
@@ -39,7 +42,24 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
         super.activateListeners($html);
         const html = $html[0];
 
-        // Edit Ability
+        // Add Ability
+        const addAbilityButton = html.querySelector('.add-ability');
+        addAbilityButton.addEventListener('click', async (event) => {
+            let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
+            item[0].sheet.render(true);
+            this.render(true);
+        });
+
+        // Ability Filter
+        html.querySelectorAll('.ability-filter').forEach((element) => {
+            element.addEventListener('click', (event) => {
+                let abilityType = element.dataset.abilityType;
+                this.activeFilter = abilityType === 'clear' ? null : abilityType;
+                this.render(true);
+            });
+        });
+
+        // Edit Skills
         const editSkillButton = html.querySelector('.edit-skills');
         editSkillButton.addEventListener('click', (event) => {
             const context = {
