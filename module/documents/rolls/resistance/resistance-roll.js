@@ -6,9 +6,4 @@ export class ResistanceRoll extends MCDMRoll {
         this.characteristic = options.characteristic;
         this.tn = options.tn;
     }
-
-    static constructFinalFormula(formula, options) {
-        formula = MCDMRoll.constructFinalFormula(formula, options);
-        return formula;
-    }
 }
