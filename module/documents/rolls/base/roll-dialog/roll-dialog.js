@@ -1,5 +1,3 @@
-import { DamageRoll } from '../../damage/damage-roll.js';
-
 export class BaseRollDialog extends Application {
     constructor(options) {
         super(options);
@@ -35,6 +33,7 @@ export class BaseRollDialog extends Application {
 
         let data = {
             ...this.context,
+            formula: this.formula,
         };
 
         return data;
@@ -54,14 +53,6 @@ export class BaseRollDialog extends Application {
                 this.options.context[type] = Math.max(this.options.context[type], 0);
 
                 this.render(true);
-            });
-        });
-
-        html.querySelectorAll('.roll-button')?.forEach((element) => {
-            element.addEventListener('click', async (event) => {
-                let roll = await new DamageRoll(DamageRoll.constructFinalFormula(this.formula, this.context), {}, this.context).evaluate();
-                roll.toMessage();
-                this.close();
             });
         });
     }

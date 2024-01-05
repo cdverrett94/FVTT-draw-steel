@@ -1,6 +1,7 @@
 import { damageTypes } from './constants.js';
 import { DamageRoll } from './documents/rolls/damage/damage-roll.js';
 import { DamageRollDialog } from './documents/rolls/damage/roll-dialog/roll-dialog.js';
+import { ResistanceRollDialog } from './documents/rolls/resistance/roll-dialog/roll-dialog.js';
 
 export function registerCustomEnrichers() {
     CONFIG.TextEditor.enrichers.push({
@@ -31,7 +32,7 @@ function _getEnrichedOptions(match, options) {
         data[key] = value;
     });
 
-    data.formula = formula;
+    data.baseFormula = formula;
     data.actor = options.actor;
     data.actorId = data.actor?.uuid;
     data.replaceCharacteristic = data.replaceCharacteristic === 'false' ? false : true;
@@ -53,7 +54,7 @@ function enrichDamage(match, options) {
 
     data.type = damageTypes.includes(data.type) ? data.type : 'untyped';
     data.applyKitDamage = data.applyKitDamage === 'false' ? false : true;
-    if (data.replaceCharacteristic) data.formula = new DamageRoll(DamageRoll.constructFinalFormula(data.formula, data), {}, data)._formula;
+    data.formula = new DamageRoll(data.baseFormula, data.actor.system, data)._formula;
 
     let link = createRollLink('damage', data.formula, data);
 
@@ -135,21 +136,23 @@ async function rollAction(event) {
 
 async function rollDamage(event) {
     const target = event.target.closest('.roll-link.roll-damage');
-    let { formula, damageType, actorId, boons, banes, impacts, applyKitDamage } = target.dataset;
+    let { formula, baseFormula, characteristic, damageType, actorId, boons, banes, impacts, applyKitDamage } = target.dataset;
     boons = Math.abs(Number(boons) || 0);
     banes = Math.abs(Number(banes) || 0);
     impacts = Math.abs(Number(impacts) || 0);
 
     let actor;
-    if (actorId) actor = fromUuid(actorId);
-    else actor = getRollActor();
+    if (actorId) actor = await fromUuid(actorId);
+    else actor = await getRollActor();
 
     let context = {
-        actor: await fromUuid(actorId),
+        actor,
+        characteristic,
         banes,
         boons,
         impacts,
-        baseFormula: formula,
+        baseFormula,
+        formula,
         damageType,
         applyKitDamage,
     };
@@ -176,7 +179,7 @@ async function rollResistance(event) {
         impacts,
         baseFormula: formula,
     };
-    await new MCDMRollDialog({ context }).render(true);
+    await new ResistanceRollDialog({ context }).render(true);
 }
 
 async function getRollActor() {

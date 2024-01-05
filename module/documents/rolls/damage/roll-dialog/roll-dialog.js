@@ -27,13 +27,12 @@ export class DamageRollDialog extends BaseRollDialog {
     get actor() {
         return this.context.actor;
     }
-    get formula() {
+    get baseFormula() {
         return this.context.baseFormula;
     }
 
-    damageFormula() {
-        let formula = DamageRoll.constructFinalFormula(this.formula, this.context);
-        let damageRoll = new DamageRoll(formula, {}, this.context);
+    get formula() {
+        let damageRoll = new DamageRoll(this.baseFormula, this.actor.system, this.context);
 
         return damageRoll._formula;
     }
@@ -43,7 +42,7 @@ export class DamageRollDialog extends BaseRollDialog {
         this.context.applyKitDamage ??= false;
         this.context.actorId = this.actor.uuid;
 
-        data.constructedFormula = this.damageFormula();
+        data.constructedFormula = this.formula;
 
         return data;
     }
@@ -54,7 +53,7 @@ export class DamageRollDialog extends BaseRollDialog {
 
         html.querySelectorAll('.roll-button')?.forEach((element) => {
             element.addEventListener('click', async (event) => {
-                let roll = await new DamageRoll(DamageRoll.constructFinalFormula(this.formula, this.context), {}, this.context).evaluate();
+                let roll = await new DamageRoll(this.formula, {}, this.context).evaluate();
                 roll.toMessage();
                 this.close();
             });
