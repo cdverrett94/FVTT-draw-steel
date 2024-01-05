@@ -28,10 +28,6 @@ export class MCDMRoll extends Roll {
             if (boonBaneAdjustment !== 0) formula = `${formula} ${boonBaneAdjustment > 0 ? '+' : ''} ${boonBaneAdjustment}d4`;
         }
 
-        if (options.impacts) {
-            formula = `${formula} + ${options.impacts}d8`;
-        }
-
         return formula;
     }
 }
