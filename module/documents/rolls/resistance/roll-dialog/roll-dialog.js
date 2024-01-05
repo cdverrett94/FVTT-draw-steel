@@ -1,4 +1,5 @@
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
+import { ResistanceRoll } from '../resistance-roll.js';
 
 export class ResistanceRollDialog extends BaseRollDialog {
     constructor(options) {
@@ -19,22 +20,8 @@ export class ResistanceRollDialog extends BaseRollDialog {
         return foundry.utils.mergeObject(defaults, overrides);
     }
 
-    get context() {
-        return this.options.context;
-    }
-
-    get actor() {
-        return this.context.actor;
-    }
-    get formula() {
-        return this.context.baseFormula;
-    }
-
-    damageFormula() {
-        let formula = ResistanceRoll.constructFinalFormula(this.formula, this.context);
-        let damageRoll = new ResistanceRoll(formula, {}, this.context);
-
-        return damageRoll._formula;
+    get sheetRoller() {
+        return ResistanceRoll;
     }
 
     async getData() {
@@ -48,19 +35,5 @@ export class ResistanceRollDialog extends BaseRollDialog {
     activateListeners($html) {
         super.activateListeners($html);
         const html = $html[0];
-
-        html.querySelectorAll('.roll-button')?.forEach((element) => {
-            element.addEventListener('click', async (event) => {
-                let roll = await new DamageRoll(DamageRoll.constructFinalFormula(this.formula, this.context), {}, this.context).evaluate();
-                roll.toMessage();
-                this.close();
-            });
-        });
-
-        let applyKitCheckbox = html.querySelector('.apply-kit-damage');
-        applyKitCheckbox?.addEventListener('change', async (event) => {
-            this.context.applyKitDamage = applyKitCheckbox.checked;
-            this.render(true);
-        });
     }
 }

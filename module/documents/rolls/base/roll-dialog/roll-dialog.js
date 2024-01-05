@@ -24,8 +24,14 @@ export class BaseRollDialog extends Application {
     get actor() {
         return this.context.actor;
     }
-    get formula() {
+    get baseFormula() {
         return this.context.baseFormula;
+    }
+
+    get formula() {
+        let roll = new this.sheetRoller(this.baseFormula, this.actor.system, this.context);
+
+        return roll._formula;
     }
 
     async getData() {
@@ -53,6 +59,14 @@ export class BaseRollDialog extends Application {
                 this.options.context[type] = Math.max(this.options.context[type], 0);
 
                 this.render(true);
+            });
+        });
+
+        html.querySelectorAll('.roll-button')?.forEach((element) => {
+            element.addEventListener('click', async (event) => {
+                let roll = await new this.sheetRoller(this.baseFormula, {}, this.context).evaluate();
+                roll.toMessage();
+                this.close();
             });
         });
     }

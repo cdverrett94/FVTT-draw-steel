@@ -20,21 +20,8 @@ export class DamageRollDialog extends BaseRollDialog {
         return foundry.utils.mergeObject(defaults, overrides);
     }
 
-    get context() {
-        return this.options.context;
-    }
-
-    get actor() {
-        return this.context.actor;
-    }
-    get baseFormula() {
-        return this.context.baseFormula;
-    }
-
-    get formula() {
-        let damageRoll = new DamageRoll(this.baseFormula, this.actor.system, this.context);
-
-        return damageRoll._formula;
+    get sheetRoller() {
+        return DamageRoll;
     }
 
     async getData() {
@@ -50,14 +37,6 @@ export class DamageRollDialog extends BaseRollDialog {
     activateListeners($html) {
         super.activateListeners($html);
         const html = $html[0];
-
-        html.querySelectorAll('.roll-button')?.forEach((element) => {
-            element.addEventListener('click', async (event) => {
-                let roll = await new DamageRoll(this.formula, {}, this.context).evaluate();
-                roll.toMessage();
-                this.close();
-            });
-        });
 
         let applyKitCheckbox = html.querySelector('.apply-kit-damage');
         applyKitCheckbox?.addEventListener('change', async (event) => {
