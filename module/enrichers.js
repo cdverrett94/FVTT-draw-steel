@@ -1,6 +1,6 @@
 import { damageTypes } from './constants.js';
-import { DamageRoll } from './documents/rolls/damage-roll.js';
-import { MCDMRollDialog } from './documents/rolls/roll-dialog/roll-dialog.js';
+import { DamageRoll } from './documents/rolls/damage/damage-roll.js';
+import { DamageRollDialog } from './documents/rolls/damage/roll-dialog/roll-dialog.js';
 
 export function registerCustomEnrichers() {
     CONFIG.TextEditor.enrichers.push({
@@ -153,7 +153,7 @@ async function rollDamage(event) {
         damageType,
         applyKitDamage,
     };
-    await new MCDMRollDialog({ context }).render(true);
+    await new DamageRollDialog({ context }).render(true);
 }
 
 async function rollTest(event) {

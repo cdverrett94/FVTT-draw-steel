@@ -11,7 +11,7 @@ import { ClassSheet } from './module/documents/items/class/sheet/sheet.js';
 import { MCDMItemProxy } from './module/documents/items/item-proxy.js';
 import { KitData } from './module/documents/items/kit/data-model.js';
 import { KitSheet } from './module/documents/items/kit/sheet/sheet.js';
-import { DamageRoll } from './module/documents/rolls/damage-roll.js';
+import { DamageRoll } from './module/documents/rolls/damage/damage-roll.js';
 import { registerCustomEnrichers } from './module/enrichers.js';
 
 Hooks.on('init', () => {

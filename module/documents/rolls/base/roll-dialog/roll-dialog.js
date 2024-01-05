@@ -1,6 +1,6 @@
-import { DamageRoll } from '../damage-roll.js';
+import { DamageRoll } from '../../damage/damage-roll.js';
 
-export class MCDMRollDialog extends Application {
+export class BaseRollDialog extends Application {
     constructor(options) {
         super(options);
         this.options.title = this.actor.name;
@@ -11,7 +11,7 @@ export class MCDMRollDialog extends Application {
 
         const overrides = {
             classes: ['mcdmrpg', 'roll-dialog'],
-            template: `/systems/mcdmrpg/module/documents/rolls/roll-dialog/sheet/roll-dialog-sheet.hbs`,
+            template: `/systems/mcdmrpg/module/documents/rolls/base/roll-dialog/sheet/roll-dialog-sheet.hbs`,
             height: 210,
             width: 315,
         };
@@ -30,19 +30,11 @@ export class MCDMRollDialog extends Application {
         return this.context.baseFormula;
     }
 
-    damageFormula() {
-        let damageRoll = new DamageRoll(DamageRoll.constructFinalFormula(this.formula, this.context), {}, this.context);
-
-        return damageRoll._formula;
-    }
-
     async getData() {
-        this.context.applyKitDamage ??= false;
         this.context.actorId = this.actor.uuid;
 
         let data = {
             ...this.context,
-            constructedFormula: this.damageFormula(),
         };
 
         return data;
@@ -71,12 +63,6 @@ export class MCDMRollDialog extends Application {
                 roll.toMessage();
                 this.close();
             });
-        });
-
-        let applyKitCheckbox = html.querySelector('.apply-kit-damage');
-        applyKitCheckbox?.addEventListener('change', async (event) => {
-            this.context.applyKitDamage = applyKitCheckbox.checked;
-            this.render(true);
         });
     }
 }

@@ -1,4 +1,4 @@
-import { MCDMRoll } from './base-roll.js';
+import { MCDMRoll } from '../base/base-roll.js';
 
 export class ResistanceRoll extends MCDMRoll {
     constructor(formula, data = {}, options = {}) {
