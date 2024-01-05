@@ -85,16 +85,21 @@ function enrichTest(match, options) {
 function enrichResistance(match, options) {
     let data = _getEnrichedOptions(match, options);
 
-    data.tn = Number(data.tn) ?? Number(options.tn);
-    if (Number.isNaN(data.tn)) {
+    data.formula = `${data.formula} + @${data.characteristic}`;
+    let tn = data.tn ?? options.tn;
+    if (Number.isNumeric(tn)) {
+        data.tn = Number(tn);
+    } else {
         if (data.tn === 'easy') data.tn = 7;
+        else if (data.tn === 'moderate') data.tn = 9;
         else if (data.tn === 'hard') data.tn = 12;
-        else data.tn = 9;
+        else {
+            let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
+            data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
+        }
     }
-    console.log('resistance data', data);
 
     let link = createRollLink('resistance', data.formula, data);
-
     link.innerHTML = `<i class="fa-solid fa-dice-d6"></i> ${data.tn} ${game.i18n.localize('characteristics.' + data.characteristic + '.abbreviation')} Resists`;
 
     return link;
@@ -125,19 +130,19 @@ async function rollAction(event) {
     if (isDamage) rollDamage(event);
     else if (isTest) rollTest(event);
     else if (isResistance) rollResistance(event);
+    else console.error('Roll link is not of type: damage, test, or resistance');
 }
 
 async function rollDamage(event) {
     const target = event.target.closest('.roll-link.roll-damage');
-    if (!target) return;
+    let { formula, damageType, actorId, boons, banes, impacts, applyKitDamage } = target.dataset;
+    boons = Math.abs(Number(boons) || 0);
+    banes = Math.abs(Number(banes) || 0);
+    impacts = Math.abs(Number(impacts) || 0);
 
-    let formula = target.dataset.formula;
-    let damageType = target.dataset.type;
-    let actorId = target.dataset.actorId;
-    let boons = Math.abs(Number(target.dataset.boons) || 0);
-    let banes = Math.abs(Number(target.dataset.banes) || 0);
-    let impacts = Math.abs(Number(target.dataset.impacts) || 0);
-    let applyKitDamage = target.dataset.applyKitDamage;
+    let actor;
+    if (actorId) actor = fromUuid(actorId);
+    else actor = getRollActor();
 
     let context = {
         actor: await fromUuid(actorId),
@@ -153,14 +158,31 @@ async function rollDamage(event) {
 
 async function rollTest(event) {
     const target = event.target.closest('.roll-link.roll-test');
-    if (!target) return;
-
     console.log('test');
 }
 
 async function rollResistance(event) {
     const target = event.target.closest('.roll-link.roll-resistance');
-    if (!target) return;
-
     console.log('resistance');
+    let { formula, actorId, boons, banes, impacts, applyKitDamage } = target.dataset;
+    let actor;
+    if (actorId) actor = fromUuid(actorId);
+    else actor = await getRollActor();
+
+    let context = {
+        actor: await fromUuid(actorId),
+        banes,
+        boons,
+        impacts,
+        baseFormula: formula,
+    };
+    await new MCDMRollDialog({ context }).render(true);
+}
+
+async function getRollActor() {
+    const speaker = ChatMessage.implementation.getSpeaker();
+    const speakerActor = ChatMessage.implementation.getSpeakerActor(speaker);
+    let actor;
+    if (speakerActor) actor = speakerActor;
+    if (game.user.character) actor = game.user.character;
 }
