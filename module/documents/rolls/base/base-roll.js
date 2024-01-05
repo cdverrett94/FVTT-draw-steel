@@ -18,16 +18,4 @@ export class MCDMRoll extends Roll {
         this.impacts = options.impacts;
         this.actor = actor;
     }
-
-    static constructFinalFormula(formula, options) {
-        if (options.boons || options.banes) {
-            let boons = Math.abs(Number(options.boons) || 0);
-            let banes = Math.abs(Number(options.banes) || 0);
-            let boonBaneAdjustment = boons - banes;
-
-            if (boonBaneAdjustment !== 0) formula = `${formula} ${boonBaneAdjustment > 0 ? '+' : ''} ${boonBaneAdjustment}d4`;
-        }
-
-        return formula;
-    }
 }
