@@ -5,31 +5,23 @@ export class DamageRoll extends MCDMRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
 
-        // Add this.boons, this.banes, this.boonBaneAdjustment
-        Object.assign(
-            this,
-            this.getFinalBoonOrBane({
-                boons: options.boons,
-                banes: options.banes,
-            })
-        );
-
-        this._formula = this.constructFormulaFromOptions(this.options.baseFormula, options);
-
         this.damageType = damageTypes.includes(options.damageType) ? options.damageType : 'untyped';
     }
 
-    constructFormulaFromOptions(formula, options) {
-        let constructedFormula = formula === '0' ? '' : formula;
+    static constructFinalFormula(baseFormula, options) {
+        let { boons, banes, boonBaneAdjustment, impacts } = this.getFinalBoonOrBane({ boons: options.boons, banes: options.banes, impacts: options.impacts });
+        let constructedFormula = baseFormula === '0' ? '' : baseFormula;
 
         // Apply Boons and Banes to final roll
-        let boonBaneAdjustmentSign = this.boonBaneAdjustment > 0 ? '+' : '-';
-        if (this.boonBaneAdjustment != 0) constructedFormula = `${constructedFormula} ${boonBaneAdjustmentSign} ${Math.abs(this.boonBaneAdjustment)}d4`;
-        if (this.impacts) constructedFormula = `${constructedFormula} + ${this.impacts}d8`;
+        let boonBaneAdjustmentSign = boonBaneAdjustment > 0 ? '+' : '-';
+        if (boonBaneAdjustment != 0) constructedFormula = `${constructedFormula} ${boonBaneAdjustmentSign} ${Math.abs(boonBaneAdjustment)}d4`;
+        if (impacts) constructedFormula = `${constructedFormula} + ${impacts}d8`;
 
         // Replace characteristic for final roll
         let characteristic = 0;
-        if (this.options.characteristic) characteristic = Number(this.constructor.replaceFormulaData(`@${this.options.characteristic}`, this.actor.system));
+        if (options.characteristic) {
+            if (Number.isNumeric(characteristic)) characteristic = Number(this.replaceFormulaData(`@${options.characteristic}`, options.actor?.system ?? {}));
+        }
 
         // Get hero or monster bonus damage
         let bonusDamage = 0;
@@ -47,12 +39,5 @@ export class DamageRoll extends MCDMRoll {
         constructedFormula = constructedFormula.replace(/^ ?[\+] /gm, '');
 
         return constructedFormula;
-    }
-
-    getFinalBoonOrBane({ boons = 0, banes = 0 }) {
-        boons = Math.abs(Number(boons) || 0);
-        banes = Math.abs(Number(banes) || 0);
-        let boonBaneAdjustment = boons - banes;
-        return { boons, banes, boonBaneAdjustment };
     }
 }

@@ -1,21 +1,25 @@
 export class MCDMRoll extends Roll {
     constructor(formula, data = {}, options = {}) {
-        let actor = fromUuidSync(options.actorId);
-        if (!actor) {
-            const speaker = ChatMessage.implementation.getSpeaker();
-            if (speaker.token) actor = game.actors.tokens[speaker.token];
-            actor ??= game.actors.get(speaker.actor);
-        }
-
-        if (!data.length) data = actor?.getRollData() || {};
-        options.boons = Math.abs(Number(options.boons) || 0);
-        options.banes = Math.abs(Number(options.banes) || 0);
-        options.impacts = Math.abs(Number(options.impacts) || 0);
-
         super(formula, data, options);
-        this.boons = options.boons;
-        this.banes = options.banes;
-        this.impacts = options.impacts;
-        this.actor = actor;
+
+        this.actor = options.actor;
+
+        // Add this.boons, this.banes, this.boonBaneAdjustment
+        Object.assign(
+            this,
+            this.constructor.getFinalBoonOrBane({
+                boons: options.boons,
+                banes: options.banes,
+                impacts: options.impacts,
+            })
+        );
+    }
+
+    static getFinalBoonOrBane({ boons = 0, banes = 0, impacts = 0 }) {
+        boons = Math.abs(Number(boons) || 0);
+        banes = Math.abs(Number(banes) || 0);
+        impacts = Math.abs(Number(impacts) || 0);
+        let boonBaneAdjustment = boons - banes;
+        return { boons, banes, boonBaneAdjustment, impacts };
     }
 }
