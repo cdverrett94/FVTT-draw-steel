@@ -28,8 +28,8 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
 
         for (const [group, abilities] of Object.entries(data.abilities)) {
             for (const [index, ability] of abilities.entries()) {
-                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(ability.system.damage, enrichContext);
-                data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, enrichContext);
+                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(ability.system.damage, { ...enrichContext, item: ability });
+                data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, { ...enrichContext, item: ability });
             }
         }
 
