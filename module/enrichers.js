@@ -1,6 +1,7 @@
 import { damageTypes } from './constants.js';
 import { DamageRoll } from './documents/rolls/damage/damage-roll.js';
 import { DamageRollDialog } from './documents/rolls/damage/roll-dialog/roll-dialog.js';
+import { ResistanceRoll } from './documents/rolls/resistance/resistance-roll.js';
 import { ResistanceRollDialog } from './documents/rolls/resistance/roll-dialog/roll-dialog.js';
 
 export function registerCustomEnrichers() {
@@ -29,12 +30,17 @@ function _getEnrichedOptions(match, options) {
     config = config.split('|');
     config.forEach((option) => {
         let [key, value] = option.split('=');
-        data[key] = value;
+        if (['boons', 'banes', 'impacts'].includes(key)) data[key] = Number(value);
+        else data[key] = value;
     });
+
+    data.boons ??= 0;
+    data.banes ??= 0;
 
     data.baseFormula = formula;
     data.actor = options.actor;
     data.actorId = data.actor?.uuid;
+    data.item = options.item;
     data.replaceCharacteristic = data.replaceCharacteristic === 'false' ? false : true;
 
     return data;
@@ -49,16 +55,18 @@ function enrichDamage(match, options) {
     boons = # of boons to apply to roll
     banes = number of banes to apply to roll
     impacts = number of impact dice to roll
+    characteristic = charcteristic to add to the roll
     */
     let data = _getEnrichedOptions(match, options);
 
     data.type = damageTypes.includes(data.type) ? data.type : 'untyped';
     data.applyKitDamage = data.applyKitDamage === 'false' ? false : true;
-    data.formula = new DamageRoll(data.baseFormula, data.actor.system, data)._formula;
+    data.formula = DamageRoll.constructFinalFormula(data.baseFormula, data);
+    data.replaceCharacteristic ??= true;
+    data.impacts ??= 0;
 
-    let link = createRollLink('damage', data.formula, data);
-
-    link.innerHTML = `<i class="fa-solid fa-dice-d6"></i> ${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;
+    let linkText = `${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;
+    let link = createRollLink('damage', linkText, data.formula, data);
 
     return link;
 }
@@ -85,8 +93,15 @@ function enrichTest(match, options) {
 
 function enrichResistance(match, options) {
     let data = _getEnrichedOptions(match, options);
+    /* Currently accounted for  config options
 
-    data.formula = `${data.formula} + @${data.characteristic}`;
+    replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
+    boons = # of boons to apply to roll
+    banes = number of banes to apply to roll
+    tn = the tn to roll against 
+    characteristic = charcteristic to add to the roll
+    */
+    data.formula = ResistanceRoll.constructFinalFormula(data.baseFormula, data);
     let tn = data.tn ?? options.tn;
     if (Number.isNumeric(tn)) {
         data.tn = Number(tn);
@@ -95,25 +110,41 @@ function enrichResistance(match, options) {
         else if (data.tn === 'moderate') data.tn = 9;
         else if (data.tn === 'hard') data.tn = 12;
         else {
-            let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
-            data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
+            if (options.actor) {
+                let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
+                data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
+            } else {
+            }
         }
     }
-
-    let link = createRollLink('resistance', data.formula, data);
-    link.innerHTML = `<i class="fa-solid fa-dice-d6"></i> ${data.tn} ${game.i18n.localize('characteristics.' + data.characteristic + '.abbreviation')} Resists`;
+    let linkText = `${data.tn ?? ''} ${game.i18n.localize('characteristics.' + data.characteristic + '.abbreviation')} Resists`;
+    let link = createRollLink('resistance', linkText, data.formula, data);
 
     return link;
 }
 
-function createRollLink(type, formula, dataset) {
-    const link = document.createElement('a');
-    link.classList.add('roll-link');
-    link.classList.add(`roll-${type}`);
+function createRollLink(type, label, formula, dataset) {
+    const span = document.createElement('span');
+    span.classList.add('roll-container');
 
-    _addDataset(link, dataset);
+    const rollLink = document.createElement('a');
+    rollLink.classList.add('roll-link');
+    rollLink.classList.add(`roll-${type}`);
 
-    return link;
+    const toChatLink = document.createElement('a');
+    toChatLink.classList.add('roll-to-chat');
+    toChatLink.classList.add(`roll-${type}-to-chat`);
+
+    _addDataset(rollLink, dataset);
+    _addDataset(toChatLink, dataset);
+    toChatLink.dataset.replaceCharacteristic = false;
+    rollLink.innerHTML = `<i class="fa-solid fa-dice-d6"></i> ${label}`;
+    toChatLink.innerHTML = '<i class="fa-solid fa-message"></i>';
+
+    span.appendChild(rollLink);
+    span.appendChild(toChatLink);
+
+    return span;
 }
 
 function _addDataset(element, dataset) {
@@ -136,14 +167,7 @@ async function rollAction(event) {
 
 async function rollDamage(event) {
     const target = event.target.closest('.roll-link.roll-damage');
-    let { formula, baseFormula, characteristic, damageType, actorId, boons, banes, impacts, applyKitDamage } = target.dataset;
-    boons = Math.abs(Number(boons) || 0);
-    banes = Math.abs(Number(banes) || 0);
-    impacts = Math.abs(Number(impacts) || 0);
-
-    let actor;
-    if (actorId) actor = await fromUuid(actorId);
-    else actor = await getRollActor();
+    let { actor, actorId, applyKitDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts } = getRollContextData(target.dataset);
 
     let context = {
         actor,
@@ -166,18 +190,16 @@ async function rollTest(event) {
 
 async function rollResistance(event) {
     const target = event.target.closest('.roll-link.roll-resistance');
-    console.log('resistance');
-    let { formula, actorId, boons, banes, impacts, applyKitDamage } = target.dataset;
-    let actor;
-    if (actorId) actor = fromUuid(actorId);
-    else actor = await getRollActor();
+    let { actor, baseFormula, boons, banes, characteristic, formula, tn } = await getRollContextData(target.dataset);
 
     let context = {
-        actor: await fromUuid(actorId),
+        actor,
         banes,
         boons,
-        impacts,
-        baseFormula: formula,
+        baseFormula,
+        formula,
+        characteristic,
+        tn,
     };
     await new ResistanceRollDialog({ context }).render(true);
 }
@@ -187,5 +209,20 @@ async function getRollActor() {
     const speakerActor = ChatMessage.implementation.getSpeakerActor(speaker);
     let actor;
     if (speakerActor) actor = speakerActor;
-    if (game.user.character) actor = game.user.character;
+    else actor = null;
+    return actor;
+}
+
+async function getRollContextData(target) {
+    let { actorId, applyKitDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, tn } = target.dataset;
+
+    boons = Math.abs(Number(boons) || 0);
+    banes = Math.abs(Number(banes) || 0);
+    impacts = Math.abs(Number(impacts) || 0);
+
+    let actor;
+    if (actorId) actor = await fromUuid(actorId);
+    else actor = await getRollActor();
+
+    return { actor, actorId, applyKitDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, tn };
 }
