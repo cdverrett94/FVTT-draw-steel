@@ -11,7 +11,7 @@
 
 .mcdmrpg-header {
     clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 100%, 0% 100%);
-    -webkit-clip-path: polygon(10px 0, calc(100%-10px) 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0% 100%);
 }
 
 .mcdmrpg-container {
@@ -27,6 +27,21 @@
     overflow-y: scroll;
 }
 
-a.roll-link {
+span.roll-container {
     display: inline-block;
+}
+
+a.roll-link,
+a.roll-to-chat {
+    background-color: rgba(211, 211, 211, 0.8);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    padding: 3px;
+    line-height: 1.5rem;
+    height: 1.5rem;
+}
+
+a.roll-to-chat {
+    margin-left: 5px;
 }
