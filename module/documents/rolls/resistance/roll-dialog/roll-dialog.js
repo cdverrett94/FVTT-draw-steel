@@ -4,7 +4,10 @@ import { ResistanceRoll } from '../resistance-roll.js';
 export class ResistanceRollDialog extends BaseRollDialog {
     constructor(options) {
         super(options);
-        this.options.title = this.actor.name;
+    }
+
+    get baseFormula() {
+        return '2d6';
     }
 
     static get defaultOptions() {
@@ -26,8 +29,8 @@ export class ResistanceRollDialog extends BaseRollDialog {
 
     async getData() {
         let data = await super.getData();
-        this.context.applyKitDamage ??= false;
-        this.context.actorId = this.actor.uuid;
+        data.constructedFormula = this.formula;
+        this.context.replaceCharacteristic = true;
 
         return data;
     }

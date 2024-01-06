@@ -4,7 +4,6 @@ import { DamageRoll } from '../../damage/damage-roll.js';
 export class DamageRollDialog extends BaseRollDialog {
     constructor(options) {
         super(options);
-        this.options.title = this.actor.name;
     }
 
     static get defaultOptions() {
