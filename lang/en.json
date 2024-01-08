@@ -23,6 +23,10 @@
         "presence": {
             "label": "Presence",
             "abbreviation": "PRS"
+        },
+        "highest": {
+            "label": "Highest",
+            "abbreviation": "Highest"
         }
     },
     "skills": {
