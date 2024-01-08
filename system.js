@@ -12,6 +12,8 @@ import { MCDMItemProxy } from './module/documents/items/item-proxy.js';
 import { KitData } from './module/documents/items/kit/data-model.js';
 import { KitSheet } from './module/documents/items/kit/sheet/sheet.js';
 import { DamageRoll } from './module/documents/rolls/damage/damage-roll.js';
+import { ResistanceRoll } from './module/documents/rolls/resistance/resistance-roll.js';
+import { TestRoll } from './module/documents/rolls/test/test-roll.js';
 import { registerCustomEnrichers } from './module/enrichers.js';
 
 Hooks.on('init', () => {
@@ -80,7 +82,7 @@ Hooks.on('init', () => {
 
     registerCustomEnrichers();
 
-    CONFIG.Dice.rolls.push(DamageRoll);
+    CONFIG.Dice.rolls.push(DamageRoll, ResistanceRoll, TestRoll);
 });
 
 Hooks.on('ready', async () => {
