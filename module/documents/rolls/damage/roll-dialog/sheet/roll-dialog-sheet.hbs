@@ -1,5 +1,12 @@
 <div>
-    <div>Base Formula: {{baseFormula}}</div>
+    <div>
+        Base Formula:
+        {{baseFormula}}
+        {{#if characteristic}}
+            +
+            {{localize (concat 'characteristics.' characteristic '.label')}}
+        {{/if}}
+    </div>
     <div>Apply Kit Damage: <input class="apply-kit-damage" type="checkbox" {{#if applyKitDamage}} checked{{/if}}></div>
     
     <div class="mcdmrpg-header">Dice Adjustments</div>
@@ -23,9 +30,9 @@
         <div class="impact">
             <div>Impacts</div>
             <div>
-                <div class="adjust-dice subtract-dice" data-type="impact" data-adjustment="subtract"><i class="fa-solid fa-minus"></i></div>
+                <div class="adjust-dice subtract-dice" data-type="impacts" data-adjustment="subtract"><i class="fa-solid fa-minus"></i></div>
                 <div>{{impacts}} <i class="fa-regular fa-dice-d8"></i></div>
-                <div class="adjust-dice add-dice" data-type="impact" data-adjustment="add"><i class="fa-solid fa-plus"></i></div>
+                <div class="adjust-dice add-dice" data-type="impacts" data-adjustment="add"><i class="fa-solid fa-plus"></i></div>
             </div>
         </div>
     </div>

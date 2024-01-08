@@ -26,7 +26,6 @@ export class DamageRollDialog extends BaseRollDialog {
     async getData() {
         let data = await super.getData();
         this.context.applyKitDamage ??= false;
-        this.context.actorId = this.actor.uuid;
 
         data.constructedFormula = this.formula;
 

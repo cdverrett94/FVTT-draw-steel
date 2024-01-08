@@ -2,7 +2,7 @@ export class BaseRollDialog extends Application {
     constructor(options) {
         super(options);
         this.options.title = this.actor?.name ?? '';
-        this.options.context.replaceCharacteristic = true;
+        this.context.replaceCharacteristic = true;
     }
 
     static get defaultOptions() {
@@ -19,7 +19,7 @@ export class BaseRollDialog extends Application {
     }
 
     get context() {
-        return this.options.context;
+        return this.options;
     }
 
     get actor() {
@@ -31,7 +31,6 @@ export class BaseRollDialog extends Application {
 
     get formula() {
         let formula = this.sheetRoller.constructFinalFormula(this.baseFormula, this.context);
-        console.log();
         return formula;
     }
 
@@ -54,7 +53,6 @@ export class BaseRollDialog extends Application {
             let { type, adjustment } = element.dataset;
 
             element.addEventListener('click', (event) => {
-                console.log(this.context.boons, this.context.banes);
                 if (adjustment === 'add') this.options.context[type] += 1;
                 else this.options.context[type] -= 1;
 
@@ -67,7 +65,6 @@ export class BaseRollDialog extends Application {
         html.querySelectorAll('.roll-button')?.forEach((element) => {
             element.addEventListener('click', async (event) => {
                 let roll = await new this.sheetRoller(this.formula, this.actor, this.context).evaluate();
-                console.log(roll);
                 roll.toMessage();
                 this.close();
             });
