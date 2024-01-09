@@ -13,6 +13,15 @@
     margin-top: 5px;
 }
 
+.mcdmrpg.sheet.actor div.actor-abilities .mcdmrpg-header {
+    position: relative;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities .mcdmrpg-header .add-ability {
+    position: absolute;
+    right: 20px;
+}
+
 .mcdmrpg.sheet.actor div.actor-abilities .mcdmrpg-header .add-ability:hover {
     cursor: pointer;
 }
