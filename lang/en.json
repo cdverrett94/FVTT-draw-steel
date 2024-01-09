@@ -87,7 +87,7 @@
             "label": "Signature Ability"
         },
         "triggered": {
-            "label": "Triggered Ability"
+            "label": "Triggered Action"
         },
         "villain": {
             "label": "Villain Ability"
@@ -166,6 +166,55 @@
         "support": {
             "label": "Support",
             "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options."
+        }
+    },
+    "damageTypes": {
+        "untyped": {
+            "label": "untyped"
+        },
+        "acid": {
+            "label": "acid"
+        },
+        "cold": {
+            "label": "cold"
+        },
+        "corruption": {
+            "label": "corruption"
+        },
+        "fire": {
+            "label": "fire"
+        },
+        "holy": {
+            "label": "holy"
+        },
+        "lightning": {
+            "label": "lightning"
+        },
+        "poison": {
+            "label": "poison"
+        },
+        "psychic": {
+            "label": "psychic"
+        },
+        "sonic": {
+            "label": "sonic"
+        }
+    },
+    "actionTimes": {
+        "action": {
+            "label": "Action"
+        },
+        "manuever": {
+            "label": "Manuever"
+        },
+        "free-manuever": {
+            "label": "Free Manuever"
+        },
+        "triggered": {
+            "label": "Triggered"
+        },
+        "free-triggered": {
+            "label": "Free Triggered"
         }
     }
 }
