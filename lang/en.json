@@ -80,6 +80,9 @@
         "manuever": {
             "label": "Manuever"
         },
+        "passive": {
+            "label": "Passive"
+        },
         "signature": {
             "label": "Signature Ability"
         },
