@@ -37,7 +37,6 @@ Hooks.on('init', () => {
 
         // Heroes
         'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs',
-        'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/abilities.hbs',
         'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.hbs',
         'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.hbs',
     ];
