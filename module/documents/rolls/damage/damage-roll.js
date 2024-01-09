@@ -25,9 +25,9 @@ export class DamageRoll extends MCDMRoll {
 
         // Get hero or monster bonus damage
         let bonusDamage = 0;
-        if (options.actor?.type === 'hero' && options.actor?.system.kit?.system.damage && options.applyKitDamage) {
+        if (options.actor?.type === 'hero' && options.actor?.system.kit?.system.damage && options.applyExtraDamage) {
             bonusDamage = options.actor.system.kit?.system.damage;
-        } else if (options.actor?.type === 'monster' && options.actor?.system.bonusDamage && options.applyKitDamage) {
+        } else if (options.actor?.type === 'monster' && options.actor?.system.bonusDamage && options.applyExtraDamage) {
             bonusDamage = options.actor.system.bonusDamage;
         }
 
