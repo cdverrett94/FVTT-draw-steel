@@ -64,7 +64,7 @@ function enrichDamage(match, options) {
 
     type = damage type
     replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
-    applyKitDamage = should a kits damage apply to the roll - default true
+    applyExtraDamage = should a kits damage apply to the roll - default true
     boons = # of boons to apply to roll
     banes = number of banes to apply to roll
     impacts = number of impact dice to roll
@@ -73,7 +73,7 @@ function enrichDamage(match, options) {
     let data = _getEnrichedOptions(match, options);
 
     data.type = damageTypes.includes(data.type) ? data.type : 'untyped';
-    data.applyKitDamage = data.applyKitDamage === 'false' ? false : true;
+    data.applyExtraDamage = data.applyExtraDamage === 'false' ? false : true;
     data.formula = DamageRoll.constructFinalFormula(data.baseFormula, data);
     data.replaceCharacteristic ??= true;
     data.impacts ??= 0;
@@ -87,8 +87,6 @@ function enrichDamage(match, options) {
 function enrichTest(match, options) {
     let data = _getEnrichedOptions(match, options);
 
-    console.log('test data', data);
-
     // Don't enrich when invalid skill is provided.
     if (!data.skill && !skills.includes(data.skill)) return false;
 
@@ -101,7 +99,6 @@ function enrichTest(match, options) {
         else if (data.tn === 'hard') data.tn = 12;
         else data.tn = null;
     }
-    console.log('tn', data.tn);
 
     let localizedSkill = game.i18n.localize(`skills.${data.skill?.toLowerCase()}.label`);
     let subskillText = ['knowledge', 'craft'].includes(data.skill) && data.subskill ? ` (${data.subskill})` : '';
@@ -143,7 +140,6 @@ function enrichResistance(match, options) {
             if (options.actor) {
                 let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
                 data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
-            } else {
             }
         }
     }
@@ -202,11 +198,11 @@ async function rollAction(event) {
 
 async function rollDamage(event) {
     const target = event.target.closest('.roll-link.roll-damage');
-    let { actor, applyKitDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = await getRollContextData(target.dataset);
+    let { actor, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = await getRollContextData(target.dataset);
 
     let context = {
         actor,
-        applyKitDamage,
+        applyExtraDamage,
         baseFormula,
         banes,
         boons,
@@ -221,7 +217,6 @@ async function rollDamage(event) {
 async function rollTest(event) {
     const target = event.target.closest('.roll-link.roll-test');
     let { actor, baseFormula, banes, boons, characteristic, formula, skill, subskill, tn } = await getRollContextData(target.dataset);
-    console.log('test roll');
 
     // set skill proficiency
     let proficient;
@@ -266,7 +261,7 @@ async function rollResistance(event) {
 }
 
 async function getRollContextData(dataset) {
-    let { actorId, applyKitDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn } = { ...dataset };
+    let { actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn } = { ...dataset };
 
     boons = Math.abs(Number(boons) || 0);
     banes = Math.abs(Number(banes) || 0);
@@ -276,7 +271,7 @@ async function getRollContextData(dataset) {
     if (dataset.actorId) actor = await fromUuid(actorId);
     else actor = await getRollActor();
 
-    return { actor, actorId, applyKitDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn };
+    return { actor, actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn };
 }
 
 async function postRollToChat(event) {

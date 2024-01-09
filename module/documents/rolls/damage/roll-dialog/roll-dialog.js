@@ -25,7 +25,7 @@ export class DamageRollDialog extends BaseRollDialog {
 
     async getData() {
         let data = await super.getData();
-        this.context.applyKitDamage ??= false;
+        this.context.applyExtraDamage ??= false;
 
         data.constructedFormula = this.formula;
 
@@ -38,7 +38,7 @@ export class DamageRollDialog extends BaseRollDialog {
 
         let applyKitCheckbox = html.querySelector('.apply-kit-damage');
         applyKitCheckbox?.addEventListener('change', async (event) => {
-            this.context.applyKitDamage = applyKitCheckbox.checked;
+            this.context.applyExtraDamage = applyKitCheckbox.checked;
             this.render(true);
         });
     }
