@@ -1,16 +1,18 @@
 <div>
-    <div>
-        Base Formula:
-        {{baseFormula}}
-        {{#if characteristic}}
-            +
-            {{localize (concat 'characteristics.' characteristic '.label')}}
-        {{/if}}
+    <div class='mcdmrpg-header'>
+        {{localize (concat 'characteristics.' characteristic '.label')}}-{{localize (concat 'skills.' skill '.label')}}
+        {{#if subskill}} ({{subskill}}){{/if}}
+        Test
     </div>
 
     {{#if tn}}<div class='tn'>TN: {{tn}}</div>{{/if}}
 
-    <div class='mcdmrpg-header'>Dice Adjustments</div>
+    Skill Select
+    <select name='characteristic' id='characteristic-select'>
+        {{selectOptions characteristicList selected=characteristic localize=true}}
+    </select>
+
+    <div>Dice Adjustments</div>
     <div class='boons-banes-and-impacts'>
         <div class='boons'>
             <div>Boons</div>

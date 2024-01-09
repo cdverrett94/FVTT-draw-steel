@@ -1,11 +1,10 @@
+import { characteristicSelectOptions } from '../../../../constants.js';
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { TestRoll } from '../test-roll.js';
 
 export class TestRollDialog extends BaseRollDialog {
     constructor(options) {
         super(options);
-        console.log(options);
-        if (this.context.proficient) this.context.boons += 1;
     }
 
     get baseFormula() {
@@ -16,9 +15,9 @@ export class TestRollDialog extends BaseRollDialog {
         const defaults = super.defaultOptions;
 
         const overrides = {
-            classes: ['mcdmrpg', 'roll-dialog', 'resistance'],
-            template: `/systems/mcdmrpg/module/documents/rolls/resistance/roll-dialog/sheet/roll-dialog-sheet.hbs`,
-            height: 210,
+            classes: ['mcdmrpg', 'roll-dialog', 'test'],
+            template: `/systems/mcdmrpg/module/documents/rolls/test/roll-dialog/sheet/roll-dialog-sheet.hbs`,
+            height: 220,
             width: 315,
         };
 
@@ -30,9 +29,11 @@ export class TestRollDialog extends BaseRollDialog {
     }
 
     async getData() {
+        this.context.replaceCharacteristic = true;
         let data = await super.getData();
         data.constructedFormula = this.formula;
-        this.context.replaceCharacteristic = true;
+        data.baseFormula = this.baseFormula;
+        data.characteristicList = characteristicSelectOptions;
 
         return data;
     }
@@ -40,5 +41,10 @@ export class TestRollDialog extends BaseRollDialog {
     activateListeners($html) {
         super.activateListeners($html);
         const html = $html[0];
+
+        html.querySelector('#characteristic-select').addEventListener('change', (event) => {
+            this.context.characteristic = event.target.value;
+            this.render(true);
+        });
     }
 }

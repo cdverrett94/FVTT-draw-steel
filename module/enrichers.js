@@ -149,7 +149,7 @@ function enrichResistance(match, options) {
     }
 
     let tnText = data.tn ? `${data.tn} ` : '';
-    let localizedCharacteristic = game.i18n.localize(`characteristics.${data.characteristic?.toLowerCase()}.label`);
+    let localizedCharacteristic = game.i18n.localize(`characteristics.${data.characteristic?.toLowerCase()}.abbreviation`);
     let linkText = `${tnText} ${localizedCharacteristic} Resists`;
     let link = createRollLink('resistance', linkText, data.formula, data, true);
 
