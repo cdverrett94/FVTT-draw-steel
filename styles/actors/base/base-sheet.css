@@ -59,7 +59,7 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.mcdmrpg.sheet.actor div.abilities-filter {
+.mcdmrpg.sheet.actor div.ability-filters {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(111px, 1fr));
     text-align: center;
@@ -67,7 +67,7 @@
     margin-bottom: 5px;
 }
 
-.mcdmrpg.sheet.actor div.abilities-filter .ability-filter {
+.mcdmrpg.sheet.actor div.ability-filters .ability-filter {
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 5px;
@@ -75,7 +75,7 @@
     cursor: pointer;
 }
 
-.mcdmrpg.sheet.actor div.abilities-filter .ability-filter.active-filter {
+.mcdmrpg.sheet.actor div.ability-filters .ability-filter.active-filter {
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(0, 0, 0, 1);

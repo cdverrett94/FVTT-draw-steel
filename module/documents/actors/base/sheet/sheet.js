@@ -1,10 +1,12 @@
+import { actionTimes } from '../../../../constants.js';
 import { EditActorSkillsSheet } from './edits-skills-sheet.js';
 
 export class BaseMCDMRPGActorSheet extends ActorSheet {
     constructor(...args) {
         super(...args);
 
-        this.activeFilter = null;
+        this.activeTypeFilter = null;
+        this.activeTimeFilter = null;
     }
 
     static get defaultOptions() {
@@ -17,7 +19,9 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
             img: this.actor.img,
             actor: this.actor,
             ...this.actor.system,
-            activeFilter: this.activeFilter,
+            activeTimeFilter: this.activeTimeFilter,
+            activeTypeFilter: this.activeTypeFilter,
+            actionTimes,
         };
 
         // Enrich Content
@@ -28,8 +32,20 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
 
         for (const [group, abilities] of Object.entries(data.abilities)) {
             for (const [index, ability] of abilities.entries()) {
-                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(ability.system.damage, { ...enrichContext, item: ability });
+                let damageText;
+                if (ability.system.damage.doesDamage) {
+                    let { baseFormula, characteristic, boons, banes, impacts, type, applyExtraDamage } = ability.system.damage;
+                    damageText = `@Damage[${baseFormula}|characteristic=${characteristic}|boons=${boons}|banes=${banes}|impacts=${impacts}|type=${type}|applyExtraDamage=${applyExtraDamage}]`;
+                }
+
+                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(damageText, { ...enrichContext, item: ability });
                 data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, { ...enrichContext, item: ability });
+
+                let isCurrentTypeFilter = ability.system.type === this.activeTypeFilter;
+                let isCurrentTimeFilter = ability.system.time === this.activeTimeFilter;
+                let noFilters = !this.activeTypeFilter && !this.activeTimeFilter;
+                if (isCurrentTypeFilter || isCurrentTimeFilter || noFilters) ability.show = true;
+                else ability.show = false;
             }
         }
 
@@ -50,11 +66,22 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
             this.render(true);
         });
 
-        // Ability Filter
-        html.querySelectorAll('.ability-filter').forEach((element) => {
+        // Ability Type Filter
+        html.querySelectorAll('.ability-type-filter').forEach((element) => {
             element.addEventListener('click', (event) => {
                 let abilityType = element.dataset.abilityType;
-                this.activeFilter = abilityType === 'clear' ? null : abilityType;
+                this.activeTypeFilter = abilityType === 'clear' ? null : abilityType;
+                this.activeTimeFilter = null;
+                this.render(true);
+            });
+        });
+
+        // Ability Time Filter
+        html.querySelectorAll('.ability-time-filter').forEach((element) => {
+            element.addEventListener('click', (event) => {
+                let abilityTime = element.dataset.abilityTime;
+                this.activeTimeFilter = abilityTime === 'clear' ? null : abilityTime;
+                this.activeTypeFilter = null;
                 this.render(true);
             });
         });

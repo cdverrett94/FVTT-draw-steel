@@ -1,7 +1,7 @@
 {{#each abilities as |abilityGroup|}}
     {{#if abilityGroup}}
         {{#each abilityGroup as |ability|}}
-            {{#if (or (and @root.activeFilter (eq @../key @root.activeFilter)) (not @root.activeFilter))}}
+            {{#if ability.show}}
                 <div class='ability {{@../key}}-ability' data-ability-type='{{@../key}}' data-ability-id="{{ability._id}}">
                     <div class='ability-group-label'>{{localize (concat 'abilityTypes.' @../key '.label')}}</div>
                     <div class='ability-header'>
@@ -16,6 +16,7 @@
                             {{#each ability.system.keywords as |keyword|}}
                                 {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
                             {{/each}}
+                            {{#unless ability.system.keywords}} &mdash; {{/unless}}
                         </div>
                     </div>
                     {{#if ability.system.trigger}}
@@ -27,7 +28,7 @@
                     {{#if ability.system.time}}
                     <div class='property ability-time'>
                         <div class='label'>Time</div>
-                        <div class='value'>{{ability.system.time}}</div>
+                        <div class='value'>{{localize (concat 'actionTimes.' ability.system.time '.label')}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.distance}}
@@ -42,7 +43,7 @@
                         <div class='value'>{{ability.system.target}}</div>
                     </div>
                     {{/if}}
-                    {{#if ability.system.damage}}
+                    {{#if ability.system.damage.doesDamage}}
                     <div class='property ability-damage'>
                         <div class='label'><i class="fa-duotone fa-arrow-pointer" style="--fa-secondary-color: #511f1f; --fa-secondary-opacity: 0;"></i>Damage</div>
                         <div class='value'>{{{ability.system.enrichedDamage}}}</div>

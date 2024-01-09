@@ -1,8 +1,20 @@
-{{#each abilities as |abilityGroup|}}
-    {{#if abilityGroup}}
-        <div class='ability-filter{{#if (eq @key @root.activeFilter)}} active-filter{{/if}}' data-ability-type='{{@key}}'>
-            {{localize (concat 'abilityTypes.' @key '.label')}}
+Ability Type Filters
+<div class="ability-filters ability-type-filters">
+    {{#each abilities as |abilityGroup|}}
+        {{#if abilityGroup}}
+            <div class='ability-filter ability-type-filter{{#if (eq @key @root.activeTypeFilter)}} active-filter{{/if}}' data-ability-type='{{@key}}'>
+                {{localize (concat 'abilityTypes.' @key '.label')}}
+            </div>
+        {{/if}}
+    {{/each}}
+    <div class='ability-filter ability-type-filter' data-ability-type='clear'>Clear</div>
+</div>
+Ability Time Filters
+<div class="ability-filters ability-time-filters">
+    {{#each actionTimes as |actionTime|}}
+        <div class='ability-filter ability-time-filter{{#if (eq actionTime @root.activeTimeFilter)}} active-filter{{/if}}' data-ability-time='{{@actionTime}}'>
+            {{localize (concat 'actionTimes.' @actionTime '.label')}}
         </div>
-    {{/if}}
-{{/each}}
-<div class='ability-filter' data-ability-type='clear'>Clear</div>
+    {{/each}}
+    <div class='ability-filter ability-time-filter' data-ability-type='clear'>Clear</div>
+</div>
