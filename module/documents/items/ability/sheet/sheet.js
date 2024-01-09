@@ -1,4 +1,4 @@
-import { abilityTypes, keywords } from '../../../../constants.js';
+import { abilityTypes, actionTimeSelectOptions, characteristicSelectOptions, damageTypeSelectOptions, keywords } from '../../../../constants.js';
 
 export class AbilitySheet extends ItemSheet {
     constructor(...args) {
@@ -21,6 +21,7 @@ export class AbilitySheet extends ItemSheet {
             scrollY: [
                 /*'.equipment-list', '.skills-container'*/
             ],
+            height: 'auto',
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
@@ -33,6 +34,9 @@ export class AbilitySheet extends ItemSheet {
             ...this.item.system,
             keywordsList: keywords,
             abilityTypes,
+            characteristicList: characteristicSelectOptions,
+            damageTypes: damageTypeSelectOptions,
+            actionTimeSelectOptions,
         };
         return data;
     }

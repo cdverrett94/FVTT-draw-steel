@@ -17,6 +17,8 @@
         </div>
     </div>
 
+    {{!-- Hide Keywords for passive types --}}
+    {{#unless (eq type "passive")}}
     <div class="ability-keywords">
         <div class="ability-property">Keywords:</div>
         <div class="ability-value">
@@ -26,36 +28,116 @@
             {{/each}}
         </div>
     </div>
+    {{/unless}}
 
+    {{!-- Show Trigger for trigger types --}}
+    {{#if (eq type "triggered")}}
     <div class="ability-trigger">
         <div class="ability-property">Trigger:</div>
         <div class="ability-value"><input type="text" name="system.trigger" value="{{trigger}}"></div>
     </div>
+    {{/if}}
 
+    {{!-- Show Cost for heroic types --}}
+    {{#if (eq type "heroic")}}
     <div class="ability-cost">
         <div class="ability-property">Cost:</div>
         <div class="ability-value"><input type="text" name="system.cost" value="{{cost}}"></div>
     </div>
+    {{/if}}
 
+    {{!-- Hide time for passive types --}}
+    {{#unless (eq type "passive")}}
     <div class="ability-time">
         <div class="ability-property">Time: </div>
-        <div class="ability-value"><input type="text" name="system.time" value="{{time}}"></div>
+        <div class="ability-value">
+            <select name="system.time">
+                {{selectOptions actionTimeSelectOptions selected=time localize=true}}
+            </select>
+        </div>
     </div>
+    {{/unless}}
 
+    {{!-- Hide distance for passive and trigger types --}}
+    {{#unless (or (eq type "passive") (eq type "triggered"))}}
     <div class="ability-distance">
         <div class="ability-property">Distance:</div>
         <div class="ability-value"><input type="text" name="system.distance" value="{{distance}}"></div>
     </div>
+    {{/unless}}
 
+    {{!-- Hide targets for passive and triggered types --}}
+    {{#unless (or (eq type "passive") (eq type "triggered"))}}
     <div class="ability-target">
         <div class="ability-property">Target:</div>
         <div class="ability-value"><input type="text" name="system.target" value="{{target}}"></div>
     </div>
+    {{/unless}}
 
+    {{!-- Hide Keywords for passive types --}}
+    {{#unless (eq type "passive")}}
     <div class="ability-damage">
         <div class="ability-property">Damage:</div>
-        <div class="ability-value"><input type="text" name="system.damage" value="{{damage}}"></div>
+        <div class="ability-value">
+            <fieldset>
+                <div class="damage-applies">
+                    <div class="ability-property">Does Damage?</div>
+                    <div class="ability-value">
+                        <input type="checkbox" name="system.damage.doesDamage" {{checked damage.doesDamage}}>
+                    </div>
+                </div>
+                {{#if damage.doesDamage}}
+                <div class="damage-base">
+                    <div class="ability-property">Base Formula</div>
+                    <div class="ability-value">
+                        <input type="text" name="system.damage.baseFormula" value="{{damage.baseFormula}}">
+                    </div>
+                </div>
+                <div class="damage-characteristic">
+                    <div class="ability-property">Characteristic</div>
+                    <div class="ability-value">
+                        <select name='system.damage.characteristic'>
+                            {{selectOptions characteristicList selected=characteristic localize=true}}
+                        </select>
+                    </div>
+                </div>
+                <div class="damage-extra">
+                    <div class="ability-property">Apply Kit/Bonus Damage:</div>
+                    <div class="ability-value">
+                        <input type="checkbox" name="system.damage.applyExtraDamage" {{checked damage.applyExtraDamage}}>
+                    </div>
+                </div>
+                <div class="damage-boons">
+                    <div class="ability-property">Boons</div>
+                    <div class="ability-value">
+                        <input type="number" name="system.damage.boons" value="{{damage.boons}}">
+                    </div>
+                </div>
+                <div class="damage-banes">
+                    <div class="ability-property">Banes</div>
+                    <div class="ability-value">
+                        <input type="number" name="system.damage.banes" value="{{damage.banes}}">
+                    </div>
+                </div>
+                <div class="damage-impacts">
+                    <div class="ability-property">Impacts</div>
+                    <div class="ability-value">
+                        <input type="number" name="system.damage.impacts" value="{{damage.impacts}}">
+                    </div>
+                </div>
+                <div class="damage-type">
+                    <div class="ability-property">Type</div>
+                    <div class="ability-value">
+                        <select name='system.damage.type'>
+                            {{selectOptions damageTypes selected=damage.type localize=true}}
+                        </select>
+                    </div>
+                </div>
+                {{/if}}
+            </fieldset>
+        </div>
     </div>
+    {{/unless}}
 
     <div class="ability-effect">
         <div class="ability-property">Effect:</div>

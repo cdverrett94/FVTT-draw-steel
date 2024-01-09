@@ -1,4 +1,4 @@
-import { keywords } from '../../../constants.js';
+import { abilityTypes, characteristics, damageTypes, keywords } from '../../../constants.js';
 import { MCDMItemData } from '../base/data-model.js';
 
 export class AbilityData extends MCDMItemData {
@@ -11,12 +11,45 @@ export class AbilityData extends MCDMItemData {
                     choices: keywords,
                 })
             ),
-            type: new fields.StringField(),
+            type: new fields.StringField({
+                choices: abilityTypes,
+            }),
             cost: new fields.StringField(),
-            time: new fields.StringField(),
+            time: new fields.StringField({
+                //choices: actionTimes,
+            }),
             distance: new fields.StringField(),
             target: new fields.StringField(),
-            damage: new fields.StringField(),
+            damage: new fields.SchemaField({
+                doesDamage: new fields.BooleanField({
+                    initial: false,
+                }),
+                baseFormula: new fields.StringField({
+                    initial: '2d6',
+                }),
+                characteristic: new fields.StringField({
+                    choices: characteristics,
+                }),
+                applyExtraDamage: new fields.BooleanField(),
+                banes: new fields.NumberField({
+                    initial: 0,
+                    min: 0,
+                    integer: true,
+                }),
+                boons: new fields.NumberField({
+                    initial: 0,
+                    min: 0,
+                    integer: true,
+                }),
+                impacts: new fields.NumberField({
+                    initial: 0,
+                    integer: true,
+                    min: 0,
+                }),
+                type: new fields.StringField({
+                    choices: damageTypes,
+                }),
+            }),
             effect: new fields.StringField(),
             trigger: new fields.StringField(),
         };

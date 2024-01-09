@@ -1,9 +1,13 @@
-.sheet.item.ability form > div {
+.sheet.item.ability form > div,
+.sheet.item.ability .ability-damage > .ability-value fieldset > div {
     display: grid;
     grid-template-columns: 75px 1fr;
     grid-gap: 5px;
     margin-bottom: 5px;
     align-items: center;
+}
+.sheet.item.ability .ability-damage > .ability-value fieldset > div {
+    grid-template-columns: 100px 1fr;
 }
 .sheet.item.ability .ability-property {
     text-align: right;
