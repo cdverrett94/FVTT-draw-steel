@@ -53,10 +53,10 @@ export class BaseRollDialog extends Application {
             let { type, adjustment } = element.dataset;
 
             element.addEventListener('click', (event) => {
-                if (adjustment === 'add') this.options.context[type] += 1;
-                else this.options.context[type] -= 1;
+                if (adjustment === 'add') this.context[type] += 1;
+                else this.context[type] -= 1;
 
-                this.options.context[type] = Math.max(this.options.context[type], 0);
+                this.context[type] = Math.max(this.context[type], 0);
 
                 this.render(true);
             });
