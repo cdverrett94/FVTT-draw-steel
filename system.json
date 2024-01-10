@@ -22,7 +22,6 @@
     "scripts": [],
     "esmodules": ["system.js"],
     "styles": ["system.css"],
-    "packs": [],
     "languages": [
         {
             "lang": "en",
@@ -36,5 +35,21 @@
     "bugs": "https://github.com/cdverrett94/FVTT-mcdmrpg/issues",
     "manifest": "https://github.com/cdverrett94/FVTT-mcdmrpg/releases/latest/download/module.json",
     "download": "https://github.com/cdverrett94/FVTT-mcdmrpg/releases/download/0.1.0/package.zip",
-    "changelog": "https://github.com/cdverrett94/FVTT-mcdmrpg/blob/main/Changelog.md"
+    "changelog": "https://github.com/cdverrett94/FVTT-mcdmrpg/blob/main/Changelog.md",
+    "packs": [
+        {
+            "name": "mcdmrpg-heroes",
+            "system": "mcdmrpg",
+            "label": "Heroes",
+            "path": "./packs/heroes",
+            "type": "Actor"
+        },
+        {
+            "name": "mcdmrpg-monsters",
+            "system": "mcdmrpg",
+            "label": "Monsters",
+            "path": "./packs/monsters",
+            "type": "Actor"
+        }
+    ]
 }
