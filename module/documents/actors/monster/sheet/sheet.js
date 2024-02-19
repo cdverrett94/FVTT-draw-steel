@@ -20,8 +20,8 @@ export class MonsterSheet extends BaseMCDMRPGActorSheet {
                 },*/
             ],
             // scrollY: ['.skill-list', '.tabbed-content'],
-            width: 700,
-            height: 'auto',
+            width: 950,
+            height: 900,
             resizable: true,
         };
 
