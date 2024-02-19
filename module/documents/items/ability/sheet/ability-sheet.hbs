@@ -52,7 +52,7 @@
         <div class="ability-property">Time: </div>
         <div class="ability-value">
             <select name="system.time">
-                {{selectOptions actionTimeSelectOptions selected=time localize=true}}
+                {{selectOptions abilityTimes labelAttr="label" selected=time localize=true}}
             </select>
         </div>
     </div>
@@ -97,7 +97,7 @@
                     <div class="ability-property">Characteristic</div>
                     <div class="ability-value">
                         <select name='system.damage.characteristic'>
-                            {{selectOptions characteristicList selected=damage.characteristic localize=true}}
+                            {{selectOptions characteristics selected=damage.characteristic labelAttr="label" localize=true}}
                         </select>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                     <div class="ability-property">Type</div>
                     <div class="ability-value">
                         <select name='system.damage.type'>
-                            {{selectOptions damageTypes selected=damage.type localize=true}}
+                            {{selectOptions damageTypes labelAttr="label" selected=damage.type localize=true}}
                         </select>
                     </div>
                 </div>

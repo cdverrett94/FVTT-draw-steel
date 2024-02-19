@@ -1,4 +1,4 @@
-import { abilityTypes, actionTimeSelectOptions, characteristicSelectOptions, damageTypeSelectOptions, keywords } from '../../../../constants.js';
+import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../../../constants.js';
 
 export class AbilitySheet extends ItemSheet {
     constructor(...args) {
@@ -34,9 +34,9 @@ export class AbilitySheet extends ItemSheet {
             ...this.item.system,
             keywordsList: keywords,
             abilityTypes,
-            characteristicList: characteristicSelectOptions,
-            damageTypes: damageTypeSelectOptions,
-            actionTimeSelectOptions,
+            characteristics,
+            damageTypes,
+            abilityTimes,
         };
         return data;
     }

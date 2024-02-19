@@ -43,7 +43,7 @@ export class HeroActor extends MCDMActor {
 
     async rollSkill({ skill, subskill, characteristic } = {}) {
         if (!skill) return ui.notifications.error('A skill must be provided to roll.');
-        if (characteristic && !characteristics.includes(characteristic)) return ui.notifications.error('The used characteristic must be a valid one.');
+        if (characteristic && !(chracteristic in characteristics)) return ui.notifications.error('The used characteristic must be a valid one.');
 
         let proficient;
         if (skill === 'craft' || skill === 'knowledge') {

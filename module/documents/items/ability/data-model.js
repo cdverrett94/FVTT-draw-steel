@@ -1,4 +1,4 @@
-import { abilityTypes, characteristics, damageTypes, keywords } from '../../../constants.js';
+import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../../constants.js';
 import { MCDMItemData } from '../base/data-model.js';
 
 export class AbilityData extends MCDMItemData {
@@ -16,7 +16,7 @@ export class AbilityData extends MCDMItemData {
             }),
             cost: new fields.StringField(),
             time: new fields.StringField({
-                //choices: actionTimes,
+                choices: Object.keys(abilityTimes),
             }),
             distance: new fields.StringField(),
             target: new fields.StringField(),
@@ -28,7 +28,7 @@ export class AbilityData extends MCDMItemData {
                     initial: '2d6',
                 }),
                 characteristic: new fields.StringField({
-                    choices: characteristics,
+                    choices: Object.keys(characteristics),
                 }),
                 applyExtraDamage: new fields.BooleanField(),
                 banes: new fields.NumberField({
@@ -47,7 +47,7 @@ export class AbilityData extends MCDMItemData {
                     min: 0,
                 }),
                 type: new fields.StringField({
-                    choices: damageTypes,
+                    choices: Object.keys(damageTypes),
                 }),
             }),
             effect: new fields.StringField(),

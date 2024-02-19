@@ -4,6 +4,7 @@ import { DamageRollDialog } from './documents/rolls/damage/roll-dialog/roll-dial
 import { ResistanceRoll } from './documents/rolls/resistance/resistance-roll.js';
 import { ResistanceRollDialog } from './documents/rolls/resistance/roll-dialog/roll-dialog.js';
 import { TestRollDialog } from './documents/rolls/test/roll-dialog/roll-dialog.js';
+import { TestRoll } from './documents/rolls/test/test-roll.js';
 import { getRollActor } from './helpers.js';
 
 export function registerCustomEnrichers() {
@@ -54,7 +55,7 @@ function _getEnrichedOptions(match, options) {
     }
 
     // Remove invalid characteristic from data
-    if (data.characteristic && !characteristics.includes(data.characteristic)) delete data.characteristic;
+    if (data.characteristic && !(data.characteristic in characteristics)) delete data.characteristic;
 
     return data;
 }
@@ -72,7 +73,7 @@ function enrichDamage(match, options) {
     */
     let data = _getEnrichedOptions(match, options);
 
-    data.type = damageTypes.includes(data.type) ? data.type : 'untyped';
+    data.type = data.type in damageTypes ? data.type : 'untyped';
     data.applyExtraDamage = data.applyExtraDamage === 'false' ? false : true;
     data.formula = DamageRoll.constructFinalFormula(data.baseFormula, data);
     data.replaceCharacteristic ??= true;
@@ -87,8 +88,10 @@ function enrichDamage(match, options) {
 function enrichTest(match, options) {
     let data = _getEnrichedOptions(match, options);
 
+    data.formula = TestRoll.constructFinalFormula(data.baseFormula, data);
+
     // Don't enrich when invalid skill is provided.
-    if (!data.skill && !skills.includes(data.skill)) return false;
+    if (!data.skill && !(data.skill in skills)) return false;
 
     let tn = data.tn ?? options.tn;
     if (Number.isNumeric(tn)) {

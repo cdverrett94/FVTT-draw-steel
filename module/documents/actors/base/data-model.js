@@ -113,7 +113,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'agility',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 athletics: new fields.SchemaField({
@@ -122,7 +122,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'might',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 charm: new fields.SchemaField({
@@ -131,7 +131,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'presence',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 craft: new fields.ArrayField(
@@ -145,7 +145,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         }),
                         characteristic: new fields.StringField({
                             initial: 'reason',
-                            choices: characteristics,
+                            choices: Object.keys(characteristics),
                         }),
                     })
                 ),
@@ -155,7 +155,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'presence',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 empathy: new fields.SchemaField({
@@ -164,7 +164,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'intuition',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 intimidate: new fields.SchemaField({
@@ -173,7 +173,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'presence',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 knowledge: new fields.ArrayField(
@@ -187,7 +187,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         }),
                         characteristic: new fields.StringField({
                             initial: 'reason',
-                            choices: characteristics,
+                            choices: Object.keys(characteristics),
                         }),
                     })
                 ),
@@ -197,7 +197,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'intuition',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 skulduggery: new fields.SchemaField({
@@ -206,7 +206,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'agility',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 stealth: new fields.SchemaField({
@@ -215,7 +215,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'agility',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
                 vigor: new fields.SchemaField({
@@ -224,7 +224,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                     }),
                     characteristic: new fields.StringField({
                         initial: 'might',
-                        choices: characteristics,
+                        choices: Object.keys(characteristics),
                     }),
                 }),
             }),

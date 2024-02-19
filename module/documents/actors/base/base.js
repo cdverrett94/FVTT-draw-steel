@@ -48,7 +48,7 @@ export class MCDMActor extends Actor {
 
     async addSkill({ skill, subskill = 'New Skill', characteristic = 'reason', proficient = true } = {}) {
         if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');
-        if (!characteristics.includes(characteristic)) return ui.notifications.error('The used characteristic must be a valid one.');
+        if (!(characteristic in characteristics)) return ui.notifications.error('The used characteristic must be a valid one.');
         let skillArray = this.system.skills[skill];
         skillArray.push({
             subskill: subskill,

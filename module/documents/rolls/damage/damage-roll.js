@@ -5,7 +5,7 @@ export class DamageRoll extends MCDMRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
 
-        this.damageType = damageTypes.includes(options.damageType) ? options.damageType : 'untyped';
+        this.damageType = options.damageType in damageTypes ? options.damageType : 'untyped';
     }
 
     static constructFinalFormula(baseFormula, options) {

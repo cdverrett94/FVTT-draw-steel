@@ -1,4 +1,4 @@
-import { actionTimes } from '../../../../constants.js';
+import { abilityTimes } from '../../../../constants.js';
 import { EditActorSkillsSheet } from './edits-skills-sheet.js';
 
 export class BaseMCDMRPGActorSheet extends ActorSheet {
@@ -21,7 +21,7 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
             ...this.actor.system,
             activeTimeFilter: this.activeTimeFilter,
             activeTypeFilter: this.activeTypeFilter,
-            actionTimes,
+            abilityTimes,
         };
 
         // Enrich Content

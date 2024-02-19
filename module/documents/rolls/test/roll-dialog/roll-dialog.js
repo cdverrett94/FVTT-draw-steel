@@ -1,4 +1,4 @@
-import { characteristicSelectOptions } from '../../../../constants.js';
+import { characteristics } from '../../../../constants.js';
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { TestRoll } from '../test-roll.js';
 
@@ -33,7 +33,7 @@ export class TestRollDialog extends BaseRollDialog {
         let data = await super.getData();
         data.constructedFormula = this.formula;
         data.baseFormula = this.baseFormula;
-        data.characteristicList = characteristicSelectOptions;
+        data.characteristics = characteristics;
 
         return data;
     }
