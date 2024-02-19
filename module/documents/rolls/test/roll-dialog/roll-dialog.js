@@ -1,4 +1,5 @@
 import { characteristics } from '../../../../constants.js';
+import { MCDMActorData } from '../../../actors/base/data-model.js';
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { TestRoll } from '../test-roll.js';
 
@@ -34,6 +35,8 @@ export class TestRollDialog extends BaseRollDialog {
         data.constructedFormula = this.formula;
         data.baseFormula = this.baseFormula;
         data.characteristics = characteristics;
+
+        if (!data.characteristic) data.characteristic = MCDMActorData.defineSchema().skills.fields[data.skill].fields.characteristic.options.initial;
 
         return data;
     }
