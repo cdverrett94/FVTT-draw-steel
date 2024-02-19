@@ -200,15 +200,15 @@
             "label": "sonic"
         }
     },
-    "actionTimes": {
+    "abilityTimes": {
         "action": {
             "label": "Action"
         },
-        "manuever": {
-            "label": "Manuever"
+        "maneuver": {
+            "label": "Maneuver"
         },
-        "free-manuever": {
-            "label": "Free Manuever"
+        "free-maneuver": {
+            "label": "Free Maneuver"
         },
         "triggered": {
             "label": "Triggered"
@@ -216,5 +216,21 @@
         "free-triggered": {
             "label": "Free Triggered"
         }
+    },
+    "conditions": {
+        "dead": "Dead",
+        "bloodied": "Bloodied",
+        "dazed": "Dazed",
+        "frightened": "Frightened",
+        "grappled": "Grappled",
+        "ongoing-damage": "Ongoing Damage",
+        "prone": "Prone",
+        "restrained": "Restrained",
+        "slowed": "Slowed",
+        "surprised": "Surprised",
+        "taunted": "Taunted",
+        "unbalanced": "Unbalanced",
+        "unconscious": "Unconscious",
+        "weakened": "Weakened"
     }
 }
