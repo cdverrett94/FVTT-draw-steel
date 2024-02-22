@@ -21,7 +21,7 @@
     },
     "scripts": [],
     "esmodules": ["system.js"],
-    "styles": ["system.css"],
+    "styles": ["styles/system.css"],
     "languages": [
         {
             "lang": "en",
@@ -58,5 +58,11 @@
             "path": "./packs/conditions",
             "type": "Item"
         }
-    ]
+    ],
+    "flags": {
+        "hotReload": {
+            "extensions": ["css", "hbs", "json"],
+            "paths": ["lang", "styles", "module"]
+        }
+    }
 }
