@@ -1,3 +1,4 @@
+import { damageTypes } from '../constants.js';
 import { DamageRoll } from '../documents/rolls/damage/damage-roll.js';
 import { DamageRollDialog } from '../documents/rolls/damage/roll-dialog/roll-dialog.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers.js';
@@ -30,6 +31,23 @@ function enrichDamage(match, options) {
 async function rollDamage(event) {
     const target = event.target.closest('.roll-link.roll-damage');
     let { actor, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = await getRollContextData(target.dataset);
+
+    if (actor?.system.banes.attacker) banes += Number(actor.system.banes.attacker);
+    if (actor?.system.boons.attacker) banes += Number(actor.system.boons.attacker);
+
+    // General boon/bane adjustments from effects
+    let [targets] = game.user.targets;
+    if (targets) {
+        if (targets.actor.system.boons.attacked) boons += targets.actor.system.boons.attacked;
+        if (targets.actor.system.banes.attacked) boons += targets.actor.system.banes.attacked;
+    }
+
+    // boon/bane adjustments from frightened
+    if (actor?.system.frightened && targets && actor?.system.frightened.includes(targets?.actor.id)) banes += 1;
+    if (targets?.actor.system.frightened && actor && targets?.actor.system.frightened.includes(actor?.id)) banes += 1;
+
+    // boon/bane adjustments from taunted
+    if (actor?.system.taunted && targets && !actor?.system.taunted.includes(targets.actor.id)) banes += 1;
 
     let context = {
         actor,

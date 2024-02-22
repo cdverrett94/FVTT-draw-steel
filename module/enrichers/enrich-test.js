@@ -40,6 +40,9 @@ async function rollTest(event) {
         else characteristic = actor?.system.skills[skill].characteristic;
     }
 
+    if (actor?.system.banes.tests) banes += Number(actor.system.banes.tests);
+    if (actor?.system.boons.tests) banes += Number(actor.system.boons.tests);
+
     let context = {
         actor,
         baseFormula,
@@ -61,7 +64,7 @@ function postTestToChat({ dataset }) {
         if (!['baseFormula', 'formula', 'actorId', 'replaceCharacteristic'].includes(key)) options = `${options}|${key}=${value}`;
     }
     options = `${options}|replaceCharacteristic=false`;
-    let rollMessage = `@Test[${baseFormula}${options}]`;
+    let rollMessage = `@Test[${options}]`;
     ChatMessage.create({ content: rollMessage });
 }
 
