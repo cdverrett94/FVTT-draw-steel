@@ -1,45 +1,23 @@
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { DamageRoll } from '../../damage/damage-roll.js';
 
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class DamageRollDialog extends BaseRollDialog {
-    constructor(options) {
-        super(options);
-    }
-
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
-
-        const overrides = {
-            classes: ['mcdmrpg', 'roll-dialog', 'damage'],
-            template: `/systems/mcdmrpg/module/documents/rolls/damage/roll-dialog/sheet/roll-dialog-sheet.hbs`,
-            height: 210,
-            width: 315,
-        };
-
-        return foundry.utils.mergeObject(defaults, overrides);
-    }
-
     get sheetRoller() {
         return DamageRoll;
     }
 
-    async getData() {
-        let data = await super.getData();
-        this.context.applyExtraDamage ??= false;
+    static additionalOptions = {
+        id: 'damage-roll-dialog-{id}',
+        classes: ['damage-roll-dialog'],
+        window: {
+            title: 'Roll Damage',
+        },
+    };
 
-        data.constructedFormula = this.formula;
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, DamageRollDialog.additionalOptions, { inplace: false });
 
-        return data;
-    }
-
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
-
-        let applyKitCheckbox = html.querySelector('.apply-kit-damage');
-        applyKitCheckbox?.addEventListener('change', async (event) => {
-            this.context.applyExtraDamage = applyKitCheckbox.checked;
-            this.render(true);
-        });
-    }
+    /** @override */
+    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 }

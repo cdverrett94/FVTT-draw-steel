@@ -1,9 +1,9 @@
 import { skills } from '../../../../constants.js';
-import { BaseRollDialogV2 } from '../../base/roll-dialog/roll-dialog.js';
+import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { ResistanceRoll } from '../resistance-roll.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
-export class ResistanceRollDialog extends BaseRollDialogV2 {
+export class ResistanceRollDialog extends BaseRollDialog {
     constructor(options = {}) {
         super(options);
         this.context.baseFormula = '2d6';
