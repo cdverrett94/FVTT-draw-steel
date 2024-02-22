@@ -1,55 +1,61 @@
 const characteristics = {
     might: {
-        label: 'characteristics.might.label',
+        label: 'mcdmrpg.characteristics.might.label',
         abbreviation: 'characteristics.might.abbreviation',
     },
     agility: {
-        label: 'characteristics.agility.label',
+        label: 'mcdmrpg.characteristics.agility.label',
         abbreviation: 'characteristics.agility.abbreviation',
     },
     endurance: {
-        label: 'characteristics.endurance.label',
+        label: 'mcdmrpg.characteristics.endurance.label',
         abbreviation: 'characteristics.endurance.abbreviation',
     },
     reason: {
-        label: 'characteristics.reason.label',
+        label: 'mcdmrpg.characteristics.reason.label',
         abbreviation: 'characteristics.reason.abbreviation',
     },
     intuition: {
-        label: 'characteristics.intuition.label',
+        label: 'mcdmrpg.characteristics.intuition.label',
         abbreviation: 'characteristics.intuition.abbreviation',
     },
     presence: {
-        label: 'characteristics.presence.label',
+        label: 'mcdmrpg.characteristics.presence.label',
         abbreviation: 'characteristics.presence.abbreviation',
     },
 };
 const skills = {
-    acrobatics: { label: 'skills.acrobatics.label' },
-    athletics: { label: 'skills.athletics.label' },
-    charm: { label: 'skills.charm.label' },
-    craft: { label: 'skills.craft.label' },
-    deceive: { label: 'skills.deceive.label' },
-    empathy: { label: 'skills.empathy.label' },
-    intimidate: { label: 'skills.intimidate.label' },
-    knowledge: { label: 'skills.knowledge.label' },
-    notice: { label: 'skills.notice.label' },
-    skulduggery: { label: 'skills.skullduggery.label' },
-    stealth: { label: 'skills.stealth.label' },
-    vigor: { label: 'skills.vigor.label' },
+    acrobatics: { label: 'mcdmrpg.skills.acrobatics.label', default: 'agility' },
+    athletics: { label: 'mcdmrpg.skills.athletics.label', default: 'might' },
+    charm: { label: 'mcdmrpg.skills.charm.label', default: 'presence' },
+    craft: { label: 'mcdmrpg.skills.craft.label', default: 'reason' },
+    deceive: { label: 'mcdmrpg.skills.deceive.label', default: 'presence' },
+    empathy: { label: 'mcdmrpg.skills.empathy.label', default: 'intuition' },
+    intimidate: { label: 'mcdmrpg.skills.intimidate.label', default: 'presence' },
+    knowledge: { label: 'mcdmrpg.skills.knowledge.label', default: 'reason' },
+    notice: { label: 'mcdmrpg.skills.notice.label', default: 'intuition' },
+    skulduggery: { label: 'mcdmrpg.skills.skullduggery.label', default: 'agility' },
+    stealth: { label: 'mcdmrpg.skills.stealth.label', default: 'agility' },
+    vigor: { label: 'mcdmrpg.skills.vigor.label', default: 'might' },
 };
-const keywords = ['attack', 'kit', 'magic', 'psionic', 'weapon'];
+const keywords = {
+    attack: { label: 'mcdmrpg.keywords.attack.label' },
+    kit: { label: 'mcdmrpg.keywords.kit.label' },
+    magic: { label: 'mcdmrpg.keywords.magic.label' },
+    psionic: { label: 'mcdmrpg.keywords.psionic.label' },
+    weapon: { label: 'mcdmrpg.keywords.weapon.label' },
+};
 const damageTypes = {
-    untyped: { label: 'damageTypes.untyped.label' },
-    acid: { label: 'damageTypes.acid.label' },
-    cold: { label: 'damageTypes.cold.label' },
-    corruption: { label: 'damageTypes.corruption.label' },
-    fire: { label: 'damageTypes.fire.label' },
-    holy: { label: 'damageTypes.holy.label' },
-    lightning: { label: 'damageTypes.lightning.label' },
-    poison: { label: 'damageTypes.poison.label' },
-    psychic: { label: 'damageTypes.psychic.label' },
-    sonic: { label: 'damageTypes.sonic.label' },
+    untyped: { label: 'mcdmrpg.damageTypes.untyped.label' },
+    acid: { label: 'mcdmrpg.damageTypes.acid.label' },
+    cold: { label: 'mcdmrpg.damageTypes.cold.label' },
+    corruption: { label: 'mcdmrpg.damageTypes.corruption.label' },
+    fire: { label: 'mcdmrpg.damageTypes.fire.label' },
+    holy: { label: 'mcdmrpg.damageTypes.holy.label' },
+    lightning: { label: 'mcdmrpg.damageTypes.lightning.label' },
+    poison: { label: 'mcdmrpg.damageTypes.poison.label' },
+    psychic: { label: 'mcdmrpg.damageTypes.psychic.label' },
+    sonic: { label: 'mcdmrpg.damageTypes.sonic.label' },
 };
 const baseAbilityTypes = ['action', 'basic', 'manuever', 'triggered'];
 const heroAbilityTypes = ['signature', 'heroic'];
@@ -61,11 +67,17 @@ const abilityTypes = [...baseAbilityTypes, ...heroAbilityTypes, ...monsterAbilit
 const actionTimes = ['action', 'manuever', 'free-manuever', 'triggered', 'free-triggered'];
 
 const abilityTimes = {
-    'action': { label: 'abilityTimes.action.label' },
-    'maneuver': { label: 'abilityTimes.maneuver.label' },
-    'free-maneuver': { label: 'abilityTimes.free-maneuver.label' },
-    'triggered': { label: 'abilityTimes.triggered.label' },
-    'free-triggered': { label: 'abilityTimes.free-triggered.label' },
+    'action': { label: 'mcdmrpg.abilityTimes.action.label' },
+    'maneuver': { label: 'mcdmrpg.abilityTimes.maneuver.label' },
+    'free-maneuver': { label: 'mcdmrpg.abilityTimes.free-maneuver.label' },
+    'triggered': { label: 'mcdmrpg.abilityTimes.triggered.label' },
+    'free-triggered': { label: 'mcdmrpg.abilityTimes.free-triggered.label' },
 };
 
-export { abilityTimes, abilityTypes, actionTimes, characteristics, damageTypes, keywords, monsterRoles, skills };
+const tnDifficulty = {
+    easy: 7,
+    moderate: 9,
+    hard: 12,
+};
+
+export { abilityTimes, abilityTypes, actionTimes, characteristics, damageTypes, keywords, monsterRoles, skills, tnDifficulty };
