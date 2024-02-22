@@ -23,8 +23,8 @@
         <div class="ability-property">Keywords:</div>
         <div class="ability-value">
             {{#each keywordsList as |keyword|}}
-            <input type="checkbox" name="system.keywords" value="{{keyword}}"{{#if (includes ../keywords keyword)}} checked{{/if}}>
-            <label for="{{keyword}}">{{localize (concat 'keywords.' keyword '.label')}}</label>
+            <input type="checkbox" name="system.keywords" value="{{@key}}"{{#if (includes ../keywords @key)}} checked{{/if}}>
+            <label for="{{@key}}">{{localize keyword.label}}</label>
             {{/each}}
         </div>
     </div>
