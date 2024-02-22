@@ -1,10 +1,7 @@
-import { characteristics, damageTypes, skills } from './constants.js';
-import { DamageRoll } from './documents/rolls/damage/damage-roll.js';
-import { DamageRollDialog } from './documents/rolls/damage/roll-dialog/roll-dialog.js';
-import { ResistanceRoll } from './documents/rolls/resistance/resistance-roll.js';
-import { ResistanceRollDialog } from './documents/rolls/resistance/roll-dialog/roll-dialog.js';
-import { TestRollDialog } from './documents/rolls/test/roll-dialog/roll-dialog.js';
-import { TestRoll } from './documents/rolls/test/test-roll.js';
+import { characteristics } from './constants.js';
+import { enrichDamage, postDamageToChat, rollDamage } from './enrichers/enrich-damage.js';
+import { enrichResistance, postResistanceToChat, rollResistance } from './enrichers/enrich-resistance.js';
+import { enrichTest, postTestToChat, rollTest } from './enrichers/enrich-test.js';
 import { getRollActor } from './helpers.js';
 
 export function registerCustomEnrichers() {
@@ -25,7 +22,6 @@ export function registerCustomEnrichers() {
 
     document.body.addEventListener('click', rollAction);
     document.body.addEventListener('click', postRollToChat);
-    // @Damage[1d6+2|type=holy|traits=Attack,Magic]
 }
 
 function _getEnrichedOptions(match, options) {
@@ -34,8 +30,10 @@ function _getEnrichedOptions(match, options) {
     config = config.split('|');
     config.forEach((option) => {
         let [key, value] = option.split('=');
-        if (['boons', 'banes', 'impacts'].includes(key)) data[key] = Number(value);
-        else data[key] = value;
+        if (key && value) {
+            if (!Number.isNaN(parseInt(value))) data[key] = Number(value);
+            else data[key] = value.toLowerCase();
+        }
     });
 
     data.boons ??= 0;
@@ -58,101 +56,6 @@ function _getEnrichedOptions(match, options) {
     if (data.characteristic && !(data.characteristic in characteristics)) delete data.characteristic;
 
     return data;
-}
-
-function enrichDamage(match, options) {
-    /* Currently accounted for  config options
-
-    type = damage type
-    replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
-    applyExtraDamage = should a kits damage apply to the roll - default true
-    boons = # of boons to apply to roll
-    banes = number of banes to apply to roll
-    impacts = number of impact dice to roll
-    characteristic = charcteristic to add to the roll
-    */
-    let data = _getEnrichedOptions(match, options);
-
-    data.type = data.type in damageTypes ? data.type : 'untyped';
-    data.applyExtraDamage = data.applyExtraDamage === 'false' ? false : true;
-    data.formula = DamageRoll.constructFinalFormula(data.baseFormula, data);
-    data.replaceCharacteristic ??= true;
-    data.impacts ??= 0;
-
-    let linkText = `${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;
-    let link = createRollLink('damage', linkText, data.formula, data, false);
-
-    return link;
-}
-
-function enrichTest(match, options) {
-    let data = _getEnrichedOptions(match, options);
-
-    data.formula = TestRoll.constructFinalFormula(data.baseFormula, data);
-
-    // Don't enrich when invalid skill is provided.
-    if (!data.skill && !(data.skill in skills)) return false;
-
-    let tn = data.tn ?? options.tn;
-    if (Number.isNumeric(tn)) {
-        data.tn = Number(tn);
-    } else {
-        if (data.tn === 'easy') data.tn = 7;
-        else if (data.tn === 'moderate') data.tn = 9;
-        else if (data.tn === 'hard') data.tn = 12;
-        else data.tn = null;
-    }
-
-    let localizedSkill = game.i18n.localize(`skills.${data.skill?.toLowerCase()}.label`);
-    let subskillText = ['knowledge', 'craft'].includes(data.skill) && data.subskill ? ` (${data.subskill})` : '';
-    let tnText = data.tn ? `TN ${data.tn} ` : '';
-    let linkText = '';
-    if (data.characteristic) {
-        let localizedCharacteristic = game.i18n.localize(`characteristics.${data.characteristic?.toLowerCase()}.label`);
-        linkText = `${tnText}${localizedCharacteristic}-${localizedSkill}${subskillText} Test`;
-    } else {
-        linkText = `${tnText}${localizedSkill}${subskillText} Test`;
-    }
-    let link = createRollLink('test', linkText, data.formula, data, true);
-
-    return link;
-}
-
-function enrichResistance(match, options) {
-    let data = _getEnrichedOptions(match, options);
-    /* Currently accounted for  config options
-
-    replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
-    boons = # of boons to apply to roll
-    banes = number of banes to apply to roll
-    tn = the tn to roll against 
-    characteristic = charcteristic to add to the roll
-    */
-
-    if (!data.characteristic) return false;
-
-    data.formula = ResistanceRoll.constructFinalFormula(data.baseFormula, data);
-    let tn = data.tn ?? options.tn;
-    if (Number.isNumeric(tn)) {
-        data.tn = Number(tn);
-    } else {
-        if (data.tn === 'easy') data.tn = 7;
-        else if (data.tn === 'moderate') data.tn = 9;
-        else if (data.tn === 'hard') data.tn = 12;
-        else {
-            if (options.actor) {
-                let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
-                data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
-            }
-        }
-    }
-
-    let tnText = data.tn ? `${data.tn} ` : '';
-    let localizedCharacteristic = game.i18n.localize(`characteristics.${data.characteristic?.toLowerCase()}.abbreviation`);
-    let linkText = `${tnText} ${localizedCharacteristic} Resists`;
-    let link = createRollLink('resistance', linkText, data.formula, data, true);
-
-    return link;
 }
 
 function createRollLink(type, label, formula, dataset, postToChat = false) {
@@ -199,70 +102,6 @@ async function rollAction(event) {
     else return console.error('No accepted roll type provided; must be damage, resistance, or test');
 }
 
-async function rollDamage(event) {
-    const target = event.target.closest('.roll-link.roll-damage');
-    let { actor, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = await getRollContextData(target.dataset);
-
-    let context = {
-        actor,
-        applyExtraDamage,
-        baseFormula,
-        banes,
-        boons,
-        characteristic,
-        damageType,
-        formula,
-        impacts,
-    };
-    await new DamageRollDialog(context).render(true);
-}
-
-async function rollTest(event) {
-    const target = event.target.closest('.roll-link.roll-test');
-    let { actor, baseFormula, banes, boons, characteristic, formula, skill, subskill, tn } = await getRollContextData(target.dataset);
-
-    // set skill proficiency
-    let proficient;
-    if (['craft', 'knowledge'].includes(skill)) proficient = actor?.system.skills[skill].find((sub) => sub.subskill === subskill)?.proficient ?? false;
-    else proficient = actor?.system.skills[skill].proficient;
-
-    // set skill characteristic if there is none;
-    if (!characteristic) {
-        if (['craft', 'knowledge'].includes(skill)) characteristic = actor?.system.skills[skill].find((sub) => sub.subskill === subskill)?.characteristic;
-        else characteristic = actor?.system.skills[skill].characteristic;
-    }
-
-    let context = {
-        actor,
-        baseFormula,
-        banes,
-        boons,
-        characteristic,
-        formula,
-        proficient,
-        skill,
-        subskill,
-        tn,
-    };
-    await new TestRollDialog(context).render(true);
-}
-
-async function rollResistance(event) {
-    const target = event.target.closest('.roll-link.roll-resistance');
-    let { actor, baseFormula, banes, boons, characteristic, formula, tn } = await getRollContextData(target.dataset);
-
-    let context = {
-        actor,
-        baseFormula,
-        banes,
-        boons,
-        characteristic,
-        formula,
-        tn,
-    };
-    await new ResistanceRollDialog(context).render(true);
-}
-
 async function getRollContextData(dataset) {
     let { actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn } = { ...dataset };
 
@@ -287,34 +126,4 @@ async function postRollToChat(event) {
     else return console.error('No accepted roll type provided; must be damage, resistance, or test');
 }
 
-function postResistanceToChat({ dataset }) {
-    let options = '';
-    for (const [key, value] of Object.entries(dataset)) {
-        if (!['baseFormula', 'formula', 'actorId', 'replaceCharacteristic', 'characteristic'].includes(key)) options = `${options}|${key}=${value}`;
-    }
-
-    let rollMessage = `@Resistance[${dataset.characteristic}${options}]`;
-    ChatMessage.create({ content: rollMessage });
-}
-
-function postTestToChat({ dataset }) {
-    let options = '';
-    for (const [key, value] of Object.entries(dataset)) {
-        if (!['baseFormula', 'formula', 'actorId', 'replaceCharacteristic'].includes(key)) options = `${options}|${key}=${value}`;
-    }
-    options = `${options}|replaceCharacteristic=false`;
-    let rollMessage = `@Test[${baseFormula}${options}]`;
-    ChatMessage.create({ content: rollMessage });
-}
-
-function postDamageToChat({ dataset }) {
-    let options = '';
-    for (const [key, value] of Object.entries(dataset)) {
-        if (!['baseFormula', 'formula', 'actorId', 'replaceCharacteristic'].includes(key)) options = `${options}|${key}=${value}`;
-    }
-    options = `${options}|replaceCharacteristic=false`;
-
-    let baseFormula = target.dataset.baseFormula ?? 0;
-    let rollMessage = `@Damage[${baseFormula}${options}]`;
-    ChatMessage.create({ content: rollMessage });
-}
+export { _getEnrichedOptions, createRollLink, getRollContextData };
