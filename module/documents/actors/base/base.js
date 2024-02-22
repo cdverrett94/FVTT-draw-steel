@@ -1,4 +1,4 @@
-import { abilityTypes, characteristics } from '../../../constants.js';
+import { abilityTypes, characteristics, damageTypes } from '../../../constants.js';
 
 export class MCDMActor extends Actor {
     prepareData() {
@@ -38,6 +38,25 @@ export class MCDMActor extends Actor {
         if (this.system.hp.current === -this.system.hp.bloodied) {
             // TODO mark dead
         }
+
+        this.system.boons = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
+        this.system.banes = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
+        this.system.ongoingDamage = {};
+        for (const damageType in damageTypes) {
+            this.system.ongoingDamage[damageType] = 0;
+        }
+
+        this.system.taunted = [];
+
+        this.system.frightened = [];
     }
 
     prepareDerivedData() {
