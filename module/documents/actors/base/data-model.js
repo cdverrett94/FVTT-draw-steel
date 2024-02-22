@@ -1,4 +1,4 @@
-import { characteristics } from '../../../constants.js';
+import { characteristics, skills } from '../../../constants.js';
 
 export class MCDMActorData extends foundry.abstract.DataModel {
     static defineSchema() {
@@ -103,6 +103,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                 required: true,
                 initial: 1,
                 integer: true,
+                max: 10,
             }),
             speed: new fields.NumberField(),
             reach: new fields.NumberField(),
@@ -112,7 +113,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'agility',
+                        initial: skills.acrobatics.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -121,7 +122,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'might',
+                        initial: skills.athletics.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -130,7 +131,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'presence',
+                        initial: skills.charm.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -144,7 +145,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                             initial: false,
                         }),
                         characteristic: new fields.StringField({
-                            initial: 'reason',
+                            initial: skills.craft.default,
                             choices: Object.keys(characteristics),
                         }),
                     })
@@ -154,7 +155,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'presence',
+                        initial: skills.deceive.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -163,7 +164,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'intuition',
+                        initial: skills.empathy.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -172,7 +173,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'presence',
+                        initial: skills.intimidate.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -186,7 +187,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                             initial: false,
                         }),
                         characteristic: new fields.StringField({
-                            initial: 'reason',
+                            initial: skills.knowledge.default,
                             choices: Object.keys(characteristics),
                         }),
                     })
@@ -196,7 +197,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'intuition',
+                        initial: skills.notice.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -205,7 +206,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'agility',
+                        initial: skills.skulduggery.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -214,7 +215,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'agility',
+                        initial: skills.stealth.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
@@ -223,7 +224,7 @@ export class MCDMActorData extends foundry.abstract.DataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: 'might',
+                        initial: skills.vigor.default,
                         choices: Object.keys(characteristics),
                     }),
                 }),
