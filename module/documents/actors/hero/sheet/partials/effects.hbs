@@ -7,7 +7,30 @@
         </div>
     {{/each}}
 </div>
-<br /><br /><br />
-<div class='active-effects'>
-    ACTIVE EFFECTS
+<div class='effects'>
+    {{#if activeEffects}}
+        <div class='active-effects'>
+            <div class='mcdmrpg-header'>Active Effects</div>
+            {{#each activeEffects as |effect|}}
+                <div class='effect'>
+                    <div class='effect-name'>{{effect.name}}</div>
+                    <div class='edit-effect' data-effect-id='{{effect.uuid}}'>Edit</div>
+                    <div class='delete-effect' data-effect-id='{{effect.uuid}}'>Delete</div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+
+    {{#if inactiveEffects}}
+        <div class='inactive-effects'>
+            <div class='mcdmrpg-header'>Inactive Effects</div>
+            {{#each inactiveEffects as |effect|}}
+                <div class='effect'>
+                    <div class='effect-name'>{{effect.name}}</div>
+                    <div class='edit-effect' data-effect-id='{{effect.uuid}}'>Edit</div>
+                    <div class='delete-effect' data-effect-id='{{effect.uuid}}'>Delete</div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
 </div>

@@ -29,6 +29,8 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
 
     async getData() {
         let data = await super.getData();
+        data.activeEffects = this.actor.appliedEffects;
+        data.inactiveEffects = this.actor.effects.filter((effect) => effect.disabled);
 
         return data;
     }
@@ -88,6 +90,21 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
         html.querySelectorAll('.delete-condition').forEach((element) => {
             element.addEventListener('click', async (event) => {
                 await this.actor.deleteEmbeddedDocuments('Item', [element.dataset.conditionId]);
+            });
+        });
+
+        html.querySelectorAll('.edit-effect').forEach(async (element) => {
+            element.addEventListener('click', async (event) => {
+                let effect = await fromUuid(element.dataset.effectId);
+                console.log(element.dataset.effectId, effect);
+                effect.sheet.render(true);
+            });
+        });
+
+        html.querySelectorAll('.delete-effect').forEach(async (element) => {
+            element.addEventListener('click', async (event) => {
+                let effect = await fromUuid(element.dataset.effectId);
+                await this.actor.deleteEmbeddedDocuments('ActiveEffect', [effect.id]);
             });
         });
     }
