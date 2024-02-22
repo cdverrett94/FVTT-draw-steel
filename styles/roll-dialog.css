@@ -1,7 +1,3 @@
-.roll-dialog .mcdmrpg-header {
-    margin-top: 10px;
-}
-
 .roll-dialog div.boons-banes-and-impacts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
@@ -9,7 +5,6 @@
     justify-items: center;
     justify-content: center;
     grid-gap: 10px;
-    margin-bottom: 10px;
 }
 
 .roll-dialog div.boons,
@@ -36,4 +31,17 @@
 
 .roll-dialog button.roll-button {
     width: 100%;
+}
+
+/* APPV2 Specific Styles */
+
+.roll-dialog .roll-dialog-section:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.roll-dialog .characteristic-select select {
+    color: white;
+}
+.roll-dialog .characteristic-select option {
+    color: black;
 }
