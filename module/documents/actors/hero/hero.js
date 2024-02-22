@@ -31,6 +31,17 @@ export class HeroActor extends MCDMActor {
         this.system.size.length = this.system.ancestry?.system.size.length ?? 1;
         this.system.size.height = this.system.ancestry?.system.size.height ?? 1;
         this.system.size.weight = this.system.ancestry?.system.size.weight ?? 1;
+
+        this.system.boons = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
+        this.system.banes = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
     }
 
     async rollCharacteristic(characteristic) {
