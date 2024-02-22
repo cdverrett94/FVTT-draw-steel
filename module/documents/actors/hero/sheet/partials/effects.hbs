@@ -1,0 +1,13 @@
+<div class='conditions'>
+    {{#each conditions as |condition|}}
+        <div class='condition'>
+            <span>{{condition.name}}</span>
+            <span class='edit-condition' data-condition-id='{{condition.id}}'>Edit</span>
+            <span class='delete-condition' data-condition-id='{{condition.id}}'>Delete</span>
+        </div>
+    {{/each}}
+</div>
+<br /><br /><br />
+<div class='active-effects'>
+    ACTIVE EFFECTS
+</div>
