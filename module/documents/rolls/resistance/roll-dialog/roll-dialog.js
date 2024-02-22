@@ -1,42 +1,30 @@
-import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
+import { skills } from '../../../../constants.js';
+import { BaseRollDialogV2 } from '../../base/roll-dialog/roll-dialog.js';
 import { ResistanceRoll } from '../resistance-roll.js';
 
-export class ResistanceRollDialog extends BaseRollDialog {
-    constructor(options) {
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+export class ResistanceRollDialog extends BaseRollDialogV2 {
+    constructor(options = {}) {
         super(options);
-    }
-
-    get baseFormula() {
-        return '2d6';
-    }
-
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
-
-        const overrides = {
-            classes: ['mcdmrpg', 'roll-dialog', 'resistance'],
-            template: `/systems/mcdmrpg/module/documents/rolls/resistance/roll-dialog/sheet/roll-dialog-sheet.hbs`,
-            height: 210,
-            width: 315,
-        };
-
-        return foundry.utils.mergeObject(defaults, overrides);
+        this.context.baseFormula = '2d6';
+        this.context.characteristic ??= skills[this.context.skill].default;
     }
 
     get sheetRoller() {
         return ResistanceRoll;
     }
 
-    async getData() {
-        let data = await super.getData();
-        data.constructedFormula = this.formula;
-        this.context.replaceCharacteristic = true;
+    static additionalOptions = {
+        id: 'resistance-roll-dialog-{id}',
+        classes: ['resistance-roll-dialog'],
+        window: {
+            title: 'Roll Resitance',
+        },
+    };
 
-        return data;
-    }
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, ResistanceRollDialog.additionalOptions, { inplace: false });
 
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
-    }
+    /** @override */
+    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 }
