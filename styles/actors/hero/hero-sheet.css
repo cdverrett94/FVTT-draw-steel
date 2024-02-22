@@ -1,6 +1,7 @@
 @import url('sidebar.css');
 @import url('header.css');
 @import url('skills.css');
+@import url('effects.css');
 
 .sheet.actor.hero .actor-sheet {
     display: grid;
@@ -21,4 +22,16 @@
 
 .sheet.actor.hero .main-content .tabbed-content {
     overflow-y: scroll;
+}
+.sheet.actor.hero .main-content .tabbed-content .sheet-tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    margin-bottom: 5px;
+}
+.sheet.actor.hero .main-content .tabbed-content .sheet-tabs a {
+    justify-self: center;
+    padding: 5px 0px;
+}
+.sheet.actor.hero .main-content .tabbed-content .sheet-tabs a.active {
+    border-bottom: 2px solid black;
 }
