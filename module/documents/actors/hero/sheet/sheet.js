@@ -12,11 +12,11 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
             classes: ['mcdmrpg', 'sheet', 'actor', 'hero'],
             template: `/systems/mcdmrpg/module/documents/actors/hero/sheet/hero-sheet.hbs`,
             tabs: [
-                /*{
+                {
                     navSelector: '.sheet-tabs',
-                    contentSelector: '.sheet-body',
-                    initial: 'skills',
-                },*/
+                    contentSelector: '.tabbed-content',
+                    initial: 'abilities',
+                },
             ],
             scrollY: ['.skill-list', '.tabbed-content'],
             width: 1230,
@@ -28,7 +28,7 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
     }
 
     async getData() {
-        let data = super.getData();
+        let data = await super.getData();
 
         return data;
     }
@@ -75,6 +75,19 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
             element.addEventListener('click', (event) => {
                 let type = element.classList.contains('kit') ? 'kit' : 'class';
                 this.actor.system[type].sheet.render(true);
+            });
+        });
+
+        // Edit and Delete Conditions
+        html.querySelectorAll('.edit-condition').forEach((element) => {
+            element.addEventListener('click', async (event) => {
+                this.actor.system.conditions.find((condition) => condition.id === element.dataset.conditionId).sheet.render(true);
+            });
+        });
+
+        html.querySelectorAll('.delete-condition').forEach((element) => {
+            element.addEventListener('click', async (event) => {
+                await this.actor.deleteEmbeddedDocuments('Item', [element.dataset.conditionId]);
             });
         });
     }
