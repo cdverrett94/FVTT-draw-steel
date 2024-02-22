@@ -1,6 +1,7 @@
 import { registerCustomEnrichers } from './module/enrichers.js';
 import { registerCustomHandlebarHelpers } from './module/hooks/init/register-custom-handlebar-helpers.js';
 import { registerDataModels } from './module/hooks/init/register-data-models.js';
+import { registerDocumentClasses } from './module/hooks/init/register-document-classes.js';
 import { registerDocumentSheets } from './module/hooks/init/register-document-sheets.js';
 import { registerRolls } from './module/hooks/init/register-rolls.js';
 import { registerStatusEffects } from './module/hooks/init/register-status-effects.js';
@@ -9,8 +10,11 @@ import { registerTemplates } from './module/hooks/init/register-templates.js';
 Hooks.on('init', () => {
     CONFIG.ActiveEffect.legacyTransferral = false;
 
-    //set System Data models
+    //Register System Data Models
     registerDataModels();
+
+    // Register Document Classes
+    registerDocumentClasses();
 
     // Load templates
     registerTemplates();
