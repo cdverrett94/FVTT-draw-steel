@@ -17,6 +17,11 @@
     text-align: right;
 }
 
+.sheet.actor.monster .header .portrait {
+    width: 200px;
+    height: 200px;
+}
+
 /* Header Name  */
 .sheet.actor.monster .header .name input {
     height: 50px;
