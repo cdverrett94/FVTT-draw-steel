@@ -5,7 +5,12 @@
             <div class="content-header">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.hbs"}}</div>
             <div class="content-body">
                 <div class="skills">
-                    <div class="mcdmrpg-header">Skills<span class="edit-skills">Edit Skills</span></div>
+                    <div class="mcdmrpg-header">
+                        Skills
+                        <span class="edit-skills">
+                            <i class="fa-regular fa-pencil" data-tooltip="Edit {{localize skills.label.plural}}"></i>
+                        </span>
+                    </div>
 
                     <div class="skill-list">
                         {{#each skills as |skill|}} 
