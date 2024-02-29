@@ -73,10 +73,9 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
             });
         });
 
-        html.querySelectorAll('.kit, .class').forEach((element) => {
+        html.querySelectorAll('.kit, .class, .ancestry').forEach((element) => {
             element.addEventListener('click', (event) => {
-                let type = element.classList.contains('kit') ? 'kit' : 'class';
-                this.actor.system[type].sheet.render(true);
+                this.actor.system[element.dataset.type].sheet.render(true);
             });
         });
 
