@@ -88,4 +88,45 @@ export class MCDMActor extends Actor {
         skillArray.splice(skillIndex, 1);
         return await this.update({ [`system.skills.${skill}`]: skillArray });
     }
+
+    async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
+        const isSpecialStatus = ['ongoingdamage', 'taunted', 'frightened'].includes(statusId);
+        console.log('isSpecialStatus', isSpecialStatus);
+        const status = CONFIG.statusEffects.find((e) => e.id === statusId);
+        if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
+        const existing = [];
+
+        // Find the effect with the static _id of the status effect
+        if (status._id) {
+            const effect = this.effects.get(status._id);
+            if (effect) existing.push(effect.id);
+        }
+
+        // If no static _id, find all single-status effects that have this status
+        else {
+            for (const effect of this.effects) {
+                const statuses = effect.statuses;
+                if (statuses.size === 1 && statuses.has(status.id)) existing.push(effect.id);
+            }
+        }
+
+        // Remove the existing effects unless the status effect is forced active
+        if (existing.length && !isSpecialStatus) {
+            if (active) return true;
+            await this.deleteEmbeddedDocuments('ActiveEffect', existing);
+            return false;
+        } else if (existing.length && isSpecialStatus) {
+            const effect = this.effects.get(existing[0]);
+            effect.sheet.render(true);
+            return effect;
+        }
+
+        // Create a new effect unless the status effect is forced inactive
+        if (!active && active !== undefined) return;
+        const effect = await ActiveEffect.implementation.fromStatusEffect(statusId);
+        if (overlay) effect.updateSource({ 'flags.core.overlay': true });
+        const createdEffect = await ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
+        if (isSpecialStatus) createdEffect.sheet.render(true);
+        return createdEffect;
+    }
 }
