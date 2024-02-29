@@ -30,6 +30,10 @@
         }
     },
     "skills": {
+        "label": {
+            "singular": "Skill",
+            "plural": "Skills"
+        },
         "acrobatics": {
             "label": "Acrobatics"
         },
