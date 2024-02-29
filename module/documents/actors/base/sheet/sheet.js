@@ -1,4 +1,5 @@
 import { abilityTimes } from '../../../../constants.js';
+import { mcdmConditions } from '../../../../hooks/init/register-status-effects.js';
 import { EditActorSkillsSheet } from './edits-skills-sheet.js';
 
 export class BaseMCDMRPGActorSheet extends ActorSheet {
@@ -22,6 +23,7 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
             activeTimeFilter: this.activeTimeFilter,
             activeTypeFilter: this.activeTypeFilter,
             abilityTimes,
+            conditionsList: mcdmConditions,
         };
 
         // Enrich Content
@@ -112,6 +114,14 @@ export class BaseMCDMRPGActorSheet extends ActorSheet {
                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
 
                 this.actor.deleteEmbeddedDocuments('Item', [ability._id]);
+            });
+        });
+
+        // Toggle Conditions
+        html.querySelectorAll('.toggle-condition').forEach(async (element) => {
+            element.addEventListener('click', async (event) => {
+                const conditionId = element.dataset.conditionId;
+                this.actor.toggleStatusEffect(conditionId);
             });
         });
     }
