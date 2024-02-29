@@ -1,7 +1,7 @@
 import { damageTypes } from '../constants.js';
 import { DamageRoll } from '../documents/rolls/damage/damage-roll.js';
 import { DamageRollDialog } from '../documents/rolls/damage/roll-dialog/roll-dialog.js';
-import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers.js';
+import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 
 function enrichDamage(match, options) {
     /* Currently accounted for  config options

@@ -1,7 +1,7 @@
 import { characteristics, skills, tnDifficulty } from '../constants.js';
 import { TestRollDialog } from '../documents/rolls/test/roll-dialog/roll-dialog.js';
 import { TestRoll } from '../documents/rolls/test/test-roll.js';
-import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers.js';
+import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 
 function enrichTest(match, options) {
     let data = _getEnrichedOptions(match, options);

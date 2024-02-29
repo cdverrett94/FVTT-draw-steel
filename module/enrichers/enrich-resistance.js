@@ -1,7 +1,7 @@
 import { characteristics, tnDifficulty } from '../constants.js';
 import { ResistanceRoll } from '../documents/rolls/resistance/resistance-roll.js';
 import { ResistanceRollDialog } from '../documents/rolls/resistance/roll-dialog/roll-dialog.js';
-import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers.js';
+import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 
 function enrichResistance(match, options) {
     let data = _getEnrichedOptions(match, options);

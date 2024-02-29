@@ -1,4 +1,4 @@
-import { registerCustomEnrichers } from './module/enrichers.js';
+import { registerCustomEnrichers } from './module/enrichers/helpers.js';
 import { registerCustomHandlebarHelpers } from './module/hooks/init/register-custom-handlebar-helpers.js';
 import { registerDataModels } from './module/hooks/init/register-data-models.js';
 import { registerDocumentClasses } from './module/hooks/init/register-document-classes.js';
