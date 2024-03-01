@@ -1,7 +1,8 @@
 import { characteristics } from '../constants.js';
-import { enrichDamage } from './enrich-damage.js';
-import { enrichResistance } from './enrich-resistance.js';
-import { enrichTest } from './enrich-test.js';
+import { getRollActor } from '../helpers.js';
+import { enrichDamage, postDamageToChat, rollDamage } from './enrich-damage.js';
+import { enrichResistance, postResistanceToChat, rollResistance } from './enrich-resistance.js';
+import { enrichTest, postTestToChat, rollTest } from './enrich-test.js';
 
 function registerCustomEnrichers() {
     CONFIG.TextEditor.enrichers.push({
