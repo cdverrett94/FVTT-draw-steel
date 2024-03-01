@@ -1,27 +1,27 @@
 const mcdmConditions = [
     {
-        img: 'icons/magic/death/grave-tombstone-glow-tan.webp',
+        img: 'icons/svg/skull.svg',
         id: 'dead',
         _id: 'dead000000000000',
         name: 'conditions.dead',
         label: 'conditions.dead',
     },
     {
-        img: 'icons/skills/wounds/blood-drip-droplet-red.webp',
+        img: 'icons/svg/blood.svg',
         id: 'bloodied',
         _id: 'bloodied00000000',
         name: 'conditions.bloodied',
         label: 'conditions.bloodied',
     },
     {
-        img: 'icons/magic/unholy/strike-body-life-soul-green.webp',
+        img: 'icons/svg/daze.svg',
         id: 'dazed',
         _id: 'dazed00000000000',
         name: 'conditions.dazed',
         label: 'conditions.dazed',
     },
     {
-        img: 'icons/magic/unholy/silhouette-robe-evil-power.webp',
+        img: 'icons/svg/terror.svg',
         id: 'frightened',
         _id: 'frightened000000',
         name: 'conditions.frightened',
@@ -29,7 +29,7 @@ const mcdmConditions = [
     },
 
     {
-        img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
+        img: 'icons/svg/net.svg',
         id: 'grappled',
         _id: 'grappled00000000',
         name: 'conditions.grappled',
@@ -43,14 +43,14 @@ const mcdmConditions = [
         ],
     },
     {
-        img: 'icons/magic/life/ankh-gold-blue.webp',
+        img: 'icons/svg/fire.svg',
         id: 'ongoingdamage',
         _id: 'ongoingdamage000',
         name: 'conditions.ongoing-damage',
         label: 'conditions.ongoing-damage',
     },
     {
-        img: 'icons/magic/control/silhouette-fall-slip-prone.webp',
+        img: 'icons/svg/falling.svg',
         id: 'prone',
         _id: 'prone00000000000',
         name: 'conditions.prone',
@@ -74,7 +74,7 @@ const mcdmConditions = [
         ],
     },
     {
-        img: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
+        img: 'icons/svg/trap.svg',
         id: 'restrained',
         _id: 'restrained000000',
         name: 'conditions.restrained',
@@ -95,7 +95,7 @@ const mcdmConditions = [
         ],
     },
     {
-        img: 'icons/skills/movement/feet-winged-boots-brown.webp',
+        img: 'icons/svg/wingfoot.svg',
         id: 'slowed',
         _id: 'slowed0000000000',
         name: 'conditions.slowed',
@@ -110,7 +110,7 @@ const mcdmConditions = [
         ],
     },
     {
-        img: 'icons/magic/control/fear-fright-white.webp',
+        img: 'icons/svg/paralysis.svg',
         id: 'surprised',
         _id: 'surprised0000000',
         name: 'conditions.surprised',
@@ -125,21 +125,21 @@ const mcdmConditions = [
         ],
     },
     {
-        img: 'icons/magic/control/energy-stream-link-spiral-white.webp',
+        img: 'icons/svg/sword.svg',
         id: 'taunted',
         _id: 'taunted000000000',
         name: 'conditions.taunted',
         label: 'conditions.taunted',
     },
     {
-        img: 'icons/magic/control/debuff-energy-snare-blue.webp',
+        img: 'icons/svg/ruins.svg',
         id: 'unbalanced',
         _id: 'unbalanced000000',
         name: 'conditions.unbalanced',
         label: 'conditions.unbalanced',
     },
     {
-        img: 'icons/magic/control/sleep-bubble-purple.webp',
+        img: 'icons/svg/unconscious.svg',
         id: 'unconscious',
         _id: 'unconscious00000',
         name: 'conditions.unconscious',
@@ -158,10 +158,10 @@ const mcdmConditions = [
                 priority: null,
             },
         ],
-        statuses: ['prone00000000000', 'prone'],
+        statuses: ['prone'],
     },
     {
-        img: 'icons/magic/death/hand-withered-gray.webp',
+        img: 'icons/svg/stoned.svg',
         id: 'weakened',
         _id: 'weakened00000000',
         name: 'conditions.weakened',
