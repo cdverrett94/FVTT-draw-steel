@@ -1,0 +1,25 @@
+<div class='mcdm-container mcdm-roll'>
+    <div class='mcdmrpg-header'>{{localize 'mcdmrpg.rolls.damage.label'}} {{localize 'mcdmrpg.rolls.label'}}</div>
+    <div class='dice-roll'>
+        <div class='dice-result'>
+            <div class='dice-formula'>{{roll.formula}}</div>
+            <div class='dice-tooltip'>{{{tooltip}}}</div>
+            <h4 class='dice-total'>{{roll.total}}</h4>
+        </div>
+    </div>
+    {{#if targets.size}}
+        <div class='targets'>
+            <div class='mcdmrpg-header'>
+                Targets
+            </div>
+            {{#each targets as |target|}}
+                <div class='target'>
+                    <button class='damage-target' data-target-uuid='{{target.actor.uuid}}'>
+                        {{localize 'mcdmrpg.rolls.damage.label'}}
+                        {{target.name}}
+                    </button>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</div>

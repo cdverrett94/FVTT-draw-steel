@@ -1,0 +1,22 @@
+<div class='mcdm-container mcdm-roll'>
+    <div class='mcdmrpg-header'>{{localize 'mcdmrpg.rolls.resistance.label'}} {{localize 'mcdmrpg.rolls.label'}}</div>
+    {{#if tn}}
+        <div class='tn'>
+            TN:
+            {{tn}}
+            -
+            {{#if (gte roll.total tn)}}
+                Success
+            {{else}}
+                Failure
+            {{/if}}
+        </div>
+    {{/if}}
+    <div class='dice-roll'>
+        <div class='dice-result'>
+            <div class='dice-formula'>{{roll.formula}}</div>
+            <div class='dice-tooltip'>{{{tooltip}}}</div>
+            <h4 class='dice-total'>{{roll.total}}</h4>
+        </div>
+    </div>
+</div>

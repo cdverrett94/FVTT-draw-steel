@@ -6,6 +6,7 @@ import { registerDocumentSheets } from './module/hooks/init/register-document-sh
 import { registerRolls } from './module/hooks/init/register-rolls.js';
 import { registerStatusEffects } from './module/hooks/init/register-status-effects.js';
 import { registerTemplates } from './module/hooks/init/register-templates.js';
+import { registerDamageTargetListners } from './module/hooks/renderChatMessage/add-damage-target-listeners.js';
 
 Hooks.on('init', () => {
     CONFIG.ActiveEffect.legacyTransferral = false;
@@ -40,4 +41,10 @@ Hooks.on('ready', async () => {
     // game.actors.contents.find((actor) => actor.type === 'hero').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'condition').sheet.render(true);
+});
+
+Hooks.on('renderChatMessage', async (document, $html) => {
+    const html = $html[0];
+
+    registerDamageTargetListners(document, html);
 });
