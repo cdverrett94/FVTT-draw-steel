@@ -470,6 +470,18 @@
             "vigor": {
                 "label": "Vigor"
             }
+        },
+        "rolls": {
+            "damage": {
+                "label": "Damage"
+            },
+            "test": {
+                "label": "Test"
+            },
+            "resistance": {
+                "label": "Resistance"
+            },
+            "label": "Roll"
         }
     }
 }
