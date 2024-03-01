@@ -1,4 +1,3 @@
-import { characteristics } from '../../../constants.js';
 import { MCDMActor } from '../base/base.js';
 
 export class HeroActor extends MCDMActor {
@@ -31,41 +30,6 @@ export class HeroActor extends MCDMActor {
         this.system.size.length = this.system.ancestry?.system.size.length ?? 1;
         this.system.size.height = this.system.ancestry?.system.size.height ?? 1;
         this.system.size.weight = this.system.ancestry?.system.size.weight ?? 1;
-    }
-
-    async rollCharacteristic(characteristic) {
-        let modifier = this.system.characteristics[characteristic];
-        let roll = await Roll.create(`2d6 + ${modifier}`).evaluate({ async: true });
-        roll.toMessage({
-            flavor: `${characteristic} Roll`,
-        });
-    }
-
-    async rollSkill({ skill, subskill, characteristic } = {}) {
-        if (!skill) return ui.notifications.error('A skill must be provided to roll.');
-        if (characteristic && !(chracteristic in characteristics)) return ui.notifications.error('The used characteristic must be a valid one.');
-
-        let proficient;
-        if (skill === 'craft' || skill === 'knowledge') {
-            if (!subskill) return ui.notifications.error(`A subskill must be provided to roll ${skill}.`);
-
-            let sub = this.system.skills[skill].find((s) => s.subskill === subskill);
-            if (!sub) return ui.notifications.error(`There is no ${skill} subskill for ${subskill}.`);
-
-            proficient = sub.proficient;
-            characteristic = characteristic ?? sub.characteristic;
-        } else {
-            proficient = this.system.skills[skill].proficient;
-            characteristic = characteristic ?? this.system.skills[skill].characteristic;
-        }
-        let characteristicModifier = this.system.characteristics[characteristic];
-
-        let roll = await Roll.create(`2d6 + ${characteristicModifier}${proficient ? '+ 1d4' : ''}`).evaluate({ async: true });
-        roll.toMessage({
-            flavor: `${game.i18n.localize('characteristics.' + characteristic + '.label')}-${game.i18n.localize('skills.' + skill + '.label')}${
-                subskill ? ' (' + subskill + ')' : ''
-            } Roll`,
-        });
     }
 
     _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {

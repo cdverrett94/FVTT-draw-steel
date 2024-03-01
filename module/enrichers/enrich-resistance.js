@@ -1,6 +1,5 @@
 import { characteristics, tnDifficulty } from '../constants.js';
 import { ResistanceRoll } from '../documents/rolls/resistance/resistance-roll.js';
-import { ResistanceRollDialog } from '../documents/rolls/resistance/roll-dialog/roll-dialog.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 
 function enrichResistance(match, options) {
@@ -36,18 +35,10 @@ function enrichResistance(match, options) {
 
 async function rollResistance(event) {
     const target = event.target.closest('.roll-link.roll-resistance');
-    let { actor, baseFormula, banes, boons, characteristic, formula, tn } = await getRollContextData(target.dataset);
+    let data = await getRollContextData(target.dataset);
 
-    let context = {
-        actor,
-        baseFormula,
-        banes,
-        boons,
-        characteristic,
-        formula,
-        tn,
-    };
-    await new ResistanceRollDialog(context).render(true);
+    if (!data.actor) return ui.notifications.error('No valid actor selected');
+    data.actor.rollResistance();
 }
 
 function postResistanceToChat({ dataset }) {

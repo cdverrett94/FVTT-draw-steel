@@ -1,5 +1,4 @@
 import { characteristics, skills, tnDifficulty } from '../constants.js';
-import { TestRollDialog } from '../documents/rolls/test/roll-dialog/roll-dialog.js';
 import { TestRoll } from '../documents/rolls/test/test-roll.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 
@@ -27,35 +26,10 @@ function enrichTest(match, options) {
 
 async function rollTest(event) {
     const target = event.target.closest('.roll-link.roll-test');
-    let { actor, baseFormula, banes, boons, characteristic, formula, skill, subskill, tn } = await getRollContextData(target.dataset);
+    const data = await getRollContextData(target.dataset);
 
-    // set skill proficiency
-    let proficient;
-    if (['craft', 'knowledge'].includes(skill)) proficient = actor?.system.skills[skill].find((sub) => sub.subskill === subskill)?.proficient ?? false;
-    else proficient = actor?.system.skills[skill].proficient;
-
-    // set skill characteristic if there is none;
-    if (!characteristic) {
-        if (['craft', 'knowledge'].includes(skill)) characteristic = actor?.system.skills[skill].find((sub) => sub.subskill === subskill)?.characteristic;
-        else characteristic = actor?.system.skills[skill].characteristic;
-    }
-
-    if (actor?.system.banes.tests) banes += Number(actor.system.banes.tests);
-    if (actor?.system.boons.tests) banes += Number(actor.system.boons.tests);
-
-    let context = {
-        actor,
-        baseFormula,
-        banes,
-        boons,
-        characteristic,
-        formula,
-        proficient,
-        skill,
-        subskill,
-        tn,
-    };
-    await new TestRollDialog(context).render(true);
+    if (!data.actor) return ui.notifications.error('No valid actor selected');
+    data.actor.rollTest(data);
 }
 
 function postTestToChat({ dataset }) {

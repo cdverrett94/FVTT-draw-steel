@@ -1,6 +1,5 @@
 import { damageTypes } from '../constants.js';
 import { DamageRoll } from '../documents/rolls/damage/damage-roll.js';
-import { DamageRollDialog } from '../documents/rolls/damage/roll-dialog/roll-dialog.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 
 function enrichDamage(match, options) {
@@ -30,37 +29,10 @@ function enrichDamage(match, options) {
 
 async function rollDamage(event) {
     const eventTarget = event.target.closest('.roll-link.roll-damage');
-    let { actor, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = await getRollContextData(eventTarget.dataset);
+    let data = await getRollContextData(eventTarget.dataset);
 
-    if (actor?.system.banes.attacker) banes += Number(actor.system.banes.attacker);
-    if (actor?.system.boons.attacker) boons += Number(actor.system.boons.attacker);
-
-    // General boon/bane adjustments from effects
-    let [target] = game.user.targets;
-    if (target) {
-        if (target.actor.system.boons.attacked) boons += target.actor.system.boons.attacked;
-        if (target.actor.system.banes.attacked) banes += target.actor.system.banes.attacked;
-    }
-
-    // boon/bane adjustments from frightened
-    if (actor?.system.frightened && target && actor?.system.frightened.includes(target?.actor.uuid)) banes += 1;
-    if (target?.actor.system.frightened && actor && target?.actor.system.frightened.includes(actor?.uuid)) banes += 1;
-
-    // boon/bane adjustments from taunted
-    if (actor?.system.taunted.length && target && !actor?.system.taunted.includes(target.actor.uuid)) banes += 1;
-
-    let context = {
-        actor,
-        applyExtraDamage,
-        baseFormula,
-        banes,
-        boons,
-        characteristic,
-        damageType,
-        formula,
-        impacts,
-    };
-    await new DamageRollDialog(context).render(true);
+    if (!data.actor) return ui.notifications.error('No valid actor selected');
+    data.actor.rollDamage(data);
 }
 
 function postDamageToChat({ dataset }) {
