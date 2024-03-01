@@ -52,7 +52,7 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
             element.addEventListener('click', (event) => {
                 let skill = element.dataset.skill;
                 let subskill = element.dataset.subskill;
-                this.actor.rollSkill({ skill, subskill });
+                this.actor.rollTest({ skill, subskill });
             });
         });
 
@@ -95,7 +95,6 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
         html.querySelectorAll('.edit-effect').forEach(async (element) => {
             element.addEventListener('click', async (event) => {
                 let effect = await fromUuid(element.dataset.effectId);
-                console.log(element.dataset.effectId, effect);
                 effect.sheet.render(true);
             });
         });
