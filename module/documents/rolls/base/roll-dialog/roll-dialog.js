@@ -83,7 +83,7 @@ export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static async roll() {
         let roll = await new this.sheetRoller(this.formula, this.actor, this.context).evaluate();
-        roll.toMessage();
+        await roll.toMessage();
         this.close();
     }
 }
