@@ -3,6 +3,15 @@ import { DamageRoll } from '../../damage/damage-roll.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class DamageRollDialog extends BaseRollDialog {
+    constructor(options = {}) {
+        super(options);
+        this.context.rollType = 'damage';
+        this.context.headerLabel = game.i18n.format('mcdmrpg.rolls.damage.dialog.headerLabel', {
+            abilityName: this.context.abilityName,
+        });
+        console.log('title', this.context.abilityName);
+    }
+
     get sheetRoller() {
         return DamageRoll;
     }

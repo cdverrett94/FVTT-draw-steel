@@ -57,6 +57,7 @@ export class DamageRoll extends MCDMRoll {
                     roll: this,
                     tooltip: await this.getTooltip(),
                     targets: game.user.targets,
+                    title: messageData.headerLabel,
                 }),
             },
             messageData

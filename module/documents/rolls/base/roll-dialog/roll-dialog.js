@@ -12,6 +12,7 @@ export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.context.impacts ??= 0;
         this.context.baseFormula ??= 0;
         this.context.replaceCharacteristic ??= true;
+        this.context.title = '';
     }
 
     get formula() {
@@ -83,7 +84,9 @@ export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static async roll() {
         let roll = await new this.sheetRoller(this.formula, this.actor, this.context).evaluate();
-        await roll.toMessage();
+        await roll.toMessage({
+            headerLabel: this.context.headerLabel,
+        });
         this.close();
     }
 }

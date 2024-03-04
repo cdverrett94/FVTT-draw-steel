@@ -1,4 +1,4 @@
-import { skills } from '../../../../constants.js';
+import { characteristics } from '../../../../constants.js';
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { ResistanceRoll } from '../resistance-roll.js';
 
@@ -7,7 +7,11 @@ export class ResistanceRollDialog extends BaseRollDialog {
     constructor(options = {}) {
         super(options);
         this.context.baseFormula = '2d6';
-        this.context.characteristic ??= skills[this.context.skill].default;
+        this.context.rollType = 'resistance';
+        this.context.headerLabel = game.i18n.format('mcdmrpg.rolls.resistance.dialog.headerLabel', {
+            tn: this.context.tn ? `${this.context.tn} ` : '',
+            characteristicAbbreviation: game.i18n.localize(characteristics[this.context.characteristic].abbreviation),
+        });
     }
 
     get sheetRoller() {

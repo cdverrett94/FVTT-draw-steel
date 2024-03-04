@@ -1,4 +1,4 @@
-import { skills } from '../../../../constants.js';
+import { characteristics, skills } from '../../../../constants.js';
 import { BaseRollDialog } from '../../base/roll-dialog/roll-dialog.js';
 import { TestRoll } from '../test-roll.js';
 
@@ -8,6 +8,13 @@ export class TestRollDialog extends BaseRollDialog {
         super(options);
         this.context.baseFormula = '2d6';
         this.context.characteristic ??= skills[this.context.skill].default;
+        this.context.rollType = 'test';
+        this.context.headerLabel = game.i18n.format('mcdmrpg.rolls.test.dialog.headerLabel', {
+            tn: this.context.tn ? `TN ${this.context.tn} ` : '',
+            characteristic: this.context.characteristic ? `${game.i18n.localize(characteristics[this.context.characteristic].label)}-` : '',
+            skill: game.i18n.localize(skills[this.context.skill].label),
+            subskill: ['knowledge', 'craft'].includes(this.context.skill) && this.context.subskill ? ` (${this.context.subskill})` : '',
+        });
     }
 
     get sheetRoller() {

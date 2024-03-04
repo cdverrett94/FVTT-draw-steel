@@ -49,6 +49,7 @@ export class TestRoll extends MCDMRoll {
                     tooltip: await this.getTooltip(),
                     targets: game.user.targets,
                     tn: this.tn,
+                    title: messageData.headerLabel,
                 }),
             },
             messageData
