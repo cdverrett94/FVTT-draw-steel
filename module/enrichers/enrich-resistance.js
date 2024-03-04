@@ -38,7 +38,7 @@ async function rollResistance(event) {
     let data = await getRollContextData(target.dataset);
 
     if (!data.actor) return ui.notifications.error('No valid actor selected');
-    data.actor.rollResistance();
+    data.actor.rollResistance(data);
 }
 
 function postResistanceToChat({ dataset }) {
