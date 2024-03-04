@@ -82,35 +82,35 @@
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability .ability-header {
-    background-color: var(--default-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--default-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.action-ability .ability-header {
-    background-color: var(--action-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--action-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.basic-ability .ability-header {
-    background-color: var(--basic-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--basic-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.manuever-ability .ability-header {
-    background-color: var(--maneuver-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--maneuver-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.heroic-ability .ability-header {
-    background-color: var(--heroic-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--heroic-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.signature-ability .ability-header {
-    background-color: var(--signature-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--signature-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.triggered-ability .ability-header {
-    background-color: var(--triggered-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--triggered-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.villain-ability .ability-header {
-    background-color: var(--villain-ability-bg-color);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--villain-ability-bg-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .abilities-list .ability .property {
