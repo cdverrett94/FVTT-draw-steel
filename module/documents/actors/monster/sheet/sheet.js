@@ -11,7 +11,7 @@ export class MonsterSheet extends BaseMCDMRPGActorSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'actor', 'monster'],
-            template: `/systems/mcdmrpg/module/documents/actors/monster/sheet/monster-sheet.hbs`,
+            template: `/systems/mcdmrpg/templates/documents/actors/monster/monster-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',

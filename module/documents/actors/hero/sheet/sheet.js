@@ -10,7 +10,7 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'actor', 'hero'],
-            template: `/systems/mcdmrpg/module/documents/actors/hero/sheet/hero-sheet.hbs`,
+            template: `/systems/mcdmrpg/templates/documents/actors/hero/hero-sheet.hbs`,
             tabs: [
                 {
                     navSelector: '.sheet-tabs',

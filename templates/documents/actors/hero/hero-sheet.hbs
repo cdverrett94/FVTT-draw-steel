@@ -1,8 +1,8 @@
 <form>
     <div class="actor-sheet">
-        <div class="sidebar">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/sidebar.hbs"}}</div>
+        <div class="sidebar">{{> "systems/mcdmrpg/templates/documents/actors/hero/partials/sidebar.hbs"}}</div>
         <div class="main-content">
-            <div class="content-header">{{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/header.hbs"}}</div>
+            <div class="content-header">{{> "systems/mcdmrpg/templates/documents/actors/hero/partials/header.hbs"}}</div>
             <div class="content-body">
                 <div class="skills">
                     <div class="mcdmrpg-header">
@@ -16,12 +16,12 @@
                         {{#each skills as |skill|}} 
                             {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
                                 {{#each skill as |subskill| }} 
-                                    {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" 
+                                    {{> "systems/mcdmrpg/templates/documents/actors/hero/partials/skills.hbs" 
                                     skillData=subskill skill=subskill.subskill characteristics=../../characteristics 
                                     prefix=@../key index=@index special=true}} 
                                 {{/each}} 
                             {{else}} 
-                                {{> "systems/mcdmrpg/module/documents/actors/hero/sheet/partials/skills.hbs" 
+                                {{> "systems/mcdmrpg/templates/documents/actors/hero/partials/skills.hbs" 
                                 skillData=this skill=@key characteristics=../characteristics}}
                             {{/if}} 
                         {{/each}}
@@ -37,16 +37,16 @@
                         <div class="hero-abilities actor-abilities">
                             <div class="mcdmrpg-header">Abilities <span class="add-ability">Add New Ability</span></div>
                             <div class="abilities-filter">
-                                {{> 'systems/mcdmrpg/module/documents/actors/base/sheet/partials/abilities-filter.hbs'}}
+                                {{> 'systems/mcdmrpg/templates/documents/actors/base/partials/abilities-filter.hbs'}}
                             </div>
                             <div class="abilities-list">
-                                {{> 'systems/mcdmrpg/module/documents/actors/base/sheet/partials/abilities.hbs'}}
+                                {{> 'systems/mcdmrpg/templates/documents/actors/base/partials/abilities.hbs'}}
                             </div>
                         </div>
                     </div>
                     <div class="tab" data-tab="notes"></div>
                     <div class="tab effects-tab" data-tab="effects">
-                        {{> 'systems/mcdmrpg/module/documents/actors/hero/sheet/partials/effects.hbs'}}
+                        {{> 'systems/mcdmrpg/templates/documents/actors/hero/partials/effects.hbs'}}
                     </div>
                     
                 </div>

@@ -16,7 +16,7 @@ export class EditActorSkillsSheet extends FormApplication {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'edit-skills'],
-            template: `/systems/mcdmrpg/module/documents/actors/base/sheet/partials/edit-skills.hbs`,
+            template: `/systems/mcdmrpg/templates/documents/actors/base/partials/edit-skills.hbs`,
             submitOnChange: true,
             closeOnSubmit: false,
             width: 400,
