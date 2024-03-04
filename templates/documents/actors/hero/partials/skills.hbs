@@ -1,24 +1,21 @@
-<div class="skill"> 
-    <div class="charcteristic-select">
-        <select name="system.skills.{{#if special}}{{prefix}}.{{index}}{{else}}{{skill}}{{/if}}.characteristic">
-            {{#each characteristics as |characteristic|}}
-                <option value="{{@key}}" {{#if (eq @key ../this.characteristic)}}selected{{/if}}>{{localize (concat "mcdmrpg.characteristics." @key ".abbreviation")}}</option>
-            {{/each}}
-        </select>
-    </div>
-    <div class="skill-name">
-        {{#if special}}
-            {{localize (concat "mcdmrpg.skills." prefix ".label")}} ({{skill}})
-            <div class="hidden-inputs" style="display: none;">
-                {{!-- Hidden Inputs for subskills to have their submit data be sent along with sheet --}}
-                <input type="text" name="system.skills.{{prefix}}.{{index}}.subskill" value="{{skill}}">
-                <input type="checkbox" name="system.skills.{{prefix}}.{{index}}.proficient"{{#if skillData.proficient}} checked{{/if}}>
-            </div>
-        {{else}}
-            {{localize (concat "mcdmrpg.skills." skill ".label")}}
-        {{/if}}
-    </div>
-    <div class="roll-skill" data-skill="{{#if special}}{{prefix}}{{else}}{{skill}}{{/if}}" {{#if special}}data-subskill="{{skill}}"{{/if}}>
-        {{#if skillData.proficient}}+1d4 {{/if}}<i class="fa-light fa-dice-d6"></i>
-    </div>
+<div class="mcdmrpg-header">
+    {{ localize 'mcdmrpg.skills.label.plural'}}
+    <span class="edit-skills">
+        <i class="fa-regular fa-pencil" data-tooltip="Edit {{ localize 'mcdmrpg.skills.label.plural'}}"></i>
+    </span>
+</div>
+
+<div class="skill-list">
+    {{#each skills as |skill|}} 
+        {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
+            {{#each skill as |subskill| }} 
+                {{> "systems/mcdmrpg/templates/documents/actors/hero/partials/skill.hbs" 
+                skillData=subskill skill=subskill.subskill characteristics=../../characteristics 
+                prefix=@../key index=@index special=true}} 
+            {{/each}} 
+        {{else}} 
+            {{> "systems/mcdmrpg/templates/documents/actors/hero/partials/skill.hbs" 
+            skillData=this skill=@key characteristics=../characteristics}}
+        {{/if}} 
+    {{/each}}
 </div>

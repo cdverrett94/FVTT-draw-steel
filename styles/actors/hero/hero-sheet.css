@@ -3,35 +3,52 @@
 @import url('skills.css');
 @import url('effects.css');
 
-.sheet.actor.hero .actor-sheet {
+/* Define Sheet Layout Via Grid */
+.sheet.actor.hero .hero-sheet {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 150px 250px repeat(8, auto);
+    grid-template-rows: repeat(10, auto);
     grid-gap: 10px;
 }
+
+.sheet.actor.hero .sidebar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 11;
+}
+
+.sheet.actor.hero .header {
+    grid-column: 2 / 11;
+    grid-row: 1 / 3;
+}
+
+.sheet.actor.hero .skills {
+    grid-column: 2 / 3;
+    grid-row: 3 / 11;
+}
+
+.sheet.actor.hero .tabbed-content {
+    grid-column: 3 / 11;
+    grid-row: 3 / 11;
+}
+/*     */
 
 .sheet.actor.hero .sidebar > div,
 .sheet.actor.hero .main-content > div {
     margin-bottom: 10px;
 }
 
-.sheet.actor.hero .main-content .content-body {
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-gap: 10px;
-}
-
-.sheet.actor.hero .main-content .tabbed-content {
+.sheet.actor.hero .tabbed-content {
     overflow-y: scroll;
 }
-.sheet.actor.hero .main-content .tabbed-content .sheet-tabs {
+.sheet.actor.hero .tabbed-content .sheet-tabs {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
     margin-bottom: 5px;
 }
-.sheet.actor.hero .main-content .tabbed-content .sheet-tabs a {
+.sheet.actor.hero .tabbed-content .sheet-tabs a {
     justify-self: center;
     padding: 5px 0px;
 }
-.sheet.actor.hero .main-content .tabbed-content .sheet-tabs a.active {
+.sheet.actor.hero .tabbed-content .sheet-tabs a.active {
     border-bottom: 2px solid black;
 }

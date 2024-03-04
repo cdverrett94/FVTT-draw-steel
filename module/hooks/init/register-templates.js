@@ -7,6 +7,7 @@ export function registerTemplates() {
 
         // Heroes
         'systems/mcdmrpg/templates/documents/actors/hero/partials/skills.hbs',
+        'systems/mcdmrpg/templates/documents/actors/hero/partials/skill.hbs',
         'systems/mcdmrpg/templates/documents/actors/hero/partials/sidebar.hbs',
         'systems/mcdmrpg/templates/documents/actors/hero/partials/header.hbs',
         'systems/mcdmrpg/templates/documents/actors/hero/partials/effects.hbs',

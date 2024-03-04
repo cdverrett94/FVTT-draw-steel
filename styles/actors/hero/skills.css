@@ -1,4 +1,4 @@
-.sheet.actor.hero .main-content .skills .skill {
+.sheet.actor.hero .skills .skill {
     display: grid;
     grid-gap: 5px;
     grid-template-columns: auto 1fr auto auto;
@@ -6,15 +6,15 @@
     padding: 5px 0px;
 }
 
-.sheet.actor.hero .main-content .skills .skill:nth-child(2n) {
+.sheet.actor.hero .skills .skill:nth-child(2n) {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.sheet.actor.hero .main-content .skills .skill .roll-skill {
+.sheet.actor.hero .skills .skill .roll-skill {
     padding-right: 5px;
 }
 
-.sheet.actor.hero .main-content .skills .skill .roll-skill:hover {
+.sheet.actor.hero .skills .skill .roll-skill:hover {
     color: red;
     cursor: pointer;
 }
