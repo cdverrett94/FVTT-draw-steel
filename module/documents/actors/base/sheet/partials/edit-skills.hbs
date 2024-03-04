@@ -12,7 +12,7 @@
                     {{#each skill as |subskill| }}
                         <div class="skill">
                             <div class="skill-name">
-                                {{localize (concat "skills." @../key ".label")}} ( <input type="text" name="system.skills.{{@../key}}.{{@index}}.subskill" value="{{subskill.subskill}}" /> )
+                                {{localize (concat "mcdmrpg.skills." @../key ".label")}} ( <input type="text" name="system.skills.{{@../key}}.{{@index}}.subskill" value="{{subskill.subskill}}" /> )
                             </div>
                             <div class="skill-proficient">
                                 <input type="checkbox" data-tooltip-direction="RIGHT" data-tooltip="Is character proficient in the skill?" name="system.skills.{{@../key}}.{{@index}}.proficient"{{#if subskill.proficient}} checked{{/if}}>
@@ -28,7 +28,7 @@
                 <div class="skill">
                     <div class="skill-name">
                         <div class="roll-skill" data-skill="{{@key}}">
-                            {{localize (concat "skills." @key ".label")}}
+                            {{localize (concat "mcdmrpg.skills." @key ".label")}}
                         </div>
                     </div>
                     <div class="skill-proficient">

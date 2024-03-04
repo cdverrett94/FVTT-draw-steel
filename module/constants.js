@@ -1,27 +1,27 @@
 const characteristics = {
     might: {
         label: 'mcdmrpg.characteristics.might.label',
-        abbreviation: 'characteristics.might.abbreviation',
+        abbreviation: 'mcdmrpg.characteristics.might.abbreviation',
     },
     agility: {
         label: 'mcdmrpg.characteristics.agility.label',
-        abbreviation: 'characteristics.agility.abbreviation',
+        abbreviation: 'mcdmrpg.characteristics.agility.abbreviation',
     },
     endurance: {
         label: 'mcdmrpg.characteristics.endurance.label',
-        abbreviation: 'characteristics.endurance.abbreviation',
+        abbreviation: 'mcdmrpg.characteristics.endurance.abbreviation',
     },
     reason: {
         label: 'mcdmrpg.characteristics.reason.label',
-        abbreviation: 'characteristics.reason.abbreviation',
+        abbreviation: 'mcdmrpg.characteristics.reason.abbreviation',
     },
     intuition: {
         label: 'mcdmrpg.characteristics.intuition.label',
-        abbreviation: 'characteristics.intuition.abbreviation',
+        abbreviation: 'mcdmrpg.characteristics.intuition.abbreviation',
     },
     presence: {
         label: 'mcdmrpg.characteristics.presence.label',
-        abbreviation: 'characteristics.presence.abbreviation',
+        abbreviation: 'mcdmrpg.characteristics.presence.abbreviation',
     },
 };
 const skills = {

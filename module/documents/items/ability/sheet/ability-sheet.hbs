@@ -11,7 +11,7 @@
         <div class="ability-value">
             <select name="system.type">
                 {{#each abilityTypes as |abilityType|}}
-                    <option value="{{abilityType}}"{{#if (eq ../type abilityType)}} selected{{/if}}>{{localize (concat "abilityTypes." abilityType ".label")}}</option>
+                    <option value="{{abilityType}}"{{#if (eq ../type abilityType)}} selected{{/if}}>{{localize (concat "mcdmrpg.abilityTypes." abilityType ".label")}}</option>
                 {{/each}}
             </select>
         </div>

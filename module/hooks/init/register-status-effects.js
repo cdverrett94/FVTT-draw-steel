@@ -3,37 +3,37 @@ const mcdmConditions = [
         img: 'icons/svg/skull.svg',
         id: 'dead',
         _id: 'dead000000000000',
-        name: 'conditions.dead',
-        label: 'conditions.dead',
+        name: 'mcdmrpg.conditions.dead',
+        label: 'mcdmrpg.conditions.dead',
     },
     {
         img: 'icons/svg/blood.svg',
         id: 'bloodied',
         _id: 'bloodied00000000',
-        name: 'conditions.bloodied',
-        label: 'conditions.bloodied',
+        name: 'mcdmrpg.conditions.bloodied',
+        label: 'mcdmrpg.conditions.bloodied',
     },
     {
         img: 'icons/svg/daze.svg',
         id: 'dazed',
         _id: 'dazed00000000000',
-        name: 'conditions.dazed',
-        label: 'conditions.dazed',
+        name: 'mcdmrpg.conditions.dazed',
+        label: 'mcdmrpg.conditions.dazed',
     },
     {
         img: 'icons/svg/terror.svg',
         id: 'frightened',
         _id: 'frightened000000',
-        name: 'conditions.frightened',
-        label: 'conditions.frightened',
+        name: 'mcdmrpg.conditions.frightened',
+        label: 'mcdmrpg.conditions.frightened',
     },
 
     {
         img: 'icons/svg/net.svg',
         id: 'grappled',
         _id: 'grappled00000000',
-        name: 'conditions.grappled',
-        label: 'conditions.grappled',
+        name: 'mcdmrpg.conditions.grappled',
+        label: 'mcdmrpg.conditions.grappled',
         changes: [
             {
                 key: 'system.speed',
@@ -46,15 +46,15 @@ const mcdmConditions = [
         img: 'icons/svg/fire.svg',
         id: 'ongoingdamage',
         _id: 'ongoingdamage000',
-        name: 'conditions.ongoing-damage',
-        label: 'conditions.ongoing-damage',
+        name: 'mcdmrpg.conditions.ongoing-damage',
+        label: 'mcdmrpg.conditions.ongoing-damage',
     },
     {
         img: 'icons/svg/falling.svg',
         id: 'prone',
         _id: 'prone00000000000',
-        name: 'conditions.prone',
-        label: 'conditions.prone',
+        name: 'mcdmrpg.conditions.prone',
+        label: 'mcdmrpg.conditions.prone',
         changes: [
             {
                 key: 'system.banes.attacker',
@@ -77,8 +77,8 @@ const mcdmConditions = [
         img: 'icons/svg/trap.svg',
         id: 'restrained',
         _id: 'restrained000000',
-        name: 'conditions.restrained',
-        label: 'conditions.restrained',
+        name: 'mcdmrpg.conditions.restrained',
+        label: 'mcdmrpg.conditions.restrained',
         changes: [
             {
                 key: 'system.banes.attacker',
@@ -98,8 +98,8 @@ const mcdmConditions = [
         img: 'icons/svg/wingfoot.svg',
         id: 'slowed',
         _id: 'slowed0000000000',
-        name: 'conditions.slowed',
-        label: 'conditions.slowed',
+        name: 'mcdmrpg.conditions.slowed',
+        label: 'mcdmrpg.conditions.slowed',
         changes: [
             {
                 key: 'system.speed',
@@ -113,8 +113,8 @@ const mcdmConditions = [
         img: 'icons/svg/paralysis.svg',
         id: 'surprised',
         _id: 'surprised0000000',
-        name: 'conditions.surprised',
-        label: 'conditions.surprised',
+        name: 'mcdmrpg.conditions.surprised',
+        label: 'mcdmrpg.conditions.surprised',
         changes: [
             {
                 key: 'system.boons.attacked',
@@ -128,22 +128,22 @@ const mcdmConditions = [
         img: 'icons/svg/sword.svg',
         id: 'taunted',
         _id: 'taunted000000000',
-        name: 'conditions.taunted',
-        label: 'conditions.taunted',
+        name: 'mcdmrpg.conditions.taunted',
+        label: 'mcdmrpg.conditions.taunted',
     },
     {
         img: 'icons/svg/ruins.svg',
         id: 'unbalanced',
         _id: 'unbalanced000000',
-        name: 'conditions.unbalanced',
-        label: 'conditions.unbalanced',
+        name: 'mcdmrpg.conditions.unbalanced',
+        label: 'mcdmrpg.conditions.unbalanced',
     },
     {
         img: 'icons/svg/unconscious.svg',
         id: 'unconscious',
         _id: 'unconscious00000',
-        name: 'conditions.unconscious',
-        label: 'conditions.unconscious',
+        name: 'mcdmrpg.conditions.unconscious',
+        label: 'mcdmrpg.conditions.unconscious',
         changes: [
             {
                 key: 'system.speed',
@@ -164,8 +164,8 @@ const mcdmConditions = [
         img: 'icons/svg/stoned.svg',
         id: 'weakened',
         _id: 'weakened00000000',
-        name: 'conditions.weakened',
-        label: 'conditions.weakened',
+        name: 'mcdmrpg.conditions.weakened',
+        label: 'mcdmrpg.conditions.weakened',
         changes: [
             {
                 key: 'system.banes.attacker',

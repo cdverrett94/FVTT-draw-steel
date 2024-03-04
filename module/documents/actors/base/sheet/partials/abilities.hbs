@@ -3,7 +3,7 @@
         {{#each abilityGroup as |ability|}}
             {{#if ability.show}}
                 <div class='ability {{@../key}}-ability' data-ability-type='{{@../key}}' data-ability-id="{{ability._id}}">
-                    <div class='ability-group-label'>{{localize (concat 'abilityTypes.' @../key '.label')}}</div>
+                    <div class='ability-group-label'>{{localize (concat 'mcdmrpg.abilityTypes.' @../key '.label')}}</div>
                     <div class='ability-header'>
                         <div class="ability-name">{{ability.name}}</div>
                         <div class="ability-cost">{{ability.system.cost}}</div>
@@ -14,7 +14,7 @@
                         <div class='label'>Keywords</div>
                         <div class='value'>
                             {{#each ability.system.keywords as |keyword|}}
-                                {{localize (concat 'keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
+                                {{localize (concat 'mcdmrpg.keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
                             {{/each}}
                             {{#unless ability.system.keywords}} &mdash; {{/unless}}
                         </div>
@@ -28,7 +28,7 @@
                     {{#if ability.system.time}}
                     <div class='property ability-time'>
                         <div class='label'>Time</div>
-                        <div class='value'>{{localize (concat 'abilityTimes.' ability.system.time '.label')}}</div>
+                        <div class='value'>{{localize (concat 'mcdmrpg.abilityTimes.' ability.system.time '.label')}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.distance}}

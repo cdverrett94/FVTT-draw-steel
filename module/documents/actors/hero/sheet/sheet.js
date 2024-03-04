@@ -60,7 +60,7 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
         html.querySelectorAll('.add-skill').forEach((element) => {
             element.addEventListener('click', (event) => {
                 let skill = element.dataset.skill;
-                this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`skills.${skill}.label`) + ' Skill' });
+                this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`mcdmrpg.skills.${skill}.label`) + ' Skill' });
             });
         });
 

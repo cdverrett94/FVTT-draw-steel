@@ -1,243 +1,4 @@
 {
-    "characteristics": {
-        "might": {
-            "label": "Might",
-            "abbreviation": "MGT"
-        },
-        "agility": {
-            "label": "Agility",
-            "abbreviation": "AGL"
-        },
-        "endurance": {
-            "label": "Endurance",
-            "abbreviation": "END"
-        },
-        "reason": {
-            "label": "Reason",
-            "abbreviation": "REA"
-        },
-        "intuition": {
-            "label": "Intuition",
-            "abbreviation": "INU"
-        },
-        "presence": {
-            "label": "Presence",
-            "abbreviation": "PRS"
-        },
-        "highest": {
-            "label": "Highest",
-            "abbreviation": "Highest"
-        }
-    },
-    "skills": {
-        "label": {
-            "singular": "Skill",
-            "plural": "Skills"
-        },
-        "acrobatics": {
-            "label": "Acrobatics"
-        },
-        "athletics": {
-            "label": "Athletics"
-        },
-        "charm": {
-            "label": "Charm"
-        },
-        "craft": {
-            "label": "Craft"
-        },
-        "deceive": {
-            "label": "Deceive"
-        },
-        "empathy": {
-            "label": "Empathy"
-        },
-        "intimidate": {
-            "label": "Intimidate"
-        },
-        "knowledge": {
-            "label": "Knowledge"
-        },
-        "notice": {
-            "label": "Notice"
-        },
-        "skulduggery": {
-            "label": "Skulduggery"
-        },
-        "stealth": {
-            "label": "Stealth"
-        },
-        "vigor": {
-            "label": "Vigor"
-        }
-    },
-    "abilityTypes": {
-        "action": {
-            "label": "Action"
-        },
-        "basic": {
-            "label": "Basic Attack"
-        },
-        "heroic": {
-            "label": "Heroic Abilitiy"
-        },
-        "manuever": {
-            "label": "Manuever"
-        },
-        "passive": {
-            "label": "Passive"
-        },
-        "signature": {
-            "label": "Signature Ability"
-        },
-        "triggered": {
-            "label": "Triggered Action"
-        },
-        "villain": {
-            "label": "Villain Ability"
-        }
-    },
-    "keywords": {
-        "attack": {
-            "label": "Attack"
-        },
-        "kit": {
-            "label": "Kit"
-        },
-        "magic": {
-            "label": "Magic"
-        },
-        "psionic": {
-            "label": "Psionic"
-        },
-        "weapon": {
-            "label": "Weapon"
-        }
-    },
-    "TYPES": {
-        "Actor": {
-            "hero": "Hero",
-            "monster": "Monster"
-        },
-        "Item": {
-            "ancestry": "Ancestry",
-            "kit": "Kit",
-            "class": "Class",
-            "ability": "Ability",
-            "condition": "Condition"
-        }
-    },
-    "monsterRoles": {
-        "ambusher": {
-            "label": "Ambusher",
-            "description": "Ambushers are creatures who hide well - not just before an encounter, but during it. They ultilize surprise and stealth to gain the upper hand."
-        },
-        "artillery": {
-            "label": "Artillery",
-            "description": "Artillery creatures fight best from afar. Whether theywield arrows or magical rays, these creatures always try to keep a distance from their foes."
-        },
-        "brute": {
-            "label": "Brute",
-            "description": "Brutes are hardy creatures who have lots of health and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression."
-        },
-        "bystander": {
-            "label": "Bystander",
-            "description": "Bystanders are victims, captives, onlookers, or other unlucky folks caught in the tide of a battle. They spend most of a combat encounter trying to avoid danger or taking the Defend action rather than attacking. Adding bystanders to a combat encounter adds a complication and an objective for the heroes as they try to defend the innocent while also defeating their foes"
-        },
-        "controller": {
-            "label": "Controller",
-            "description": "Controllers debuff, move, and obstruct their enemies. They often have crowd-control actions that apply a debilitating effect or target multiple creatures at once."
-        },
-        "leader": {
-            "label": "Leader",
-            "description": "A leader is a powerful, action-oriented creature who fights alongside underlings"
-        },
-        "minion": {
-            "label": "Minion",
-            "description": "Minions are weak creatures who find strength in numbers."
-        },
-        "skirmisher": {
-            "label": "Skirmisher",
-            "description": "Skirmishers are mobile warriors who use hit-and-run tactics in combat. Their traits allow them to make the most of their position."
-        },
-        "soldier": {
-            "label": "Soldier",
-            "description": "Soldiers are well-armored creatures who draw the attacks of their foes, freeing allies to move around the battlefield."
-        },
-        "solo": {
-            "label": "Solo",
-            "description": "A solo creature is an action-oriented creature who can take on the player characters on their own."
-        },
-        "support": {
-            "label": "Support",
-            "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options."
-        }
-    },
-    "damageTypes": {
-        "untyped": {
-            "label": "untyped"
-        },
-        "acid": {
-            "label": "acid"
-        },
-        "cold": {
-            "label": "cold"
-        },
-        "corruption": {
-            "label": "corruption"
-        },
-        "fire": {
-            "label": "fire"
-        },
-        "holy": {
-            "label": "holy"
-        },
-        "lightning": {
-            "label": "lightning"
-        },
-        "poison": {
-            "label": "poison"
-        },
-        "psychic": {
-            "label": "psychic"
-        },
-        "sonic": {
-            "label": "sonic"
-        }
-    },
-    "abilityTimes": {
-        "action": {
-            "label": "Action"
-        },
-        "maneuver": {
-            "label": "Maneuver"
-        },
-        "free-maneuver": {
-            "label": "Free Maneuver"
-        },
-        "triggered": {
-            "label": "Triggered"
-        },
-        "free-triggered": {
-            "label": "Free Triggered"
-        }
-    },
-    "conditions": {
-        "dead": "Dead",
-        "bloodied": "Bloodied",
-        "dazed": "Dazed",
-        "frightened": "Frightened",
-        "grappled": "Grappled",
-        "ongoing-damage": "Ongoing Damage",
-        "prone": "Prone",
-        "restrained": "Restrained",
-        "slowed": "Slowed",
-        "surprised": "Surprised",
-        "taunted": "Taunted",
-        "unbalanced": "Unbalanced",
-        "unconscious": "Unconscious",
-        "weakened": "Weakened"
-    },
     "mcdmrpg": {
         "abilityTimes": {
             "action": {
@@ -424,13 +185,27 @@
             }
         },
         "rolls": {
+            "label": "Roll",
             "resistance": {
                 "label": "Resistance",
-                "button": "{tn}{characteristicAbbreviation} Resists"
+                "button": "{tn}{characteristicAbbreviation} Resists",
+                "dialog": {
+                    "headerLabel": "{tn}{characteristicAbbreviation} Resistance Roll"
+                }
             },
             "test": {
                 "label": "Test",
-                "button": "{tn}{characteristic}{skill}{subskill} Test"
+                "button": "{tn}{characteristic}{skill}{subskill} Test",
+                "dialog": {
+                    "headerLabel": "{tn}{characteristic}{skill}{subskill} Test Roll"
+                }
+            },
+            "damage": {
+                "label": "Damage",
+                "dialog": {
+                    "headerLabel": "{abilityName} Damage Roll"
+                },
+                "chancehit": "Chance Hit"
             }
         },
         "skills": {
@@ -470,18 +245,6 @@
             "vigor": {
                 "label": "Vigor"
             }
-        },
-        "rolls": {
-            "damage": {
-                "label": "Damage"
-            },
-            "test": {
-                "label": "Test"
-            },
-            "resistance": {
-                "label": "Resistance"
-            },
-            "label": "Roll"
         }
     }
 }

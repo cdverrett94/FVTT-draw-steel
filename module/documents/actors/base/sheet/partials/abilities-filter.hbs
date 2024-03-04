@@ -3,7 +3,7 @@ Ability Type Filters
     {{#each abilities as |abilityGroup|}}
         {{#if abilityGroup}}
             <div class='ability-filter ability-type-filter{{#if (eq @key @root.activeTypeFilter)}} active-filter{{/if}}' data-ability-type='{{@key}}'>
-                {{localize (concat 'abilityTypes.' @key '.label')}}
+                {{localize (concat 'mcdmrpg.abilityTypes.' @key '.label')}}
             </div>
         {{/if}}
     {{/each}}

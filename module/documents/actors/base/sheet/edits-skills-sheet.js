@@ -45,7 +45,7 @@ export class EditActorSkillsSheet extends FormApplication {
         html.querySelectorAll('.add-skill').forEach((element) => {
             element.addEventListener('click', async (event) => {
                 let skill = element.dataset.skill;
-                let actor = await this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`skills.${skill}.label`) + ' Skill' });
+                let actor = await this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`mcdmrpg.skills.${skill}.label`) + ' Skill' });
                 this.object = actor;
                 this.render(true);
             });
