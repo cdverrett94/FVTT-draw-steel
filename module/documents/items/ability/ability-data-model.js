@@ -1,5 +1,5 @@
 import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../../constants.js';
-import { MCDMItemData } from '../base/data-model.js';
+import { MCDMItemData } from '../base/base-data-model.js';
 
 export class AbilityData extends MCDMItemData {
     static defineSchema() {

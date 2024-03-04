@@ -1,4 +1,4 @@
-import { MCDMRPGItem } from '../base/base.js';
+import { MCDMRPGItem } from '../base/base-document.js';
 
 export class MCDMRPGClassItem extends MCDMRPGItem {
     async _preUpdate(changed, options, user) {

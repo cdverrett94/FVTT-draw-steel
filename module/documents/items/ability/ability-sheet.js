@@ -1,4 +1,4 @@
-import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../../../constants.js';
+import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../../constants.js';
 
 export class AbilitySheet extends ItemSheet {
     constructor(...args) {
@@ -10,7 +10,7 @@ export class AbilitySheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'ability'],
-            template: `/systems/mcdmrpg/module/documents/items/ability/sheet/ability-sheet.hbs`,
+            template: `/systems/mcdmrpg/templates/documents/items/ability/ability-sheet.hbs`,
             tabs: [
                 /*{
                     navSelector: '.sheet-tabs',

@@ -1,4 +1,4 @@
-import { MCDMItemData } from '../base/data-model.js';
+import { MCDMItemData } from '../base/base-data-model.js';
 
 export class ClassData extends MCDMItemData {
     static defineSchema() {
