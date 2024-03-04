@@ -6,10 +6,12 @@ export class DamageRollDialog extends BaseRollDialog {
     constructor(options = {}) {
         super(options);
         this.context.rollType = 'damage';
-        this.context.headerLabel = game.i18n.format('mcdmrpg.rolls.damage.dialog.headerLabel', {
+    }
+
+    get headerLabel() {
+        return game.i18n.format('mcdmrpg.rolls.damage.dialog.headerLabel', {
             abilityName: this.context.abilityName,
         });
-        console.log('title', this.context.abilityName);
     }
 
     get sheetRoller() {

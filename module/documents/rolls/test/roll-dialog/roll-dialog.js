@@ -9,7 +9,10 @@ export class TestRollDialog extends BaseRollDialog {
         this.context.baseFormula = '2d6';
         this.context.characteristic ??= skills[this.context.skill].default;
         this.context.rollType = 'test';
-        this.context.headerLabel = game.i18n.format('mcdmrpg.rolls.test.dialog.headerLabel', {
+    }
+
+    get headerLabel() {
+        return game.i18n.format('mcdmrpg.rolls.test.dialog.headerLabel', {
             tn: this.context.tn ? `TN ${this.context.tn} ` : '',
             characteristic: this.context.characteristic ? `${game.i18n.localize(characteristics[this.context.characteristic].label)}-` : '',
             skill: game.i18n.localize(skills[this.context.skill].label),

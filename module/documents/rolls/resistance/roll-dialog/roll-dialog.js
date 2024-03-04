@@ -8,7 +8,10 @@ export class ResistanceRollDialog extends BaseRollDialog {
         super(options);
         this.context.baseFormula = '2d6';
         this.context.rollType = 'resistance';
-        this.context.headerLabel = game.i18n.format('mcdmrpg.rolls.resistance.dialog.headerLabel', {
+    }
+
+    get headerLabel() {
+        return game.i18n.format('mcdmrpg.rolls.resistance.dialog.headerLabel', {
             tn: this.context.tn ? `${this.context.tn} ` : '',
             characteristicAbbreviation: game.i18n.localize(characteristics[this.context.characteristic].abbreviation),
         });

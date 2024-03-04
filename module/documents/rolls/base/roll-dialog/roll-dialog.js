@@ -12,7 +12,7 @@ export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.context.impacts ??= 0;
         this.context.baseFormula ??= 0;
         this.context.replaceCharacteristic ??= true;
-        this.context.title = '';
+        this.context.headerLabel = this.headerLabel;
     }
 
     get formula() {
@@ -69,6 +69,7 @@ export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         if (partId === 'characteristic') {
             htmlElement.querySelector('select').addEventListener('change', (event) => {
                 this.context.characteristic = event.target.value;
+                this.context.headerLabel = this.headerLabel;
                 this.render({ parts: ['header', 'roll'] });
             });
         }
