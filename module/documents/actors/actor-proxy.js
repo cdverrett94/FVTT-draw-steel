@@ -4,7 +4,7 @@ import { MonsterActor } from './monster/monster.js';
 
 const actorTypes = {
     hero: HeroActor,
-    monser: MonsterActor,
+    monster: MonsterActor,
 };
 
 export const MCDMActorProxy = new Proxy(MCDMActor, {
