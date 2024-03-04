@@ -50,13 +50,6 @@
             "label": "Monsters",
             "path": "./packs/monsters",
             "type": "Actor"
-        },
-        {
-            "name": "mcdmrpg-conditions",
-            "system": "mcdmrpg",
-            "label": "Conditions",
-            "path": "./packs/conditions",
-            "type": "Item"
         }
     ],
     "flags": {

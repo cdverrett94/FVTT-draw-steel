@@ -3,6 +3,6 @@
         "types": ["hero", "monster"]
     },
     "Item": {
-        "types": ["ability", "ancestry", "class", "kit", "condition"]
+        "types": ["ability", "ancestry", "class", "kit"]
     }
 }

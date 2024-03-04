@@ -79,19 +79,6 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
             });
         });
 
-        // Edit and Delete Conditions
-        html.querySelectorAll('.edit-condition').forEach((element) => {
-            element.addEventListener('click', async (event) => {
-                this.actor.system.conditions.find((condition) => condition.id === element.dataset.conditionId).sheet.render(true);
-            });
-        });
-
-        html.querySelectorAll('.delete-condition').forEach((element) => {
-            element.addEventListener('click', async (event) => {
-                await this.actor.deleteEmbeddedDocuments('Item', [element.dataset.conditionId]);
-            });
-        });
-
         html.querySelectorAll('.edit-effect').forEach(async (element) => {
             element.addEventListener('click', async (event) => {
                 let effect = await fromUuid(element.dataset.effectId);

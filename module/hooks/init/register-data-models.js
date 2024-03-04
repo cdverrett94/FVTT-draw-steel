@@ -1,10 +1,9 @@
 import { HeroData } from '../../documents/actors/hero/data-model.js';
 import { MonsterData } from '../../documents/actors/monster/data-model.js';
-import { AbilityData } from '../../documents/items/ability/data-model.js';
-import { AncestryData } from '../../documents/items/ancestry/data-model.js';
-import { ClassData } from '../../documents/items/class/data-model.js';
-import { ConditionData } from '../../documents/items/condition/data-model.js';
-import { KitData } from '../../documents/items/kit/data-model.js';
+import { AbilityData } from '../../documents/items/ability/ability-data-model.js';
+import { AncestryData } from '../../documents/items/ancestry/ancestry-data-model.js';
+import { ClassData } from '../../documents/items/class/class-data-model.js';
+import { KitData } from '../../documents/items/kit/kit-data-model.js';
 
 export function registerDataModels() {
     // Set System Actor Data Models
@@ -15,6 +14,5 @@ export function registerDataModels() {
     CONFIG.Item.dataModels.ability = AbilityData;
     CONFIG.Item.dataModels.ancestry = AncestryData;
     CONFIG.Item.dataModels.class = ClassData;
-    CONFIG.Item.dataModels.condition = ConditionData;
     CONFIG.Item.dataModels.kit = KitData;
 }

@@ -1,10 +1,9 @@
 import { HeroSheet } from '../../documents/actors/hero/sheet/sheet.js';
 import { MonsterSheet } from '../../documents/actors/monster/sheet/sheet.js';
-import { AbilitySheet } from '../../documents/items/ability/sheet/sheet.js';
-import { AncestrySheet } from '../../documents/items/ancestry/sheet/sheet.js';
-import { ClassSheet } from '../../documents/items/class/sheet/sheet.js';
-import { ConditionSheet } from '../../documents/items/condition/sheet/sheet.js';
-import { KitSheet } from '../../documents/items/kit/sheet/sheet.js';
+import { AbilitySheet } from '../../documents/items/ability/ability-sheet.js';
+import { AncestrySheet } from '../../documents/items/ancestry/ancestry-sheet.js';
+import { ClassSheet } from '../../documents/items/class/class-sheet.js';
+import { KitSheet } from '../../documents/items/kit/kit-sheet.js';
 
 export function registerDocumentSheets() {
     // Register Actor Sheets
@@ -36,11 +35,6 @@ export function registerDocumentSheets() {
         types: ['class'],
         makeDefault: true,
         label: 'Class Sheet',
-    });
-    Items.registerSheet('mcdmrpg', ConditionSheet, {
-        types: ['condition'],
-        makeDefault: true,
-        label: 'Condition Sheet',
     });
     Items.registerSheet('mcdmrpg', KitSheet, {
         types: ['kit'],

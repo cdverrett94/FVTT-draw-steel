@@ -29,8 +29,6 @@ export class MCDMActor extends Actor {
 
         this.system.grappleTN = 7 + this.system.might;
 
-        this.system.conditions = this.items.filter((item) => item.type === 'condition');
-
         if (this.system.hp.current <= this.system.hp.bloodied && !this.items.find((condition) => condition.name === 'Bloodied')) {
             // TODO push bloodied condition
         }
