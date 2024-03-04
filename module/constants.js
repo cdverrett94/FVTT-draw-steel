@@ -64,14 +64,12 @@ const monsterRoles = ['ambusher', 'artillery', 'brute', 'bystander', 'controller
 
 const abilityTypes = [...baseAbilityTypes, ...heroAbilityTypes, ...monsterAbilityTypes].sort();
 
-const actionTimes = ['action', 'manuever', 'free-manuever', 'triggered', 'free-triggered'];
-
 const abilityTimes = {
-    'action': { label: 'mcdmrpg.abilityTimes.action.label' },
-    'maneuver': { label: 'mcdmrpg.abilityTimes.maneuver.label' },
-    'free-maneuver': { label: 'mcdmrpg.abilityTimes.free-maneuver.label' },
-    'triggered': { label: 'mcdmrpg.abilityTimes.triggered.label' },
-    'free-triggered': { label: 'mcdmrpg.abilityTimes.free-triggered.label' },
+    'action': { label: 'mcdmrpg.abilities.times.action.label' },
+    'maneuver': { label: 'mcdmrpg.abilities.times.maneuver.label' },
+    'free-maneuver': { label: 'mcdmrpg.abilities.times.free-maneuver.label' },
+    'triggered': { label: 'mcdmrpg.abilities.times.triggered.label' },
+    'free-triggered': { label: 'mcdmrpg.abilities.times.free-triggered.label' },
 };
 
 const tnDifficulty = {

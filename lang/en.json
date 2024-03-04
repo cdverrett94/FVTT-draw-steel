@@ -1,5 +1,54 @@
 {
     "mcdmrpg": {
+        "abilities": {
+            "label": {
+                "singular": "Ability",
+                "plural": "Abilities"
+            },
+            "times": {
+                "action": {
+                    "label": "Action"
+                },
+                "maneuver": {
+                    "label": "Maneuver"
+                },
+                "free-maneuver": {
+                    "label": "Free Maneuver"
+                },
+                "triggered": {
+                    "label": "Triggered"
+                },
+                "free-triggered": {
+                    "label": "Free Triggered"
+                }
+            },
+            "types": {
+                "action": {
+                    "label": "Action"
+                },
+                "basic": {
+                    "label": "Basic Attack"
+                },
+                "heroic": {
+                    "label": "Heroic Abilitiy"
+                },
+                "manuever": {
+                    "label": "Manuever"
+                },
+                "passive": {
+                    "label": "Passive"
+                },
+                "signature": {
+                    "label": "Signature Ability"
+                },
+                "triggered": {
+                    "label": "Triggered Action"
+                },
+                "villain": {
+                    "label": "Villain Ability"
+                }
+            }
+        },
         "abilityTimes": {
             "action": {
                 "label": "Action"
@@ -208,7 +257,30 @@
                 "chancehit": "Chance Hit"
             }
         },
+        "sheets": {
+            "actor": {
+                "health": "Health",
+                "size": "Size",
+                "victories": "Victories",
+                "recoveries": "Recoveries",
+                "resources": "Resources",
+                "abilityFilters": {
+                    "type": "Ability Type Filter",
+                    "time": "Ability Time Filter"
+                },
+                "tabs": {
+                    "abilities": "Abilities",
+                    "notes": "Notes",
+                    "effects": "Effects",
+                    "negotiation": "Negotiation"
+                }
+            }
+        },
         "skills": {
+            "label": {
+                "singular": "Skill",
+                "plural": "Skills"
+            },
             "acrobatics": {
                 "label": "Acrobatics"
             },
