@@ -1,11 +1,21 @@
 <form>
     <div class="skills">
         <div class="skill-buttons">
-            <button class="add-skill" data-skill="craft" type="button"><i class="fa-solid fa-plus"></i> Craft</button>
-            <button class="add-skill" data-skill="knowledge" type="button"><i class="fa-solid fa-plus"></i> Knowledge</button>
+            <button class="add-skill" data-skill="craft" type="button">
+                <i class="fa-solid fa-plus"></i> 
+                {{localize 'mcdmrpg.skills.craft.label'}}
+            </button>
+            <button class="add-skill" data-skill="knowledge" type="button">
+                <i class="fa-solid fa-plus"></i> 
+                {{localize 'mcdmrpg.skills.knowledge.label'}}
+            </button>
         </div>
         <div class="skill-list">
-            <div class="skills-header"><div>Skill Name</div><div>Proficient</div><div></div></div>
+            <div class="skills-header">
+                <div>{{localize 'mcdmrpg.skills.label.singular'}}</div>
+                <div>{{localize 'mcdmrpg.sheets.actor.skills.proficient'}}</div>
+                <div></div>
+            </div>
             {{#each skills as |skill|}}
                 {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
                 {{!- craft and knowledge --}}
@@ -15,10 +25,10 @@
                                 {{localize (concat "mcdmrpg.skills." @../key ".label")}} ( <input type="text" name="system.skills.{{@../key}}.{{@index}}.subskill" value="{{subskill.subskill}}" /> )
                             </div>
                             <div class="skill-proficient">
-                                <input type="checkbox" data-tooltip-direction="RIGHT" data-tooltip="Is character proficient in the skill?" name="system.skills.{{@../key}}.{{@index}}.proficient"{{#if subskill.proficient}} checked{{/if}}>
+                                <input type="checkbox" data-tooltip-direction="RIGHT" name="system.skills.{{@../key}}.{{@index}}.proficient"{{#if subskill.proficient}} checked{{/if}}>
                             </div>
                             <div class="delete-skill">
-                                <i class="fa-solid fa-trash" data-skill="{{@../key}}" data-subskill="{{subskill.subskill}}" data-tooltip-direction="RIGHT" data-tooltip="Delete skill?"></i>
+                                <i class="fa-solid fa-trash" data-skill="{{@../key}}" data-subskill="{{subskill.subskill}}" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'mcdmrpg.sheets.actor.skills.delete'}}"></i>
                             </div>
                         </div>
                     {{/each}} 
@@ -32,7 +42,7 @@
                         </div>
                     </div>
                     <div class="skill-proficient">
-                        <input type="checkbox" name="system.skills.{{@key}}.proficient"  data-tooltip-direction="RIGHT" data-tooltip="Is character proficient in the skill?" {{#if skill.proficient}}checked{{/if}}>
+                        <input type="checkbox" name="system.skills.{{@key}}.proficient"  data-tooltip-direction="RIGHT" {{#if skill.proficient}}checked{{/if}}>
                     </div>
                     <div class="delete-skill">
                     </div>

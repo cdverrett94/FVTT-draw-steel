@@ -12,7 +12,7 @@ export class AbilityData extends MCDMItemData {
                 })
             ),
             type: new fields.StringField({
-                choices: abilityTypes,
+                choices: Object.keys(abilityTypes),
             }),
             cost: new fields.StringField(),
             time: new fields.StringField({

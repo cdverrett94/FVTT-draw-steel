@@ -1,15 +1,14 @@
-{{localize 'mcdmrpg.sheets.actor.abilityFilters.type'}}
+{{localize 'mcdmrpg.sheets.actor.abilities.filters.type'}}
 <div class="ability-filters ability-type-filters">
-    {{#each abilities as |abilityGroup|}}
-        {{#if abilityGroup}}
-            <div class='ability-filter ability-type-filter{{#if (eq @key @root.activeTypeFilter)}} active-filter{{/if}}' data-ability-type='{{@key}}'>
-                {{localize (concat 'mcdmrpg.abilityTypes.' @key '.label')}}
-            </div>
-        {{/if}}
+    {{#each acceptableAbilityTypes as |abilityType|}}
+        {{log abilityType}}
+        <div class='ability-filter ability-type-filter{{#if (eq @key @root.activeTypeFilter)}} active-filter{{/if}}' data-ability-type='{{@key}}'>
+            {{localize abilityType.label}}
+        </div>
     {{/each}}
     <div class='ability-filter ability-type-filter' data-ability-type='clear'>Clear</div>
 </div>
-{{localize 'mcdmrpg.sheets.actor.abilityFilters.time'}}
+{{localize 'mcdmrpg.sheets.actor.abilities.filters.time'}}
 <div class="ability-filters ability-time-filters">
     {{#each abilityTimes as |abilityTime|}}
         <div class='ability-filter ability-time-filter{{#if (eq @key @root.activeTimeFilter)}} active-filter{{/if}}' data-ability-time='{{@key}}'>

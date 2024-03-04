@@ -93,7 +93,7 @@
     background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--basic-ability-bg-color) 100%);
 }
 
-.mcdmrpg.sheet.actor div.actor-abilities .ability.manuever-ability .ability-header {
+.mcdmrpg.sheet.actor div.actor-abilities .ability.maneuver-ability .ability-header {
     background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--maneuver-ability-bg-color) 100%);
 }
 

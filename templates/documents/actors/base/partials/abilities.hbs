@@ -3,15 +3,15 @@
         {{#each abilityGroup as |ability|}}
             {{#if ability.show}}
                 <div class='ability {{@../key}}-ability' data-ability-type='{{@../key}}' data-ability-id="{{ability._id}}">
-                    <div class='ability-group-label'>{{localize (concat 'mcdmrpg.abilityTypes.' @../key '.label')}}</div>
+                    <div class='ability-group-label'>{{localize (concat 'mcdmrpg.abilities.types.' @../key '.label')}}</div>
                     <div class='ability-header'>
                         <div class="ability-name">{{ability.name}}</div>
                         <div class="ability-cost">{{ability.system.cost}}</div>
-                        <div class="ability-edit"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="Edit Ability"></i></div>
-                        <div class="ability-delete"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="Delete Ability"></i></div>
+                        <div class="ability-edit"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'mcdmrpg.sheets.actor.abilities.edit'}}"></i></div>
+                        <div class="ability-delete"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'mcdmrpg.sheets.actor.abilities.delete'}}"></i></div>
                     </div>
                     <div class='property ability-keywords'>
-                        <div class='label'>Keywords</div>
+                        <div class='label'>{{localize 'mcdmrpg.keywords.label.plural'}}</div>
                         <div class='value'>
                             {{#each ability.system.keywords as |keyword|}}
                                 {{localize (concat 'mcdmrpg.keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}

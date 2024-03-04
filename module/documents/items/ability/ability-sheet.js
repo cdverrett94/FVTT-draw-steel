@@ -33,7 +33,7 @@ export class AbilitySheet extends ItemSheet {
             img: this.item.img,
             ...this.item.system,
             keywordsList: keywords,
-            abilityTypes,
+            abilityTypes: Object.entries(abilityTypes),
             characteristics,
             damageTypes,
             abilityTimes,

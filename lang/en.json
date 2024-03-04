@@ -6,6 +6,7 @@
                 "plural": "Abilities"
             },
             "times": {
+                "label": "Time",
                 "action": {
                     "label": "Action"
                 },
@@ -23,6 +24,7 @@
                 }
             },
             "types": {
+                "label": "Type",
                 "action": {
                     "label": "Action"
                 },
@@ -32,7 +34,7 @@
                 "heroic": {
                     "label": "Heroic Abilitiy"
                 },
-                "manuever": {
+                "maneuver": {
                     "label": "Manuever"
                 },
                 "passive": {
@@ -47,49 +49,36 @@
                 "villain": {
                     "label": "Villain Ability"
                 }
-            }
-        },
-        "abilityTimes": {
-            "action": {
-                "label": "Action"
             },
-            "maneuver": {
-                "label": "Maneuver"
+            "keywords": {
+                "label": {
+                    "singular": "Keyword",
+                    "plural": "Keywords"
+                },
+                "attack": {
+                    "label": "Attack"
+                },
+                "kit": {
+                    "label": "Kit"
+                },
+                "magic": {
+                    "label": "Magic"
+                },
+                "psionic": {
+                    "label": "Psionic"
+                },
+                "weapon": {
+                    "label": "Weapon"
+                }
             },
-            "free-maneuver": {
-                "label": "Free Maneuver"
+            "trigger": {
+                "label": "Trigger"
             },
-            "triggered": {
-                "label": "Triggered"
+            "cost": {
+                "label": "Cost"
             },
-            "free-triggered": {
-                "label": "Free Triggered"
-            }
-        },
-        "abilityTypes": {
-            "action": {
-                "label": "Action"
-            },
-            "basic": {
-                "label": "Basic Attack"
-            },
-            "heroic": {
-                "label": "Heroic Abilitiy"
-            },
-            "manuever": {
-                "label": "Manuever"
-            },
-            "passive": {
-                "label": "Passive"
-            },
-            "signature": {
-                "label": "Signature Ability"
-            },
-            "triggered": {
-                "label": "Triggered Action"
-            },
-            "villain": {
-                "label": "Villain Ability"
+            "distance": {
+                "label": "Distance"
             }
         },
         "characteristics": {
@@ -170,7 +159,32 @@
                 "label": "sonic"
             }
         },
+        "dice": {
+            "boon": {
+                "singular": "Boon",
+                "plural": "Boons"
+            },
+            "bane": {
+                "singular": "Bane",
+                "plural": "Banes"
+            },
+            "impact": {
+                "singular": "Impact",
+                "plural": "Impacts"
+            }
+        },
+        "general": {
+            "target": {
+                "singular": "Target",
+                "plural": "Targets"
+            },
+            "name": "Name"
+        },
         "keywords": {
+            "label": {
+                "singular": "Keyword",
+                "plural": "Keywords"
+            },
             "attack": {
                 "label": "Attack"
             },
@@ -264,15 +278,25 @@
                 "victories": "Victories",
                 "recoveries": "Recoveries",
                 "resources": "Resources",
-                "abilityFilters": {
-                    "type": "Ability Type Filter",
-                    "time": "Ability Time Filter"
+                "abilities": {
+                    "filters": {
+                        "type": "Ability Type Filter",
+                        "time": "Ability Time Filter"
+                    },
+                    "edit": "Edit Abilty",
+                    "delete": "Delete Ability",
+                    "add": "Add New Ability"
                 },
                 "tabs": {
                     "abilities": "Abilities",
                     "notes": "Notes",
                     "effects": "Effects",
                     "negotiation": "Negotiation"
+                },
+                "skills": {
+                    "edit": "Edit Skills",
+                    "delete": "Delete Skill",
+                    "proficient": "Proficient"
                 }
             }
         },

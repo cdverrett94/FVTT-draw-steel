@@ -1,3 +1,21 @@
+const abilityTimes = {
+    'action': { label: 'mcdmrpg.abilities.times.action.label' },
+    'maneuver': { label: 'mcdmrpg.abilities.times.maneuver.label' },
+    'free-maneuver': { label: 'mcdmrpg.abilities.times.free-maneuver.label' },
+    'triggered': { label: 'mcdmrpg.abilities.times.triggered.label' },
+    'free-triggered': { label: 'mcdmrpg.abilities.times.free-triggered.label' },
+};
+const abilityTypes = {
+    passive: { label: 'mcdmrpg.abilities.types.passive.label', appliesTo: ['monster'] },
+    action: { label: 'mcdmrpg.abilities.types.action.label', appliesTo: ['monster', 'hero'] },
+    basic: { label: 'mcdmrpg.abilities.types.basic.label', appliesTo: ['monster', 'hero'] },
+    maneuver: { label: 'mcdmrpg.abilities.types.maneuver.label', appliesTo: ['monster', 'hero'] },
+    triggered: { label: 'mcdmrpg.abilities.types.triggered.label', appliesTo: ['monster', 'hero'] },
+    signature: { label: 'mcdmrpg.abilities.types.signature.label', appliesTo: ['hero'] },
+    heroic: { label: 'mcdmrpg.abilities.types.heroic.label', appliesTo: ['hero'] },
+    villain: { label: 'mcdmrpg.abilities.types.villain.label', appliesTo: ['monster'] },
+};
+
 const characteristics = {
     might: {
         label: 'mcdmrpg.characteristics.might.label',
@@ -24,6 +42,26 @@ const characteristics = {
         abbreviation: 'mcdmrpg.characteristics.presence.abbreviation',
     },
 };
+const damageTypes = {
+    untyped: { label: 'mcdmrpg.damageTypes.untyped.label' },
+    acid: { label: 'mcdmrpg.damageTypes.acid.label' },
+    cold: { label: 'mcdmrpg.damageTypes.cold.label' },
+    corruption: { label: 'mcdmrpg.damageTypes.corruption.label' },
+    fire: { label: 'mcdmrpg.damageTypes.fire.label' },
+    holy: { label: 'mcdmrpg.damageTypes.holy.label' },
+    lightning: { label: 'mcdmrpg.damageTypes.lightning.label' },
+    poison: { label: 'mcdmrpg.damageTypes.poison.label' },
+    psychic: { label: 'mcdmrpg.damageTypes.psychic.label' },
+    sonic: { label: 'mcdmrpg.damageTypes.sonic.label' },
+};
+const keywords = {
+    attack: { label: 'mcdmrpg.keywords.attack.label' },
+    kit: { label: 'mcdmrpg.keywords.kit.label' },
+    magic: { label: 'mcdmrpg.keywords.magic.label' },
+    psionic: { label: 'mcdmrpg.keywords.psionic.label' },
+    weapon: { label: 'mcdmrpg.keywords.weapon.label' },
+};
+const monsterRoles = ['ambusher', 'artillery', 'brute', 'bystander', 'controller', 'leader', 'minion', 'skirmisher', 'soldier', 'solo', 'support'];
 const skills = {
     acrobatics: { label: 'mcdmrpg.skills.acrobatics.label', default: 'agility' },
     athletics: { label: 'mcdmrpg.skills.athletics.label', default: 'might' },
@@ -38,44 +76,10 @@ const skills = {
     stealth: { label: 'mcdmrpg.skills.stealth.label', default: 'agility' },
     vigor: { label: 'mcdmrpg.skills.vigor.label', default: 'might' },
 };
-const keywords = {
-    attack: { label: 'mcdmrpg.keywords.attack.label' },
-    kit: { label: 'mcdmrpg.keywords.kit.label' },
-    magic: { label: 'mcdmrpg.keywords.magic.label' },
-    psionic: { label: 'mcdmrpg.keywords.psionic.label' },
-    weapon: { label: 'mcdmrpg.keywords.weapon.label' },
-};
-const damageTypes = {
-    untyped: { label: 'mcdmrpg.damageTypes.untyped.label' },
-    acid: { label: 'mcdmrpg.damageTypes.acid.label' },
-    cold: { label: 'mcdmrpg.damageTypes.cold.label' },
-    corruption: { label: 'mcdmrpg.damageTypes.corruption.label' },
-    fire: { label: 'mcdmrpg.damageTypes.fire.label' },
-    holy: { label: 'mcdmrpg.damageTypes.holy.label' },
-    lightning: { label: 'mcdmrpg.damageTypes.lightning.label' },
-    poison: { label: 'mcdmrpg.damageTypes.poison.label' },
-    psychic: { label: 'mcdmrpg.damageTypes.psychic.label' },
-    sonic: { label: 'mcdmrpg.damageTypes.sonic.label' },
-};
-const baseAbilityTypes = ['action', 'basic', 'manuever', 'triggered'];
-const heroAbilityTypes = ['signature', 'heroic'];
-const monsterAbilityTypes = ['passive', 'villain'];
-const monsterRoles = ['ambusher', 'artillery', 'brute', 'bystander', 'controller', 'leader', 'minion', 'skirmisher', 'soldier', 'solo', 'support'];
-
-const abilityTypes = [...baseAbilityTypes, ...heroAbilityTypes, ...monsterAbilityTypes].sort();
-
-const abilityTimes = {
-    'action': { label: 'mcdmrpg.abilities.times.action.label' },
-    'maneuver': { label: 'mcdmrpg.abilities.times.maneuver.label' },
-    'free-maneuver': { label: 'mcdmrpg.abilities.times.free-maneuver.label' },
-    'triggered': { label: 'mcdmrpg.abilities.times.triggered.label' },
-    'free-triggered': { label: 'mcdmrpg.abilities.times.free-triggered.label' },
-};
-
 const tnDifficulty = {
     easy: 7,
     moderate: 9,
     hard: 12,
 };
 
-export { abilityTimes, abilityTypes, actionTimes, characteristics, damageTypes, keywords, monsterRoles, skills, tnDifficulty };
+export { abilityTimes, abilityTypes, characteristics, damageTypes, keywords, monsterRoles, skills, tnDifficulty };

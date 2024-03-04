@@ -14,13 +14,18 @@
 
         <div class="tabbed-content">
             <div class="sheet-tabs">
-                <a class="nav-tab" data-tab="abilities">Abilities</a>
+                <a class="nav-tab" data-tab="abilities">{{localize 'mcdmrpg.abilities.label.plural'}}</a>
                 <a class="nav-tab" data-tab="notes">Notes</a>
                 <a class="nav-tab" data-tab="effects">Effects</a>
             </div>
             <div class="tab" data-tab="abilities">
                 <div class="hero-abilities actor-abilities">
-                    <div class="mcdmrpg-header">Abilities <span class="add-ability">Add New Ability</span></div>
+                    <div class="mcdmrpg-header">
+                        {{localize 'mcdmrpg.abilities.label.plural'}}
+                        <span class="add-ability">
+                            {{localize 'mcdmrpg.sheets.actor.abilities.add'}}
+                        </span>
+                    </div>
                     <div class="abilities-filter">
                         {{> 'systems/mcdmrpg/templates/documents/actors/base/partials/abilities-filter.hbs'}}
                     </div>
