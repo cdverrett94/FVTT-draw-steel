@@ -15,14 +15,19 @@ export class MCDMActor extends Actor {
             this.system[characteristic] = score;
         }
 
+        this.system.acceptableAbilityTypes = {};
+        for (const [key, value] of Object.entries(abilityTypes)) {
+            if (value.appliesTo.includes(this.type)) this.system.acceptableAbilityTypes[key] = value;
+        }
+
+        let abilities = this.items.filter((item) => item.type === 'ability');
+        this.system.abilities = {};
+        for (const abilityType in this.system.acceptableAbilityTypes) {
+            this.system.abilities[abilityType] = abilities.filter((ability) => ability.system.type === abilityType);
+        }
+
         this.system.hp.healing = Math.floor(this.system.hp.max / 3);
         this.system.hp.bloodied = Math.floor(this.system.hp.max / 2);
-        let abilities = this.items.filter((item) => item.type === 'ability');
-
-        this.system.abilities = {};
-        abilityTypes.forEach((abilityType) => {
-            this.system.abilities[`${abilityType}`] = abilities.filter((ability) => ability.system.type === abilityType);
-        });
 
         this.system.highest = Math.max(...Object.values(this.system.characteristics));
         this.system.chanceHit = '@Damage[1d4|characteristic=highest|abilityName=mcdmrpg.rolls.damage.chancehit]';
