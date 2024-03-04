@@ -20,6 +20,7 @@ function enrichDamage(match, options) {
     data.formula = DamageRoll.constructFinalFormula(data.baseFormula, data);
     data.replaceCharacteristic ??= true;
     data.impacts ??= 0;
+    data.abilityName = game.i18n.localize(data.abilityName ?? data.item?.name ?? '');
 
     let linkText = `${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;
     let link = createRollLink('damage', linkText, data.formula, data, false);

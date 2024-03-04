@@ -52,8 +52,8 @@ function _getEnrichedOptions(match, options) {
         data.characteristic = characteristic;
     }
 
-    // Remove invalid characteristic from data
-    if (data.characteristic && !(data.characteristic in characteristics)) delete data.characteristic;
+    // Remove characteristic from data if not valid characteristic or 'highest'
+    if (data.characteristic && !(data.characteristic in characteristics) && data.characteristic !== 'highest') delete data.characteristic;
 
     return data;
 }
@@ -103,7 +103,9 @@ async function rollAction(event) {
 }
 
 async function getRollContextData(dataset) {
-    let { actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn } = { ...dataset };
+    let { abilityName, actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn } = {
+        ...dataset,
+    };
 
     boons = Math.abs(Number(boons) || 0);
     banes = Math.abs(Number(banes) || 0);
@@ -113,7 +115,7 @@ async function getRollContextData(dataset) {
     if (dataset.actorId) actor = await fromUuid(actorId);
     else actor = await getRollActor();
 
-    return { actor, actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn };
+    return { abilityName, actor, actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn };
 }
 
 async function postRollToChat(event) {

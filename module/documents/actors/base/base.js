@@ -25,7 +25,7 @@ export class MCDMActor extends Actor {
         });
 
         this.system.highest = Math.max(...Object.values(this.system.characteristics));
-        this.system.chanceHit = '@Damage[1d4|characteristic=highest]';
+        this.system.chanceHit = '@Damage[1d4|characteristic=highest|abilityName=mcdmrpg.rolls.damage.chancehit]';
 
         this.system.grappleTN = 7 + this.system.might;
 
@@ -94,7 +94,6 @@ export class MCDMActor extends Actor {
 
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         const isSpecialStatus = ['ongoingdamage', 'taunted', 'frightened'].includes(statusId);
-        console.log('isSpecialStatus', isSpecialStatus);
         const status = CONFIG.statusEffects.find((e) => e.id === statusId);
         if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
         const existing = [];
@@ -189,7 +188,7 @@ export class MCDMActor extends Actor {
     }
 
     async rollDamage(data = {}) {
-        let { applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = data;
+        let { abilityName, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = data;
 
         if (this.system.banes.attacker) banes += Number(this.system.banes.attacker);
         if (this.system.boons.attacker) boons += Number(this.system.boons.attacker);
@@ -209,6 +208,7 @@ export class MCDMActor extends Actor {
         if (this.system.taunted.length && target && !this.system.taunted.includes(target.actor.uuid)) banes += 1;
 
         let context = {
+            abilityName,
             actor: this,
             applyExtraDamage,
             baseFormula,
