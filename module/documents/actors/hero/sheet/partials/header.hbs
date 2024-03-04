@@ -1,25 +1,25 @@
-<div class="character-info">
-    <div class="name">
-        <input type="text" name="name" value="{{name}}" />
+<div class='character-info'>
+    <div class='name'>
+        <input type='text' name='name' value='{{name}}' />
         Name
     </div>
-    <div class="level">
-        <input type="number" name="system.level" value="{{level}}" />
+    <div class='level'>
+        <input type='number' name='system.level' value='{{level}}' />
         Level
     </div>
-    <div class="xp">
-        <input type="number" name="system.xp" value="{{xp}}" />
+    <div class='xp'>
+        <input type='number' name='system.xp' value='{{xp}}' />
         XP
     </div>
 </div>
 
-<div class="characteristics">
+<div class='characteristics'>
     {{#each characteristics as |characteristic|}}
-    <div class="characteristic mcdmrpg-container" data-characteristic="{{@key}}">
-        <div class="mcdmrpg-subheader">{{localize (concat "characteristics." @key ".label")}}</div>
-        <div class="characteristic-value">
-            <input type="number" name="system.characteristics.{{@key}}" value="{{characteristic}}" />
+        <div class='characteristic mcdmrpg-container' data-characteristic='{{@key}}'>
+            <div class='mcdmrpg-subheader'>{{localize (concat 'mcdmrpg.characteristics.' @key '.label')}}</div>
+            <div class='characteristic-value'>
+                <input type='number' name='system.characteristics.{{@key}}' value='{{characteristic}}' />
+            </div>
         </div>
-    </div>
     {{/each}}
 </div>
