@@ -18,9 +18,9 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
                     initial: 'abilities',
                 },
             ],
-            scrollY: ['.skill-list', '.tabbed-content'],
-            width: 1230,
-            height: 930,
+            scrollY: ['.skill-list', '.tab'],
+            width: 1200, //1182
+            height: 1100, //1111
             resizable: true,
         };
 
@@ -60,7 +60,7 @@ export class HeroSheet extends BaseMCDMRPGActorSheet {
         html.querySelectorAll('.add-skill').forEach((element) => {
             element.addEventListener('click', (event) => {
                 let skill = element.dataset.skill;
-                this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`mcdmrpg.skills.${skill}.label`) + ' Skill' });
+                this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`system.skills.${skill}.label`) + ' Skill' });
             });
         });
 

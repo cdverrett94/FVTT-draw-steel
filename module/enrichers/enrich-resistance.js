@@ -24,7 +24,7 @@ function enrichResistance(match, options) {
         data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
     }
 
-    let linkText = game.i18n.format('mcdmrpg.rolls.resistance.button', {
+    let linkText = game.i18n.format('system.rolls.resistance.button', {
         tn: data.tn ? `${data.tn} ` : '',
         characteristicAbbreviation: game.i18n.localize(characteristics[data.characteristic].abbreviation),
     });

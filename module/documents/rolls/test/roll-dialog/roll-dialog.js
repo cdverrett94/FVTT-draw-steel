@@ -12,7 +12,7 @@ export class TestRollDialog extends BaseRollDialog {
     }
 
     get headerLabel() {
-        return game.i18n.format('mcdmrpg.rolls.test.dialog.headerLabel', {
+        return game.i18n.format('system.rolls.test.dialog.headerLabel', {
             tn: this.context.tn ? `TN ${this.context.tn} ` : '',
             characteristic: this.context.characteristic ? `${game.i18n.localize(characteristics[this.context.characteristic].label)}-` : '',
             skill: game.i18n.localize(skills[this.context.skill].label),

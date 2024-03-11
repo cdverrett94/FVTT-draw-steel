@@ -16,7 +16,7 @@
 <div class='characteristics'>
     {{#each characteristics as |characteristic|}}
         <div class='characteristic mcdmrpg-container' data-characteristic='{{@key}}'>
-            <div class='mcdmrpg-subheader'>{{localize (concat 'mcdmrpg.characteristics.' @key '.label')}}</div>
+            <div class='mcdmrpg-subheader'>{{localize (concat 'system.characteristics.' @key '.label')}}</div>
             <div class='characteristic-value'>
                 <input type='number' name='system.characteristics.{{@key}}' value='{{characteristic}}' />
             </div>

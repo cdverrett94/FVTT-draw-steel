@@ -1,5 +1,5 @@
 {
-    "mcdmrpg": {
+    "system": {
         "abilities": {
             "label": {
                 "singular": "Ability",
@@ -73,6 +73,9 @@
             },
             "trigger": {
                 "label": "Trigger"
+            },
+            "time": {
+                "label": "Time"
             },
             "cost": {
                 "label": "Cost"
@@ -178,7 +181,11 @@
                 "singular": "Target",
                 "plural": "Targets"
             },
-            "name": "Name"
+            "name": "Name",
+            "effect": {
+                "singular": "Effect",
+                "plural": "Effects"
+            }
         },
         "keywords": {
             "label": {

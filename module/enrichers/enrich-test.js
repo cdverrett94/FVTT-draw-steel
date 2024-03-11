@@ -13,7 +13,7 @@ function enrichTest(match, options) {
     // Set TN by difficulty
     if (data.tn in tnDifficulty) data.tn = tnDifficulty[data.tn];
 
-    let linkText = game.i18n.format('mcdmrpg.rolls.test.button', {
+    let linkText = game.i18n.format('system.rolls.test.button', {
         tn: data.tn ? `TN ${data.tn} ` : '',
         characteristic: data.characteristic ? `${game.i18n.localize(characteristics[data.characteristic].label)}-` : '',
         skill: game.i18n.localize(skills[data.skill].label),

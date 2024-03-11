@@ -3,43 +3,43 @@
         {{#each abilityGroup as |ability|}}
             {{#if ability.show}}
                 <div class='ability {{@../key}}-ability' data-ability-type='{{@../key}}' data-ability-id="{{ability._id}}">
-                    <div class='ability-group-label'>{{localize (concat 'mcdmrpg.abilities.types.' @../key '.label')}}</div>
+                    <div class='ability-group-label'>{{localize (concat 'system.abilities.types.' @../key '.label')}}</div>
                     <div class='ability-header'>
                         <div class="ability-name">{{ability.name}}</div>
                         <div class="ability-cost">{{ability.system.cost}}</div>
-                        <div class="ability-edit"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'mcdmrpg.sheets.actor.abilities.edit'}}"></i></div>
-                        <div class="ability-delete"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'mcdmrpg.sheets.actor.abilities.delete'}}"></i></div>
+                        <div class="ability-edit"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.abilities.edit'}}"></i></div>
+                        <div class="ability-delete"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.abilities.delete'}}"></i></div>
                     </div>
                     <div class='property ability-keywords'>
-                        <div class='label'>{{localize 'mcdmrpg.keywords.label.plural'}}</div>
+                        <div class='label'>{{localize 'system.keywords.label.plural'}}</div>
                         <div class='value'>
                             {{#each ability.system.keywords as |keyword|}}
-                                {{localize (concat 'mcdmrpg.keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
+                                {{localize (concat 'system.keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
                             {{/each}}
                             {{#unless ability.system.keywords}} &mdash; {{/unless}}
                         </div>
                     </div>
                     {{#if ability.system.trigger}}
                     <div class='property ability-trigger'>
-                        <div class='label'>Trigger</div>
+                        <div class='label'>{{localize 'system.abilities.trigger.label'}}</div>
                         <div class='value'>{{ability.system.trigger}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.time}}
                     <div class='property ability-time'>
-                        <div class='label'>Time</div>
-                        <div class='value'>{{localize (concat 'mcdmrpg.abilities.times.' ability.system.time '.label')}}</div>
+                        <div class='label'>{{localize 'system.abilities.time.label'}}</div>
+                        <div class='value'>{{localize (concat 'system.abilities.times.' ability.system.time '.label')}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.distance}}
                     <div class='property ability-distance'>
-                        <div class='label'>Distance</div>
+                        <div class='label'>{{localize 'system.abilities.distance.label'}}</div>
                         <div class='value'>{{ability.system.distance}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.target}}
                     <div class='property ability-target'>
-                        <div class='label'>Target</div>
+                        <div class='label'>{{localize 'system.general.target.singular'}}</div>
                         <div class='value'>{{ability.system.target}}</div>
                     </div>
                     {{/if}}
@@ -51,7 +51,7 @@
                     {{/if}}
                     {{#if ability.system.effect}}
                     <div class='property ability-effect'>
-                        <div class='label'>Effect</div>
+                        <div class='label'>{{localize 'system.general.effect.singular'}}</div>
                         <div class='value'>{{{ability.system.enrichedEffect}}}</div>
                     </div>
                     {{/if}}

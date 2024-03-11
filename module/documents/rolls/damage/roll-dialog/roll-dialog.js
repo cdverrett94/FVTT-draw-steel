@@ -9,7 +9,7 @@ export class DamageRollDialog extends BaseRollDialog {
     }
 
     get headerLabel() {
-        return game.i18n.format('mcdmrpg.rolls.damage.dialog.headerLabel', {
+        return game.i18n.format('system.rolls.damage.dialog.headerLabel', {
             abilityName: this.context.abilityName,
         });
     }

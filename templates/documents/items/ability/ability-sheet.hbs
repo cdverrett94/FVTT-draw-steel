@@ -11,7 +11,7 @@
         <div class="ability-value">
             <select name="system.type">
                 {{#each abilityTypes as |abilityType|}}
-                    <option value="{{abilityType}}"{{#if (eq ../type abilityType)}} selected{{/if}}>{{localize (concat "mcdmrpg.abilityTypes." abilityType ".label")}}</option>
+                    <option value="{{abilityType}}"{{#if (eq ../type abilityType)}} selected{{/if}}>{{localize (concat "system.abilityTypes." abilityType ".label")}}</option>
                 {{/each}}
             </select>
         </div>
@@ -108,19 +108,19 @@
                     </div>
                 </div>
                 <div class="damage-boons">
-                    <div class="ability-property">{{localize 'mcdmrpg.dice.boon.plural'}}</div>
+                    <div class="ability-property">{{localize 'system.dice.boon.plural'}}</div>
                     <div class="ability-value">
                         <input type="number" name="system.damage.boons" value="{{damage.boons}}">
                     </div>
                 </div>
                 <div class="damage-banes">
-                    <div class="ability-property">{{localize 'mcdmrpg.dice.bane.plural'}}</div>
+                    <div class="ability-property">{{localize 'system.dice.bane.plural'}}</div>
                     <div class="ability-value">
                         <input type="number" name="system.damage.banes" value="{{damage.banes}}">
                     </div>
                 </div>
                 <div class="damage-impacts">
-                    <div class="ability-property">{{localize 'mcdmrpg.dice.impact.plural'}}</div>
+                    <div class="ability-property">{{localize 'system.dice.impact.plural'}}</div>
                     <div class="ability-value">
                         <input type="number" name="system.damage.impacts" value="{{damage.impacts}}">
                     </div>

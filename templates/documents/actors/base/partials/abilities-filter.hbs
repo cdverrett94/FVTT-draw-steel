@@ -1,4 +1,4 @@
-{{localize 'mcdmrpg.sheets.actor.abilities.filters.type'}}
+{{localize 'system.sheets.actor.abilities.filters.type'}}
 <div class="ability-filters ability-type-filters">
     {{#each acceptableAbilityTypes as |abilityType|}}
         {{log abilityType}}
@@ -8,7 +8,7 @@
     {{/each}}
     <div class='ability-filter ability-type-filter' data-ability-type='clear'>Clear</div>
 </div>
-{{localize 'mcdmrpg.sheets.actor.abilities.filters.time'}}
+{{localize 'system.sheets.actor.abilities.filters.time'}}
 <div class="ability-filters ability-time-filters">
     {{#each abilityTimes as |abilityTime|}}
         <div class='ability-filter ability-time-filter{{#if (eq @key @root.activeTimeFilter)}} active-filter{{/if}}' data-ability-time='{{@key}}'>
