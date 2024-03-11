@@ -1,7 +1,7 @@
-import { monsterRoles } from '../../../constants.js';
-import { MCDMActorData } from '../base/data-model.js';
+import { monsterRoles } from '../constants.js';
+import { BaseActorData } from './base-actor.js';
 
-export class MonsterData extends MCDMActorData {
+export class MonsterData extends BaseActorData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

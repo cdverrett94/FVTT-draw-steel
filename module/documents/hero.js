@@ -1,6 +1,6 @@
-import { MCDMActor } from '../base/base.js';
+import { BaseActor } from './base-actor.js';
 
-export class HeroActor extends MCDMActor {
+export class HeroActor extends BaseActor {
     prepareBaseData() {
         super.prepareBaseData();
 

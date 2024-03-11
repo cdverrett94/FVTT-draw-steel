@@ -1,6 +1,6 @@
-import { MCDMActorData } from '../base/data-model.js';
+import { BaseActorData } from './base-actor.js';
 
-export class HeroData extends MCDMActorData {
+export class HeroData extends BaseActorData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

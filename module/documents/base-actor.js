@@ -1,9 +1,9 @@
-import { abilityTypes, characteristics, damageTypes } from '../../../constants.js';
-import { DamageRollDialog } from '../../rolls/damage/roll-dialog/roll-dialog.js';
-import { ResistanceRollDialog } from '../../rolls/resistance/roll-dialog/roll-dialog.js';
-import { TestRollDialog } from '../../rolls/test/roll-dialog/roll-dialog.js';
+import { abilityTypes, characteristics, damageTypes } from '../constants.js';
+import { DamageRollDialog } from './rolls/damage/roll-dialog/roll-dialog.js';
+import { ResistanceRollDialog } from './rolls/resistance/roll-dialog/roll-dialog.js';
+import { TestRollDialog } from './rolls/test/roll-dialog/roll-dialog.js';
 
-export class MCDMActor extends Actor {
+export class BaseActor extends Actor {
     prepareData() {
         super.prepareData();
     }

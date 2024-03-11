@@ -1,7 +1,7 @@
-import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../../constants.js';
-import { MCDMItemData } from '../base/base-data-model.js';
+import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../constants.js';
+import { BaseItemData } from './base-item.js';
 
-export class AbilityData extends MCDMItemData {
+export class AbilityData extends BaseItemData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

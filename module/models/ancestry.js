@@ -1,6 +1,6 @@
-import { MCDMItemData } from '../base/base-data-model.js';
+import { BaseItemData } from './base-item.js';
 
-export class AncestryData extends MCDMItemData {
+export class AncestryData extends BaseItemData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

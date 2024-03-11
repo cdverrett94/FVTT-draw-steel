@@ -1,6 +1,6 @@
-import { characteristics, skills } from '../../../constants.js';
+import { characteristics, skills } from '../constants.js';
 
-export class MCDMActorData extends foundry.abstract.DataModel {
+export class BaseActorData extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

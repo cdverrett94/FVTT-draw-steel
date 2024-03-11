@@ -1,11 +1,10 @@
-import { MCDMActiveEffect } from '../../documents/active-effects/active-effects.js';
-import { MCDMActorProxy } from '../../documents/actors/actor-proxy.js';
-import { MCDMItemProxy } from '../../documents/items/item-proxy.js';
-import { MCDMTokenDocument } from '../../documents/tokens/token.js';
+import { MCDMActiveEffect, MCDMTokenDocument } from '../../documents/_index.js';
+import { ActorProxy } from '../../documents/actor-proxy.js';
+import { ItemProxy } from '../../documents/item-proxy.js';
 
 export function registerDocumentClasses() {
-    CONFIG.Actor.documentClass = MCDMActorProxy;
-    CONFIG.Item.documentClass = MCDMItemProxy;
+    CONFIG.Actor.documentClass = ActorProxy;
+    CONFIG.Item.documentClass = ItemProxy;
     CONFIG.ActiveEffect.documentClass = MCDMActiveEffect;
     CONFIG.Token.documentClass = MCDMTokenDocument;
 }

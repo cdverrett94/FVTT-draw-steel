@@ -1,6 +1,6 @@
-import { MCDMItemData } from '../base/base-data-model.js';
+import { BaseItemData } from './base-item.js';
 
-export class KitData extends MCDMItemData {
+export class KitData extends BaseItemData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

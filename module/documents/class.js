@@ -1,6 +1,6 @@
-import { MCDMRPGItem } from '../base/base-document.js';
+import { BaseItem } from './base-item.js';
 
-export class MCDMRPGClassItem extends MCDMRPGItem {
+export class ClassItem extends BaseItem {
     async _preUpdate(changed, options, user) {
         await super._preUpdate(changed, options, user);
         if ('resources' in (changed.system || {})) {
