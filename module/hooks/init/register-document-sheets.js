@@ -1,9 +1,4 @@
-import { HeroSheet } from '../../documents/actors/hero/sheet/sheet.js';
-import { MonsterSheet } from '../../documents/actors/monster/sheet/sheet.js';
-import { AbilitySheet } from '../../documents/items/ability/ability-sheet.js';
-import { AncestrySheet } from '../../documents/items/ancestry/ancestry-sheet.js';
-import { ClassSheet } from '../../documents/items/class/class-sheet.js';
-import { KitSheet } from '../../documents/items/kit/kit-sheet.js';
+import { AbilitySheet, AncestrySheet, ClassSheet, HeroSheet, KitSheet, MonsterSheet } from '../../applications/_index.js';
 
 export function registerDocumentSheets() {
     // Register Actor Sheets
