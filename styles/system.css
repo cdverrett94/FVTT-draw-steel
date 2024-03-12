@@ -3,7 +3,7 @@
 
 /* Actor Imports */
 @import url('actors/base/base-sheet.css');
-@import url('actors/base/edit-skills-sheet.css');
+@import url('actors/base/skill-config.css');
 @import url('actors/hero/hero-sheet.css');
 @import url('actors/monster/monster-sheet.css');
 
@@ -13,7 +13,302 @@
 @import url('items/kit/kit-sheet.css');
 @import url('items/ability/ability-sheet.css');
 
-:root {
-    --app-background: black;
-    --header-height: 50px;
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body {
+    --color-warm-1: #ee9b3a;
+    --color-warm-2: #c9593f;
+    --color-warm-3: #5d142b;
+    --color-cool-3: #584a75;
+    --color-cool-4: #302831;
+    --color-cool-5: #0b0a13;
+    --color-cool-5-25: rgba(11, 10, 19, 0.25);
+    --color-cool-5-50: rgba(11, 10, 19, 0.5);
+    --color-cool-5-75: rgba(11, 10, 19, 0.75);
+    --color-cool-5-90: rgba(11, 10, 19, 0.9);
+    --color-light-1: #f7f3e8;
+    --color-light-2: #efe6d8;
+    --color-light-3: #e7d1b1;
+    --color-light-4: #d0b8a3;
+    --color-light-5: #9f8475;
+    --color-light-6: #816b66;
+    --color-level-error: #ce0707;
+    --color-level-error-bg: rgba(105, 0, 8, 0.8);
+    --color-level-error-border: #750003;
+    --color-level-info: #59a1f6;
+    --color-level-info-bg: rgba(47, 80, 132, 0.8);
+    --color-level-info-border: #5c87b9;
+    --color-level-success: #26b231;
+    --color-level-success-bg: rgba(26, 107, 34, 0.8);
+    --color-level-success-border: #1b8f23;
+    --color-level-warning: #ee9b3a;
+    --color-level-warning-bg: rgba(214, 150, 0, 0.8);
+    --color-level-warning-border: #b18404;
+    --color-scrollbar: #5d142b;
+    --color-scrollbar-track: transparent;
+    --color-scrollbar-border: #8d151b;
+}
+/* ---------------------------------------- */
+/*  Typography                              */
+/* ---------------------------------------- */
+body {
+    --font-body: 'Signika', 'Palatino Linotype', sans-serif;
+    --font-awesome: 'Font Awesome 6 Pro';
+    --font-monospace: monospace;
+    --font-blockquote: 'Signika', 'Palatino Linotype', sans-serif;
+    --font-size-10: 0.625rem;
+    --font-size-11: 0.6875rem;
+    --font-size-12: 0.75rem;
+    --font-size-13: 0.8125rem;
+    --font-size-14: 0.875rem;
+    --font-size-15: 0.9375rem;
+    --font-size-16: 1rem;
+    --font-size-18: 1.125rem;
+    --font-size-20: 1.25rem;
+    --font-size-24: 1.5rem;
+    --font-size-28: 1.75rem;
+    --font-size-32: 2rem;
+    --font-size-36: 2.25rem;
+    --font-size-48: 3rem;
+    --font-size-64: 4rem;
+    --font-size-80: 5rem;
+    --font-h1: 'Modesto Condensed', serif;
+    --font-h2: 'Amiri', serif;
+    --font-h3: 'Signika', 'Palatino Linotype', sans-serif;
+    --font-h4: 'Amiri', serif;
+    --font-h5: 'Signika', 'Palatino Linotype', sans-serif;
+    --font-h6: 'Modesto Condensed', serif;
+    --font-h1-size: var(--font-size-48);
+    --font-h2-size: var(--font-size-32);
+    --font-h3-size: var(--font-size-24);
+    --font-h4-size: var(--font-size-24);
+    --font-h5-size: var(--font-size-20);
+    --font-h6-size: var(--font-size-24);
+}
+/* ---------------------------------------- */
+/*  Layout                                  */
+/* ---------------------------------------- */
+body {
+    --input-height: 2rem;
+    --z-index-background: -1;
+    --z-index-main: 0;
+    --z-index-app: 30;
+    --z-index-ui: 60;
+    --z-index-window: 100;
+    --z-index-tooltip: 9999;
+    --z-index-notification: 99999;
+}
+/* ---------------------------------------- */
+/*  Aesthetics                              */
+/* ---------------------------------------- */
+body {
+    --background-url: url('../ui/backgrounds/setup.webp');
+    --main-logo: url('../icons/vtt-512.png');
+}
+/* ---------------------------------------- */
+/*  Applications                            */
+/* ---------------------------------------- */
+body {
+    --app-background: var(--color-cool-5-90);
+    --app-header-background: rgba(0, 0, 0, 0.5);
+    --app-border-color: var(--color-cool-4);
+}
+.application {
+    --header-height: 36px;
+    --minimized-width: 200px;
+    --background-color: var(--color-cool-5-90);
+    --header-background-color: rgba(0, 0, 0, 0.5);
+    --border-color: var(--color-cool-4);
+}
+/* ---------------------------------------- */
+/*  Forms and Form Elements                 */
+/* ---------------------------------------- */
+input,
+select {
+    --input-background-color: var(--color-cool-4);
+    --input-border-color: transparent;
+    --input-text-color: var(--color-light-3);
+    --input-focus-outline-color: var(--color-cool-3);
+    --input-text-selection-color: var(--color-cool-3);
+}
+input:focus,
+select:focus {
+    --input-text-color: var(--color-light-1);
+}
+input:disabled,
+select:disabled {
+    --input-background-color: var(--color-cool-5);
+    --input-border-color: var(--color-cool-4);
+    --input-text-color: var(--color-light-4);
+}
+input[readonly] {
+    --input-background-color: var(--color-cool-5);
+    --input-border-color: var(--color-cool-4);
+    --input-text-color: var(--color-light-4);
+}
+input[type='checkbox'] {
+    --checkbox-checked-color: var(--color-warm-1);
+    --checkbox-disabled-color: var(--color-cool-4);
+    --checkbox-background-color: var(--color-cool-4);
+}
+input[type='range'] {
+    --range-track-color: var(--input-background-color);
+    --range-thumb-background-color: rgba(11, 10, 19, 0.9);
+    --range-thumb-border-color: var(--color-warm-1);
+    --range-thumb-hover-color: rgba(88, 74, 117, 0.9);
+}
+a.button,
+button {
+    --button-background-color: var(--color-cool-5-50);
+    --button-border-color: var(--color-light-5);
+    --button-text-color: var(--color-light-3);
+    --button-focus-outline-color: var(--color-warm-2);
+    --button-hover-background-color: var(--color-warm-2);
+    --button-hover-border-color: var(--color-light-3);
+    --button-hover-text-color: var(--color-light-1);
+}
+a.button:disabled,
+button:disabled {
+    --button-background-color: var(--color-cool-5);
+    --button-border-color: var(--color-cool-4);
+    --button-hover-background-color: var(--color-cool-5);
+    --button-text-color: var(--color-light-5);
+}
+a.button.bright,
+button.bright {
+    --button-background-color: var(--color-warm-1);
+    --button-border-color: var(--color-cool-5);
+    --button-text-color: var(--color-cool-5);
+    --button-hover-background-color: #fda948;
+    --button-hover-border-color: var(--color-warm-3);
+    --button-hover-text-color: #000000;
+}
+a.button.bright:disabled,
+button.bright:disabled {
+    --button-background-color: var(--color-cool-4);
+    --button-hover-background-color: var(--color-cool-4);
+    --button-text-color: var(--color-light-5);
+    --button-hover-text-color: var(--color-light-5);
+    --button-hover-border-color: transparent;
+}
+/* ---------------------------------------- */
+/*  Setup Views Specifically                */
+/* ---------------------------------------- */
+body.auth {
+    --header-size: 160px;
+    --header-font-size: var(--font-size-80);
+    --form-padding: 1.5rem;
+    --max-width: 600px;
+}
+body.theme-fantasy {
+    /* ---------------------------------------- */
+    /*  Colors                                  */
+    /* ---------------------------------------- */
+    --color-warm-1: #ee9b3a;
+    --color-warm-2: #603032;
+    --color-warm-3: #372021;
+    --color-cool-3: #251a1c;
+    --color-cool-4: #0c0609;
+    --color-cool-5: #0b090a;
+    --color-cool-5-25: rgba(11, 9, 10, 0.25);
+    --color-cool-5-50: rgba(11, 9, 10, 0.5);
+    --color-cool-5-75: rgba(11, 9, 10, 0.75);
+    --color-cool-5-90: rgba(11, 9, 10, 0.9);
+    --color-light-2: #ede9de;
+    --color-light-4: #c9b793;
+    --color-scrollbar: var(--color-warm-2);
+    --color-scrollbar-border: var(--color-warm-2);
+    /* ---------------------------------------- */
+    /*  Forms and Form Elements                 */
+    /* ---------------------------------------- */
+    /* ---------------------------------------- */
+    /*  Packages                                */
+    /* ---------------------------------------- */
+}
+body.theme-fantasy input,
+body.theme-fantasy select {
+    --input-background-color: var(--color-warm-3);
+}
+body.theme-fantasy input[type='checkbox'] {
+    --checkbox-background-color: var(--color-warm-3);
+}
+body.theme-fantasy #setup-packages header.controls .filter input {
+    --input-background-color: var(--color-cool-3);
+}
+body.theme-scifi {
+    /* ---------------------------------------- */
+    /*  Backgrounds                              */
+    /* ---------------------------------------- */
+    --background-url: url('../ui/backgrounds/setup-scifi.webp');
+    --main-logo: url('../icons/logo-scifi-blank.png');
+    /* ---------------------------------------- */
+    /*  Colors                                  */
+    /* ---------------------------------------- */
+    --color-warm-1: #3a9bee;
+    --color-warm-2: #303260;
+    --color-warm-3: #202137;
+    --color-cool-3: #202137;
+    --color-cool-4: #15151e;
+    --color-cool-5: #0b090a;
+    --color-cool-5-25: rgba(11, 9, 10, 0.25);
+    --color-cool-5-50: rgba(11, 9, 10, 0.5);
+    --color-cool-5-75: rgba(11, 9, 10, 0.75);
+    --color-cool-5-90: rgba(11, 9, 10, 0.9);
+    --color-light-1: #f3f7f7;
+    --color-light-2: #dee9ed;
+    --color-light-3: #c2daea;
+    --color-light-4: #899fad;
+    --color-light-5: #79849b;
+    --color-light-6: #6c7288;
+    --color-scrollbar: #303260;
+    --color-scrollbar-border: #3a9bee;
+    /* ---------------------------------------- */
+    /*  Typography                              */
+    /* ---------------------------------------- */
+    --font-h1: 'Bruno Ace SC', serif;
+    --font-h2: 'Bruno Ace', serif;
+    --font-h3: 'Bruno Ace', serif;
+    --font-h4: 'Bruno Ace', serif;
+    --font-h5: 'Bruno Ace', serif;
+    --font-h6: 'Bruno Ace', serif;
+    --font-h1-size: var(--font-size-64);
+    --font-h3-size: var(--font-size-20);
+    --font-h4-size: var(--font-size-20);
+    --font-h6-size: var(--font-size-18);
+    /* ---------------------------------------- */
+    /*  Applications                            */
+    /* ---------------------------------------- */
+    --app-border-color: #303260;
+    /* ---------------------------------------- */
+    /*  Forms and Form Elements                 */
+    /* ---------------------------------------- */
+}
+body.theme-scifi .application {
+    --border-color: #303260;
+}
+body.theme-scifi input,
+body.theme-scifi select {
+    --input-background-color: #202137;
+    --input-focus-outline-color: #3a9bee;
+}
+body.theme-scifi input[type='checkbox'] {
+    --checkbox-checked-color: #3a9bee;
+    --checkbox-background-color: #202137;
+}
+body.theme-scifi button.bright {
+    --button-hover-background-color: #42a5fc;
+}
+/* ---------------------------------------- */
+/*  Setup Specifically                      */
+/* ---------------------------------------- */
+body.auth.theme-scifi {
+    --header-font-size: var(--font-size-64);
+    --app-border-color: #3a9bee;
+}
+body.auth.theme-scifi .application {
+    --border-color: #3a9bee;
 }
