@@ -5,14 +5,28 @@ export class AncestryData extends BaseItemData {
         const fields = foundry.data.fields;
         return {
             size: new fields.SchemaField({
-                width: new fields.NumberField(),
-                length: new fields.NumberField(),
-                height: new fields.NumberField(),
-                weight: new fields.NumberField(),
+                width: new fields.NumberField({
+                    label: 'system.items.ancestry.fields.size.width.label',
+                }),
+                length: new fields.NumberField({
+                    label: 'system.items.ancestry.fields.size.length.label',
+                }),
+                height: new fields.NumberField({
+                    label: 'system.items.ancestry.fields.size.height.label',
+                }),
+                weight: new fields.NumberField({
+                    label: 'system.items.ancestry.fields.size.weight.label',
+                }),
             }),
-            reach: new fields.NumberField(),
-            speed: new fields.NumberField(),
-            description: new fields.StringField(),
+            reach: new fields.NumberField({
+                label: 'system.items.ancestry.fields.reach.label',
+            }),
+            speed: new fields.NumberField({
+                label: 'system.items.ancestry.fields.speed.label',
+            }),
+            description: new fields.StringField({
+                label: 'system.items.ancestry.fields.description.label',
+            }),
         };
     }
 }

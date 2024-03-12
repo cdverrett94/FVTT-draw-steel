@@ -248,6 +248,35 @@
                 "plural": "Effects"
             }
         },
+        "items": {
+            "ancestry": {
+                "fields": {
+                    "size": {
+                        "width": {
+                            "label": "Width"
+                        },
+                        "length": {
+                            "label": "Length"
+                        },
+                        "height": {
+                            "label": "Height"
+                        },
+                        "weight": {
+                            "label": "Weight"
+                        }
+                    },
+                    "reach": {
+                        "label": "Reach"
+                    },
+                    "speed": {
+                        "label": "Speed"
+                    },
+                    "description": {
+                        "label": "Description"
+                    }
+                }
+            }
+        },
         "keywords": {
             "label": {
                 "singular": "Keyword",
