@@ -1,20 +1,32 @@
 .sheet.actor.hero .skills .skill {
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    padding: 5px 0px;
+    padding: 5px;
 }
 
 .sheet.actor.hero .skills .skill:nth-child(2n) {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.sheet.actor.hero .skills .skill .roll-skill {
-    padding-right: 5px;
+.sheet.actor.hero .skills .skill:hover {
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.sheet.actor.hero .skills .skill .roll-skill:hover {
-    color: red;
-    cursor: pointer;
+.sheet.actor.hero .skills .skill:hover .skill-proficiency i {
+    animation: var(--icon-rotation);
+}
+
+.sheet.actor.hero .skills .skill:hover .skill-proficiency i.fa-light.fa-dice-d6 {
+    display: none;
+}
+.sheet.actor.hero .skills .skill .skill-proficiency i.fa-regular.fa-dice-d6 {
+    display: none;
+}
+
+.sheet.actor.hero .skills .skill:hover .skill-proficiency i.fa-regular.fa-dice-d6 {
+    display: inline-block;
 }

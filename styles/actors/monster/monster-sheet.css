@@ -140,7 +140,7 @@
 }
 
 .sheet.actor.monster .monster-body .monster-skills .edit-skills:hover i {
-    animation: rotate 5s linear infinite;
+    animation: var(--icon-rotation);
 }
 
 .sheet.actor.monster .monster-body .monster-skills .skill-label {

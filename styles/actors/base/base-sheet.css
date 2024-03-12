@@ -1,14 +1,3 @@
-:root {
-    --default-ability-bg-color: rgba(0, 0, 0, 0.8);
-    --action-ability-bg-color: rgba(70, 53, 41, 0.8);
-    --basic-ability-bg-color: rgba(255, 0, 0, 0.8);
-    --maneuver-ability-bg-color: rgba(0, 0, 255, 0.8);
-    --heroic-ability-bg-color: rgba(255, 234, 0, 0.8);
-    --signature-ability-bg-color: rgba(255, 149, 0, 0.8);
-    --triggered-ability-bg-color: rgba(9, 130, 0, 0.8);
-    --villain-ability-bg-color: rgba(133, 0, 186, 0.8);
-}
-
 .mcdmrpg.sheet.actor div.actor-abilities {
     margin-top: 5px;
 }
@@ -82,35 +71,35 @@
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--default-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--default-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.action-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--action-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--action-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.basic-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--basic-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--basic-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.maneuver-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--maneuver-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--maneuver-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.heroic-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--heroic-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--heroic-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.signature-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--signature-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--signature-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.triggered-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--triggered-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--triggered-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .ability.villain-ability .ability-header {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--villain-ability-bg-color) 100%);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--villain-ability-color) 100%);
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .abilities-list .ability .property {
