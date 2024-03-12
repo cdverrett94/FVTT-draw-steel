@@ -1,0 +1,42 @@
+.mcdmrpg.sheet.skill-config .skill-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.mcdmrpg.sheet.skill-config .skills .skill-name input {
+    width: 100px;
+    color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mcdmrpg.sheet.skill-config .skills .skill,
+.mcdmrpg.sheet.skill-config .skills .skills-header {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 95px 1fr auto 20px;
+    align-items: center;
+    padding: 5px;
+}
+
+.mcdmrpg.sheet.skill-config .skills .skill:nth-child(2n) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mcdmrpg.sheet.skill-config .skills .skill .delete-skill:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.mcdmrpg.sheet.skill-config .skills .skill select {
+    color: white;
+}
+.mcdmrpg.sheet.skill-config .skills .skill option {
+    color: black;
+}
+
+.mcdmrpg.sheet.skill-config .save-skills button {
+    color: white;
+}

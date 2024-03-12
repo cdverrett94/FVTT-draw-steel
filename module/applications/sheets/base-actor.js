@@ -91,10 +91,7 @@ export class BaseActorSheet extends ActorSheet {
         // Edit Skills
         const editSkillButton = html.querySelector('.edit-skills');
         editSkillButton.addEventListener('click', (event) => {
-            const context = {
-                actor: this.actor,
-            };
-            new SkillConfig(this.actor).render(true);
+            new SkillConfig({ actor: this.actor }).render(true);
         });
 
         // Edit Ability
