@@ -275,6 +275,18 @@
                         "label": "Description"
                     }
                 }
+            },
+            "class": {
+                "fields": {
+                    "resources": {
+                        "name": {
+                            "label": "Name"
+                        },
+                        "max": {
+                            "label": "Max"
+                        }
+                    }
+                }
             }
         },
         "keywords": {

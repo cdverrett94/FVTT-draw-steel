@@ -1,0 +1,28 @@
+<fieldset>
+    <legend>Class Resources</legend>
+    <div class='class-resource-list'>
+        {{#each source.system.resources as |resource|}}
+            <div class='class-resource'>
+                {{formField
+                    @root.fields.resources.element.fields.name
+                    name=(concat 'system.resources.' @index '.name')
+                    value=resource.name
+                    localize=true
+                    classes='resource-name'
+                }}
+                {{formField
+                    @root.fields.resources.element.fields.max
+                    name=(concat 'system.resources.' @index '.max')
+                    value=resource.max
+                    localize=true
+                    classes='resource-max'
+                }}
+
+                <div class='delete-class-resource' data-resource-index='{{@index}}'>
+                    <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='Delete Resource'></i>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <div><button class='add-class-resource'>Add Class Resource</button></div>
+</fieldset>

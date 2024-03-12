@@ -1,8 +1,8 @@
 <div class='header'>
-    <div class='ability-img'>
+    <div class='item-img {{item.type}}-img'>
         <img src='{{item.img}}' data-tooltip='{{item.name}}' data-edit='img' />
     </div>
-    <div class='ability-name'>
+    <div class='item-name {{item.type}}-name'>
         {{formInput item.schema.fields.name value=item.name}}
     </div>
 </div>

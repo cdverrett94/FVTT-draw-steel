@@ -1,0 +1,30 @@
+<div class='class-details'>
+    <div class='class-description'>
+        <fieldset>
+            <legend>Class Description</legend>
+            <div>{{editor source.system.description target='system.description' editable=true collaborate=true button=true engine='prosemirror'}}</div>
+        </fieldset>
+    </div>
+    <div class='class-right-column'>
+        <div class='class-victory-benefits'>
+            <fieldset>
+                <legend>Victory Benefits</legend>
+                <div>{{{editor
+                        source.system.victoryBenefits
+                        target='system.victoryBenefits'
+                        editable=true
+                        collaborate=true
+                        button=true
+                        engine='prosemirror'
+                    }}}</div>
+            </fieldset>
+        </div>
+
+        <div class='class-resource-gain'>
+            <fieldset>
+                <legend>Resource Gain</legend>
+                <div>{{{editor source.system.resourceGain target='system.resourceGain' editable=true collaborate=true button=true engine='prosemirror'}}}</div>
+            </fieldset>
+        </div>
+    </div>
+</div>
