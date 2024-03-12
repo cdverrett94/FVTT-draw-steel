@@ -1,6 +1,6 @@
-import { abilityTimes, abilityTypes, characteristics, damageTypes, keywords } from '../../constants.js';
+import { BaseItemSheet } from './base-item.js';
 
-export class AbilitySheet extends ItemSheet {
+export class AbilitySheet extends BaseItemSheet {
     constructor(...args) {
         super(...args);
     }
@@ -10,40 +10,12 @@ export class AbilitySheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'ability'],
-            template: `/systems/mcdmrpg/templates/documents/items/ability/ability-sheet.hbs`,
-            tabs: [
-                /*{
-                    navSelector: '.sheet-tabs',
-                    contentSelector: '.sheet-body',
-                    initial: 'skills',
-                },*/
-            ],
-            scrollY: [
-                /*'.equipment-list', '.skills-container'*/
-            ],
+            template: `/systems/mcdmrpg/templates/documents/ability/ability-sheet.hbs`,
             height: 'auto',
+            width: 500,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
-    }
-
-    async getData() {
-        const data = {
-            name: this.item.name,
-            img: this.item.img,
-            ...this.item.system,
-            keywordsList: keywords,
-            abilityTypes: Object.entries(abilityTypes),
-            characteristics,
-            damageTypes,
-            abilityTimes,
-        };
-        return data;
-    }
-
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
     }
 
     _getSubmitData(updateData = {}) {

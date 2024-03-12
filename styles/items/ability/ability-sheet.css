@@ -1,15 +1,23 @@
-.sheet.item.ability form > div,
-.sheet.item.ability .ability-damage > .ability-value fieldset > div {
+.sheet.item.ability form > div.header,
+.sheet.item.ability .ability-properties > div,
+.sheet.item.ability .ability-damage > div {
     display: grid;
     grid-template-columns: 75px 1fr;
     grid-gap: 5px;
-    margin-bottom: 5px;
     align-items: center;
+    margin-bottom: 5px;
 }
-.sheet.item.ability .ability-damage > .ability-value fieldset > div {
-    grid-template-columns: 100px 1fr;
+
+.sheet.item.ability fieldset > div.form-group.ability-keywords {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
 }
-.sheet.item.ability .ability-property {
+
+.sheet.item.ability .ability-damage > div {
+    grid-template-columns: 115px 1fr;
+}
+.sheet.item.ability .ability-property,
+.sheet.item.ability label {
     text-align: right;
 }
 

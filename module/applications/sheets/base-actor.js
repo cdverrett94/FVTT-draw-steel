@@ -1,6 +1,6 @@
 import { abilityTimes } from '../../constants.js';
 import { mcdmConditions } from '../../hooks/init/register-status-effects.js';
-import { SkillConfig } from './skill-config.js';
+import { SkillConfig } from '../skill-config.js';
 
 export class BaseActorSheet extends ActorSheet {
     constructor(...args) {

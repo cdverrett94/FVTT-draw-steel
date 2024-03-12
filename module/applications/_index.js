@@ -1,5 +1,5 @@
-// Config Apps
-export { SkillConfig } from './sheets/skill-config.js';
+// Other Apps
+export { SkillConfig } from './skill-config.js';
 
 // Actor Sheets
 export { BaseActorSheet } from './sheets/base-actor.js';
