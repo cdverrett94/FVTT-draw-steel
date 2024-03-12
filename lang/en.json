@@ -71,17 +71,44 @@
                     "label": "Weapon"
                 }
             },
-            "trigger": {
-                "label": "Trigger"
-            },
-            "time": {
-                "label": "Time"
-            },
-            "cost": {
-                "label": "Cost"
-            },
-            "distance": {
-                "label": "Distance"
+            "fields": {
+                "cost": {
+                    "label": "Cost",
+                    "hint": ""
+                },
+                "damage": {
+                    "label": "Damage",
+                    "hint": ""
+                },
+                "distance": {
+                    "label": "Distance",
+                    "hint": ""
+                },
+                "effect": {
+                    "label": "Effect",
+                    "hint": ""
+                },
+                "keywords": {
+                    "label": "Keywords",
+                    "singular": "Keyword",
+                    "hint": ""
+                },
+                "target": {
+                    "label": "Target",
+                    "hint": ""
+                },
+                "time": {
+                    "label": "Time",
+                    "hint": ""
+                },
+                "trigger": {
+                    "label": "Trigger",
+                    "hint": ""
+                },
+                "type": {
+                    "label": "Type",
+                    "hint": ""
+                }
             }
         },
         "characteristics": {
@@ -160,6 +187,40 @@
             },
             "sonic": {
                 "label": "sonic"
+            }
+        },
+        "damage": {
+            "types": {
+                "untyped": {
+                    "label": "Untyped"
+                },
+                "acid": {
+                    "label": "Acid"
+                },
+                "cold": {
+                    "label": "Cold"
+                },
+                "corruption": {
+                    "label": "Corruption"
+                },
+                "fire": {
+                    "label": "Fire"
+                },
+                "holy": {
+                    "label": "Holy"
+                },
+                "lightning": {
+                    "label": "Lightning"
+                },
+                "poison": {
+                    "label": "Poison"
+                },
+                "psychic": {
+                    "label": "Psychic"
+                },
+                "sonic": {
+                    "label": "Sonic"
+                }
             }
         },
         "dice": {
