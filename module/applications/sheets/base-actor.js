@@ -19,8 +19,6 @@ export class BaseActorSheet extends ActorSheet {
             fields: this.actor.system.schema.fields,
             filters: this.filters,
             abilities: ABILITIES,
-
-            ...this.actor.system,
             conditionsList: mcdmConditions,
         };
 
@@ -72,12 +70,13 @@ export class BaseActorSheet extends ActorSheet {
         // Ability Filters
         html.querySelectorAll('.ability-filter').forEach((element) => {
             element.addEventListener('click', (event) => {
-                const filter = element.dataset.filter;
+                const filter = element.dataset.filter ?? 'type';
                 const selection = element.dataset.filterSelection;
                 const secondaryFilter = filter === 'type' ? 'time' : 'type';
 
                 this.filters[filter] = selection === 'clear' ? null : selection;
                 this.filters[secondaryFilter] = null;
+                console.log(selection, secondaryFilter, this.filters);
 
                 this.render(true);
             });

@@ -6,7 +6,7 @@
 </div>
 
 <div class="skill-list">
-    {{#each skills as |skill|}} 
+    {{#each actor.system.skills as |skill|}} 
         {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
             {{#each skill as |subskill| }} 
                 {{> "systems/mcdmrpg/templates/documents/hero/skill.hbs" 
