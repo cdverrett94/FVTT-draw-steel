@@ -1,4 +1,6 @@
-export class ClassSheet extends ItemSheet {
+import { BaseItemSheet } from './base-item.js';
+
+export class ClassSheet extends BaseItemSheet {
     constructor(...args) {
         super(...args);
     }
@@ -8,38 +10,26 @@ export class ClassSheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'class'],
-            template: `/systems/mcdmrpg/templates/documents/items/class/class-sheet.hbs`,
-            tabs: [
-                /*{
-                    navSelector: '.sheet-tabs',
-                    contentSelector: '.sheet-body',
-                    initial: 'skills',
-                },*/
-            ],
-            scrollY: [
-                /*'.equipment-list', '.skills-container'*/
-            ],
+            template: `/systems/mcdmrpg/templates/documents/class/class-sheet.hbs`,
             width: 900,
-            height: 645,
+            height: 'auto',
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
     }
 
     async getData() {
-        const data = {
-            name: this.item.name,
-            img: this.item.img,
-            ...this.item.system,
-        };
+        const data = await super.getData();
+
         // Enrich Content
         let enrichContext = {
             async: true,
         };
 
-        data.enrichedDescription = (await TextEditor.enrichHTML(data.description, enrichContext)) ?? '';
-        data.enrichedVictoryBenefits = (await TextEditor.enrichHTML(data.victoryBenefits, enrichContext)) ?? '';
-        data.enrichedResourceGain = (await TextEditor.enrichHTML(data.resourceGain, enrichContext)) ?? '';
+        data.source.system.description = (await TextEditor.enrichHTML(data.source.system.description, enrichContext)) ?? '';
+        data.source.system.victoryBenefits = (await TextEditor.enrichHTML(data.source.system.victoryBenefits, enrichContext)) ?? '';
+        data.source.system.resourceGain = (await TextEditor.enrichHTML(data.source.system.resourceGain, enrichContext)) ?? '';
+
         return data;
     }
 
@@ -65,11 +55,5 @@ export class ClassSheet extends ItemSheet {
                 if (typeof index === 'number') this.deleteResource(index);
             });
         });
-    }
-
-    _getSubmitData(updateData = {}) {
-        let submitData = super._getSubmitData(updateData);
-
-        return submitData;
     }
 }
