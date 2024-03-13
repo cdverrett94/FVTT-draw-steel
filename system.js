@@ -6,6 +6,7 @@ import { registerDocumentSheets } from './module/hooks/init/register-document-sh
 import { registerRolls } from './module/hooks/init/register-rolls.js';
 import { registerStatusEffects } from './module/hooks/init/register-status-effects.js';
 import { registerTemplates } from './module/hooks/init/register-templates.js';
+import { setCSSVariables } from './module/hooks/init/setCSSVariables.js';
 import { registerDamageTargetListners } from './module/hooks/renderChatMessage/add-damage-target-listeners.js';
 
 Hooks.on('init', () => {
@@ -34,10 +35,12 @@ Hooks.on('init', () => {
 
     // Register System Conditions
     registerStatusEffects();
+
+    // Set CSS Variables
+    setCSSVariables();
 });
 
 Hooks.on('ready', async () => {
-    // game.actors.contents.find((actor) => actor.type === 'monster').sheet.render(true);
     // game.actors.contents.find((actor) => actor.type === 'hero').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
 });
