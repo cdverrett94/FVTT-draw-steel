@@ -5,18 +5,6 @@ import { ResistanceRollDialog } from './rolls/resistance/roll-dialog/roll-dialog
 import { TestRollDialog } from './rolls/test/roll-dialog/roll-dialog.js';
 
 export class BaseActor extends Actor {
-    prepareData() {
-        super.prepareData();
-    }
-
-    prepareBaseData() {
-        super.prepareBaseData();
-    }
-
-    prepareDerivedData() {
-        super.prepareDerivedData();
-    }
-
     get allowedAbilityTypes() {
         const allowedAbilityTypes = {};
         for (const [key, value] of Object.entries(ABILITIES.TYPES)) {
