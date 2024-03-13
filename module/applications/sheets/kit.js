@@ -1,4 +1,6 @@
-export class KitSheet extends ItemSheet {
+import { BaseItemSheet } from './base-item.js';
+
+export class KitSheet extends BaseItemSheet {
     constructor(...args) {
         super(...args);
     }
@@ -8,32 +10,10 @@ export class KitSheet extends ItemSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'item', 'kit'],
-            template: `/systems/mcdmrpg/templates/documents/items/kit/kit-sheet.hbs`,
-            tabs: [
-                /*{
-                    navSelector: '.sheet-tabs',
-                    contentSelector: '.sheet-body',
-                    initial: 'skills',
-                },*/
-            ],
-            scrollY: ['.tabbed-content'],
+            template: `/systems/mcdmrpg/templates/documents/kit/kit-sheet.hbs`,
             width: 400,
         };
 
         return foundry.utils.mergeObject(defaults, overrides);
-    }
-
-    async getData() {
-        const data = {
-            name: this.item.name,
-            img: this.item.img,
-            ...this.item.system,
-        };
-        return data;
-    }
-
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
     }
 }
