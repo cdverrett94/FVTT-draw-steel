@@ -54,26 +54,10 @@ export class HeroSheet extends BaseActorSheet {
             });
         });
 
-        // Add Crafting & Knowledge Skills
-        html.querySelectorAll('.add-skill').forEach((element) => {
+        // Open Actor Ancestry, Class, Kit Sheets
+        html.querySelectorAll('.actor-ack > div').forEach((element) => {
             element.addEventListener('click', (event) => {
-                let skill = element.dataset.skill;
-                this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`system.skills.${skill}.label`) + ' Skill' });
-            });
-        });
-
-        // Delete Crafting & Knowledge Skills
-        html.querySelectorAll('.delete-skill > i').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let skill = element.dataset.skill;
-                let subskill = element.dataset.subskill;
-                this.actor.deleteSkill({ skill, subskill });
-            });
-        });
-
-        html.querySelectorAll('.kit, .class, .ancestry').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                this.actor.system[element.dataset.type].sheet.render(true);
+                this.actor[element.dataset.type].sheet.render(true);
             });
         });
 

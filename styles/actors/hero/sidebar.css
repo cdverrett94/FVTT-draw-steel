@@ -53,3 +53,7 @@
 .sheet.actor.hero .sidebar .size-values > div .label {
     text-align: right;
 }
+
+.sheet.actor.hero .sidebar .actor-ack > div {
+    cursor: pointer;
+}
