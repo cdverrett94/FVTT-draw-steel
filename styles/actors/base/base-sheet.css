@@ -1,14 +1,14 @@
-.mcdmrpg.sheet.actor div.actor-abilities {
-    margin-top: 5px;
-}
-
-.mcdmrpg.sheet.actor div.actor-abilities .mcdmrpg-header {
+.mcdmrpg.sheet.actor .mcdmrpg-header:has(.right-button) {
     position: relative;
 }
 
-.mcdmrpg.sheet.actor div.actor-abilities .mcdmrpg-header .add-ability {
+.mcdmrpg.sheet.actor .mcdmrpg-header span.right-button {
     position: absolute;
     right: 20px;
+}
+
+.mcdmrpg.sheet.actor div.actor-abilities {
+    margin-top: 5px;
 }
 
 .mcdmrpg.sheet.actor div.actor-abilities .mcdmrpg-header .add-ability:hover {
