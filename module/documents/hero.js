@@ -3,33 +3,18 @@ import { BaseActor } from './base-actor.js';
 export class HeroActor extends BaseActor {
     prepareBaseData() {
         super.prepareBaseData();
+    }
 
-        this.system.ancestry = this.items.find((item) => item.type === 'ancestry');
-        this.system.class = this.items.find((item) => item.type === 'class');
-        this.system.kit = this.items.find((item) => item.type === 'kit');
+    get ancestry() {
+        return this.items.find((item) => item.type === 'ancestry');
+    }
 
-        this.system.resources = {};
-        this.system.currentResources.forEach((currentResource) => {
-            let max;
-            let classResource = this.system.class.system.resources.find((resource) => resource.name === currentResource.name);
+    get class() {
+        return this.items.find((item) => item.type === 'class');
+    }
 
-            max = classResource?.max;
-            if (max) {
-                max = Roll.create(max, this.getRollData())._evaluateSync().total;
-            }
-
-            this.system.resources[currentResource.name] = {
-                current: currentResource.current,
-                max,
-            };
-        });
-
-        this.system.reach = Number(this.system.ancestry?.system.reach ?? 1) + Number(this.system.kit?.system.reach ?? 0);
-        this.system.speed = Number(this.system.ancestry?.system.speed ?? 1) + Number(this.system.kit?.system.speed ?? 0);
-        this.system.size.width = this.system.ancestry?.system.size.width ?? 1;
-        this.system.size.length = this.system.ancestry?.system.size.length ?? 1;
-        this.system.size.height = this.system.ancestry?.system.size.height ?? 1;
-        this.system.size.weight = this.system.ancestry?.system.size.weight ?? 1;
+    get kit() {
+        return this.items.find((item) => item.type === 'kit');
     }
 
     _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
@@ -37,7 +22,7 @@ export class HeroActor extends BaseActor {
 
         if (collection === 'items') {
             if (documents.find((document) => document.type === 'class') || documents.find((document) => document.type === 'kit')) {
-                this._updateActorResources(this.system.class);
+                this._updateActorResources(this.class);
             }
         }
     }

@@ -30,8 +30,26 @@
     text-align: center;
 }
 
+.sheet.actor.hero .sidebar .hp .hp-values .other-hp .form-group {
+    display: block;
+}
+
 .sheet.actor.hero .sidebar .resources .resource .resource-max {
     display: grid;
     align-items: center;
     grid-template-rows: auto 1fr;
+}
+
+.sheet.actor.hero .sidebar .actor-ack > div,
+.sheet.actor.hero .sidebar .chance-hit,
+.sheet.actor.hero .sidebar .size-values > div {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-gap: 5px;
+}
+
+.sheet.actor.hero .sidebar .actor-ack > div .label,
+.sheet.actor.hero .sidebar .chance-hit .label,
+.sheet.actor.hero .sidebar .size-values > div .label {
+    text-align: right;
 }

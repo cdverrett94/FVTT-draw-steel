@@ -1,23 +1,39 @@
 <div class="portrait"><img src="{{actor.img}}" data-tooltip="{{actor.name}}" data-edit="img" /></div>
 
-<div class="ancestry" data-type="ancestry">Ancestry: {{ancestry.name}}</div>
-<div class="kit" data-type="kit">Kit: {{kit.name}}</div>
-<div class="class" data-type="class">Class: {{class.name}}</div>
-<div class="change-hit">Chance Hit: {{{chanceHit}}}</div>
+<div class="actor-ack">
+    <div class="ancestry" data-type="ancestry">
+        <div class="label">{{localize 'system.items.ancestry.label'}}</div>
+        <div class="value">{{actor.ancestry.name}}</div>
+    </div>
+    <div class="kit" data-type="kit">
+        <div class="label">{{localize 'system.items.kit.label'}}</div>
+        <div class="value">{{actor.kit.name}}</div>
+    </div>
+    <div class="class" data-type="class">
+        <div class="label">{{localize 'system.items.class.label'}}</div>
+        <div class="value">{{actor.class.name}}</div>
+    </div>
+</div>
+
+<div class="chance-hit">
+    <div class="label">{{localize 'system.sheets.actor.chanceHit'}}</div>
+    <div class="value">{{{chanceHit}}}</div>
+</div>
 
 <div class="hp">
-    <div class="mcdmrpg-header">Health</div>
+    <div class="mcdmrpg-header">{{localize 'system.sheets.actor.health.label'}}</div>
     <div class="hp-values">
         <div class="current">
-            <input type="number" name="system.hp.current" value="{{hp.current}}" />
+            {{formInput fields.hp.fields.current value=actor.system.hp.current}}
         </div>
         <div class="other-hp">
             <div class="max">
-                <div>Max</div>
-                <div><input type="number" name="system.hp.max" value="{{hp.max}}" /></div>
+                <div>{{localize fields.hp.fields.max.label}} </div>
+                <div>{{formInput fields.hp.fields.max value=actor.system.hp.max}}</div>
+                
             </div>
             <div class="bloodied">
-                <div>Bloodied</div>
+                <div>{{localize 'system.conditions.bloodied'}}</div>
                 <div>{{hp.bloodied}}</div>
             </div>
         </div>
@@ -25,38 +41,55 @@
 </div>
 
 <div class="size">
-    <div class="mcdmrpg-header">Size</div>
+    <div class="mcdmrpg-header">{{localize 'system.sheets.actor.size.label'}}</div>
     <div class="size-values">
-        <div class="width">Size: {{size.width}}</div>
-        <div class="weight">Weight: {{size.weight}}</div>
-        <div class="speed">Speed: {{speed}}</div>
-        <div class="reach">Reach: {{reach}}</div>
-        <div class="grapple-tn">GP/KB TN: {{grappleTN}}</div>
+        <div class="size">
+            <div class="label">{{localize 'system.sheets.actor.size.label'}}</div>
+            <div class="value">{{actor.system.size.width}} x {{actor.system.size.length}} x {{actor.system.size.height}}</div>
+        </div>
+        <div class="weight">
+            <div class="label">{{localize 'system.sheets.actor.size.weight'}}</div>
+            <div class="value">{{actor.system.size.weight}}</div></div>
+        <div class="speed">
+            <div class="label">{{localize 'system.sheets.actor.speed'}}</div>
+            <div class="value">{{actor.system.speed}}</div>
+        </div>
+        <div class="reach">
+            <div class="label">{{localize 'system.sheets.actor.reach'}}</div>
+            <div class="value">{{actor.system.reach}}</div>
+        </div>
+        <div class="grapple-tn">
+            <div class="label">{{localize 'system.sheets.actor.grappleTn'}}</div>
+            <div class="value">{{actor.system.grappleTN}}</div>
+        </div>
     </div>
 </div>
 
 <div class="victories">
     <div class="mcdmrpg-header">
-        Victories
-        <span class="resources-info" data-tooltip="{{class.system.victoryBenefits}}" data-tooltip-direction="UP"><i class="fa-solid fa-question"></i></span>
+        {{localize fields.victories.label}}
+        <span class="resources-info right-button" data-tooltip="{{actor.class.system.victoryBenefits}}" data-tooltip-direction="UP">
+            <i class="fa-solid fa-question"></i>
+        </span>
     </div>
-    <input type="number" name="system.victories" value="{{victories}}" />
+    {{formInput fields.victories value=actor.system.victories}}
 </div>
 
 <div class="recoveries">
-    <div class="mcdmrpg-header">Recoveries</div>
+    {{log fields.recoveries.label}}
+    <div class="mcdmrpg-header">{{localize fields.recoveries.label}}</div>
     <div class="recoveries-values">
         <div class="current">
             <input type="number" name="system.recoveries.current" value="{{recoveries.current}}" />
         </div>
         <div class="other-recoveries">
             <div class="max">
-                <div>Max</div>
-                <div><input type="number" name="system.recoveries.max" value="{{recoveries.max}}" /></div>
+                <div>{{localize fields.recoveries.fields.max.label}} </div>
+                <div>{{formInput fields.recoveries.fields.max value=actor.system.recoveries.max}}</div>
             </div>
             <div class="healing">
-                <div>Healing Value</div>
-                <div>{{hp.healing}}</div>
+                <div>{{localize 'system.conditions.bloodied'}}</div>
+                <div>{{actor.system.hp.healing}}</div>
             </div>
         </div>
     </div>
@@ -64,18 +97,18 @@
 
 <div class="resources">
     <div class="mcdmrpg-header">
-        Resources
-        <span class="resources-info" data-tooltip="{{class.system.resourceGain}}" data-tooltip-direction="UP"><i class="fa-solid fa-question"></i></span>
+        {{localize fields.currentResources.label}}
+        <span class="resources-info right-button" data-tooltip="{{class.system.resourceGain}}" data-tooltip-direction="UP"><i class="fa-solid fa-question"></i></span>
     </div>
-    {{#each resources as |resource|}}
+    {{#each actor.system.resources as |resource|}}
     <div class="resource{{#if resource.max}} has-max{{/if}}">
         <div class="resource-current">
-            <div class="resource-title"><input style="display: none" name="system.currentResources.{{@index}}.name" value="{{@key}}" />{{@key}}</div>
-            <div class="resource-value"><input type="number" name="system.currentResources.{{@index}}.current" value="{{resource.current}}" /></div>
+            <div class="resource-title"><input style="display: none" name="system.currentResources.{{@index}}.name" value="{{@key}}" />{{resource.name}}</div>
+            <div class="resource-value">{{formInput ../fields.currentResources.element.fields.current value=resource.current}}</div>
         </div>
         {{#if resource.max}}
         <div class="resource-max">
-            <div class="resource-title">Max</div>
+            <div class="resource-title">{{localize 'system.items.class.fields.resources.max.label'}}</div>
             <div class="resource-value">{{resource.max}}</div>
         </div>
         {{/if}}

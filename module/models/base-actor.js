@@ -83,40 +83,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     label: 'system.sheets.actor.health.max',
                 }),
             }),
-            size: new fields.SchemaField({
-                width: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.width',
-                }),
-                length: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.length',
-                }),
-                height: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.height',
-                }),
-                weight: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.weight',
-                }),
-            }),
             level: new fields.NumberField({
                 required: true,
                 initial: 1,
@@ -131,5 +97,9 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 label: 'system.sheets.actor.speed',
             }),
         };
+    }
+
+    prepareBaseData() {
+        this.grappleTNS = 7 + this.characteristics.might;
     }
 }
