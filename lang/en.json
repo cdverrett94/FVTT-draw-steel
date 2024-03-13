@@ -1,117 +1,7 @@
 {
     "system": {
-        "abilities": {
-            "label": {
-                "singular": "Ability",
-                "plural": "Abilities"
-            },
-            "times": {
-                "label": "Time",
-                "action": {
-                    "label": "Action"
-                },
-                "maneuver": {
-                    "label": "Maneuver"
-                },
-                "free-maneuver": {
-                    "label": "Free Maneuver"
-                },
-                "triggered": {
-                    "label": "Triggered"
-                },
-                "free-triggered": {
-                    "label": "Free Triggered"
-                }
-            },
-            "types": {
-                "label": "Type",
-                "action": {
-                    "label": "Action"
-                },
-                "basic": {
-                    "label": "Basic Attack"
-                },
-                "heroic": {
-                    "label": "Heroic Abilitiy"
-                },
-                "maneuver": {
-                    "label": "Manuever"
-                },
-                "passive": {
-                    "label": "Passive"
-                },
-                "signature": {
-                    "label": "Signature Ability"
-                },
-                "triggered": {
-                    "label": "Triggered Action"
-                },
-                "villain": {
-                    "label": "Villain Ability"
-                }
-            },
-            "keywords": {
-                "label": {
-                    "singular": "Keyword",
-                    "plural": "Keywords"
-                },
-                "attack": {
-                    "label": "Attack"
-                },
-                "kit": {
-                    "label": "Kit"
-                },
-                "magic": {
-                    "label": "Magic"
-                },
-                "psionic": {
-                    "label": "Psionic"
-                },
-                "weapon": {
-                    "label": "Weapon"
-                }
-            },
-            "fields": {
-                "cost": {
-                    "label": "Cost",
-                    "hint": ""
-                },
-                "damage": {
-                    "label": "Damage",
-                    "hint": ""
-                },
-                "distance": {
-                    "label": "Distance",
-                    "hint": ""
-                },
-                "effect": {
-                    "label": "Effect",
-                    "hint": ""
-                },
-                "keywords": {
-                    "label": "Keywords",
-                    "singular": "Keyword",
-                    "hint": ""
-                },
-                "target": {
-                    "label": "Target",
-                    "hint": ""
-                },
-                "time": {
-                    "label": "Time",
-                    "hint": ""
-                },
-                "trigger": {
-                    "label": "Trigger",
-                    "hint": ""
-                },
-                "type": {
-                    "label": "Type",
-                    "hint": ""
-                }
-            }
-        },
         "characteristics": {
+            "label": "Characteristic",
             "might": {
                 "label": "Might",
                 "abbreviation": "MGT"
@@ -156,38 +46,6 @@
             "unbalanced": "Unbalanced",
             "unconscious": "Unconscious",
             "weakened": "Weakened"
-        },
-        "damageTypes": {
-            "untyped": {
-                "label": "untyped"
-            },
-            "acid": {
-                "label": "acid"
-            },
-            "cold": {
-                "label": "cold"
-            },
-            "corruption": {
-                "label": "corruption"
-            },
-            "fire": {
-                "label": "fire"
-            },
-            "holy": {
-                "label": "holy"
-            },
-            "lightning": {
-                "label": "lightning"
-            },
-            "poison": {
-                "label": "poison"
-            },
-            "psychic": {
-                "label": "psychic"
-            },
-            "sonic": {
-                "label": "sonic"
-            }
         },
         "damage": {
             "types": {
@@ -249,6 +107,121 @@
             }
         },
         "items": {
+            "ability": {
+                "label": {
+                    "singular": "Ability",
+                    "plural": "Abilities"
+                },
+                "times": {
+                    "label": "Time",
+                    "action": {
+                        "label": "Action"
+                    },
+                    "maneuver": {
+                        "label": "Maneuver"
+                    },
+                    "free-maneuver": {
+                        "label": "Free Maneuver"
+                    },
+                    "triggered": {
+                        "label": "Triggered"
+                    },
+                    "free-triggered": {
+                        "label": "Free Triggered"
+                    }
+                },
+                "types": {
+                    "label": "Type",
+                    "action": {
+                        "label": "Action"
+                    },
+                    "basic": {
+                        "label": "Basic Attack"
+                    },
+                    "heroic": {
+                        "label": "Heroic Abilitiy"
+                    },
+                    "maneuver": {
+                        "label": "Manuever"
+                    },
+                    "passive": {
+                        "label": "Passive"
+                    },
+                    "signature": {
+                        "label": "Signature Ability"
+                    },
+                    "triggered": {
+                        "label": "Triggered Action"
+                    },
+                    "villain": {
+                        "label": "Villain Ability"
+                    }
+                },
+                "keywords": {
+                    "label": {
+                        "singular": "Keyword",
+                        "plural": "Keywords"
+                    },
+                    "attack": {
+                        "label": "Attack"
+                    },
+                    "kit": {
+                        "label": "Kit"
+                    },
+                    "magic": {
+                        "label": "Magic"
+                    },
+                    "psionic": {
+                        "label": "Psionic"
+                    },
+                    "weapon": {
+                        "label": "Weapon"
+                    }
+                },
+                "fields": {
+                    "cost": {
+                        "label": "Cost",
+                        "hint": ""
+                    },
+                    "damage": {
+                        "label": "Damage",
+                        "hint": "",
+                        "doesDamage": "Does Damage",
+                        "baseFormula": "Base Formula",
+                        "applyExtraDamage": "Appy Extra Damage",
+                        "type": "Damage Type"
+                    },
+                    "distance": {
+                        "label": "Distance",
+                        "hint": ""
+                    },
+                    "effect": {
+                        "label": "Effect",
+                        "hint": ""
+                    },
+                    "keywords": {
+                        "label": "Keywords",
+                        "singular": "Keyword",
+                        "hint": ""
+                    },
+                    "target": {
+                        "label": "Target",
+                        "hint": ""
+                    },
+                    "time": {
+                        "label": "Time",
+                        "hint": ""
+                    },
+                    "trigger": {
+                        "label": "Trigger",
+                        "hint": ""
+                    },
+                    "type": {
+                        "label": "Type",
+                        "hint": ""
+                    }
+                }
+            },
             "ancestry": {
                 "fields": {
                     "size": {
@@ -279,12 +252,22 @@
             "class": {
                 "fields": {
                     "resources": {
+                        "label": "Resources",
                         "name": {
                             "label": "Name"
                         },
                         "max": {
                             "label": "Max"
                         }
+                    },
+                    "description": {
+                        "label": "Description"
+                    },
+                    "victoryBenefits": {
+                        "label": "Victory Benefits"
+                    },
+                    "resourceGain": {
+                        "label": "Resource Gains"
                     }
                 }
             }
@@ -406,6 +389,12 @@
                     "edit": "Edit Skills",
                     "delete": "Delete Skill",
                     "proficient": "Proficient"
+                }
+            },
+            "items": {
+                "class": {
+                    "addResource": "Add Resource",
+                    "deleteResource": "Delete Resource"
                 }
             }
         },

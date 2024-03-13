@@ -45,40 +45,40 @@ export class AbilityData extends BaseItemData {
                 {
                     doesDamage: new fields.BooleanField({
                         initial: false,
-                        label: 'Does Damage',
+                        label: 'system.items.ability.fields.damage.doesDamage',
                     }),
                     baseFormula: new fields.StringField({
                         initial: '2d6',
-                        label: 'Base Formula',
+                        label: 'system.items.ability.fields.damage.baseFormula',
                     }),
                     characteristic: new fields.StringField({
                         choices: getDataModelChoices(CHARACTERISTICS),
-                        label: 'Characteristic',
+                        label: 'system.characteristics.label',
                     }),
                     applyExtraDamage: new fields.BooleanField({
-                        label: 'Apply Extra Damage',
+                        label: 'system.items.ability.fields.damage.applyExtraDamage',
                     }),
                     banes: new fields.NumberField({
                         initial: 0,
                         min: 0,
                         integer: true,
-                        label: 'Banes',
+                        label: 'system.dice.bane.plural',
                     }),
                     boons: new fields.NumberField({
                         initial: 0,
                         min: 0,
                         integer: true,
-                        label: 'Boons',
+                        label: 'system.dice.boon.plural',
                     }),
                     impacts: new fields.NumberField({
                         initial: 0,
                         integer: true,
                         min: 0,
-                        label: 'Impacts',
+                        label: 'system.dice.impact.plural',
                     }),
                     type: new fields.StringField({
                         choices: getDataModelChoices(DAMAGE.TYPES),
-                        label: 'Damage Type',
+                        label: 'system.items.ability.fields.damage.type',
                     }),
                 },
                 {

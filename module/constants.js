@@ -1,21 +1,3 @@
-const abilityTimes = {
-    'action': { label: 'system.abilities.times.action.label' },
-    'maneuver': { label: 'system.abilities.times.maneuver.label' },
-    'free-maneuver': { label: 'system.abilities.times.free-maneuver.label' },
-    'triggered': { label: 'system.abilities.times.triggered.label' },
-    'free-triggered': { label: 'system.abilities.times.free-triggered.label' },
-};
-const abilityTypes = {
-    passive: { label: 'system.abilities.types.passive.label', appliesTo: ['monster'] },
-    action: { label: 'system.abilities.types.action.label', appliesTo: ['monster', 'hero'] },
-    basic: { label: 'system.abilities.types.basic.label', appliesTo: ['monster', 'hero'] },
-    maneuver: { label: 'system.abilities.types.maneuver.label', appliesTo: ['monster', 'hero'] },
-    triggered: { label: 'system.abilities.types.triggered.label', appliesTo: ['monster', 'hero'] },
-    signature: { label: 'system.abilities.types.signature.label', appliesTo: ['hero'] },
-    heroic: { label: 'system.abilities.types.heroic.label', appliesTo: ['hero'] },
-    villain: { label: 'system.abilities.types.villain.label', appliesTo: ['monster'] },
-};
-
 const characteristics = {
     might: {
         label: 'system.characteristics.might.label',
@@ -54,13 +36,6 @@ const damageTypes = {
     psychic: { label: 'system.damageTypes.psychic.label' },
     sonic: { label: 'system.damageTypes.sonic.label' },
 };
-const keywords = {
-    attack: { label: 'system.keywords.attack.label' },
-    kit: { label: 'system.keywords.kit.label' },
-    magic: { label: 'system.keywords.magic.label' },
-    psionic: { label: 'system.keywords.psionic.label' },
-    weapon: { label: 'system.keywords.weapon.label' },
-};
 const monsterRoles = ['ambusher', 'artillery', 'brute', 'bystander', 'controller', 'leader', 'minion', 'skirmisher', 'soldier', 'solo', 'support'];
 const skills = {
     acrobatics: { label: 'system.skills.acrobatics.label', default: 'agility' },
@@ -82,4 +57,4 @@ const tnDifficulty = {
     hard: 12,
 };
 
-export { abilityTimes, abilityTypes, characteristics, damageTypes, keywords, monsterRoles, skills, tnDifficulty };
+export { characteristics, damageTypes, monsterRoles, skills, tnDifficulty };

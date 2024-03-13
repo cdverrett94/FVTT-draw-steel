@@ -14,9 +14,15 @@ export class ClassData extends BaseItemData {
                     }),
                 })
             ),
-            description: new fields.StringField(),
-            victoryBenefits: new fields.StringField(),
-            resourceGain: new fields.StringField(),
+            description: new fields.StringField({
+                label: 'system.items.class.fields.description.label',
+            }),
+            victoryBenefits: new fields.StringField({
+                label: 'system.items.class.fields.victoryBenefits.label',
+            }),
+            resourceGain: new fields.StringField({
+                label: 'system.items.class.fields.resourceGain.label',
+            }),
         };
     }
 }
