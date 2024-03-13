@@ -223,6 +223,7 @@
                 }
             },
             "ancestry": {
+                "label": "Ancestry",
                 "fields": {
                     "size": {
                         "width": {
@@ -250,6 +251,7 @@
                 }
             },
             "class": {
+                "label": "Class",
                 "fields": {
                     "resources": {
                         "label": "Resources",
@@ -272,6 +274,7 @@
                 }
             },
             "kit": {
+                "label": "Kit",
                 "fields": {
                     "type": "Type",
                     "armor": "Armor",
@@ -382,7 +385,8 @@
                 "abilities": {
                     "filters": {
                         "type": "Ability Type Filter",
-                        "time": "Ability Time Filter"
+                        "time": "Ability Time Filter",
+                        "clear": "Clear Filters"
                     },
                     "edit": "Edit Abilty",
                     "delete": "Delete Ability",
@@ -402,7 +406,14 @@
                 "xp": "XP",
                 "level": "Level",
                 "speed": "Speed",
-                "reach": "Reach"
+                "reach": "Reach",
+                "chanceHit": "Chance Hit",
+                "grappleTn": "GP/KB TN",
+                "notes": "Notes",
+                "conditions": {
+                    "edit": "Edit {condition}",
+                    "toggle": "Toggle {condition}"
+                }
             },
             "items": {
                 "class": {
