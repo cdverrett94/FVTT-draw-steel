@@ -1,1 +1,1 @@
-export class BaseItemData extends foundry.abstract.DataModel {}
+export class BaseItemData extends foundry.abstract.TypeDataModel {}
