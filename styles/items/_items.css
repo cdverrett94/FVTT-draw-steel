@@ -1,0 +1,19 @@
+@import url('./class-sheet.css');
+@import url('./ability-sheet.css');
+
+.sheet.item:is(.ability, .ancestry, .kit, .class) div.header,
+.sheet.item:is(.ability, .ancestry, .kit) fieldset > div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 5px;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sheet.item:is(.ability, .ancestry, .kit, .class) div.header {
+    grid-template-columns: 100px 1fr;
+}
+
+.sheet.item:is(.ability, .ancestry, .kit, .class) fieldset label {
+    text-align: right;
+}

@@ -1,26 +1,30 @@
-.sheet.item.class .class-name {
+.sheet.item.class fieldset {
     margin-bottom: 5px;
-    text-align: center;
 }
-.sheet.item.class .class-resources {
-    margin-bottom: 5px;
+
+.sheet.item.class .class-resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 5px;
 }
 
 .sheet.item.class .class-resource {
     display: grid;
-    grid-template-columns: auto 1fr 20px;
+    grid-template-columns: 1fr 1fr 20px;
     grid-gap: 5px;
-    margin-bottom: 5px;
 }
 
-.sheet.item.class .class-resource .resource-trait {
+.sheet.item.class .class-resource :is(.resource-name, .resource-max) {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 5px;
-    align-items: center;
 }
 
-.sheet.item.class .class-resource-list,
+.sheet.item.class .class-resource .delete-class-resource {
+    justify-self: center;
+    align-self: center;
+}
+
 .sheet.item.class .class-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -28,7 +32,7 @@
 }
 
 .sheet.item.class .class-description .editor {
-    height: 400px;
+    height: 438px;
 }
 .sheet.item.class .class-victory-benefits .editor,
 .sheet.item.class .class-resource-gain .editor {

@@ -1,0 +1,12 @@
+.sheet.item.ability fieldset > div.form-group.ability-keywords {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+}
+
+.sheet.item.ability .ability-damage > div {
+    grid-template-columns: 115px 1fr;
+}
+
+.sheet.item.ability .ability-keywords .ability-value input:nth-child(1) {
+    margin-left: 0px;
+}

@@ -8,10 +8,7 @@
 @import url('actors/monster/monster-sheet.css');
 
 /* Item Imports */
-@import url('items/ancestry/ancestry-sheet.css');
-@import url('items/class/class-sheet.css');
-@import url('items/kit/kit-sheet.css');
-@import url('items/ability/ability-sheet.css');
+@import url('items/_items.css');
 
 @keyframes rotate {
     100% {
