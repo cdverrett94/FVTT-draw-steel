@@ -286,27 +286,6 @@
                 }
             }
         },
-        "keywords": {
-            "label": {
-                "singular": "Keyword",
-                "plural": "Keywords"
-            },
-            "attack": {
-                "label": "Attack"
-            },
-            "kit": {
-                "label": "Kit"
-            },
-            "magic": {
-                "label": "Magic"
-            },
-            "psionic": {
-                "label": "Psionic"
-            },
-            "weapon": {
-                "label": "Weapon"
-            }
-        },
         "monsterRoles": {
             "ambusher": {
                 "label": "Ambusher",
@@ -379,10 +358,26 @@
         },
         "sheets": {
             "actor": {
-                "health": "Health",
-                "size": "Size",
+                "health": {
+                    "label": "Health",
+                    "abbreviation": "HP",
+                    "current": "Current HP",
+                    "max": "Max HP"
+                },
+                "size": {
+                    "label": "Size",
+                    "width": "Width",
+                    "length": "Length",
+                    "height": "Height",
+                    "weight": "Weight"
+                },
                 "victories": "Victories",
-                "recoveries": "Recoveries",
+                "recoveries": {
+                    "label": "Recoveries",
+                    "current": "Current Recoveries",
+                    "max": "Max Recoveries",
+                    "healingValue": "Healing Value"
+                },
                 "resources": "Resources",
                 "abilities": {
                     "filters": {
@@ -403,7 +398,11 @@
                     "edit": "Edit Skills",
                     "delete": "Delete Skill",
                     "proficient": "Proficient"
-                }
+                },
+                "xp": "XP",
+                "level": "Level",
+                "speed": "Speed",
+                "reach": "Reach"
             },
             "items": {
                 "class": {

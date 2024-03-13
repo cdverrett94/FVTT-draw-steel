@@ -72,6 +72,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     initial: 0,
                     integer: true,
                     nullable: false,
+                    label: 'system.sheets.actor.health.current',
                 }),
                 max: new fields.NumberField({
                     required: true,
@@ -79,6 +80,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     min: 0,
                     integer: true,
                     nullable: false,
+                    label: 'system.sheets.actor.health.max',
                 }),
             }),
             size: new fields.SchemaField({
@@ -88,6 +90,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     min: 1,
                     integer: true,
                     nullable: false,
+                    label: 'system.sheets.actor.size.width',
                 }),
                 length: new fields.NumberField({
                     required: true,
@@ -95,6 +98,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     min: 1,
                     integer: true,
                     nullable: false,
+                    label: 'system.sheets.actor.size.length',
                 }),
                 height: new fields.NumberField({
                     required: true,
@@ -102,6 +106,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     min: 1,
                     integer: true,
                     nullable: false,
+                    label: 'system.sheets.actor.size.height',
                 }),
                 weight: new fields.NumberField({
                     required: true,
@@ -109,6 +114,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     min: 1,
                     integer: true,
                     nullable: false,
+                    label: 'system.sheets.actor.size.weight',
                 }),
             }),
             level: new fields.NumberField({
@@ -116,9 +122,14 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 initial: 1,
                 integer: true,
                 max: 10,
+                label: 'system.sheets.actor.level',
             }),
-            speed: new fields.NumberField(),
-            reach: new fields.NumberField(),
+            speed: new fields.NumberField({
+                label: 'system.sheets.actor.speed',
+            }),
+            reach: new fields.NumberField({
+                label: 'system.sheets.actor.speed',
+            }),
         };
     }
 }
