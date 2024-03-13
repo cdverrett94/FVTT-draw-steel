@@ -48,7 +48,7 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.mcdmrpg.sheet.actor div.ability-filters {
+.mcdmrpg.sheet.actor div.ability-filters :is(.ability-type-filters, .ability-time-filters, .clear-filters) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(111px, 1fr));
     text-align: center;

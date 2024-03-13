@@ -1,24 +1,32 @@
-<div class="mcdmrpg-header">Conditions</div>
+<div class='mcdmrpg-header'>Conditions</div>
 <div class='conditions'>
     {{#each conditionsList as |condition|}}
         <div class='condition'>
             <div>{{localize condition.name}}</div>
             <div class='toggle-condition' data-condition-id='{{condition.id}}'>
                 {{#if (or (eq condition.id 'ongoingdamage') (eq condition.id 'taunted') (eq condition.id 'frightened'))}}
-                    <i class="fa-regular fa-pencil" data-tooltip="Edit {{localize condition.name}}"></i>
+                    <i class='fa-regular fa-pencil' data-tooltip='{{localize "system.sheets.actor.conditions.edit" condition=(localize condition.name)}}'></i>
                 {{else}}
-                    {{#if (includes ../actor.effects condition._id)}}
-                        <i class='fa-solid fa-toggle-on' data-tooltip="Toggle {{localize condition.name}}"></i>
+                    {{#if (includes @root.actor.effects condition._id)}}
+                        <i
+                            class='fa-solid fa-toggle-on'
+                            data-tooltip='{{localize "system.sheets.actor.conditions.toggle" condition=(localize condition.name)}}'
+                        ></i>
                     {{else}}
-                        <i class='fa-solid fa-toggle-off' data-tooltip="Toggle {{localize condition.name}}"></i>
+                        <i
+                            class='fa-solid fa-toggle-off'
+                            data-tooltip='{{localize "system.sheets.actor.conditions.toggle" condition=(localize condition.name)}}'
+                        ></i>
                     {{/if}}
                 {{/if}}
             </div>
-            <div class="condition-values">
+            <div class='condition-values'>
                 {{#if (eq condition.id 'ongoingdamage')}}
-                    {{#each ../actor.system.ongoingDamage as |value|}}
+                    {{#each @root.actor.system.ongoingDamage as |value|}}
                         {{#unless (eq value 0)}}
-                            {{@key}} - {{value}}
+                            {{@key}}
+                            -
+                            {{value}}
                         {{/unless}}
                     {{/each}}
                 {{/if}}

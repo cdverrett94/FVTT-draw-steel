@@ -6,8 +6,6 @@ import { BaseItemData } from './base-item.js';
 
 class KeywordField extends foundry.data.fields.ArrayField {
     toFormGroup(inputConfig = {}, groupConfig = {}, customInput) {
-        console.log(this.fieldPath);
-        console.log(inputConfig, groupConfig, customInput);
         let outerDiv = document.createElement('div');
         outerDiv.classList.add('form-group');
         outerDiv.classList.add('ability-keywords');

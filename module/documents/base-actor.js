@@ -1,4 +1,4 @@
-import { characteristics, damageTypes } from '../constants.js';
+import { characteristics } from '../constants.js';
 import { ABILITIES } from '../constants/abilities.js';
 import { DamageRollDialog } from './rolls/damage/roll-dialog/roll-dialog.js';
 import { ResistanceRollDialog } from './rolls/resistance/roll-dialog/roll-dialog.js';
@@ -11,37 +11,6 @@ export class BaseActor extends Actor {
 
     prepareBaseData() {
         super.prepareBaseData();
-
-        for (const [characteristic, score] of Object.entries(this.system.characteristics)) {
-            this.system[characteristic] = score;
-        }
-
-        this.system.hp.healing = Math.floor(this.system.hp.max / 3);
-        this.system.hp.bloodied = Math.floor(this.system.hp.max / 2);
-
-        this.system.highest = Math.max(...Object.values(this.system.characteristics));
-        this.system.chanceHit = '@Damage[1d4|characteristic=highest|abilityName=mcdmrpg.rolls.damage.chancehit]';
-
-        this.system.grappleTN = 7 + this.system.might;
-
-        this.system.boons = {
-            attacker: 0,
-            attacked: 0,
-            tests: 0,
-        };
-        this.system.banes = {
-            attacker: 0,
-            attacked: 0,
-            tests: 0,
-        };
-        this.system.ongoingDamage = {};
-        for (const damageType in damageTypes) {
-            this.system.ongoingDamage[damageType] = 0;
-        }
-
-        this.system.taunted = [];
-
-        this.system.frightened = [];
     }
 
     prepareDerivedData() {
@@ -79,7 +48,7 @@ export class BaseActor extends Actor {
         return await this.update({ [`system.skills.${skill}`]: skillArray });
     }
 
-    // Delete new craft/knowledge subskill
+    // Delete craft/knowledge subskill
     async deleteSkill({ skill, subskill } = {}) {
         if (!skill || !subskill) return ui.notifications.error('Must provide a skill and subskill');
         if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');

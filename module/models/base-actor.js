@@ -1,4 +1,5 @@
 import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { DAMAGE } from '../constants/damage.js';
 import { SKILLS } from '../constants/skills.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
@@ -100,6 +101,34 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
     }
 
     prepareBaseData() {
-        this.grappleTNS = 7 + this.characteristics.might;
+        for (const [characteristic, score] of Object.entries(this.characteristics)) {
+            this[characteristic] = score;
+        }
+
+        this.hp.healing = Math.floor(this.hp.max / 3);
+        this.hp.bloodied = Math.floor(this.hp.max / 2);
+
+        this.highest = Math.max(...Object.values(this.characteristics));
+        this.chanceHit = '@Damage[1d4|characteristic=highest|abilityName=system.rolls.damage.chancehit]';
+
+        this.grappleTN = 7 + this.characteristics.might;
+
+        // Setting values for Active Effects to target
+        this.boons = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
+        this.banes = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
+        this.ongoingDamage = {};
+        for (const damageType in DAMAGE.TYPES) {
+            this.ongoingDamage[damageType] = 0;
+        }
+        this.taunted = [];
+        this.frightened = [];
     }
 }

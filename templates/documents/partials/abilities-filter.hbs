@@ -1,25 +1,29 @@
-{{localize 'system.sheets.actor.abilities.filters.type'}}
-<div class="ability-filters ability-type-filters">
-    {{#each actor.allowedAbilityTypes as |abilityType|}}
-        <div class='ability-filter ability-type-filter{{#if (eq @key @root.activeTypeFilter)}} active-filter{{/if}}' 
-        data-filter="type" 
-        data-filter-selection="{{@key}}" 
-        data-ability-type='{{@key}}'>
-            {{localize abilityType.label}}
-        </div>
-    {{/each}}
-    <div class='ability-filter ability-type-filter' data-filter="type" data-filter-selection='clear'>Clear</div>
-</div>
-{{localize 'system.sheets.actor.abilities.filters.time'}}
-<div class="ability-filters ability-time-filters">
-    {{#each abilities.TIMES as |abilityTime|}}
-        <div 
-        class='ability-filter ability-time-filter{{#if (eq @key @root.activeTimeFilter)}} active-filter{{/if}}' 
-        data-filter="time" 
-        data-filter-selection="{{@key}}" 
-        data-ability-time='{{@key}}'>
-            {{localize abilityTime.label}}
-        </div>
-    {{/each}}
-    <div class='ability-filter ability-time-filter' data-filter="time" data-filter-selection='clear'>Clear</div>
+<div class='ability-filters'>
+    <div>{{localize 'system.sheets.actor.abilities.filters.type'}}</div>
+    <div class='ability-type-filters'>
+        {{#each actor.allowedAbilityTypes as |abilityType|}}
+            <div
+                class='ability-filter ability-type-filter{{ifThen (eq @key @root.filters.type) " active-filter" ""}}'
+                data-filter='type'
+                data-filter-selection='{{@key}}'
+                data-ability-type='{{@key}}'
+            >
+                {{localize abilityType.label}}
+            </div>
+        {{/each}}
+    </div>
+    <div>{{localize 'system.sheets.actor.abilities.filters.time'}}</div>
+    <div class='ability-time-filters'>
+        {{#each abilities.TIMES as |abilityTime|}}
+            <div
+                class='ability-filter ability-time-filter{{ifThen (eq @key @root.filters.time) " active-filter" ""}}'
+                data-filter='time'
+                data-filter-selection='{{@key}}'
+                data-ability-time='{{@key}}'
+            >
+                {{localize abilityTime.label}}
+            </div>
+        {{/each}}
+    </div>
+    <div class='ability-filter clear-filters' data-filter-selection='clear'>{{localize 'system.sheets.actor.abilities.filters.clear'}}</div>
 </div>

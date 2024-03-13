@@ -1,24 +1,11 @@
-{{#if special}}
-    <div class='skill' data-skill='{{prefix}}' data-subskill='{{skill}}'>
-        <div class='skill-name'>
-            {{localize (concat 'system.skills.' prefix '.label')}}
-            ({{skill}})
-        </div>
-        <div class='skill-proficiency'>
-            {{#if skillData.proficient}}+1d4 {{/if}}
-            <i class='fa-light fa-dice-d6'></i>
-            <i class='fa-regular fa-dice-d6'></i>
-        </div>
+<div class='skill' data-skill='{{skill}}' data-subskill='{{subskill}}'>
+    <div class='skill-name'>
+        {{localize (concat 'system.skills.' skill '.label')}}
+        {{#if subskill}}({{subskill}}){{/if}}
     </div>
-{{else}}
-    <div class='skill' data-skill='{{skill}}'>
-        <div class='skill-name'>
-            {{localize (concat 'system.skills.' skill '.label')}}
-        </div>
-        <div class='skill-proficiency'>
-            {{#if skillData.proficient}}+1d4 {{/if}}
-            <i class='fa-light fa-dice-d6'></i>
-            <i class='fa-regular fa-dice-d6'></i>
-        </div>
+    <div class='skill-proficiency'>
+        {{#if skillData.proficient}}+1d4 {{/if}}
+        <i class='fa-light fa-dice-d6'></i>
+        <i class='fa-regular fa-dice-d6'></i>
     </div>
-{{/if}}
+</div>
