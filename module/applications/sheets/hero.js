@@ -10,7 +10,7 @@ export class HeroSheet extends BaseActorSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'actor', 'hero'],
-            template: `/systems/mcdmrpg/templates/documents/actors/hero/hero-sheet.hbs`,
+            template: `/systems/mcdmrpg/templates/documents/hero/hero-sheet.hbs`,
             tabs: [
                 {
                     navSelector: '.sheet-tabs',
@@ -29,8 +29,6 @@ export class HeroSheet extends BaseActorSheet {
 
     async getData() {
         let data = await super.getData();
-        data.activeEffects = this.actor.appliedEffects;
-        data.inactiveEffects = this.actor.effects.filter((effect) => effect.disabled);
 
         return data;
     }
@@ -48,7 +46,7 @@ export class HeroSheet extends BaseActorSheet {
         });
 
         // Roll Skill
-        html.querySelectorAll('.roll-skill').forEach((element) => {
+        html.querySelectorAll('.skill').forEach((element) => {
             element.addEventListener('click', (event) => {
                 let skill = element.dataset.skill;
                 let subskill = element.dataset.subskill;

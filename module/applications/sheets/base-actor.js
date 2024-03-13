@@ -1,4 +1,4 @@
-import { abilityTimes } from '../../constants.js';
+import { ABILITIES } from '../../constants/abilities.js';
 import { mcdmConditions } from '../../hooks/init/register-status-effects.js';
 import { SkillConfig } from '../skill-config.js';
 
@@ -6,23 +6,21 @@ export class BaseActorSheet extends ActorSheet {
     constructor(...args) {
         super(...args);
 
-        this.activeTypeFilter = null;
-        this.activeTimeFilter = null;
-    }
-
-    static get defaultOptions() {
-        return super.defaultOptions;
+        this.filters = {
+            time: null,
+            type: null,
+        };
     }
 
     async getData() {
         const data = {
-            name: this.actor.name,
-            img: this.actor.img,
             actor: this.actor,
+            source: this.actor.toObject(),
+            fields: this.actor.system.schema.fields,
+            filters: this.filters,
+            abilities: ABILITIES,
+
             ...this.actor.system,
-            activeTimeFilter: this.activeTimeFilter,
-            activeTypeFilter: this.activeTypeFilter,
-            abilityTimes,
             conditionsList: mcdmConditions,
         };
 
@@ -32,7 +30,7 @@ export class BaseActorSheet extends ActorSheet {
             actor: this.actor,
         };
 
-        for (const [group, abilities] of Object.entries(data.abilities)) {
+        for (const [group, abilities] of Object.entries(data.actor.abilities)) {
             for (const [index, ability] of abilities.entries()) {
                 let damageText;
                 if (ability.system.damage.doesDamage) {
@@ -40,12 +38,15 @@ export class BaseActorSheet extends ActorSheet {
                     damageText = `@Damage[${baseFormula}|characteristic=${characteristic}|boons=${boons}|banes=${banes}|impacts=${impacts}|type=${type}|applyExtraDamage=${applyExtraDamage}]`;
                 }
 
-                data.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(damageText, { ...enrichContext, item: ability });
-                data.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, { ...enrichContext, item: ability });
+                data.actor.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(damageText, { ...enrichContext, item: ability });
+                data.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, {
+                    ...enrichContext,
+                    item: ability,
+                });
 
-                let isCurrentTypeFilter = ability.system.type === this.activeTypeFilter;
-                let isCurrentTimeFilter = ability.system.time === this.activeTimeFilter;
-                let noFilters = !this.activeTypeFilter && !this.activeTimeFilter;
+                let isCurrentTypeFilter = ability.system.type === this.filters.type;
+                let isCurrentTimeFilter = ability.system.time === this.filters.time;
+                let noFilters = !this.filters.type && !this.filters.time;
                 if (isCurrentTypeFilter || isCurrentTimeFilter || noFilters) ability.show = true;
                 else ability.show = false;
             }
@@ -68,22 +69,16 @@ export class BaseActorSheet extends ActorSheet {
             this.render(true);
         });
 
-        // Ability Type Filter
-        html.querySelectorAll('.ability-type-filter').forEach((element) => {
+        // Ability Filters
+        html.querySelectorAll('.ability-filter').forEach((element) => {
             element.addEventListener('click', (event) => {
-                let abilityType = element.dataset.abilityType;
-                this.activeTypeFilter = abilityType === 'clear' ? null : abilityType;
-                this.activeTimeFilter = null;
-                this.render(true);
-            });
-        });
+                const filter = element.dataset.filter;
+                const selection = element.dataset.filterSelection;
+                const secondaryFilter = filter === 'type' ? 'time' : 'type';
 
-        // Ability Time Filter
-        html.querySelectorAll('.ability-time-filter').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let abilityTime = element.dataset.abilityTime;
-                this.activeTimeFilter = abilityTime === 'clear' ? null : abilityTime;
-                this.activeTypeFilter = null;
+                this.filters[filter] = selection === 'clear' ? null : selection;
+                this.filters[secondaryFilter] = null;
+
                 this.render(true);
             });
         });

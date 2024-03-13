@@ -1,0 +1,11 @@
+<div class='character-info'>
+    {{formInput actor.schema.fields.name value=actor.name}}
+    {{formField fields.level value=source.system.level}}
+    {{formField fields.xp value=source.system.xp}}
+</div>
+
+<div class='characteristics'>
+    {{#each fields.characteristics as |characteristic|}}
+        {{formField characteristic value=(lookup @root.actor.system.characteristics characteristic.name) localize=true}}
+    {{/each}}
+</div>

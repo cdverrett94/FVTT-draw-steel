@@ -1,59 +1,71 @@
-import { characteristics, skills } from '../constants.js';
+import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { SKILLS } from '../constants/skills.js';
 
-export class BaseActorData extends foundry.abstract.DataModel {
+export class BaseActorData extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
+        const schema = {};
+
+        // Characteristics
+        const characteristics = {};
+        for (const characteristic in CHARACTERISTICS) {
+            characteristics[characteristic] = new fields.NumberField({
+                required: true,
+                initial: 0,
+                min: -5,
+                max: 10,
+                integer: true,
+                nullable: false,
+                label: CHARACTERISTICS[characteristic].label,
+            });
+        }
+        schema.characteristics = new fields.SchemaField(characteristics);
+
+        // Skills
+        const skills = {};
+        for (const skill in SKILLS) {
+            if (['craft', 'knowledge'].includes(skill)) {
+                skills[skill] = new fields.ArrayField(
+                    new fields.SchemaField(
+                        {
+                            subskill: new fields.StringField({
+                                required: true,
+                                nullable: false,
+                            }),
+                            proficient: new fields.BooleanField({
+                                initial: false,
+                            }),
+                            characteristic: new fields.StringField({
+                                initial: SKILLS[skill].default,
+                                choices: Object.keys(characteristics),
+                            }),
+                        },
+                        {
+                            label: SKILLS[skill].label,
+                        }
+                    )
+                );
+            } else {
+                skills[skill] = new fields.SchemaField(
+                    {
+                        proficient: new fields.BooleanField({
+                            initial: false,
+                        }),
+                        characteristic: new fields.StringField({
+                            initial: SKILLS[skill].default,
+                            choices: Object.keys(characteristics),
+                        }),
+                    },
+                    {
+                        label: SKILLS[skill].label,
+                    }
+                );
+            }
+        }
+        schema.skills = new fields.SchemaField(skills);
+
         return {
-            characteristics: new fields.SchemaField({
-                might: new fields.NumberField({
-                    required: true,
-                    initial: 0,
-                    min: -5,
-                    max: 10,
-                    integer: true,
-                    nullable: false,
-                }),
-                agility: new fields.NumberField({
-                    required: true,
-                    initial: 0,
-                    min: -5,
-                    max: 10,
-                    integer: true,
-                    nullable: false,
-                }),
-                endurance: new fields.NumberField({
-                    required: true,
-                    initial: 0,
-                    min: -5,
-                    max: 10,
-                    integer: true,
-                    nullable: false,
-                }),
-                reason: new fields.NumberField({
-                    required: true,
-                    initial: 0,
-                    min: -5,
-                    max: 10,
-                    integer: true,
-                    nullable: false,
-                }),
-                intuition: new fields.NumberField({
-                    required: true,
-                    initial: 0,
-                    min: -5,
-                    max: 10,
-                    integer: true,
-                    nullable: false,
-                }),
-                presence: new fields.NumberField({
-                    required: true,
-                    initial: 0,
-                    min: -5,
-                    max: 10,
-                    integer: true,
-                    nullable: false,
-                }),
-            }),
+            ...schema,
             hp: new fields.SchemaField({
                 current: new fields.NumberField({
                     required: true,
@@ -107,128 +119,6 @@ export class BaseActorData extends foundry.abstract.DataModel {
             }),
             speed: new fields.NumberField(),
             reach: new fields.NumberField(),
-            skills: new fields.SchemaField({
-                acrobatics: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.acrobatics.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                athletics: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.athletics.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                charm: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.charm.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                craft: new fields.ArrayField(
-                    new fields.SchemaField({
-                        subskill: new fields.StringField({
-                            required: true,
-                            nullable: false,
-                        }),
-                        proficient: new fields.BooleanField({
-                            initial: false,
-                        }),
-                        characteristic: new fields.StringField({
-                            initial: skills.craft.default,
-                            choices: Object.keys(characteristics),
-                        }),
-                    })
-                ),
-                deceive: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.deceive.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                empathy: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.empathy.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                intimidate: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.intimidate.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                knowledge: new fields.ArrayField(
-                    new fields.SchemaField({
-                        subskill: new fields.StringField({
-                            required: true,
-                            nullable: false,
-                        }),
-                        proficient: new fields.BooleanField({
-                            initial: false,
-                        }),
-                        characteristic: new fields.StringField({
-                            initial: skills.knowledge.default,
-                            choices: Object.keys(characteristics),
-                        }),
-                    })
-                ),
-                notice: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.notice.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                skulduggery: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.skulduggery.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                stealth: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.stealth.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-                vigor: new fields.SchemaField({
-                    proficient: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    characteristic: new fields.StringField({
-                        initial: skills.vigor.default,
-                        choices: Object.keys(characteristics),
-                    }),
-                }),
-            }),
         };
     }
 }

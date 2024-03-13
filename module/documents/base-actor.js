@@ -1,4 +1,5 @@
-import { abilityTypes, characteristics, damageTypes } from '../constants.js';
+import { characteristics, damageTypes } from '../constants.js';
+import { ABILITIES } from '../constants/abilities.js';
 import { DamageRollDialog } from './rolls/damage/roll-dialog/roll-dialog.js';
 import { ResistanceRollDialog } from './rolls/resistance/roll-dialog/roll-dialog.js';
 import { TestRollDialog } from './rolls/test/roll-dialog/roll-dialog.js';
@@ -15,17 +16,6 @@ export class BaseActor extends Actor {
             this.system[characteristic] = score;
         }
 
-        this.system.acceptableAbilityTypes = {};
-        for (const [key, value] of Object.entries(abilityTypes)) {
-            if (value.appliesTo.includes(this.type)) this.system.acceptableAbilityTypes[key] = value;
-        }
-
-        let abilities = this.items.filter((item) => item.type === 'ability');
-        this.system.abilities = {};
-        for (const abilityType in this.system.acceptableAbilityTypes) {
-            this.system.abilities[abilityType] = abilities.filter((ability) => ability.system.type === abilityType);
-        }
-
         this.system.hp.healing = Math.floor(this.system.hp.max / 3);
         this.system.hp.bloodied = Math.floor(this.system.hp.max / 2);
 
@@ -33,17 +23,6 @@ export class BaseActor extends Actor {
         this.system.chanceHit = '@Damage[1d4|characteristic=highest|abilityName=mcdmrpg.rolls.damage.chancehit]';
 
         this.system.grappleTN = 7 + this.system.might;
-
-        if (this.system.hp.current <= this.system.hp.bloodied && !this.items.find((condition) => condition.name === 'Bloodied')) {
-            // TODO push bloodied condition
-        }
-        if (this.system.hp.current <= 0 && this.system.hp.current > -this.system.hp.bloodied) {
-            // TODO push unbalanced condition
-        }
-
-        if (this.system.hp.current === -this.system.hp.bloodied) {
-            // TODO mark dead
-        }
 
         this.system.boons = {
             attacker: 0,
@@ -67,6 +46,23 @@ export class BaseActor extends Actor {
 
     prepareDerivedData() {
         super.prepareDerivedData();
+    }
+
+    get allowedAbilityTypes() {
+        const allowedAbilityTypes = {};
+        for (const [key, value] of Object.entries(ABILITIES.TYPES)) {
+            if (value.appliesTo.includes(this.type)) allowedAbilityTypes[key] = value;
+        }
+        return allowedAbilityTypes;
+    }
+
+    get abilities() {
+        let allAbilities = this.items.filter((item) => item.type === 'ability');
+        const abilities = {};
+        for (const type in this.allowedAbilityTypes) {
+            abilities[type] = allAbilities.filter((ability) => ability.system.type === type);
+        }
+        return abilities;
     }
 
     // Add new craft/knowledge subskill
