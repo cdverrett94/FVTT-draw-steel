@@ -4,7 +4,7 @@
 .sheet.item:is(.ability, .ancestry, .kit, .class) div.header,
 .sheet.item:is(.ability, .ancestry, .kit) fieldset > div {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 100px 1fr;
     grid-gap: 5px;
     align-items: center;
     margin-bottom: 5px;

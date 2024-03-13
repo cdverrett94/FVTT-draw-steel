@@ -270,6 +270,20 @@
                         "label": "Resource Gains"
                     }
                 }
+            },
+            "kit": {
+                "fields": {
+                    "type": "Type",
+                    "armor": "Armor",
+                    "weapon": "Weapon",
+                    "area": "Area",
+                    "health": "Health",
+                    "damage": "Damage",
+                    "reach": "Reach",
+                    "speed": "Speed",
+                    "range": "Range",
+                    "resistanceTn": "Resistance TN"
+                }
             }
         },
         "keywords": {
