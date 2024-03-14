@@ -76,7 +76,6 @@ export class BaseActorSheet extends ActorSheet {
 
                 this.filters[filter] = selection === 'clear' ? null : selection;
                 this.filters[secondaryFilter] = null;
-                console.log(selection, secondaryFilter, this.filters);
 
                 this.render(true);
             });

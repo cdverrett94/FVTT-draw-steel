@@ -1,4 +1,4 @@
-import { monsterRoles } from '../../constants.js';
+import { monsterRoles } from '../../constants/monster-roles.js';
 import { BaseActorSheet } from './base-actor.js';
 
 export class MonsterSheet extends BaseActorSheet {
@@ -11,15 +11,7 @@ export class MonsterSheet extends BaseActorSheet {
 
         const overrides = {
             classes: ['mcdmrpg', 'sheet', 'actor', 'monster'],
-            template: `/systems/mcdmrpg/templates/documents/monster-sheet.hbs`,
-            tabs: [
-                /*{
-                    navSelector: '.sheet-tabs',
-                    contentSelector: '.sheet-body',
-                    initial: 'skills',
-                },*/
-            ],
-            // scrollY: ['.skill-list', '.tabbed-content'],
+            template: `/systems/mcdmrpg/templates/documents/monster/monster-sheet.hbs`,
             width: 950,
             height: 900,
             resizable: true,
@@ -43,10 +35,5 @@ export class MonsterSheet extends BaseActorSheet {
         }
         data.proficientSkills = proficientSkills;
         return data;
-    }
-
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
     }
 }

@@ -1,0 +1,102 @@
+<div class='header'>
+    <div class='actor-basics'>
+        <div class='portrait'>
+            <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-edit='img' />
+        </div>
+        <div class='name'>
+            {{formInput actor.schema.fields.name value=actor.name}}
+        </div>
+    </div>
+
+    <div class='role-and-level'>
+        <div class='role'>
+            <select name='system.role' class='{{actor.system.role}}'>
+                {{selectOptions monsterRoles selected=actor.system.role labelAttr='label' localize=true}}
+            </select>
+        </div>
+        <div class='level property'>
+            {{formField fields.level value=actor.system.level localize=true}}
+        </div>
+    </div>
+
+    <div class='health-size-and-chance-hit'>
+        <div class='health'>
+            <div class='current-health'>
+                <div class='label'>Health</div>
+                <div class='value'>
+                    <input type='text' name='system.hp.current' value='{{actor.system.hp.current}}' />
+                </div>
+            </div>
+            <div class='other-health'>
+                <div class='bloodied'>
+                    <div class='bloodied-icon'><i class='fa-solid fa-droplet'></i><i class='fa-solid fa-droplet'></i><i class='fa-solid fa-droplet'></i></div>
+                    <div class='bloodied-value'>{{hp.bloodied}}</div>
+                </div>
+                <div class='max-health'>Max:
+                    <input type='text' name='system.hp.max' value='{{hp.max}}' /></div>
+
+            </div>
+        </div>
+        <div class='size-and-chance-hit'>
+            <div class='size property'>
+                <div class='label'>Size</div>
+                <div class='value'>
+                    <div class='width'><input type='text' name='system.size.width' value='{{size.width}}' /></div>
+                    <div class='separator'>x</div>
+                    <div class='length'><input type='text' name='system.size.length' value='{{size.length}}' /></div>
+                </div>
+            </div>
+            <div class='speed property'>
+                <div class='label'>Speed</div>
+                <div class='value'>
+                    <input type='text' name='system.speed' value='{{speed}}' />
+                </div>
+            </div>
+            <div class='weight property'>
+                <div class='label'>Weight</div>
+                <div class='value'>
+                    <input type='text' name='system.size.weight' value='{{size.weight}}' />
+                </div>
+            </div>
+            <div class='reach property'>
+                <div class='label'>Reach</div>
+                <div class='value'>
+                    <input type='text' name='system.reach' value='{{reach}}' />
+                </div>
+            </div>
+            <div class='bonus-damage property'>
+                <div class='label'>Bonus Damage</div>
+                <div class='value'><input type='text' name='system.bonusDamage' value='{{bonusDamage}}' /></div>
+            </div>
+            <div class='bonus-tn property'>
+                <div class='label'>Bonus TN</div>
+                <div class='value'><input type='text' name='system.bonusTN' value='{{bonusTN}}' /></div>
+            </div>
+            <div class='chance-hit property'>
+                <div class='label'>Chance Hit</div>
+                <div class='value'>{{{chanceHit}}}</div>
+            </div>
+            <div class='grapple-tn property'>
+                <div class='label'>
+                    <div class='grapple-knockback'>
+                        <div class='grapple'>Grapple</div>
+                        <div class='knockback'>Knockback</div>
+                    </div>
+                    <div class='tn-text'>TN</div>
+                </div>
+                <div class='value'>{{grappleTN}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class='characteristics'>
+        {{#each characteristics as |characteristic|}}
+            <div class='characteristic'>
+                <div class='label'>{{localize (concat 'system.characteristics.' @key '.abbreviation')}}</div>
+                <div class='value'>
+                    <input type='text' name='system.characteristics.{{@key}}' value='{{characteristic}}' />
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
