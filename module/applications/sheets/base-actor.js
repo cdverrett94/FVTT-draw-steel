@@ -50,7 +50,7 @@ export class BaseActorSheet extends ActorSheet {
             }
         }
 
-        data.chanceHit = await TextEditor.enrichHTML(data.chanceHit, enrichContext);
+        data.actor.system.chanceHit = await TextEditor.enrichHTML(data.actor.system.chanceHit, enrichContext);
 
         return data;
     }

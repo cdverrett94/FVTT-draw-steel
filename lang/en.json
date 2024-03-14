@@ -420,7 +420,10 @@
                     "toggle": "Toggle {condition}"
                 },
                 "bonusDamage": "Bonus Damage",
-                "bonusTN": "Bonus TN"
+                "bonusTN": "Bonus TN",
+                "grapple": "Grapple",
+                "knockback": "Knockback",
+                "tn": "TN"
             },
             "items": {
                 "class": {

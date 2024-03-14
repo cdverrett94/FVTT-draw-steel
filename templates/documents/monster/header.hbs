@@ -24,12 +24,16 @@
         <div class='health'>
             <div class='current-health'>
                 <div class='label'>{{localize fields.hp.fields.current.label}}</div>
-                <div class='value'> {{formInput fields.hp.fields.current value=actor.system.hp.current}}</div>
+                <div class='value'>{{formInput fields.hp.fields.current value=actor.system.hp.current}}</div>
             </div>
 
             <div class='other-health'>
                 <div class='bloodied'>
-                    <div class='bloodied-icon'><i class='fa-solid fa-droplet'></i><i class='fa-solid fa-droplet'></i><i class='fa-solid fa-droplet'></i></div>
+                    <div class='bloodied-icon'>
+                        <i class='fa-solid fa-droplet'></i>
+                        <i class='fa-solid fa-droplet'></i>
+                        <i class='fa-solid fa-droplet'></i>
+                    </div>
                     <div class='bloodied-value'>{{actor.system.hp.bloodied}}</div>
                 </div>
                 <div class='max-health'>
@@ -77,15 +81,15 @@
 
             <div class='chance-hit property'>
                 <div class='label'>{{localize 'system.sheets.actor.chanceHit'}}</div>
-                <div class='value'>{{!---{{{actor.system.chanceHit}}} --}}</div>
+                <div class='value'>{{{actor.system.chanceHit}}}</div>
             </div>
             <div class='grapple-tn'>
                 <div class='label'>
                     <div class='grapple-knockback'>
-                        <div class='grapple'>Grapple</div>
-                        <div class='knockback'>Knockback</div>
+                        <div class='grapple'>{{localize 'system.sheets.actor.grapple'}}</div>
+                        <div class='knockback'>{{localize 'system.sheets.actor.knockback'}}</div>
                     </div>
-                    <div class='tn-text'>TN</div>
+                    <div class='tn-text'>{{localize 'system.sheets.actor.tn'}}</div>
                 </div>
                 <div class='value'>{{actor.system.grappleTN}}</div>
             </div>

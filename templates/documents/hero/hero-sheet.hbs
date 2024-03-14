@@ -19,20 +19,7 @@
                 <a class="nav-tab" data-tab="effects">{{localize 'system.general.effect.plural'}}</a>
             </div>
             <div class="tab" data-tab="abilities">
-                <div class="hero-abilities actor-abilities">
-                    <div class="mcdmrpg-header">
-                        {{localize 'system.items.ability.label.plural'}}
-                        <span class="add-ability right-button">
-                            {{localize 'system.sheets.actor.abilities.add'}}
-                        </span>
-                    </div>
-                    <div class="abilities-filter">
-                        {{> 'systems/mcdmrpg/templates/documents/partials/abilities-filter.hbs'}}
-                    </div>
-                    <div class="abilities-list">
-                        {{> 'systems/mcdmrpg/templates/documents/partials/abilities.hbs'}}
-                    </div>
-                </div>
+                {{> 'systems/mcdmrpg/templates/documents/partials/abilities-container.hbs'}}
             </div>
             <div class="tab" data-tab="notes"></div>
             <div class="tab effects-tab" data-tab="effects">

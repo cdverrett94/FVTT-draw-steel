@@ -1,0 +1,22 @@
+<div class="monster-skills">
+    <span class="edit-skills"><i class="fa-solid fa-gear"></i> Skills: [+1 Boon to Tests]</span>
+    {{#each proficientSkills as |skill|}}
+        {{#if (or (eq @key 'craft') (eq @key 'knowledge'))}}
+            {{#each skill as |subskill|}}
+                <span class="skill-label">
+                    <a class="roll-link roll-test" data-skill="{{@../key}}" data-subskill="{{subskill.subskill}}" data-actor-id="{{@root.actor.uuid}}"{{#if subskill.proficient}} data-boons="1"{{/if}}>
+                        <i class="fa-solid fa-dice-d6"></i> {{localize (concat 'system.skills.' @../key '.label')}} ({{subskill.subskill}})
+                    </a>
+                    {{#unless @last}},{{/unless}}
+                </span>
+            {{/each}}
+        {{else}}
+        <span class="skill-label">
+            <a class="roll-link roll-test" data-skill="{{@key}}" data-actor-id="{{@root.actor.uuid}}"{{#if skill.proficient}} data-boons="1"{{/if}}>
+                <i class="fa-solid fa-dice-d6"></i> {{localize (concat 'system.skills.' @key '.label')}}
+            </a>
+            {{#unless @last}},{{/unless}}
+        </span>
+        {{/if}}
+    {{/each}}
+</div>
