@@ -7,6 +7,11 @@
     right: 20px;
 }
 
+.sheet.actor .edit-skills {
+    cursor: pointer;
+}
+
+/* Actor Abilities */
 .mcdmrpg.sheet.actor div.actor-abilities {
     margin-top: 5px;
 }
@@ -74,6 +79,10 @@
     background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--default-ability-color) 100%);
 }
 
+.mcdmrpg.sheet.actor div.actor-abilities .ability.passive-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--passive-ability-color) 100%);
+}
+
 .mcdmrpg.sheet.actor div.actor-abilities .ability.action-ability .ability-header {
     background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--action-ability-color) 100%);
 }
@@ -115,4 +124,33 @@
 .mcdmrpg.sheet.actor div.actor-abilities .abilities-list .ability .ability-damage .fa-arrow-pointer {
     rotate: 115deg;
     margin-right: 10px;
+}
+
+/* Actor Characteristics */
+.sheet.actor .characteristics {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px;
+}
+
+.sheet.actor .characteristics .characteristic {
+    display: grid;
+    border: 1px solid black;
+}
+
+.sheet.actor .characteristics .characteristic .label {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+.sheet.actor .characteristics .characteristic input {
+    text-align: center;
+    border: 0px;
+    height: 40px;
+    font-size: 1.5rem;
 }

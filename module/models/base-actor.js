@@ -95,7 +95,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 label: 'system.sheets.actor.speed',
             }),
             reach: new fields.NumberField({
-                label: 'system.sheets.actor.speed',
+                label: 'system.sheets.actor.reach',
             }),
         };
     }

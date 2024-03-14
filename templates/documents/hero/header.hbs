@@ -4,8 +4,4 @@
     {{formField fields.xp value=actor.system.xp localize=true}}
 </div>
 
-<div class='characteristics'>
-    {{#each fields.characteristics as |characteristic|}}
-        {{formField characteristic value=(lookup @root.actor.system.characteristics characteristic.name) localize=true}}
-    {{/each}}
-</div>
+{{> 'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs'}}

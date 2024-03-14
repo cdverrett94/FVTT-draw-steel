@@ -12,9 +12,11 @@ export class MonsterData extends BaseActorData {
             }),
             bonusDamage: new fields.NumberField({
                 initial: 0,
+                label: 'system.sheets.actor.bonusDamage',
             }),
             bonusTN: new fields.NumberField({
                 initial: 0,
+                label: 'system.sheets.actor.bonusTN',
             }),
             size: new fields.SchemaField({
                 width: new fields.NumberField({

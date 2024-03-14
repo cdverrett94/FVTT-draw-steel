@@ -1,4 +1,3 @@
-const monsterRoles1 = ['ambusher', 'artillery', 'brute', 'bystander', 'controller', 'leader', 'minion', 'skirmisher', 'soldier', 'solo', 'support'];
 export const monsterRoles = {
     ambusher: {
         label: 'system.actors.monsters.roles.ambusher.label',

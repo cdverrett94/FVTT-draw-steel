@@ -5,6 +5,7 @@ export function registerTemplates() {
         'systems/mcdmrpg/templates/documents/partials/abilities.hbs',
         'systems/mcdmrpg/templates/documents/partials/abilities-filter.hbs',
         'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+        'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs',
 
         // Heroes
         'systems/mcdmrpg/templates/documents/hero/skills.hbs',

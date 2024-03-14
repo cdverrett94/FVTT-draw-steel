@@ -13,29 +13,3 @@
 }
 
 /* Characteristics */
-
-.sheet.actor.hero .header .characteristics {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr auto;
-    grid-gap: 10px;
-}
-.sheet.actor.hero .header .characteristics > div {
-    display: grid;
-    border: 1px solid black;
-}
-
-.sheet.actor.hero .header .characteristics > div label {
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-}
-
-.sheet.actor.hero .header .characteristics > div input {
-    text-align: center;
-    border: 0px;
-    height: 40px;
-    font-size: 1.5rem;
-}

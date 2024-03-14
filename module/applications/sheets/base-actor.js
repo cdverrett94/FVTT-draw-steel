@@ -1,5 +1,5 @@
 import { ABILITIES } from '../../constants/abilities.js';
-import { mcdmConditions } from '../../hooks/init/register-status-effects.js';
+import { CONDITIONS } from '../../constants/conditions.js';
 import { SkillConfig } from '../skill-config.js';
 
 export class BaseActorSheet extends ActorSheet {
@@ -19,7 +19,7 @@ export class BaseActorSheet extends ActorSheet {
             fields: this.actor.system.schema.fields,
             filters: this.filters,
             abilities: ABILITIES,
-            conditionsList: mcdmConditions,
+            conditions: CONDITIONS,
         };
 
         // Enrich Content

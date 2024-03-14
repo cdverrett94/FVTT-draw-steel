@@ -36,7 +36,7 @@ const damageTypes = {
     psychic: { label: 'system.damageTypes.psychic.label' },
     sonic: { label: 'system.damageTypes.sonic.label' },
 };
-const monsterRoles = ['ambusher', 'artillery', 'brute', 'bystander', 'controller', 'leader', 'minion', 'skirmisher', 'soldier', 'solo', 'support'];
+
 const skills = {
     acrobatics: { label: 'system.skills.acrobatics.label', default: 'agility' },
     athletics: { label: 'system.skills.athletics.label', default: 'might' },

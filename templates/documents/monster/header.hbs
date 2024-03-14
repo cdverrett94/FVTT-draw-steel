@@ -15,68 +15,71 @@
             </select>
         </div>
         <div class='level property'>
-            {{formField fields.level value=actor.system.level localize=true}}
+            <div class='label'>{{localize fields.level.label}}</div>
+            <div class='value'>{{formInput fields.level value=actor.system.level}}</div>
         </div>
     </div>
 
     <div class='health-size-and-chance-hit'>
         <div class='health'>
             <div class='current-health'>
-                <div class='label'>Health</div>
-                <div class='value'>
-                    <input type='text' name='system.hp.current' value='{{actor.system.hp.current}}' />
-                </div>
+                <div class='label'>{{localize fields.hp.fields.current.label}}</div>
+                <div class='value'> {{formInput fields.hp.fields.current value=actor.system.hp.current}}</div>
             </div>
+
             <div class='other-health'>
                 <div class='bloodied'>
                     <div class='bloodied-icon'><i class='fa-solid fa-droplet'></i><i class='fa-solid fa-droplet'></i><i class='fa-solid fa-droplet'></i></div>
-                    <div class='bloodied-value'>{{hp.bloodied}}</div>
+                    <div class='bloodied-value'>{{actor.system.hp.bloodied}}</div>
                 </div>
-                <div class='max-health'>Max:
-                    <input type='text' name='system.hp.max' value='{{hp.max}}' /></div>
+                <div class='max-health'>
+                    <div class='label'>{{localize fields.hp.fields.max.label}}</div>
+                    <div class='value'>{{formInput fields.hp.fields.max value=actor.system.hp.max}}</div>
+                </div>
 
             </div>
         </div>
+
         <div class='size-and-chance-hit'>
             <div class='size property'>
-                <div class='label'>Size</div>
+                <div class='label'>{{localize 'system.sheets.actor.size.label'}}</div>
                 <div class='value'>
-                    <div class='width'><input type='text' name='system.size.width' value='{{size.width}}' /></div>
+                    <div class='width'>{{formInput fields.size.fields.width value=actor.system.size.width}}</div>
                     <div class='separator'>x</div>
-                    <div class='length'><input type='text' name='system.size.length' value='{{size.length}}' /></div>
+                    <div class='length'>{{formInput fields.size.fields.width value=actor.system.size.width}}</div>
                 </div>
             </div>
+
             <div class='speed property'>
-                <div class='label'>Speed</div>
-                <div class='value'>
-                    <input type='text' name='system.speed' value='{{speed}}' />
-                </div>
+                <div class='label'>{{localize fields.speed.label}}</div>
+                <div class='value'>{{formInput fields.speed value=actor.system.speed}}</div>
             </div>
+
             <div class='weight property'>
-                <div class='label'>Weight</div>
-                <div class='value'>
-                    <input type='text' name='system.size.weight' value='{{size.weight}}' />
-                </div>
+                <div class='label'>{{localize fields.size.fields.weight.label}}</div>
+                <div class='value'>{{formInput fields.size.fields.weight value=actor.system.size.weight}}</div>
             </div>
+
             <div class='reach property'>
-                <div class='label'>Reach</div>
-                <div class='value'>
-                    <input type='text' name='system.reach' value='{{reach}}' />
-                </div>
+                <div class='label'>{{localize fields.reach.label}}</div>
+                <div class='value'>{{formInput fields.reach value=actor.system.reach}}</div>
             </div>
+
             <div class='bonus-damage property'>
-                <div class='label'>Bonus Damage</div>
-                <div class='value'><input type='text' name='system.bonusDamage' value='{{bonusDamage}}' /></div>
+                <div class='label'>{{localize fields.bonusDamage.label}}</div>
+                <div class='value'>{{formInput fields.bonusDamage value=actor.system.bonusDamage}}</div>
             </div>
+
             <div class='bonus-tn property'>
-                <div class='label'>Bonus TN</div>
-                <div class='value'><input type='text' name='system.bonusTN' value='{{bonusTN}}' /></div>
+                <div class='label'>{{localize fields.bonusTN.label}}</div>
+                <div class='value'>{{formInput fields.bonusTN value=actor.system.bonusTN}}</div>
             </div>
+
             <div class='chance-hit property'>
-                <div class='label'>Chance Hit</div>
-                <div class='value'>{{{chanceHit}}}</div>
+                <div class='label'>{{localize 'system.sheets.actor.chanceHit'}}</div>
+                <div class='value'>{{!---{{{actor.system.chanceHit}}} --}}</div>
             </div>
-            <div class='grapple-tn property'>
+            <div class='grapple-tn'>
                 <div class='label'>
                     <div class='grapple-knockback'>
                         <div class='grapple'>Grapple</div>
@@ -84,19 +87,8 @@
                     </div>
                     <div class='tn-text'>TN</div>
                 </div>
-                <div class='value'>{{grappleTN}}</div>
+                <div class='value'>{{actor.system.grappleTN}}</div>
             </div>
         </div>
-    </div>
-
-    <div class='characteristics'>
-        {{#each characteristics as |characteristic|}}
-            <div class='characteristic'>
-                <div class='label'>{{localize (concat 'system.characteristics.' @key '.abbreviation')}}</div>
-                <div class='value'>
-                    <input type='text' name='system.characteristics.{{@key}}' value='{{characteristic}}' />
-                </div>
-            </div>
-        {{/each}}
     </div>
 </div>
