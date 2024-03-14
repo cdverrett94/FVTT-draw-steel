@@ -75,7 +75,7 @@ export const ABILITIES = {
         passive: {
             label: 'system.items.ability.types.passive.label',
             appliesTo: ['monster'],
-            color: '#000000',
+            color: '#949494',
         },
         action: {
             label: 'system.items.ability.types.action.label',
