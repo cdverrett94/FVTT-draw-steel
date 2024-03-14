@@ -1,5 +1,5 @@
-import { characteristics } from '../constants.js';
 import { ABILITIES } from '../constants/abilities.js';
+import { CHARACTERISTICS } from '../constants/characteristics.js';
 import { DamageRollDialog } from './rolls/damage/roll-dialog/roll-dialog.js';
 import { ResistanceRollDialog } from './rolls/resistance/roll-dialog/roll-dialog.js';
 import { TestRollDialog } from './rolls/test/roll-dialog/roll-dialog.js';
@@ -25,7 +25,7 @@ export class BaseActor extends Actor {
     // Add new craft/knowledge subskill
     async addSkill({ skill, subskill = 'New Skill', characteristic = 'reason', proficient = true } = {}) {
         if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');
-        if (!(characteristic in characteristics)) return ui.notifications.error('The used characteristic must be a valid one.');
+        if (!(characteristic in CHARACTERISTICS)) return ui.notifications.error('The used characteristic must be a valid one.');
         let skillArray = this.system.skills[skill];
         skillArray.push({
             subskill: subskill,
