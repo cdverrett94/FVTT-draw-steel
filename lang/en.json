@@ -82,6 +82,7 @@
             }
         },
         "conditions": {
+            "label": "Conditions",
             "dead": "Dead",
             "bloodied": "Bloodied",
             "dazed": "Dazed",
@@ -339,52 +340,6 @@
                 }
             }
         },
-        "monsterRoles": {
-            "ambusher": {
-                "label": "Ambusher",
-                "description": "Ambushers are creatures who hide well - not just before an encounter, but during it. They ultilize surprise and stealth to gain the upper hand."
-            },
-            "artillery": {
-                "label": "Artillery",
-                "description": "Artillery creatures fight best from afar. Whether theywield arrows or magical rays, these creatures always try to keep a distance from their foes."
-            },
-            "brute": {
-                "label": "Brute",
-                "description": "Brutes are hardy creatures who have lots of health and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression."
-            },
-            "bystander": {
-                "label": "Bystander",
-                "description": "Bystanders are victims, captives, onlookers, or other unlucky folks caught in the tide of a battle. They spend most of a combat encounter trying to avoid danger or taking the Defend action rather than attacking. Adding bystanders to a combat encounter adds a complication and an objective for the heroes as they try to defend the innocent while also defeating their foes"
-            },
-            "controller": {
-                "label": "Controller",
-                "description": "Controllers debuff, move, and obstruct their enemies. They often have crowd-control actions that apply a debilitating effect or target multiple creatures at once."
-            },
-            "leader": {
-                "label": "Leader",
-                "description": "A leader is a powerful, action-oriented creature who fights alongside underlings"
-            },
-            "minion": {
-                "label": "Minion",
-                "description": "Minions are weak creatures who find strength in numbers."
-            },
-            "skirmisher": {
-                "label": "Skirmisher",
-                "description": "Skirmishers are mobile warriors who use hit-and-run tactics in combat. Their traits allow them to make the most of their position."
-            },
-            "soldier": {
-                "label": "Soldier",
-                "description": "Soldiers are well-armored creatures who draw the attacks of their foes, freeing allies to move around the battlefield."
-            },
-            "solo": {
-                "label": "Solo",
-                "description": "A solo creature is an action-oriented creature who can take on the player characters on their own."
-            },
-            "support": {
-                "label": "Support",
-                "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options."
-            }
-        },
         "rolls": {
             "label": "Roll",
             "resistance": {
@@ -463,7 +418,9 @@
                 "conditions": {
                     "edit": "Edit {condition}",
                     "toggle": "Toggle {condition}"
-                }
+                },
+                "bonusDamage": "Bonus Damage",
+                "bonusTN": "Bonus TN"
             },
             "items": {
                 "class": {
