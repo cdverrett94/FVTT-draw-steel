@@ -1,10 +1,6 @@
 import { BaseActor } from './base-actor.js';
 
 export class HeroActor extends BaseActor {
-    prepareBaseData() {
-        super.prepareBaseData();
-    }
-
     get ancestry() {
         return this.items.find((item) => item.type === 'ancestry');
     }

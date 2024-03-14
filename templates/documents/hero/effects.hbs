@@ -1,6 +1,6 @@
-<div class='mcdmrpg-header'>Conditions</div>
+<div class='mcdmrpg-header'>{{localize 'system.conditions.label'}}</div>
 <div class='conditions'>
-    {{#each conditionsList as |condition|}}
+    {{#each conditions as |condition|}}
         <div class='condition'>
             <div>{{localize condition.name}}</div>
             <div class='toggle-condition' data-condition-id='{{condition.id}}'>
