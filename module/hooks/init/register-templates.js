@@ -13,6 +13,9 @@ export function registerTemplates() {
         'systems/mcdmrpg/templates/documents/hero/header.hbs',
         'systems/mcdmrpg/templates/documents/hero/effects.hbs',
 
+        // Monsters
+        '/systems/mcdmrpg/templates/documents/monster/header.hbs',
+
         // Ancestry
         'systems/mcdmrpg/templates/documents/ancestry/ancestry-size.hbs',
         'systems/mcdmrpg/templates/documents/ancestry/ancestry-details.hbs',
