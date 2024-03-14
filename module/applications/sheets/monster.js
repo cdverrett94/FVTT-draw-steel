@@ -1,4 +1,4 @@
-import { monsterRoles } from '../../constants/monster-roles.js';
+import { MONSTER_ROLES } from '../../constants/monster-roles.js';
 import { BaseActorSheet } from './base-actor.js';
 
 export class MonsterSheet extends BaseActorSheet {
@@ -23,7 +23,7 @@ export class MonsterSheet extends BaseActorSheet {
     async getData() {
         let data = await super.getData();
 
-        data.monsterRoles = monsterRoles;
+        data.monsterRoles = MONSTER_ROLES;
         let proficientSkills = {};
         for (const [skill, data] of Object.entries(this.actor.system.skills)) {
             if (['craft', 'knowledge'].includes(skill)) {

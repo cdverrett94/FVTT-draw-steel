@@ -57,4 +57,4 @@ const tnDifficulty = {
     hard: 12,
 };
 
-export { characteristics, damageTypes, monsterRoles, skills, tnDifficulty };
+export { characteristics, damageTypes, skills, tnDifficulty };

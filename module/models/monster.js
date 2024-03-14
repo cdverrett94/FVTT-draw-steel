@@ -1,4 +1,4 @@
-import { monsterRoles } from '../constants/monster-roles.js';
+import { MONSTER_ROLES } from '../constants/monster-roles.js';
 import { getDataModelChoices } from '../helpers.js';
 import { BaseActorData } from './base-actor.js';
 
@@ -8,7 +8,7 @@ export class MonsterData extends BaseActorData {
         return {
             ...super.defineSchema(),
             role: new fields.StringField({
-                choices: getDataModelChoices(monsterRoles),
+                choices: getDataModelChoices(MONSTER_ROLES),
             }),
             bonusDamage: new fields.NumberField({
                 initial: 0,

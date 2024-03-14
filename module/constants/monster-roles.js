@@ -1,4 +1,4 @@
-export const monsterRoles = {
+export const MONSTER_ROLES = {
     ambusher: {
         label: 'system.actors.monsters.roles.ambusher.label',
         description: 'system.actors.monsters.roles.ambusher.description',
