@@ -1,19 +1,97 @@
+// export class BaseActorSheet extends ActorSheet {
+
 import { ABILITIES } from '../../constants/abilities.js';
 import { CONDITIONS } from '../../constants/conditions.js';
-import { SkillConfig } from '../skill-config.js';
 
-export class BaseActorSheet extends ActorSheet {
+//     activateListeners($html) {
+//         super.activateListeners($html);
+//         const html = $html[0];
+
+//         // Add Ability
+//         const addAbilityButton = html.querySelector('.add-ability');
+//         addAbilityButton.addEventListener('click', async (event) => {
+//             let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
+//             item[0].sheet.render(true);
+//             this.render(true);
+//         });
+
+//         // Ability Filters
+//         html.querySelectorAll('.ability-filter').forEach((element) => {
+//             element.addEventListener('click', (event) => {
+//                 const filter = element.dataset.filter ?? 'type';
+//                 const selection = element.dataset.filterSelection;
+//                 const secondaryFilter = filter === 'type' ? 'time' : 'type';
+
+//                 this.filters[filter] = selection === 'clear' ? null : selection;
+//                 this.filters[secondaryFilter] = null;
+
+//                 this.render(true);
+//             });
+//         });
+
+//         // Edit Skills
+//         const editSkillButton = html.querySelector('.edit-skills');
+//         editSkillButton.addEventListener('click', (event) => {
+//             new SkillConfig({ actor: this.actor }).render(true);
+//         });
+
+//         // Edit Ability
+//         html.querySelectorAll('.ability-edit').forEach((element) => {
+//             element.addEventListener('click', (event) => {
+//                 let abilityData = element.closest('.ability').dataset;
+//                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
+
+//                 ability?.sheet.render(true);
+//             });
+//         });
+
+//         // Delete Ability
+//         html.querySelectorAll('.ability-delete').forEach((element) => {
+//             element.addEventListener('click', (event) => {
+//                 let abilityData = element.closest('.ability').dataset;
+//                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
+
+//                 this.actor.deleteEmbeddedDocuments('Item', [ability._id]);
+//             });
+//         });
+
+//         // Toggle Conditions
+//         html.querySelectorAll('.toggle-condition').forEach(async (element) => {
+//             element.addEventListener('click', async (event) => {
+//                 const conditionId = element.dataset.conditionId;
+//                 this.actor.toggleStatusEffect(conditionId);
+//             });
+//         });
+//     }
+// }
+
+const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;
+export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) {
     constructor(...args) {
         super(...args);
-
         this.filters = {
             time: null,
             type: null,
         };
     }
+    static additionalOptions = {
+        window: {
+            icon: 'fas fa-user',
+            positioned: true,
+        },
+        classes: ['mcdmrpg', 'sheet', 'actor'],
+        form: {
+            closeOnSubmit: false,
+            submitOnChange: true,
+        },
+    };
 
-    async getData() {
-        const data = {
+    get actor() {
+        return this.document;
+    }
+
+    async _prepareContext(options) {
+        const context = {
             actor: this.actor,
             source: this.actor.toObject(),
             fields: this.actor.system.schema.fields,
@@ -21,27 +99,24 @@ export class BaseActorSheet extends ActorSheet {
             abilities: ABILITIES,
             conditions: CONDITIONS,
         };
-
         // Enrich Content
         let enrichContext = {
             async: true,
             actor: this.actor,
         };
-
-        for (const [group, abilities] of Object.entries(data.actor.abilities)) {
+        for (const [group, abilities] of Object.entries(context.actor.abilities)) {
             for (const [index, ability] of abilities.entries()) {
+                console.log(index, ability);
                 let damageText;
                 if (ability.system.damage.doesDamage) {
                     let { baseFormula, characteristic, boons, banes, impacts, type, applyExtraDamage } = ability.system.damage;
                     damageText = `@Damage[${baseFormula}|characteristic=${characteristic}|boons=${boons}|banes=${banes}|impacts=${impacts}|type=${type}|applyExtraDamage=${applyExtraDamage}]`;
                 }
-
-                data.actor.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(damageText, { ...enrichContext, item: ability });
-                data.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, {
+                context.actor.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(damageText, { ...enrichContext, item: ability });
+                context.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, {
                     ...enrichContext,
                     item: ability,
                 });
-
                 let isCurrentTypeFilter = ability.system.type === this.filters.type;
                 let isCurrentTimeFilter = ability.system.time === this.filters.time;
                 let noFilters = !this.filters.type && !this.filters.time;
@@ -49,70 +124,69 @@ export class BaseActorSheet extends ActorSheet {
                 else ability.show = false;
             }
         }
-
-        data.actor.system.chanceHit = await TextEditor.enrichHTML(data.actor.system.chanceHit, enrichContext);
-
-        return data;
+        context.actor.system.chanceHit = await TextEditor.enrichHTML(context.actor.system.chanceHit, enrichContext);
+        return context;
     }
 
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, BaseActorSheet.additionalOptions, { inplace: false });
 
-        // Add Ability
-        const addAbilityButton = html.querySelector('.add-ability');
-        addAbilityButton.addEventListener('click', async (event) => {
-            let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
-            item[0].sheet.render(true);
-            this.render(true);
-        });
+    static PARTS = {};
 
-        // Ability Filters
-        html.querySelectorAll('.ability-filter').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                const filter = element.dataset.filter ?? 'type';
-                const selection = element.dataset.filterSelection;
-                const secondaryFilter = filter === 'type' ? 'time' : 'type';
+    static async #addAbilty(event, target) {}
 
-                this.filters[filter] = selection === 'clear' ? null : selection;
-                this.filters[secondaryFilter] = null;
+    //         // Add Ability
+    //         const addAbilityButton = html.querySelector('.add-ability');
+    //         addAbilityButton.addEventListener('click', async (event) => {
+    //             let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
+    //             item[0].sheet.render(true);
+    //             this.render(true);
+    //         });
 
-                this.render(true);
-            });
-        });
+    //         // Ability Filters
+    //         html.querySelectorAll('.ability-filter').forEach((element) => {
+    //             element.addEventListener('click', (event) => {
+    //                 const filter = element.dataset.filter ?? 'type';
+    //                 const selection = element.dataset.filterSelection;
+    //                 const secondaryFilter = filter === 'type' ? 'time' : 'type';
 
-        // Edit Skills
-        const editSkillButton = html.querySelector('.edit-skills');
-        editSkillButton.addEventListener('click', (event) => {
-            new SkillConfig({ actor: this.actor }).render(true);
-        });
+    //                 this.filters[filter] = selection === 'clear' ? null : selection;
+    //                 this.filters[secondaryFilter] = null;
 
-        // Edit Ability
-        html.querySelectorAll('.ability-edit').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let abilityData = element.closest('.ability').dataset;
-                let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
+    //                 this.render(true);
+    //             });
+    //         });
 
-                ability?.sheet.render(true);
-            });
-        });
+    //         // Edit Skills
+    //         const editSkillButton = html.querySelector('.edit-skills');
+    //         editSkillButton.addEventListener('click', (event) => {
+    //             new SkillConfig({ actor: this.actor }).render(true);
+    //         });
 
-        // Delete Ability
-        html.querySelectorAll('.ability-delete').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let abilityData = element.closest('.ability').dataset;
-                let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
+    //         // Edit Ability
+    //         html.querySelectorAll('.ability-edit').forEach((element) => {
+    //             element.addEventListener('click', (event) => {
+    //                 let abilityData = element.closest('.ability').dataset;
+    //                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
 
-                this.actor.deleteEmbeddedDocuments('Item', [ability._id]);
-            });
-        });
+    //                 ability?.sheet.render(true);
+    //             });
+    //         });
 
-        // Toggle Conditions
-        html.querySelectorAll('.toggle-condition').forEach(async (element) => {
-            element.addEventListener('click', async (event) => {
-                const conditionId = element.dataset.conditionId;
-                this.actor.toggleStatusEffect(conditionId);
-            });
-        });
-    }
+    //         // Delete Ability
+    //         html.querySelectorAll('.ability-delete').forEach((element) => {
+    //             element.addEventListener('click', (event) => {
+    //                 let abilityData = element.closest('.ability').dataset;
+    //                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
+
+    //                 this.actor.deleteEmbeddedDocuments('Item', [ability._id]);
+    //             });
+    //         });
+
+    //         // Toggle Conditions
+    //         html.querySelectorAll('.toggle-condition').forEach(async (element) => {
+    //             element.addEventListener('click', async (event) => {
+    //                 const conditionId = element.dataset.conditionId;
+    //                 this.actor.toggleStatusEffect(conditionId);
+    //             });
+    //         });
 }

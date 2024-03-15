@@ -4,7 +4,7 @@
 @import url('effects.css');
 
 /* Define Sheet Layout Via Grid */
-.sheet.actor.hero .hero-sheet {
+.sheet.actor.hero .window-content {
     display: grid;
     grid-template-columns: 200px 250px repeat(8, auto);
     grid-template-rows: repeat(10, 1fr);

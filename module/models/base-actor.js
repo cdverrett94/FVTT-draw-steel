@@ -3,6 +3,7 @@ import { DAMAGE } from '../constants/damage.js';
 import { SKILLS } from '../constants/skills.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
+    static LOCALIZATION_PREFIXES = ['system.items.actors'];
     static defineSchema() {
         const fields = foundry.data.fields;
         const schema = {};

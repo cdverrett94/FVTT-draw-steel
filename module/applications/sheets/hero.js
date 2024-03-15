@@ -1,78 +1,96 @@
 import { BaseActorSheet } from './base-actor.js';
 
 export class HeroSheet extends BaseActorSheet {
-    constructor(...args) {
-        super(...args);
+    static additionalOptions = {
+        classes: ['hero'],
+        position: {
+            width: 1200,
+            height: 1100,
+        },
+        actions: {
+            rollCharacteristic: HeroSheet.#rollCharacteristic,
+            rollSkill: HeroSheet.#rollSkill,
+            openACKSheet: HeroSheet.#openACKSheet,
+            editEffect: HeroSheet.#editEffect,
+            deleteEffect: HeroSheet.#deleteEffect,
+        },
+    };
+    // overrides = {
+    //     scrollY: ['.skill-list', '.tab'],
+    //     resizable: true,
+    // };
+
+    tabGroups = {
+        main: null,
+    };
+    defaultTabs = {
+        main: 'abilities',
+    };
+    _onRender(context, options) {
+        for (const [group, tab] of Object.entries(this.defaultTabs)) {
+            this.changeTab(tab, group);
+        }
     }
 
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, HeroSheet.additionalOptions, { inplace: false });
 
-        const overrides = {
-            classes: ['mcdmrpg', 'sheet', 'actor', 'hero'],
-            template: `/systems/mcdmrpg/templates/documents/hero/hero-sheet.hbs`,
-            tabs: [
-                {
-                    navSelector: '.sheet-tabs',
-                    contentSelector: '.tabbed-content',
-                    initial: 'abilities',
-                },
-            ],
-            scrollY: ['.skill-list', '.tab'],
-            width: 1200, //1182
-            height: 1100, //1111
-            resizable: true,
-        };
+    /** @override */
+    static PARTS = foundry.utils.mergeObject(
+        super.PARTS,
+        {
+            header: {
+                id: 'header',
+                template: 'systems/mcdmrpg/templates/documents/hero/header.hbs',
+            },
+            sidebar: {
+                id: 'sidebar',
+                template: 'systems/mcdmrpg/templates/documents/hero/sidebar.hbs',
+            },
+            skills: {
+                id: 'skill',
+                template: 'systems/mcdmrpg/templates/documents/hero/skills.hbs',
+            },
+            tabs: {
+                id: 'tabs',
+                template: 'systems/mcdmrpg/templates/documents/hero/tabs.hbs',
+            },
+        },
+        { inplace: false }
+    );
 
-        return foundry.utils.mergeObject(defaults, overrides);
+    static #rollCharacteristic(event, target) {
+        const characteristic = target.dataset.characteristic;
+        this.actor.rollCharacteristic(characteristic);
     }
 
-    async getData() {
-        let data = await super.getData();
-
-        return data;
+    static #rollSkill(event, target) {
+        let { skill, subskill } = target.dataset;
+        this.actor.rollTest({ skill, subskill });
     }
 
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
+    static #openACKSheet(event, target) {
+        let sheetType = target.dataset.type;
+        this.actor[sheetType].sheet.render(true);
+    }
 
-        // Roll Characteristic
-        html.querySelectorAll('.characteristic .mcdmrpg-subheader').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let characteristic = element.closest('.characteristic').dataset.characteristic;
-                this.actor.rollCharacteristic(characteristic);
-            });
-        });
+    static #editEffect(event, target) {
+        console.log('edit effect');
+        // html.querySelectorAll('.edit-effect').forEach(async (element) => {
+        //             element.addEventListener('click', async (event) => {
+        //                 let effect = await fromUuid(element.dataset.effectId);
+        //                 effect.sheet.render(true);
+        //             });
+        //         });
+    }
 
-        // Roll Skill
-        html.querySelectorAll('.skill').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let skill = element.dataset.skill;
-                let subskill = element.dataset.subskill;
-                this.actor.rollTest({ skill, subskill });
-            });
-        });
-
-        // Open Actor Ancestry, Class, Kit Sheets
-        html.querySelectorAll('.actor-ack > div').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                this.actor[element.dataset.type].sheet.render(true);
-            });
-        });
-
-        html.querySelectorAll('.edit-effect').forEach(async (element) => {
-            element.addEventListener('click', async (event) => {
-                let effect = await fromUuid(element.dataset.effectId);
-                effect.sheet.render(true);
-            });
-        });
-
-        html.querySelectorAll('.delete-effect').forEach(async (element) => {
-            element.addEventListener('click', async (event) => {
-                let effect = await fromUuid(element.dataset.effectId);
-                await this.actor.deleteEmbeddedDocuments('ActiveEffect', [effect.id]);
-            });
-        });
+    static async #deleteEffect(event, target) {
+        console.log('delete effect');
+        // html.querySelectorAll('.delete-effect').forEach(async (element) => {
+        //             element.addEventListener('click', async (event) => {
+        //                 let effect = await fromUuid(element.dataset.effectId);
+        //                 await this.actor.deleteEmbeddedDocuments('ActiveEffect', [effect.id]);
+        //             });
+        //         });
     }
 }
