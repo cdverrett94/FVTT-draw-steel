@@ -1,5 +1,5 @@
 <div class="monster-skills">
-    <span class="edit-skills"><i class="fa-solid fa-gear"></i> Skills: [+1 Boon to Tests]</span>
+    <span class="edit-skills" data-action="editSkills"><i class="fa-solid fa-gear"></i> Skills: [+1 Boon to Tests]</span>
     {{#each proficientSkills as |skill|}}
         {{#if (or (eq @key 'craft') (eq @key 'knowledge'))}}
             {{#each skill as |subskill|}}

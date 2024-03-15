@@ -1,21 +1,23 @@
-<div class="mcdmrpg-header">
-    {{ localize 'system.skills.label.plural'}}
-    <span class="edit-skills right-button">
-        <i class="fa-regular fa-pencil" data-tooltip="{{ localize 'system.sheets.actor.skills.edit'}}" data-tooltip-direction="UP"></i>
-    </span>
-</div>
+<div class="skills">
+    <div class="mcdmrpg-header">
+        {{ localize 'system.skills.label.plural'}}
+        <span class="edit-skills right-button" data-action="editSkills">
+            <i class="fa-regular fa-pencil" data-tooltip="{{ localize 'system.sheets.actor.skills.edit'}}" data-tooltip-direction="UP"></i>
+        </span>
+    </div>
 
-<div class="skill-list">
-    {{#each actor.system.skills as |skill|}} 
-        {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
-            {{#each skill as |subskill| }} 
+    <div class="skill-list">
+        {{#each actor.system.skills as |skill|}} 
+            {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
+                {{#each skill as |subskill| }} 
+                    {{> "systems/mcdmrpg/templates/documents/hero/skill.hbs" 
+                    skillData=subskill subskill=subskill.subskill characteristics=../../characteristics 
+                    skill=@../key index=@index}} 
+                {{/each}} 
+            {{else}} 
                 {{> "systems/mcdmrpg/templates/documents/hero/skill.hbs" 
-                skillData=subskill subskill=subskill.subskill characteristics=../../characteristics 
-                skill=@../key index=@index}} 
-            {{/each}} 
-        {{else}} 
-            {{> "systems/mcdmrpg/templates/documents/hero/skill.hbs" 
-            skillData=this skill=@key characteristics=../characteristics}}
-        {{/if}} 
-    {{/each}}
+                skillData=this skill=@key characteristics=../characteristics}}
+            {{/if}} 
+        {{/each}}
+    </div>
 </div>
