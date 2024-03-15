@@ -1,6 +1,6 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
-//const { ItemSheet } = foundry.applications.sheets;
-export class BaseItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheet) {
+const { ItemSheet } = foundry.applications.sheets;
+export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
     static additionalOptions = {
         window: {
             icon: 'fas fa-suitcase',

@@ -1,7 +1,7 @@
 import { BaseItemSheet } from './base-item.js';
 export class KitSheet extends BaseItemSheet {
     static additionalOptions = {
-        classes: ['mcdmrpg', 'sheet', 'item', 'kit'],
+        classes: ['kit'],
         position: {
             width: 400,
             height: 585,

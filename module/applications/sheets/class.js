@@ -1,7 +1,7 @@
 import { BaseItemSheet } from './base-item.js';
 export class ClassSheet extends BaseItemSheet {
     static additionalOptions = {
-        classes: ['mcdmrpg', 'sheet', 'item', 'class'],
+        classes: ['class'],
         position: {
             width: 900,
             height: 755,

@@ -2,7 +2,7 @@ import { BaseItemSheet } from './base-item.js';
 
 export class AncestrySheet extends BaseItemSheet {
     static additionalOptions = {
-        classes: ['mcdmrpg', 'sheet', 'item', 'ancestry'],
+        classes: ['ancestry'],
         position: {
             width: 400,
             height: 540,
