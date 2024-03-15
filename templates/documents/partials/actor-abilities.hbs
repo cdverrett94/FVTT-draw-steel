@@ -7,11 +7,11 @@
                     <div class='ability-header'>
                         <div class="ability-name">{{ability.name}}</div>
                         <div class="ability-cost">{{ability.system.cost}}</div>
-                        <div class="ability-edit"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.abilities.edit'}}"></i></div>
-                        <div class="ability-delete"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.abilities.delete'}}"></i></div>
+                        <div class="ability-edit" data-action="editAbility" data-ability-id="{{ability._id}}"><i class="fa-solid fa-pencil" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.abilities.edit'}}"></i></div>
+                        <div class="ability-delete" data-action="deleteAbility" data-ability-id="{{ability._id}}"><i class="fa-solid fa-trash" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.abilities.delete'}}"></i></div>
                     </div>
                     <div class='property ability-keywords'>
-                        <div class='label'>{{localize 'system.items.ability.fields.keywords.label'}}</div>
+                        <div class='label'>{{localize 'system.items.ability.FIELDS.keywords.label'}}</div>
                         <div class='value'>
                             {{#each ability.system.keywords as |keyword|}}
                                 {{#if keyword}}
@@ -23,37 +23,37 @@
                     </div>
                     {{#if ability.system.trigger}}
                     <div class='property ability-trigger'>
-                        <div class='label'>{{localize 'system.items.ability.fields.trigger.label'}}</div>
+                        <div class='label'>{{localize 'system.items.ability.FIELDS.trigger.label'}}</div>
                         <div class='value'>{{ability.system.trigger}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.time}}
                     <div class='property ability-time'>
-                        <div class='label'>{{localize 'system.items.ability.fields.time.label'}}</div>
+                        <div class='label'>{{localize 'system.items.ability.FIELDS.time.label'}}</div>
                         <div class='value'>{{localize (concat 'system.items.ability.times.' ability.system.time '.label')}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.distance}}
                     <div class='property ability-distance'>
-                        <div class='label'>{{localize 'system.items.ability.fields.distance.label'}}</div>
+                        <div class='label'>{{localize 'system.items.ability.FIELDS.distance.label'}}</div>
                         <div class='value'>{{ability.system.distance}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.target}}
                     <div class='property ability-target'>
-                        <div class='label'>{{localize 'system.items.ability.fields.target.label'}}</div>
+                        <div class='label'>{{localize 'system.items.ability.FIELDS.target.label'}}</div>
                         <div class='value'>{{ability.system.target}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.damage.doesDamage}}
                     <div class='property ability-damage'>
-                        <div class='label'><i class="fa-duotone fa-arrow-pointer" style="--fa-secondary-color: #511f1f; --fa-secondary-opacity: 0;"></i>{{localize 'system.items.ability.fields.damage.label'}}</div>
+                        <div class='label'><i class="fa-duotone fa-arrow-pointer" style="--fa-secondary-color: #511f1f; --fa-secondary-opacity: 0;"></i>{{localize 'system.items.ability.FIELDS.damage.label'}}</div>
                         <div class='value'>{{{ability.system.enrichedDamage}}}</div>
                     </div>
                     {{/if}}
                     {{#if ability.system.effect}}
                     <div class='property ability-effect'>
-                        <div class='label'>{{localize 'system.items.ability.fields.effect.label'}}</div>
+                        <div class='label'>{{localize 'system.items.ability.FIELDS.effect.label'}}</div>
                         <div class='value'>{{{ability.system.enrichedEffect}}}</div>
                     </div>
                     {{/if}}

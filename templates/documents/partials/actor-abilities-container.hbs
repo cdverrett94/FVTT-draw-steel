@@ -1,14 +1,14 @@
 <div class="{{actor.type}}-abilities actor-abilities">
     <div class="mcdmrpg-header">
         {{localize 'system.items.ability.label.plural'}}
-        <span class="add-ability right-button">
+        <span class="add-ability right-button" data-action="addAbility">
             {{localize 'system.sheets.actor.abilities.add'}}
         </span>
     </div>
     <div class="abilities-filter">
-        {{> 'systems/mcdmrpg/templates/documents/partials/abilities-filter.hbs'}}
+        {{> 'systems/mcdmrpg/templates/documents/partials/actor-abilities-filter.hbs'}}
     </div>
     <div class="abilities-list">
-        {{> 'systems/mcdmrpg/templates/documents/partials/abilities.hbs'}}
+        {{> 'systems/mcdmrpg/templates/documents/partials/actor-abilities.hbs'}}
     </div>
 </div>
