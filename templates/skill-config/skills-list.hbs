@@ -1,58 +1,52 @@
-<form class="skill-config-form">
-    <div class="skills">
-            <div class="skills-header">
-                <div></div>
-                <div>{{localize 'system.skills.label.singular'}}</div>
-                <div>{{localize 'system.sheets.actor.skills.proficient'}}</div>
-                <div></div>
-            </div>
-            {{#each skills as |skill|}}
-                {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
-                {{!- craft and knowledge --}}
-                    {{#each skill as |subskill| }}
-                        <div class="skill">
-                            <div class="skill-characteristic">
-                                <select name="system.skills.{{@../key}}.{{@index}}.characteristic">
-                                    {{selectOptions @root.characteristics selected=subskill.characteristic labelAttr='label' localize=true}}
-                                </select>
-                            </div>
-                            <div class="skill-name">
-                                {{localize (concat "system.skills." @../key ".label")}} ( <input type="text" name="system.skills.{{@../key}}.{{@index}}.subskill" value="{{subskill.subskill}}" /> )
-                            </div>
-                            <div class="skill-proficient">
-                                <input type="checkbox" data-tooltip-direction="RIGHT" name="system.skills.{{@../key}}.{{@index}}.proficient"{{#if subskill.proficient}} checked{{/if}}>
-                            </div>
-                            <div class="delete-skill">
-                                <i class="fa-solid fa-trash" data-action="deleteSkill" data-skill="{{@../key}}" data-subskill="{{subskill.subskill}}" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.skills.delete'}}"></i>
-                            </div>
-                        </div>
-                    {{/each}} 
-                {{else}} 
-                {{!-- other than craft or knowledge --}}
-
+<div class="skills">
+    <div class="skills-header">
+        <div></div>
+        <div>{{localize 'system.skills.label.singular'}}</div>
+        <div>{{localize 'system.sheets.actor.skills.proficient'}}</div>
+        <div></div>
+    </div>
+    {{#each skills as |skill|}}
+        {{#if (or (eq @key "craft") (eq @key "knowledge"))}} 
+        {{!- craft and knowledge --}}
+            {{#each skill as |subskill| }}
                 <div class="skill">
                     <div class="skill-characteristic">
-                        <select name="system.skills.{{@key}}.characteristic">
-                            {{selectOptions @root.characteristics selected=skill.characteristic labelAttr='label' localize=true}}
+                        <select name="system.skills.{{@../key}}.{{@index}}.characteristic">
+                            {{selectOptions @root.characteristics selected=subskill.characteristic labelAttr='label' localize=true}}
                         </select>
                     </div>
                     <div class="skill-name">
-                        <div class="roll-skill" data-skill="{{@key}}">
-                            {{localize (concat "system.skills." @key ".label")}}
-                        </div>
+                        {{localize (concat "system.skills." @../key ".label")}} ( <input type="text" name="system.skills.{{@../key}}.{{@index}}.subskill" value="{{subskill.subskill}}" /> )
                     </div>
                     <div class="skill-proficient">
-                        <input type="checkbox" name="system.skills.{{@key}}.proficient"  data-tooltip-direction="RIGHT" {{#if skill.proficient}}checked{{/if}}>
+                        <input type="checkbox" data-tooltip-direction="RIGHT" name="system.skills.{{@../key}}.{{@index}}.proficient"{{#if subskill.proficient}} checked{{/if}}>
                     </div>
                     <div class="delete-skill">
+                        <i class="fa-solid fa-trash" data-action="deleteSkill" data-skill="{{@../key}}" data-subskill="{{subskill.subskill}}" data-tooltip-direction="RIGHT" data-tooltip="{{localize 'system.sheets.actor.skills.delete'}}"></i>
                     </div>
                 </div>
+            {{/each}} 
+        {{else}} 
+        {{!-- other than craft or knowledge --}}
 
-                {{/if}} 
-            {{/each}}
+        <div class="skill">
+            <div class="skill-characteristic">
+                <select name="system.skills.{{@key}}.characteristic">
+                    {{selectOptions @root.characteristics selected=skill.characteristic labelAttr='label' localize=true}}
+                </select>
+            </div>
+            <div class="skill-name">
+                <div class="roll-skill" data-skill="{{@key}}">
+                    {{localize (concat "system.skills." @key ".label")}}
+                </div>
+            </div>
+            <div class="skill-proficient">
+                <input type="checkbox" name="system.skills.{{@key}}.proficient"  data-tooltip-direction="RIGHT" {{#if skill.proficient}}checked{{/if}}>
+            </div>
+            <div class="delete-skill">
+            </div>
         </div>
-        <div class="save-skills">
-            <button type="submit">Save Skills</button>
-        </div>
-    </div>
-</form>
+
+        {{/if}} 
+    {{/each}}
+</div>

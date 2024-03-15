@@ -17,6 +17,7 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
             icon: 'fa-solid fa-gear',
             title: 'Configure Skills',
         },
+        tag: 'form',
         classes: ['mcdmrpg', 'sheet', 'skill-config'],
         position: {
             width: 400,
@@ -25,6 +26,11 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
         actions: {
             addSkill: SkillConfig.addSkill,
             deleteSkill: SkillConfig.deleteSkill,
+        },
+        form: {
+            handler: this.onSubmitForm,
+            submitOnChange: false,
+            closeOnSubmit: false,
         },
     };
 
@@ -37,16 +43,18 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
             id: 'add-skill-buttons',
             template: 'systems/mcdmrpg/templates/skill-config/add-skill-buttons.hbs',
         },
-        configureSkills: {
-            id: 'content',
+        skills: {
+            id: 'skills',
             template: 'systems/mcdmrpg/templates/skill-config/skills-list.hbs',
-            forms: {
-                '.skill-config-form': SkillConfig.onSubmitForm,
-            },
+        },
+        saveSkills: {
+            id: 'saveSkills',
+            template: 'systems/mcdmrpg/templates/skill-config/save-skills-button.hbs',
         },
     };
 
     async _prepareContext(options) {
+        console.log('preparing context');
         return {
             actor: this.actor,
             skills: this.actor.system.skills,
@@ -58,7 +66,8 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
         let skill = target.dataset.skill;
         let actor = await this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`system.skills.${skill}.label`) + ' Skill' });
         this.context.actor = actor;
-        this.render(true);
+        await this.render({ parts: ['skills'] });
+        this.setPosition({ height: 'auto' });
     }
 
     static async deleteSkill(event, target) {
@@ -67,12 +76,13 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
 
         let actor = await this.actor.deleteSkill({ skill, subskill });
         this.context.actor = actor;
-        this.render(true);
+        await this.render({ parts: ['skills'] });
+        this.setPosition({ height: 'auto' });
     }
 
     static async onSubmitForm(event, form, formData) {
         await this.actor.update(formData.object);
-        this.render(true);
         this.close();
+        if (this.actor.sheet.rendered) this.actor.sheet.maximize();
     }
 }
