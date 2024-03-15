@@ -1,8 +1,14 @@
 <div class="header">
     <div class='character-info'>
-        {{formInput actor.schema.fields.name value=actor.name localize=true}}
-        {{formField fields.level value=actor.system.level localize=true}}
-        {{formField fields.xp value=actor.system.xp localize=true}}
+        <div class="name">{{formInput actor.schema.fields.name value=actor.name localize=true}}</div>
+        <div class="level">
+            <div class="value">{{formInput fields.level value=actor.system.level}}</div>
+            <div class="label">{{fields.level.label}}</div>
+        </div>
+        <div class="xp">
+            <div class="value">{{formInput fields.xp value=actor.system.xp}}</div>
+            <div class="label">{{fields.xp.label}}</div>
+        </div>
     </div>
 
     {{> 'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs'}}
