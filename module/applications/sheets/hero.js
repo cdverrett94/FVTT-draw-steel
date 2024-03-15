@@ -27,8 +27,9 @@ export class HeroSheet extends BaseActorSheet {
         main: 'abilities',
     };
     _onRender(context, options) {
-        for (const [group, tab] of Object.entries(this.defaultTabs)) {
-            this.changeTab(tab, group);
+        for (const [group, tab] of Object.entries(this.tabGroups)) {
+            if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
+            else this.changeTab(tab, group, { force: true });
         }
     }
 
@@ -74,23 +75,13 @@ export class HeroSheet extends BaseActorSheet {
         this.actor[sheetType].sheet.render(true);
     }
 
-    static #editEffect(event, target) {
-        console.log('edit effect');
-        // html.querySelectorAll('.edit-effect').forEach(async (element) => {
-        //             element.addEventListener('click', async (event) => {
-        //                 let effect = await fromUuid(element.dataset.effectId);
-        //                 effect.sheet.render(true);
-        //             });
-        //         });
+    static async #editEffect(event, target) {
+        let effect = await fromUuid(element.dataset.effectId);
+        effect.sheet.render(true);
     }
 
     static async #deleteEffect(event, target) {
-        console.log('delete effect');
-        // html.querySelectorAll('.delete-effect').forEach(async (element) => {
-        //             element.addEventListener('click', async (event) => {
-        //                 let effect = await fromUuid(element.dataset.effectId);
-        //                 await this.actor.deleteEmbeddedDocuments('ActiveEffect', [effect.id]);
-        //             });
-        //         });
+        let effect = await fromUuid(element.dataset.effectId);
+        await this.actor.deleteEmbeddedDocuments('ActiveEffect', [effect.id]);
     }
 }
