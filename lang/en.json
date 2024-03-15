@@ -4,90 +4,90 @@
             "monsters": {
                 "roles": {
                     "ambusher": {
-                        "label": "Ambusher",
-                        "description": "Ambushers are creatures who hide well - not just before an encounter, but during it. They ultilize surprise and stealth to gain the upper hand."
+                        "description": "Ambushers are creatures who hide well - not just before an encounter, but during it. They ultilize surprise and stealth to gain the upper hand.",
+                        "label": "Ambusher"
                     },
                     "artillery": {
-                        "label": "Artillery",
-                        "description": "Artillery creatures fight best from afar. Whether theywield arrows or magical rays, these creatures always try to keep a distance from their foes."
+                        "description": "Artillery creatures fight best from afar. Whether theywield arrows or magical rays, these creatures always try to keep a distance from their foes.",
+                        "label": "Artillery"
                     },
                     "brute": {
-                        "label": "Brute",
-                        "description": "Brutes are hardy creatures who have lots of health and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression."
+                        "description": "Brutes are hardy creatures who have lots of health and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression.",
+                        "label": "Brute"
                     },
                     "bystander": {
-                        "label": "Bystander",
-                        "description": "Bystanders are victims, captives, onlookers, or other unlucky folks caught in the tide of a battle. They spend most of a combat encounter trying to avoid danger or taking the Defend action rather than attacking. Adding bystanders to a combat encounter adds a complication and an objective for the heroes as they try to defend the innocent while also defeating their foes"
+                        "description": "Bystanders are victims, captives, onlookers, or other unlucky folks caught in the tide of a battle. They spend most of a combat encounter trying to avoid danger or taking the Defend action rather than attacking. Adding bystanders to a combat encounter adds a complication and an objective for the heroes as they try to defend the innocent while also defeating their foes",
+                        "label": "Bystander"
                     },
                     "controller": {
-                        "label": "Controller",
-                        "description": "Controllers debuff, move, and obstruct their enemies. They often have crowd-control actions that apply a debilitating effect or target multiple creatures at once."
+                        "description": "Controllers debuff, move, and obstruct their enemies. They often have crowd-control actions that apply a debilitating effect or target multiple creatures at once.",
+                        "label": "Controller"
                     },
                     "leader": {
-                        "label": "Leader",
-                        "description": "A leader is a powerful, action-oriented creature who fights alongside underlings"
+                        "description": "A leader is a powerful, action-oriented creature who fights alongside underlings",
+                        "label": "Leader"
                     },
                     "minion": {
-                        "label": "Minion",
-                        "description": "Minions are weak creatures who find strength in numbers."
+                        "description": "Minions are weak creatures who find strength in numbers.",
+                        "label": "Minion"
                     },
                     "skirmisher": {
-                        "label": "Skirmisher",
-                        "description": "Skirmishers are mobile warriors who use hit-and-run tactics in combat. Their traits allow them to make the most of their position."
+                        "description": "Skirmishers are mobile warriors who use hit-and-run tactics in combat. Their traits allow them to make the most of their position.",
+                        "label": "Skirmisher"
                     },
                     "soldier": {
-                        "label": "Soldier",
-                        "description": "Soldiers are well-armored creatures who draw the attacks of their foes, freeing allies to move around the battlefield."
+                        "description": "Soldiers are well-armored creatures who draw the attacks of their foes, freeing allies to move around the battlefield.",
+                        "label": "Soldier"
                     },
                     "solo": {
-                        "label": "Solo",
-                        "description": "A solo creature is an action-oriented creature who can take on the player characters on their own."
+                        "description": "A solo creature is an action-oriented creature who can take on the player characters on their own.",
+                        "label": "Solo"
                     },
                     "support": {
-                        "label": "Support",
-                        "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options."
+                        "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options.",
+                        "label": "Support"
                     }
                 }
             }
         },
         "characteristics": {
-            "label": "Characteristic",
-            "might": {
-                "label": "Might",
-                "abbreviation": "MGT"
-            },
             "agility": {
-                "label": "Agility",
-                "abbreviation": "AGL"
+                "abbreviation": "AGL",
+                "label": "Agility"
             },
             "endurance": {
-                "label": "Endurance",
-                "abbreviation": "END"
-            },
-            "reason": {
-                "label": "Reason",
-                "abbreviation": "REA"
-            },
-            "intuition": {
-                "label": "Intuition",
-                "abbreviation": "INU"
-            },
-            "presence": {
-                "label": "Presence",
-                "abbreviation": "PRS"
+                "abbreviation": "END",
+                "label": "Endurance"
             },
             "highest": {
-                "label": "Highest",
-                "abbreviation": "Highest"
+                "abbreviation": "Highest",
+                "label": "Highest"
+            },
+            "intuition": {
+                "abbreviation": "INU",
+                "label": "Intuition"
+            },
+            "label": "Characteristic",
+            "might": {
+                "abbreviation": "MGT",
+                "label": "Might"
+            },
+            "presence": {
+                "abbreviation": "PRS",
+                "label": "Presence"
+            },
+            "reason": {
+                "abbreviation": "REA",
+                "label": "Reason"
             }
         },
         "conditions": {
-            "label": "Conditions",
-            "dead": "Dead",
             "bloodied": "Bloodied",
             "dazed": "Dazed",
+            "dead": "Dead",
             "frightened": "Frightened",
             "grappled": "Grappled",
+            "label": "Conditions",
             "ongoing-damage": "Ongoing Damage",
             "prone": "Prone",
             "restrained": "Restrained",
@@ -100,9 +100,6 @@
         },
         "damage": {
             "types": {
-                "untyped": {
-                    "label": "Untyped"
-                },
                 "acid": {
                     "label": "Acid"
                 },
@@ -129,60 +126,134 @@
                 },
                 "sonic": {
                     "label": "Sonic"
+                },
+                "untyped": {
+                    "label": "Untyped"
                 }
             }
         },
         "dice": {
-            "boon": {
-                "singular": "Boon",
-                "plural": "Boons"
-            },
             "bane": {
-                "singular": "Bane",
-                "plural": "Banes"
+                "plural": "Banes",
+                "singular": "Bane"
+            },
+            "boon": {
+                "plural": "Boons",
+                "singular": "Boon"
+            },
+            "edge": {
+                "plural": "Edges",
+                "singular": "Edge"
             },
             "impact": {
-                "singular": "Impact",
-                "plural": "Impacts"
+                "plural": "Impacts",
+                "singular": "Impact"
             }
         },
         "general": {
-            "target": {
-                "singular": "Target",
-                "plural": "Targets"
+            "effect": {
+                "plural": "Effects",
+                "singular": "Effect"
             },
             "name": "Name",
-            "effect": {
-                "singular": "Effect",
-                "plural": "Effects"
+            "target": {
+                "plural": "Targets",
+                "singular": "Target"
             }
         },
         "items": {
             "ability": {
+                "FIELDS": {
+                    "cost": {
+                        "hint": "",
+                        "label": "Cost"
+                    },
+                    "damage": {
+                        "applyExtraDamage": { "label": "Appy Extra Damage" },
+                        "baseFormula": { "label": "Base Formula" },
+                        "doesDamage": { "label": "Does Damage" },
+                        "characteristic": { "label": "Characteristic" },
+                        "boons": { "label": "Boons" },
+                        "banes": { "label": "Banes" },
+                        "impacts": { "label": "Impacts" },
+                        "hint": "",
+                        "label": "Damage",
+                        "type": { "label": "Damage Type" }
+                    },
+                    "distance": {
+                        "hint": "",
+                        "label": "Distance"
+                    },
+                    "effect": {
+                        "hint": "",
+                        "label": "Effect"
+                    },
+                    "keywords": {
+                        "hint": "",
+                        "label": "Keywords",
+                        "singular": "Keyword"
+                    },
+                    "target": {
+                        "hint": "",
+                        "label": "Target"
+                    },
+                    "time": {
+                        "hint": "",
+                        "label": "Time"
+                    },
+                    "trigger": {
+                        "hint": "",
+                        "label": "Trigger"
+                    },
+                    "type": {
+                        "hint": "",
+                        "label": "Type"
+                    }
+                },
+                "keywords": {
+                    "attack": {
+                        "label": "Attack"
+                    },
+                    "kit": {
+                        "label": "Kit"
+                    },
+                    "label": {
+                        "plural": "Keywords",
+                        "singular": "Keyword"
+                    },
+                    "magic": {
+                        "label": "Magic"
+                    },
+                    "psionic": {
+                        "label": "Psionic"
+                    },
+                    "weapon": {
+                        "label": "Weapon"
+                    }
+                },
                 "label": {
-                    "singular": "Ability",
-                    "plural": "Abilities"
+                    "plural": "Abilities",
+                    "singular": "Ability"
                 },
                 "times": {
-                    "label": "Time",
                     "action": {
                         "label": "Action"
-                    },
-                    "maneuver": {
-                        "label": "Maneuver"
                     },
                     "free-maneuver": {
                         "label": "Free Maneuver"
                     },
-                    "triggered": {
-                        "label": "Triggered"
-                    },
                     "free-triggered": {
                         "label": "Free Triggered"
+                    },
+                    "label": "Time",
+                    "maneuver": {
+                        "label": "Maneuver"
+                    },
+                    "triggered": {
+                        "label": "Triggered"
                     }
                 },
                 "types": {
-                    "label": "Type",
                     "action": {
                         "label": "Action"
                     },
@@ -192,6 +263,7 @@
                     "heroic": {
                         "label": "Heroic Abilitiy"
                     },
+                    "label": "Type",
                     "maneuver": {
                         "label": "Manuever"
                     },
@@ -207,236 +279,172 @@
                     "villain": {
                         "label": "Villain Ability"
                     }
-                },
-                "keywords": {
-                    "label": {
-                        "singular": "Keyword",
-                        "plural": "Keywords"
-                    },
-                    "attack": {
-                        "label": "Attack"
-                    },
-                    "kit": {
-                        "label": "Kit"
-                    },
-                    "magic": {
-                        "label": "Magic"
-                    },
-                    "psionic": {
-                        "label": "Psionic"
-                    },
-                    "weapon": {
-                        "label": "Weapon"
-                    }
-                },
-                "fields": {
-                    "cost": {
-                        "label": "Cost",
-                        "hint": ""
-                    },
-                    "damage": {
-                        "label": "Damage",
-                        "hint": "",
-                        "doesDamage": "Does Damage",
-                        "baseFormula": "Base Formula",
-                        "applyExtraDamage": "Appy Extra Damage",
-                        "type": "Damage Type"
-                    },
-                    "distance": {
-                        "label": "Distance",
-                        "hint": ""
-                    },
-                    "effect": {
-                        "label": "Effect",
-                        "hint": ""
-                    },
-                    "keywords": {
-                        "label": "Keywords",
-                        "singular": "Keyword",
-                        "hint": ""
-                    },
-                    "target": {
-                        "label": "Target",
-                        "hint": ""
-                    },
-                    "time": {
-                        "label": "Time",
-                        "hint": ""
-                    },
-                    "trigger": {
-                        "label": "Trigger",
-                        "hint": ""
-                    },
-                    "type": {
-                        "label": "Type",
-                        "hint": ""
-                    }
                 }
             },
             "ancestry": {
-                "label": "Ancestry",
-                "fields": {
-                    "size": {
-                        "width": {
-                            "label": "Width"
-                        },
-                        "length": {
-                            "label": "Length"
-                        },
-                        "height": {
-                            "label": "Height"
-                        },
-                        "weight": {
-                            "label": "Weight"
-                        }
+                "FIELDS": {
+                    "description": {
+                        "label": "Description"
                     },
                     "reach": {
                         "label": "Reach"
                     },
-                    "speed": {
-                        "label": "Speed"
-                    },
-                    "description": {
-                        "label": "Description"
-                    }
-                }
-            },
-            "class": {
-                "label": "Class",
-                "fields": {
-                    "resources": {
-                        "label": "Resources",
-                        "name": {
-                            "label": "Name"
+                    "size": {
+                        "height": {
+                            "label": "Height"
                         },
-                        "max": {
-                            "label": "Max"
+                        "label": "Size",
+                        "length": {
+                            "label": "Length"
+                        },
+                        "weight": {
+                            "label": "Weight"
+                        },
+                        "width": {
+                            "label": "Width"
                         }
                     },
+                    "speed": {
+                        "label": "Speed"
+                    }
+                },
+                "label": "Ancestry"
+            },
+            "class": {
+                "fields": {
                     "description": {
                         "label": "Description"
-                    },
-                    "victoryBenefits": {
-                        "label": "Victory Benefits"
                     },
                     "resourceGain": {
                         "label": "Resource Gains"
+                    },
+                    "resources": {
+                        "label": "Resources",
+                        "max": {
+                            "label": "Max"
+                        },
+                        "name": {
+                            "label": "Name"
+                        }
+                    },
+                    "victoryBenefits": {
+                        "label": "Victory Benefits"
                     }
-                }
+                },
+                "label": "Class"
             },
             "kit": {
-                "label": "Kit",
                 "fields": {
-                    "type": "Type",
-                    "armor": "Armor",
-                    "weapon": "Weapon",
                     "area": "Area",
-                    "health": "Health",
+                    "armor": "Armor",
                     "damage": "Damage",
-                    "reach": "Reach",
-                    "speed": "Speed",
+                    "health": "Health",
                     "range": "Range",
-                    "resistanceTn": "Resistance TN"
-                }
+                    "reach": "Reach",
+                    "resistanceTn": "Resistance TN",
+                    "speed": "Speed",
+                    "type": "Type",
+                    "weapon": "Weapon"
+                },
+                "label": "Kit"
             }
         },
         "rolls": {
-            "label": "Roll",
-            "resistance": {
-                "label": "Resistance",
-                "button": "{tn}{characteristicAbbreviation} Resists",
-                "dialog": {
-                    "headerLabel": "{tn}{characteristicAbbreviation} Resistance Roll"
-                }
-            },
-            "test": {
-                "label": "Test",
-                "button": "{tn}{characteristic}{skill}{subskill} Test",
-                "dialog": {
-                    "headerLabel": "{tn}{characteristic}{skill}{subskill} Test Roll"
-                }
-            },
             "damage": {
-                "label": "Damage",
+                "chancehit": "Chance Hit",
                 "dialog": {
                     "headerLabel": "{abilityName} Damage Roll"
                 },
-                "chancehit": "Chance Hit"
+                "label": "Damage"
+            },
+            "label": "Roll",
+            "resistance": {
+                "button": "{tn}{characteristicAbbreviation} Resists",
+                "dialog": {
+                    "headerLabel": "{tn}{characteristicAbbreviation} Resistance Roll"
+                },
+                "label": "Resistance"
+            },
+            "test": {
+                "button": "{tn}{characteristic}{skill}{subskill} Test",
+                "dialog": {
+                    "headerLabel": "{tn}{characteristic}{skill}{subskill} Test Roll"
+                },
+                "label": "Test"
             }
         },
         "sheets": {
             "actor": {
-                "health": {
-                    "label": "Health",
-                    "abbreviation": "HP",
-                    "current": "Current HP",
-                    "max": "Max HP"
-                },
-                "size": {
-                    "label": "Size",
-                    "width": "Width",
-                    "length": "Length",
-                    "height": "Height",
-                    "weight": "Weight"
-                },
-                "victories": "Victories",
-                "recoveries": {
-                    "label": "Recoveries",
-                    "current": "Current Recoveries",
-                    "max": "Max Recoveries",
-                    "healingValue": "Healing Value"
-                },
-                "resources": "Resources",
                 "abilities": {
-                    "filters": {
-                        "type": "Ability Type Filter",
-                        "time": "Ability Time Filter",
-                        "clear": "Clear Filters"
-                    },
-                    "edit": "Edit Abilty",
+                    "add": "Add New Ability",
                     "delete": "Delete Ability",
-                    "add": "Add New Ability"
+                    "edit": "Edit Abilty",
+                    "filters": {
+                        "clear": "Clear Filters",
+                        "time": "Ability Time Filter",
+                        "type": "Ability Type Filter"
+                    }
                 },
-                "tabs": {
-                    "abilities": "Abilities",
-                    "notes": "Notes",
-                    "effects": "Effects",
-                    "negotiation": "Negotiation"
-                },
-                "skills": {
-                    "edit": "Edit Skills",
-                    "delete": "Delete Skill",
-                    "proficient": "Proficient"
-                },
-                "xp": "XP",
-                "level": "Level",
-                "speed": "Speed",
-                "reach": "Reach",
+                "bonusDamage": "Bonus Damage",
+                "bonusTN": "Bonus TN",
                 "chanceHit": "Chance Hit",
-                "grappleTn": "GP/KB TN",
-                "notes": "Notes",
                 "conditions": {
                     "edit": "Edit {condition}",
                     "toggle": "Toggle {condition}"
                 },
-                "bonusDamage": "Bonus Damage",
-                "bonusTN": "Bonus TN",
                 "grapple": "Grapple",
+                "grappleTn": "GP/KB TN",
+                "health": {
+                    "abbreviation": "HP",
+                    "current": "Current HP",
+                    "label": "Health",
+                    "max": "Max HP"
+                },
                 "knockback": "Knockback",
-                "tn": "TN"
+                "level": "Level",
+                "notes": "Notes",
+                "reach": "Reach",
+                "recoveries": {
+                    "current": "Current Recoveries",
+                    "healingValue": "Healing Value",
+                    "label": "Recoveries",
+                    "max": "Max Recoveries"
+                },
+                "resources": "Resources",
+                "size": {
+                    "height": "Height",
+                    "label": "Size",
+                    "length": "Length",
+                    "weight": "Weight",
+                    "width": "Width"
+                },
+                "skills": {
+                    "delete": "Delete Skill",
+                    "edit": "Edit Skills",
+                    "proficient": "Proficient"
+                },
+                "speed": "Speed",
+                "tabs": {
+                    "abilities": "Abilities",
+                    "effects": "Effects",
+                    "negotiation": "Negotiation",
+                    "notes": "Notes"
+                },
+                "tn": "TN",
+                "victories": "Victories",
+                "xp": "XP"
             },
             "items": {
                 "class": {
                     "addResource": "Add Resource",
                     "deleteResource": "Delete Resource"
+                },
+                "ancestry": {
+                    "speedAndReach": "Speed & Reach"
                 }
             }
         },
         "skills": {
-            "label": {
-                "singular": "Skill",
-                "plural": "Skills"
-            },
             "acrobatics": {
                 "label": "Acrobatics"
             },
@@ -461,6 +469,10 @@
             "knowledge": {
                 "label": "Knowledge"
             },
+            "label": {
+                "plural": "Skills",
+                "singular": "Skill"
+            },
             "notice": {
                 "label": "Notice"
             },
@@ -473,6 +485,18 @@
             "vigor": {
                 "label": "Vigor"
             }
+        }
+    },
+    "TYPES": {
+        "Actor": {
+            "hero": "Hero",
+            "monster": "Monster"
+        },
+        "Item": {
+            "ability": "Ability",
+            "ancestry": "Ancestry",
+            "class": "Class",
+            "kit": "Kit"
         }
     }
 }

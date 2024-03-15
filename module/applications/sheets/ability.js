@@ -1,27 +1,48 @@
 import { BaseItemSheet } from './base-item.js';
 
 export class AbilitySheet extends BaseItemSheet {
-    constructor(...args) {
-        super(...args);
-    }
+    static additionalOptions = {
+        classes: ['mcdmrpg', 'sheet', 'item', 'ability'],
+        position: {
+            width: 600,
+            height: 1000,
+        },
+    };
 
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilitySheet.additionalOptions, { inplace: false });
 
-        const overrides = {
-            classes: ['mcdmrpg', 'sheet', 'item', 'ability'],
-            template: `/systems/mcdmrpg/templates/documents/ability/ability-sheet.hbs`,
-            height: 'auto',
-            width: 500,
-        };
+    static PARTS = foundry.utils.mergeObject(
+        super.PARTS,
+        {
+            header: {
+                id: 'header',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+            },
+            keywords: {
+                id: 'size',
+                template: 'systems/mcdmrpg/templates/documents/ability/ability-keywords.hbs',
+            },
+            properties: {
+                id: 'properties',
+                template: 'systems/mcdmrpg/templates/documents/ability/ability-properties.hbs',
+            },
 
-        return foundry.utils.mergeObject(defaults, overrides);
-    }
+            damage: {
+                id: 'damage',
+                template: 'systems/mcdmrpg/templates/documents/ability/ability-damage.hbs',
+            },
+            effect: {
+                id: 'effect',
+                template: 'systems/mcdmrpg/templates/documents/ability/ability-effect.hbs',
+            },
+        },
+        { inplace: false }
+    );
 
-    _getSubmitData(updateData = {}) {
-        let submitData = super._getSubmitData(updateData);
-        submitData['system.keywords'] = submitData['system.keywords']?.filter((keyword) => keyword);
+    _prepareSubmitData(formData) {
+        formData = super._prepareSubmitData(formData);
+        formData.system.keywords = formData.system.keywords?.filter((keyword) => keyword);
 
-        return submitData;
+        return formData;
     }
 }

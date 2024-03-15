@@ -18,7 +18,7 @@ class KeywordField extends foundry.data.fields.ArrayField {
             choiceInput.setAttribute('id', `${choice}-keyword`);
             choiceInput.setAttribute('value', choice);
             choiceInput.setAttribute('name', 'system.keywords');
-            if (inputConfig.value.includes(choice)) choiceInput.setAttribute('checked', 'checked');
+            if (groupConfig.value?.includes(choice)) choiceInput.setAttribute('checked', 'checked');
             choiceDiv.appendChild(choiceInput);
 
             const choiceLabel = document.createElement('label');
@@ -33,6 +33,7 @@ class KeywordField extends foundry.data.fields.ArrayField {
 }
 
 export class AbilityData extends BaseItemData {
+    static LOCALIZATION_PREFIXES = ['system.items.ability'];
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -43,40 +44,31 @@ export class AbilityData extends BaseItemData {
                 {
                     doesDamage: new fields.BooleanField({
                         initial: false,
-                        label: 'system.items.ability.fields.damage.doesDamage',
                     }),
                     baseFormula: new fields.StringField({
                         initial: '2d6',
-                        label: 'system.items.ability.fields.damage.baseFormula',
                     }),
                     characteristic: new fields.StringField({
                         choices: getDataModelChoices(CHARACTERISTICS),
-                        label: 'system.characteristics.label',
                     }),
-                    applyExtraDamage: new fields.BooleanField({
-                        label: 'system.items.ability.fields.damage.applyExtraDamage',
-                    }),
+                    applyExtraDamage: new fields.BooleanField({}),
                     banes: new fields.NumberField({
                         initial: 0,
                         min: 0,
                         integer: true,
-                        label: 'system.dice.bane.plural',
                     }),
                     boons: new fields.NumberField({
                         initial: 0,
                         min: 0,
                         integer: true,
-                        label: 'system.dice.boon.plural',
                     }),
                     impacts: new fields.NumberField({
                         initial: 0,
                         integer: true,
                         min: 0,
-                        label: 'system.dice.impact.plural',
                     }),
                     type: new fields.StringField({
                         choices: getDataModelChoices(DAMAGE.TYPES),
-                        label: 'system.items.ability.fields.damage.type',
                     }),
                 },
                 {

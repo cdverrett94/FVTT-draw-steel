@@ -1,18 +1,36 @@
 import { BaseItemSheet } from './base-item.js';
 
 export class AncestrySheet extends BaseItemSheet {
-    constructor(...args) {
-        super(...args);
-    }
+    static additionalOptions = {
+        classes: ['mcdmrpg', 'sheet', 'item', 'ancestry'],
+        position: {
+            width: 400,
+            height: 540,
+        },
+    };
 
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AncestrySheet.additionalOptions, { inplace: false });
 
-        const overrides = {
-            classes: ['mcdmrpg', 'sheet', 'item', 'ancestry'],
-            template: `/systems/mcdmrpg/templates/documents/ancestry/ancestry-sheet.hbs`,
-        };
-
-        return foundry.utils.mergeObject(defaults, overrides);
-    }
+    static PARTS = foundry.utils.mergeObject(
+        super.PARTS,
+        {
+            header: {
+                id: 'header',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+            },
+            size: {
+                id: 'size',
+                template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-size.hbs',
+            },
+            details: {
+                id: 'details',
+                template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-details.hbs',
+            },
+            description: {
+                id: 'description',
+                template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-description.hbs',
+            },
+        },
+        { inplace: false }
+    );
 }

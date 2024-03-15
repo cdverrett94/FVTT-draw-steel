@@ -1,59 +1,67 @@
 import { BaseItemSheet } from './base-item.js';
-
 export class ClassSheet extends BaseItemSheet {
-    constructor(...args) {
-        super(...args);
-    }
-
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
-
-        const overrides = {
-            classes: ['mcdmrpg', 'sheet', 'item', 'class'],
-            template: `/systems/mcdmrpg/templates/documents/class/class-sheet.hbs`,
+    static additionalOptions = {
+        classes: ['mcdmrpg', 'sheet', 'item', 'class'],
+        position: {
             width: 900,
-            height: 'auto',
-        };
+            height: 755,
+        },
+        actions: {
+            addResource: ClassSheet.#addResource,
+            deleteResource: ClassSheet.#deleteResource,
+        },
+    };
 
-        return foundry.utils.mergeObject(defaults, overrides);
-    }
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, ClassSheet.additionalOptions, { inplace: false });
 
-    async getData() {
-        const data = await super.getData();
+    /** @override */
+    static PARTS = foundry.utils.mergeObject(
+        super.PARTS,
+        {
+            header: {
+                id: 'header',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+            },
+            resources: {
+                id: 'resources',
+                template: 'systems/mcdmrpg/templates/documents/class/class-resources.hbs',
+            },
+            details: {
+                id: 'details',
+                template: 'systems/mcdmrpg/templates/documents/class/class-details.hbs',
+            },
+        },
+        { inplace: false }
+    );
+
+    async _prepareContext(options) {
+        const context = await super._prepareContext();
 
         // Enrich Content
         let enrichContext = {
             async: true,
         };
 
-        data.source.system.description = (await TextEditor.enrichHTML(data.source.system.description, enrichContext)) ?? '';
-        data.source.system.victoryBenefits = (await TextEditor.enrichHTML(data.source.system.victoryBenefits, enrichContext)) ?? '';
-        data.source.system.resourceGain = (await TextEditor.enrichHTML(data.source.system.resourceGain, enrichContext)) ?? '';
+        context.item.system.description = (await TextEditor.enrichHTML(context.item.system.description, enrichContext)) ?? '';
+        context.item.system.victoryBenefits = (await TextEditor.enrichHTML(context.item.system.victoryBenefits, enrichContext)) ?? '';
+        context.item.system.reitemGain = (await TextEditor.enrichHTML(context.item.system.resourceGain, enrichContext)) ?? '';
 
-        return data;
+        return context;
     }
 
-    deleteResource(index) {
-        let resources = this.object.system.resources;
+    static async #deleteResource(event, target) {
+        let index = Number(target.dataset.resourceIndex);
+        if (typeof index !== 'number') return;
+
+        let resources = this.item.system.resources;
         resources.splice(index, 1);
-        this.object.update({ 'system.resources': resources });
+        await this.item.update({ 'system.resources': resources });
     }
 
-    activateListeners($html) {
-        super.activateListeners($html);
-        const html = $html[0];
-
-        html.querySelector('.add-class-resource').addEventListener('click', (event) => {
-            let resources = this.object.system.resources ?? [];
-            resources.push({ name: 'New Resource', max: '' });
-            this.object.update({ 'system.resources': resources });
-        });
-
-        html.querySelectorAll('.delete-class-resource').forEach((element) => {
-            element.addEventListener('click', (event) => {
-                let index = Number(element.dataset.resourceIndex);
-                if (typeof index === 'number') this.deleteResource(index);
-            });
-        });
+    static async #addResource() {
+        let resources = this.item.system.resources ?? [];
+        resources.push({ name: 'New Resource', max: '' });
+        await this.item.update({ 'system.resources': resources });
     }
 }

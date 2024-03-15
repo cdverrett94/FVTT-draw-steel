@@ -1,19 +1,27 @@
 import { BaseItemSheet } from './base-item.js';
-
 export class KitSheet extends BaseItemSheet {
-    constructor(...args) {
-        super(...args);
-    }
-
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
-
-        const overrides = {
-            classes: ['mcdmrpg', 'sheet', 'item', 'kit'],
-            template: `/systems/mcdmrpg/templates/documents/kit/kit-sheet.hbs`,
+    static additionalOptions = {
+        classes: ['mcdmrpg', 'sheet', 'item', 'kit'],
+        position: {
             width: 400,
-        };
+            height: 585,
+        },
+    };
 
-        return foundry.utils.mergeObject(defaults, overrides);
-    }
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, KitSheet.additionalOptions, { inplace: false });
+
+    static PARTS = foundry.utils.mergeObject(
+        super.PARTS,
+        {
+            header: {
+                id: 'header',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+            },
+            details: {
+                id: 'details',
+                template: '/systems/mcdmrpg/templates/documents/kit/kit-details.hbs',
+            },
+        },
+        { inplace: false }
+    );
 }

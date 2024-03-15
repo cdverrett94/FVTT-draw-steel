@@ -1,0 +1,28 @@
+<fieldset class='ability-properties'>
+    <legend>Properties</legend>
+    {{formField fields.type value=item.system.type classes='abilty-type' localize=true labelAttr='label'}}
+
+    {{! Hide time for passive types }}
+    {{#unless (eq type 'passive')}}
+        {{formField fields.time value=item.system.time classes='abilty-time' localize=true labelAttr='label'}}
+    {{/unless}}
+    {{! Show Cost for heroic types }}
+    {{#if (eq type 'heroic')}}
+        {{formField fields.cost value=item.system.cost classes='abilty-cost' localize=true}}
+    {{/if}}
+
+    {{! Show Trigger for trigger types }}
+    {{#if (eq type 'triggered')}}
+        {{formField fields.trigger value=item.system.trigger classes='abilty-trigger' localize=true}}
+    {{/if}}
+
+    {{! Hide distance for passive and trigger types }}
+    {{#unless (or (eq type 'passive') (eq type 'triggered'))}}
+        {{formField fields.distance value=item.system.distance classes='abilty-distance' localize=true}}
+    {{/unless}}
+
+    {{! Hide targets for passive and triggered types }}
+    {{#unless (or (eq type 'passive') (eq type 'triggered'))}}
+        {{formField fields.target value=item.system.target classes='abilty-target' localize=true}}
+    {{/unless}}
+</fieldset>

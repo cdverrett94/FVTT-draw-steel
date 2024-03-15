@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class='class-resources'>
     <legend>{{localize 'system.items.class.fields.resources.label'}}</legend>
     <div class='class-resource-list'>
         {{#each source.system.resources as |resource|}}
@@ -18,11 +18,11 @@
                     classes='resource-max'
                 }}
 
-                <div class='delete-class-resource' data-resource-index='{{@index}}'>
+                <div class='delete-class-resource' data-action='deleteResource' data-resource-index='{{@index}}'>
                     <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='{{localize "system.sheets.items.class.deleteResource"}}'></i>
                 </div>
             </div>
         {{/each}}
     </div>
-    <div><button class='add-class-resource'>{{localize 'system.sheets.items.class.addResource'}}</button></div>
+    <div><button data-action='addResource' class='add-class-resource'>{{localize 'system.sheets.items.class.addResource'}}</button></div>
 </fieldset>
