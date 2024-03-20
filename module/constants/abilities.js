@@ -1,39 +1,39 @@
 export const ABILITIES = {
     FIELDS: {
         cost: {
-            label: 'system.items.ability.fields.cost.label',
+            label: 'system.items.ability.FIELDS.cost.label',
             hint: '',
         },
         damage: {
-            label: 'system.items.ability.fields.damage.label',
+            label: 'system.items.ability.FIELDS.damage.label',
             hint: '',
         },
         distance: {
-            label: 'system.items.ability.fields.distance.label',
+            label: 'system.items.ability.FIELDS.distance.label',
             hint: '',
         },
         effect: {
-            label: 'system.items.ability.fields.effect.label',
+            label: 'system.items.ability.FIELDS.effect.label',
             hint: '',
         },
         keywords: {
-            label: 'system.items.ability.fields.keywords.label',
+            label: 'system.items.ability.FIELDS.keywords.label',
             hint: '',
         },
         target: {
-            label: 'system.items.ability.fields.target.label',
+            label: 'system.items.ability.FIELDS.target.label',
             hint: '',
         },
         time: {
-            label: 'system.items.ability.fields.time.label',
+            label: 'system.items.ability.FIELDS.time.label',
             hint: '',
         },
         trigger: {
-            label: 'system.items.ability.fields.trigger.label',
+            label: 'system.items.ability.FIELDS.trigger.label',
             hint: '',
         },
         type: {
-            label: 'system.items.ability.fields.type.label',
+            label: 'system.items.ability.FIELDS.type.label',
             hint: '',
         },
     },
