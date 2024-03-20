@@ -1,7 +1,5 @@
 <div class='mcdmrpg-header'>{{title}}</div>
 <div class='dice-roll'>
-    {{log @root}}
-
     {{#if flavor}}
         <div class='dice-flavor'>{{flavor}}</div>
     {{/if}}
@@ -17,5 +15,4 @@
             {{localize 'system.chat.damage.button.label' name=target.actor.name}}
         </button>
     </div>
-
 {{/if}}

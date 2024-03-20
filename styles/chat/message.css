@@ -1,3 +1,11 @@
 .message .message-content .target {
     margin-top: 5px;
 }
+
+.message .message-content .tn.roll-success {
+    color: green;
+}
+
+.message .message-content .tn.roll-failure {
+    color: red;
+}

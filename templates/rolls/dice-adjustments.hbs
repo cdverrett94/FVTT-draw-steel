@@ -1,0 +1,160 @@
+<div class='dice-adjustments roll-dialog-section'>
+    <div class='dice-adjustment general-adjustments'>
+        <div class='header'>General Dice Adjustments</div>
+        <div class='boons-banes-impacts'>
+            <div class='boons'>
+                <div>Boons</div>
+                <div>
+                    <div class='adjust-dice subtract-dice' data-type='boons' data-adjustment='decrease' data-action='adjustDice'>
+                        <i class='fa-solid fa-minus'></i>
+                    </div>
+                    <div>{{generalAdjustments.boons}} <i class='fa-regular fa-dice-d4'></i></div>
+                    <div class='adjust-dice add-dice' data-type='boons' data-adjustment='increase' data-action='adjustDice'>
+                        <i class='fa-solid fa-plus'></i>
+                    </div>
+                </div>
+            </div>
+            {{#if (eq rollType 'damage')}}
+                <div class='impacts'>
+                    <div>Impacts</div>
+                    <div>
+                        <div class='adjust-dice subtract-dice' data-type='impacts' data-adjustment='decrease' data-action='adjustDice'>
+                            <i class='fa-solid fa-minus'></i>
+                        </div>
+                        <div>{{generalAdjustments.impacts}} <i class='fa-regular fa-dice-d4'></i></div>
+                        <div class='adjust-dice add-dice' data-type='impacts' data-adjustment='increase' data-action='adjustDice'>
+                            <i class='fa-solid fa-plus'></i>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+            <div class='banes'>
+                <div>Banes</div>
+                <div>
+                    <div class='adjust-dice subtract-dice' data-type='banes' data-adjustment='decrease' data-action='adjustDice'>
+                        <i class='fa-solid fa-minus'></i>
+                    </div>
+                    <div>{{generalAdjustments.banes}} <i class='fa-regular fa-dice-d4'></i></div>
+                    <div class='adjust-dice add-dice' data-type='banes' data-adjustment='increase' data-action='adjustDice'>
+                        <i class='fa-solid fa-plus'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- {{#each targets as |target|}}
+        <div>{{target.tokenActor.name}}</div>
+        <div class='boons-banes-and-impacts target-adjustments'>
+            <div class='boons'>
+                <div>Boons</div>
+                <div>
+                    <div class='adjust-dice subtract-dice' data-token-target='{{@key}}' data-type='boons' data-adjustment='decrease' data-action='adjustDice'>
+                        <i class='fa-solid fa-minus'></i>
+                    </div>
+                    <div>{{target.boons}} <i class='fa-regular fa-dice-d4'></i></div>
+                    <div class='adjust-dice add-dice' data-token-target='{{@key}}' data-type='boons' data-adjustment='increase' data-action='adjustDice'>
+                        <i class='fa-solid fa-plus'></i>
+                    </div>
+                </div>
+            </div>
+            <div class='banes'>
+                <div>Banes</div>
+                <div>
+                    <div class='adjust-dice subtract-dice' data-token-target='{{@key}}' data-type='banes' data-adjustment='decrease' data-action='adjustDice'>
+                        <i class='fa-solid fa-minus'></i>
+                    </div>
+                    <div>{{target.banes}} <i class='fa-regular fa-dice-d4'></i></div>
+                    <div class='adjust-dice add-dice' data-token-target='{{@key}}' data-type='banes' data-adjustment='increase' data-action='adjustDice'>
+                        <i class='fa-solid fa-plus'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='roll-button roll-dialog-section'>
+            <button class='roll-button' data-token-target='{{@key}}' data-action='roll'>{{formula}}</button>
+        </div>
+    {{/each}} --}}
+
+    {{#each targets as |target|}}<div class='dice-adjustment target-adjustments'>
+            {{log target}}
+            <div class='header'>{{target.tokenActor.name}}</div>
+            <div class='boons-banes-impacts'>
+                <div class='boons'>
+                    <div>Boons</div>
+                    <div>
+                        <div
+                            class='adjust-dice subtract-dice'
+                            data-token-target='{{@key}}'
+                            data-type='boons'
+                            data-adjustment='decrease'
+                            data-action='adjustDice'
+                        >
+                            <i class='fa-solid fa-minus'></i>
+                        </div>
+                        <div>{{target.boons}} <i class='fa-regular fa-dice-d4'></i></div>
+                        <div class='adjust-dice add-dice' data-token-target='{{@key}}' data-type='boons' data-adjustment='increase' data-action='adjustDice'>
+                            <i class='fa-solid fa-plus'></i>
+                        </div>
+                    </div>
+                </div>
+                {{#if (eq @root.rollType 'damage')}}
+                    <div class='impacts'>
+                        <div>Impacts</div>
+                        <div>
+                            <div
+                                class='adjust-dice subtract-dice'
+                                data-token-target='{{@key}}'
+                                data-type='impacts'
+                                data-adjustment='decrease'
+                                data-action='adjustDice'
+                            >
+                                <i class='fa-solid fa-minus'></i>
+                            </div>
+                            <div>{{target.impacts}} <i class='fa-regular fa-dice-d4'></i></div>
+                            <div
+                                class='adjust-dice add-dice'
+                                data-token-target='{{@key}}'
+                                data-type='impacts'
+                                data-adjustment='increase'
+                                data-action='adjustDice'
+                            >
+                                <i class='fa-solid fa-plus'></i>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+                <div class='banes'>
+                    <div>Banes</div>
+                    <div>
+                        <div
+                            class='adjust-dice subtract-dice'
+                            data-token-target='{{@key}}'
+                            data-type='banes'
+                            data-adjustment='decrease'
+                            data-action='adjustDice'
+                        >
+                            <i class='fa-solid fa-minus'></i>
+                        </div>
+                        <div>
+                            {{target.banes}}
+                            <i class='fa-regular fa-dice-d4'></i>
+                        </div>
+                        <div class='adjust-dice add-dice' data-token-target='{{@key}}' data-type='banes' data-adjustment='increase' data-action='adjustDice'>
+                            <i class='fa-solid fa-plus'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='roll-button roll-dialog-section'>
+                <button
+                    class='roll-button{{ifThen target.rolled " rolled" ""}}'
+                    data-token-target='{{@key}}'
+                    data-formula='{{formula}}'
+                    data-action='roll'
+                    {{ifThen target.rolled 'disabled' ''}}
+                >{{formula}}</button>
+            </div>
+        </div>
+    {{/each}}
+</div>
