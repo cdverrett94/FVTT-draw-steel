@@ -1,5 +1,4 @@
-import { ABILITIES } from '../../constants/abilities.js';
-import { CONDITIONS } from '../../constants/conditions.js';
+import { ABILITIES, CONDITIONS } from '../../constants/_index.js';
 import { SkillConfig } from '../skill-config.js';
 
 const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;

@@ -1,5 +1,4 @@
-import { CHARACTERISTICS } from '../../constants/characteristics.js';
-import { SKILLS } from '../../constants/skills.js';
+import { CHARACTERISTICS, SKILLS } from '../../constants/_index.js';
 import { BaseRollDialog } from '../base/roll-dialog.js';
 import { TestRoll } from './test-roll.js';
 

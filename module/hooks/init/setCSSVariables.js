@@ -1,5 +1,4 @@
-import { ABILITIES } from '../../constants/abilities.js';
-import { DAMAGE } from '../../constants/damage.js';
+import { ABILITIES, DAMAGE } from '../../constants/_index.js';
 
 export function setCSSVariables() {
     // Set Ability Type Variables

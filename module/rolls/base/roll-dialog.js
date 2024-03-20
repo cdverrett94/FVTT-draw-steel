@@ -1,5 +1,4 @@
-import { CHARACTERISTICS } from '../../constants/characteristics.js';
-import { SKILLS } from '../../constants/skills.js';
+import { CHARACTERISTICS, SKILLS } from '../../constants/_index.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -104,7 +103,6 @@ export class BaseRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
                 this.context.headerLabel = this.headerLabel;
                 this.globalContext.headerLabel = this.headerLabel;
                 this.render({ parts: ['header', 'adjustments', 'roll'] });
-                console.log(this.context);
             });
         }
     }

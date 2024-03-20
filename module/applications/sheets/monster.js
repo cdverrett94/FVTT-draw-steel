@@ -1,4 +1,4 @@
-import { MONSTER_ROLES } from '../../constants/monster-roles.js';
+import { MONSTER_ROLES } from '../../constants/_index.js';
 import { BaseActorSheet } from './base-actor.js';
 
 export class MonsterSheet extends BaseActorSheet {

@@ -1,4 +1,4 @@
-import { DAMAGE } from '../../constants/damage.js';
+import { DAMAGE } from '../../constants/_index.js';
 import { MCDMRoll } from '../base/base-roll.js';
 
 export class DamageRoll extends MCDMRoll {

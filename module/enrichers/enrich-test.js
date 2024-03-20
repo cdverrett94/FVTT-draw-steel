@@ -1,6 +1,4 @@
-import { tnDifficulty } from '../constants.js';
-import { CHARACTERISTICS } from '../constants/characteristics.js';
-import { SKILLS } from '../constants/skills.js';
+import { CHARACTERISTICS, DIFFICULTY, SKILLS } from '../constants/_index.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 import { TestRoll } from '../rolls/_index.js';
 
@@ -13,7 +11,7 @@ function enrichTest(match, options) {
     if (!data.skill && !(data.skill in SKILLS)) return false;
 
     // Set TN by difficulty
-    if (data.tn in tnDifficulty) data.tn = tnDifficulty[data.tn];
+    if (data.tn in DIFFICULTY) data.tn = DIFFICULTY[data.tn];
 
     let linkText = game.i18n.format('system.rolls.test.button', {
         tn: data.tn ? `TN ${data.tn} ` : '',

@@ -1,4 +1,4 @@
-import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { CHARACTERISTICS } from '../constants/_index.js';
 
 import { getRollActor } from '../helpers.js';
 import { enrichDamage, postDamageToChat, rollDamage } from './enrich-damage.js';

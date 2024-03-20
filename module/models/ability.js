@@ -1,6 +1,4 @@
-import { ABILITIES } from '../constants/abilities.js';
-import { CHARACTERISTICS } from '../constants/characteristics.js';
-import { DAMAGE } from '../constants/damage.js';
+import { ABILITIES, CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
 import { getDataModelChoices } from '../helpers.js';
 import { BaseItemData } from './base-item.js';
 

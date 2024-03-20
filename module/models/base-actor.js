@@ -1,6 +1,4 @@
-import { CHARACTERISTICS } from '../constants/characteristics.js';
-import { DAMAGE } from '../constants/damage.js';
-import { SKILLS } from '../constants/skills.js';
+import { CHARACTERISTICS, DAMAGE, SKILLS } from '../constants/_index.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
     static LOCALIZATION_PREFIXES = ['system.actors.base'];

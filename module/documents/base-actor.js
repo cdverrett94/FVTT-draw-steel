@@ -1,5 +1,4 @@
-import { ABILITIES } from '../constants/abilities.js';
-import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { ABILITIES, CHARACTERISTICS } from '../constants/_index.js';
 import { DamageRollDialog, ResistanceRollDialog, TestRollDialog } from '../rolls/_index.js';
 
 export class BaseActor extends Actor {

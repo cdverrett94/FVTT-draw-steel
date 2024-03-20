@@ -1,4 +1,4 @@
-import { CONDITIONS } from '../../constants/conditions.js';
+import { CONDITIONS } from '../../constants/_index.js';
 
 function registerStatusEffects() {
     CONFIG.statusEffects = Object.values(CONDITIONS);

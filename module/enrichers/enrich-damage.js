@@ -1,4 +1,4 @@
-import { DAMAGE } from '../constants/damage.js';
+import { DAMAGE } from '../constants/_index.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 import { DamageRoll } from '../rolls/_index.js';
 

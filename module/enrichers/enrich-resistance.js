@@ -1,5 +1,4 @@
-import { tnDifficulty } from '../constants.js';
-import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { CHARACTERISTICS, DIFFICULTY } from '../constants/_index.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
 import { ResistanceRoll } from '../rolls/_index.js';
 
@@ -19,7 +18,7 @@ function enrichResistance(match, options) {
 
     data.formula = ResistanceRoll.constructFinalFormula(data.baseFormula, data);
 
-    if (data.tn in tnDifficulty) data.tn = tnDifficulty[data.tn];
+    if (data.tn in DIFFICULTY) data.tn = DIFFICULTY[data.tn];
     if (!data.tn && options.actor) {
         let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
         data.tn = 6 + options.actor.system.highest + (bonusTN ?? 0);
