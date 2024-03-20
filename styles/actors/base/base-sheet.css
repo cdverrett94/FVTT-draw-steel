@@ -63,10 +63,11 @@
 
 .mcdmrpg.sheet.actor div.ability-filters .ability-filter {
     padding: 5px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background: #302831;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    color: #e7d1b1;
 }
 
 .mcdmrpg.sheet.actor div.ability-filters .ability-filter.active-filter {

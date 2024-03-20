@@ -1,4 +1,17 @@
-.roll-dialog div.boons-banes-and-impacts {
+.roll-dialog .characteristic-select {
+    margin-bottom: 10px;
+}
+
+.roll-dialog .dice-adjustment {
+    text-align: center;
+    padding: 10px;
+}
+
+.roll-dialog .dice-adjustment:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.roll-dialog div.boons-banes-impacts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
     align-items: center;
@@ -9,39 +22,28 @@
 
 .roll-dialog div.boons,
 .roll-dialog div.banes,
-.roll-dialog div.impact {
+.roll-dialog div.impacts {
     width: 100%;
-    text-align: center;
 }
 
-.roll-dialog div.boons-banes-and-impacts > div > :nth-child(2) {
+.roll-dialog div.boons-banes-impacts > div > :nth-child(2) {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.roll-dialog div.adjust-dice {
+    cursor: pointer;
 }
 
 .roll-dialog div.add-dice:hover {
-    cursor: pointer;
     color: green;
 }
 
 .roll-dialog div.subtract-dice:hover {
-    cursor: pointer;
     color: red;
 }
 
-.roll-dialog button.roll-button {
+.roll-dialog .dice-adjustment .roll-button {
+    margin-top: 5px;
     width: 100%;
-}
-
-/* APPV2 Specific Styles */
-
-.roll-dialog .roll-dialog-section:not(:last-child) {
-    margin-bottom: 10px;
-}
-
-.roll-dialog .characteristic-select select {
-    color: white;
-}
-.roll-dialog .characteristic-select option {
-    color: black;
 }

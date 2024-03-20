@@ -10,7 +10,6 @@
     grid-template-rows: repeat(10, 1fr);
     grid-gap: 10px;
     max-height: 1054px;
-    overflow-y: hidden;
 }
 
 .sheet.actor.hero .sidebar {
@@ -41,7 +40,6 @@
 }
 
 .sheet.actor.hero .tabbed-content .tab {
-    overflow-y: scroll;
     max-height: 897px;
 }
 .sheet.actor.hero .tabbed-content .sheet-tabs {
@@ -55,4 +53,9 @@
 }
 .sheet.actor.hero .tabbed-content .sheet-tabs a.active {
     border-bottom: 2px solid black;
+}
+
+.sheet.actor.hero div.actor-abilities .abilities-list {
+    overflow-y: scroll;
+    max-height: 663px;
 }
