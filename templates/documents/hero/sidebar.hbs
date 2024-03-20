@@ -22,14 +22,14 @@
     </div>
 
     <div class='hp'>
-        <div class='mcdmrpg-header'>{{localize 'system.sheets.actor.health.label'}}</div>
+        <div class='mcdmrpg-header'>{{fields.hp.label}}</div>
         <div class='hp-values'>
             <div class='current'>
                 {{formInput fields.hp.fields.current value=actor.system.hp.current}}
             </div>
             <div class='other-hp'>
                 <div class='max'>
-                    <div class='label'>{{localize fields.hp.fields.max.label}} </div>
+                    <div class='label'>{{fields.hp.fields.max.label}} </div>
                     <div class='value'>{{formInput fields.hp.fields.max value=actor.system.hp.max}}</div>
                 </div>
                 <div class='bloodied'>
@@ -41,21 +41,21 @@
     </div>
 
     <div class='size'>
-        <div class='mcdmrpg-header'>{{localize 'system.sheets.actor.size.label'}}</div>
+        <div class='mcdmrpg-header'>{{actor.ancestry.system.schema.fields.size.label}}</div>
         <div class='size-values'>
             <div class='size'>
-                <div class='label'>{{localize 'system.sheets.actor.size.label'}}</div>
+                <div class='label'>{{actor.ancestry.system.schema.fields.size.label}}</div>
                 <div class='value'>{{actor.system.size.width}} x {{actor.system.size.length}} x {{actor.system.size.height}}</div>
             </div>
             <div class='weight'>
-                <div class='label'>{{localize 'system.sheets.actor.size.weight'}}</div>
+                <div class='label'>{{actor.ancestry.system.schema.fields.size.fields.weight.label}}</div>
                 <div class='value'>{{actor.system.size.weight}}</div></div>
             <div class='speed'>
-                <div class='label'>{{localize 'system.sheets.actor.speed'}}</div>
+                <div class='label'>{{actor.ancestry.system.schema.fields.speed.label}}</div>
                 <div class='value'>{{actor.system.speed}}</div>
             </div>
             <div class='reach'>
-                <div class='label'>{{localize 'system.sheets.actor.reach'}}</div>
+                <div class='label'>{{actor.ancestry.system.schema.fields.reach.label}}</div>
                 <div class='value'>{{actor.system.reach}}</div>
             </div>
             <div class='grapple-tn'>
@@ -67,7 +67,7 @@
 
     <div class='victories'>
         <div class='mcdmrpg-header'>
-            {{localize fields.victories.label}}
+            {{fields.victories.label}}
             <span class='resources-info right-button' data-tooltip='{{actor.class.system.victoryBenefits}}' data-tooltip-direction='UP'>
                 <i class='fa-solid fa-question'></i>
             </span>
@@ -76,7 +76,7 @@
     </div>
 
     <div class='recoveries'>
-        <div class='mcdmrpg-header'>{{localize fields.recoveries.label}}</div>
+        <div class='mcdmrpg-header'>{{fields.recoveries.label}}</div>
         <div class='recoveries-values'>
             <div class='current'>
                 <input type='number' name='system.recoveries.current' value='{{actor.system.recoveries.current}}' />
@@ -117,7 +117,7 @@
                 </div>
                 {{#if resource.max}}
                     <div class='resource-max'>
-                        <div class='resource-title label'>{{localize 'system.items.class.FIELDS.resources.max.label'}}</div>
+                        <div class='resource-title label'>{{localize @root.actor.class.system.schema.fields.resources.element.fields.max.label}}</div>
                         <div class='resource-value value'>{{resource.max}}</div>
                     </div>
                 {{/if}}

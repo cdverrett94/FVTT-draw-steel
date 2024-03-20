@@ -1,6 +1,43 @@
 {
     "system": {
         "actors": {
+            "base": {
+                "FIELDS": {
+                    "level": {
+                        "label": "Level"
+                    },
+                    "hp": {
+                        "label": "HP",
+                        "current": {
+                            "label": "Current HP"
+                        },
+                        "max": {
+                            "label": "Max HP"
+                        }
+                    },
+                    "characteristics": {
+                        "label": "Characteristics",
+                        "might": {
+                            "label": "Might"
+                        },
+                        "agility": {
+                            "label": "Agility"
+                        },
+                        "endurance": {
+                            "label": "Endurance"
+                        },
+                        "reason": {
+                            "label": "Reason"
+                        },
+                        "intuition": {
+                            "label": "Intuition"
+                        },
+                        "presence": {
+                            "label": "Presence"
+                        }
+                    }
+                }
+            },
             "monsters": {
                 "roles": {
                     "ambusher": {
@@ -46,6 +83,40 @@
                     "support": {
                         "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options.",
                         "label": "Support"
+                    }
+                }
+            },
+            "hero": {
+                "FIELDS": {
+                    "victories": {
+                        "label": "Victories"
+                    },
+                    "xp": {
+                        "label": "XP"
+                    },
+                    "recoveries": {
+                        "label": "Recoveries",
+                        "max": {
+                            "label": "Max"
+                        },
+                        "current": {
+                            "label": "Current Recoveries"
+                        }
+                    },
+                    "currentResources": {
+                        "label": "Resources",
+                        "max": {
+                            "label": "Max"
+                        },
+                        "name": {
+                            "label": "Resource Name"
+                        },
+                        "current": {
+                            "label": "Current Resources"
+                        }
+                    },
+                    "system": {
+                        "label": "Hero"
                     }
                 }
             }
@@ -311,7 +382,7 @@
                 "label": "Ancestry"
             },
             "class": {
-                "fields": {
+                "FIELDS": {
                     "description": {
                         "label": "Description"
                     },
@@ -325,6 +396,22 @@
                         },
                         "name": {
                             "label": "Name"
+                        },
+                        "element": {
+                            "max": {
+                                "label": "Max"
+                            },
+                            "name": {
+                                "label": "Name"
+                            },
+                            "fields": {
+                                "max": {
+                                    "label": "Max"
+                                },
+                                "name": {
+                                    "label": "Name"
+                                }
+                            }
                         }
                     },
                     "victoryBenefits": {
@@ -334,7 +421,7 @@
                 "label": "Class"
             },
             "kit": {
-                "fields": {
+                "FIELDS": {
                     "area": "Area",
                     "armor": "Armor",
                     "damage": "Damage",
@@ -371,6 +458,10 @@
                     "headerLabel": "{tn}{characteristic}{skill}{subskill} Test Roll"
                 },
                 "label": "Test"
+            },
+            "tn": {
+                "abbreviation": "TN",
+                "label": "Test Number"
             }
         },
         "sheets": {
@@ -401,7 +492,6 @@
                     "max": "Max HP"
                 },
                 "knockback": "Knockback",
-                "level": "Level",
                 "notes": "Notes",
                 "reach": "Reach",
                 "recoveries": {
@@ -431,8 +521,7 @@
                     "notes": "Notes"
                 },
                 "tn": "TN",
-                "victories": "Victories",
-                "xp": "XP"
+                "victories": "Victories"
             },
             "items": {
                 "class": {

@@ -3,7 +3,7 @@ import { DAMAGE } from '../constants/damage.js';
 import { SKILLS } from '../constants/skills.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
-    static LOCALIZATION_PREFIXES = ['system.items.actors'];
+    static LOCALIZATION_PREFIXES = ['system.actors.base'];
     static defineSchema() {
         const fields = foundry.data.fields;
         const schema = {};
@@ -18,7 +18,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 max: 10,
                 integer: true,
                 nullable: false,
-                label: CHARACTERISTICS[characteristic].label,
             });
         }
         schema.characteristics = new fields.SchemaField(characteristics);
@@ -74,7 +73,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     initial: 0,
                     integer: true,
                     nullable: false,
-                    label: 'system.sheets.actor.health.current',
                 }),
                 max: new fields.NumberField({
                     required: true,
@@ -82,7 +80,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     min: 0,
                     integer: true,
                     nullable: false,
-                    label: 'system.sheets.actor.health.max',
                 }),
             }),
             level: new fields.NumberField({
@@ -90,7 +87,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 initial: 1,
                 integer: true,
                 max: 10,
-                label: 'system.sheets.actor.level',
             }),
             speed: new fields.NumberField({
                 label: 'system.sheets.actor.speed',

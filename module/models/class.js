@@ -1,28 +1,24 @@
 import { BaseItemData } from './base-item.js';
 
 export class ClassData extends BaseItemData {
+    static LOCALIZATION_PREFIXES = [
+        'system.items.class',
+        'system.items.class.FIELDS',
+        'system.items.class.FIELDS.element',
+        'system.items.class.FIELDS.element.fields',
+    ];
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
             resources: new fields.ArrayField(
                 new fields.SchemaField({
-                    name: new fields.StringField({
-                        label: 'system.items.class.fields.resources.name.label',
-                    }),
-                    max: new fields.StringField({
-                        label: 'system.items.class.fields.resources.max.label',
-                    }),
+                    name: new fields.StringField(),
+                    max: new fields.StringField(),
                 })
             ),
-            description: new fields.StringField({
-                label: 'system.items.class.fields.description.label',
-            }),
-            victoryBenefits: new fields.StringField({
-                label: 'system.items.class.fields.victoryBenefits.label',
-            }),
-            resourceGain: new fields.StringField({
-                label: 'system.items.class.fields.resourceGain.label',
-            }),
+            description: new fields.StringField(),
+            victoryBenefits: new fields.StringField(),
+            resourceGain: new fields.StringField(),
         };
     }
 }

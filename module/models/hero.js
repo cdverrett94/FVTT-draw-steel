@@ -1,6 +1,7 @@
 import { BaseActorData } from './base-actor.js';
 
 export class HeroData extends BaseActorData {
+    static LOCALIZATION_PREFIXES = ['system.actors.base', 'system.actors.hero'];
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -11,7 +12,6 @@ export class HeroData extends BaseActorData {
                 min: 0,
                 integer: true,
                 nullable: false,
-                label: 'system.sheets.actor.victories',
             }),
             xp: new fields.NumberField({
                 required: true,
@@ -19,39 +19,33 @@ export class HeroData extends BaseActorData {
                 min: 0,
                 integer: true,
                 nullable: false,
-                label: 'system.sheets.actor.xp',
             }),
-            recoveries: new fields.SchemaField(
-                {
-                    current: new fields.NumberField({
-                        required: true,
-                        initial: 0,
-                        min: 0,
-                        integer: true,
-                        nullable: false,
-                        label: 'system.sheets.actor.recoveries.current',
-                    }),
-                    max: new fields.NumberField({
-                        required: true,
-                        initial: 0,
-                        min: 0,
-                        integer: true,
-                        nullable: false,
-                        label: 'system.sheets.actor.recoveries.max',
-                    }),
-                },
-                {
-                    label: 'system.sheets.actor.recoveries.label',
-                }
-            ),
+            recoveries: new fields.SchemaField({
+                current: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    min: 0,
+                    integer: true,
+                    nullable: false,
+                }),
+                max: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    min: 0,
+                    integer: true,
+                    nullable: false,
+                }),
+            }),
             currentResources: new fields.ArrayField(
                 new fields.SchemaField({
-                    name: new fields.StringField(),
-                    current: new fields.NumberField(),
+                    name: new fields.StringField({
+                        label: 'system.actors.hero.FIELDS.currentResources.name.label',
+                    }),
+                    current: new fields.NumberField({
+                        label: 'system.actors.hero.FIELDS.currentResources.current.label',
+                    }),
                 }),
-                {
-                    label: 'system.sheets.actor.resources',
-                }
+                { initial: [] }
             ),
         };
     }
