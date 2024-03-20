@@ -4,15 +4,14 @@ export class HeroSheet extends BaseActorSheet {
     static additionalOptions = {
         classes: ['hero'],
         position: {
-            width: 1200,
+            width: 1202,
             height: 1100,
         },
         actions: {
-            rollCharacteristic: HeroSheet.#rollCharacteristic,
-            rollSkill: HeroSheet.#rollSkill,
-            openACKSheet: HeroSheet.#openACKSheet,
-            editEffect: HeroSheet.#editEffect,
-            deleteEffect: HeroSheet.#deleteEffect,
+            rollSkill: this.#rollSkill,
+            openACKSheet: this.#openACKSheet,
+            editEffect: this.#editEffect,
+            deleteEffect: this.#deleteEffect,
         },
     };
     // overrides = {

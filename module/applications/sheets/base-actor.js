@@ -1,70 +1,5 @@
-// export class BaseActorSheet extends ActorSheet {
-
 import { ABILITIES } from '../../constants/abilities.js';
 import { CONDITIONS } from '../../constants/conditions.js';
-import { SkillConfig } from '../skill-config.js';
-
-//     activateListeners($html) {
-//         super.activateListeners($html);
-//         const html = $html[0];
-
-//         // Add Ability
-//         const addAbilityButton = html.querySelector('.add-ability');
-//         addAbilityButton.addEventListener('click', async (event) => {
-//             let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
-//             item[0].sheet.render(true);
-//             this.render(true);
-//         });
-
-//         // Ability Filters
-//         html.querySelectorAll('.ability-filter').forEach((element) => {
-//             element.addEventListener('click', (event) => {
-//                 const filter = element.dataset.filter ?? 'type';
-//                 const selection = element.dataset.filterSelection;
-//                 const secondaryFilter = filter === 'type' ? 'time' : 'type';
-
-//                 this.filters[filter] = selection === 'clear' ? null : selection;
-//                 this.filters[secondaryFilter] = null;
-
-//                 this.render(true);
-//             });
-//         });
-
-//         // Edit Skills
-//         const editSkillButton = html.querySelector('.edit-skills');
-//         editSkillButton.addEventListener('click', (event) => {
-//             new SkillConfig({ actor: this.actor }).render(true);
-//         });
-
-//         // Edit Ability
-//         html.querySelectorAll('.ability-edit').forEach((element) => {
-//             element.addEventListener('click', (event) => {
-//                 let abilityData = element.closest('.ability').dataset;
-//                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
-
-//                 ability?.sheet.render(true);
-//             });
-//         });
-
-//         // Delete Ability
-//         html.querySelectorAll('.ability-delete').forEach((element) => {
-//             element.addEventListener('click', (event) => {
-//                 let abilityData = element.closest('.ability').dataset;
-//                 let ability = this.actor.items.find((item) => item._id === abilityData.abilityId);
-
-//                 this.actor.deleteEmbeddedDocuments('Item', [ability._id]);
-//             });
-//         });
-
-//         // Toggle Conditions
-//         html.querySelectorAll('.toggle-condition').forEach(async (element) => {
-//             element.addEventListener('click', async (event) => {
-//                 const conditionId = element.dataset.conditionId;
-//                 this.actor.toggleStatusEffect(conditionId);
-//             });
-//         });
-//     }
-// }
 
 const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;
 export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) {
@@ -86,6 +21,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             submitOnChange: true,
         },
         actions: {
+            rollCharacteristic: this.#rollCharacteristic,
             editSkills: this.#editSkills,
             addAbility: this.#addAbilty,
             editAbility: this.#editAbility,
@@ -140,6 +76,11 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
 
     static PARTS = {};
 
+    static #rollCharacteristic(event, target) {
+        const characteristic = target.dataset.characteristic;
+        this.actor.rollCharacteristic(characteristic);
+    }
+
     static async #editSkills(event, target) {
         new SkillConfig({ actor: this.actor }).render(true);
         this.minimize();
@@ -180,7 +121,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     }
 
     static #toggleCondition(event, target) {
-        console.log('condition toggle');
         const conditionId = target.dataset.conditionId;
         this.actor.toggleStatusEffect(conditionId);
     }
