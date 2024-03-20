@@ -17,6 +17,9 @@ export function registerTemplates() {
         // Monsters
         'systems/mcdmrpg/templates/documents/monster/header.hbs',
         'systems/mcdmrpg/templates/documents/monster/skills.hbs',
+
+        // Chat Messages
+        'systems/mcdmrpg/templates/chat-messages/damage-message.hbs',
     ];
     loadTemplates(templatePaths);
 }

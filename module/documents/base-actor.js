@@ -206,4 +206,54 @@ export class BaseActor extends Actor {
 
         return rollData;
     }
+
+    async applyDamage(damageAmount = 0) {
+        // TODO: LATER APPLY WEAKNESSES AND IMMUNITIES
+        const currentHP = this.system.hp.current;
+        const newHP = currentHP - damageAmount;
+
+        await this.update({ 'system.hp.current': newHP });
+    }
+
+    async _preUpdate(changed, options, user) {
+        if ('hp' in changed.system) {
+            const currentHP = this.system.hp.current;
+
+            let newCurrentHP = changed.system.hp.current ?? this.system.hp.current;
+            let newMaxHP = changed.system.hp.max ?? this.system.hp.max;
+            let newBloodiedValue = Math.floor(newMaxHP / 2);
+
+            const newAppliedHP = Math.clamp(newCurrentHP, -newBloodiedValue, newMaxHP);
+            const hpDelta = newAppliedHP - currentHP;
+
+            options.hpDelta = hpDelta;
+            changed.system.hp.current = newAppliedHP;
+        }
+
+        await super._preUpdate(changed, options, user);
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        // HP CHANGES SCROLLING STATUS TEXT
+        if ('hp' in changes.system && 'current' in changes.system.hp) {
+            const tokens = this.isToken ? [this.token] : this.getActiveTokens(true, true);
+            if (!tokens.length) return;
+            const pct = Math.clamp(Math.abs(options.hpDelta) / this.system.hp.max, 0, 1);
+            for (const token of tokens) {
+                if (!token.object?.visible || !token.object?.renderable) continue;
+                const t = token.object;
+                canvas.interface.createScrollingText(t.center, options.hpDelta.signedString(), {
+                    anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
+                    // Adapt the font size relative to the Actor's HP total to emphasize more significant blows
+                    fontSize: 16 + 32 * pct, // Range between [16, 48]
+                    fill: options.hpDelta > 0 ? 'green' : 'red',
+                    stroke: 0x000000,
+                    strokeThickness: 4,
+                    jitter: Math.random(),
+                });
+            }
+        }
+    }
 }

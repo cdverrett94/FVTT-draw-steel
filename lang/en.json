@@ -152,6 +152,13 @@
                 "label": "Reason"
             }
         },
+        "chat": {
+            "damage": {
+                "button": {
+                    "label": "Damage {name}"
+                }
+            }
+        },
         "conditions": {
             "bloodied": "Bloodied",
             "dazed": "Dazed",

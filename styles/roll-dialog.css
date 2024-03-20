@@ -43,7 +43,16 @@
     color: red;
 }
 
-.roll-dialog .dice-adjustment .roll-button {
+.roll-dialog .dice-adjustment div.roll-button {
     margin-top: 5px;
     width: 100%;
+    position: relative;
+}
+
+.roll-dialog .dice-adjustment .roll-button.rolled::after {
+    content: '\f00c';
+    font-family: FontAwesome;
+    position: absolute;
+    right: 10px;
+    color: rgb(0, 249, 0);
 }
