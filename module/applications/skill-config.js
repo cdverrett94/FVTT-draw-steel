@@ -1,4 +1,4 @@
-import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { CHARACTERISTICS } from '../constants/_index.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {

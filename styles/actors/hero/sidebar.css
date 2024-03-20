@@ -12,6 +12,7 @@
 .sheet.actor.hero .sidebar .resources .resource.has-max {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
+    grid-gap: 5px;
 }
 
 .sheet.actor.hero .sidebar .hp .hp-values .current input,
