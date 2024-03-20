@@ -1,6 +1,7 @@
-import { characteristics, tnDifficulty } from '../constants.js';
-import { ResistanceRoll } from '../documents/rolls/resistance/resistance-roll.js';
+import { tnDifficulty } from '../constants.js';
+import { CHARACTERISTICS } from '../constants/characteristics.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
+import { ResistanceRoll } from '../rolls/_index.js';
 
 function enrichResistance(match, options) {
     let data = _getEnrichedOptions(match, options);
@@ -26,7 +27,7 @@ function enrichResistance(match, options) {
 
     let linkText = game.i18n.format('system.rolls.resistance.button', {
         tn: data.tn ? `${data.tn} ` : '',
-        characteristicAbbreviation: game.i18n.localize(characteristics[data.characteristic].abbreviation),
+        characteristicAbbreviation: game.i18n.localize(CHARACTERISTICS[data.characteristic].abbreviation),
     });
     let link = createRollLink('resistance', linkText, data.formula, data, true);
 

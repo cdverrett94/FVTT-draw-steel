@@ -1,6 +1,6 @@
-import { damageTypes } from '../constants.js';
-import { DamageRoll } from '../documents/rolls/damage/damage-roll.js';
+import { DAMAGE } from '../constants/damage.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
+import { DamageRoll } from '../rolls/_index.js';
 
 function enrichDamage(match, options) {
     /* Currently accounted for  config options
@@ -15,7 +15,7 @@ function enrichDamage(match, options) {
     */
     let data = _getEnrichedOptions(match, options);
 
-    data.type = data.type in damageTypes ? data.type : 'untyped';
+    data.type = data.type in DAMAGE.TYPES ? data.type : 'untyped';
     data.applyExtraDamage = data.applyExtraDamage === 'false' ? false : true;
     data.formula = DamageRoll.constructFinalFormula(data.baseFormula, data);
     data.replaceCharacteristic ??= true;

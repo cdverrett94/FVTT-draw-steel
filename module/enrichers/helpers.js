@@ -1,4 +1,5 @@
-import { characteristics } from '../constants.js';
+import { CHARACTERISTICS } from '../constants/characteristics.js';
+
 import { getRollActor } from '../helpers.js';
 import { enrichDamage, postDamageToChat, rollDamage } from './enrich-damage.js';
 import { enrichResistance, postResistanceToChat, rollResistance } from './enrich-resistance.js';
@@ -53,7 +54,7 @@ function _getEnrichedOptions(match, options) {
     }
 
     // Remove characteristic from data if not valid characteristic or 'highest'
-    if (data.characteristic && !(data.characteristic in characteristics) && data.characteristic !== 'highest') delete data.characteristic;
+    if (data.characteristic && !(data.characteristic in CHARACTERISTICS) && data.characteristic !== 'highest') delete data.characteristic;
 
     return data;
 }

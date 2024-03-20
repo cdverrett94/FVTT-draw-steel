@@ -1,6 +1,8 @@
-import { characteristics, skills, tnDifficulty } from '../constants.js';
-import { TestRoll } from '../documents/rolls/test/test-roll.js';
+import { tnDifficulty } from '../constants.js';
+import { CHARACTERISTICS } from '../constants/characteristics.js';
+import { SKILLS } from '../constants/skills.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
+import { TestRoll } from '../rolls/_index.js';
 
 function enrichTest(match, options) {
     let data = _getEnrichedOptions(match, options);
@@ -8,15 +10,15 @@ function enrichTest(match, options) {
     data.formula = TestRoll.constructFinalFormula(data.baseFormula, data);
 
     // Don't enrich when invalid skill is provided.
-    if (!data.skill && !(data.skill in skills)) return false;
+    if (!data.skill && !(data.skill in SKILLS)) return false;
 
     // Set TN by difficulty
     if (data.tn in tnDifficulty) data.tn = tnDifficulty[data.tn];
 
     let linkText = game.i18n.format('system.rolls.test.button', {
         tn: data.tn ? `TN ${data.tn} ` : '',
-        characteristic: data.characteristic ? `${game.i18n.localize(characteristics[data.characteristic].label)}-` : '',
-        skill: game.i18n.localize(skills[data.skill].label),
+        characteristic: data.characteristic ? `${game.i18n.localize(CHARACTERISTICS[data.characteristic].label)}-` : '',
+        skill: game.i18n.localize(SKILLS[data.skill].label),
         subskill: ['knowledge', 'craft'].includes(data.skill) && data.subskill ? ` (${data.subskill})` : '',
     });
     let link = createRollLink('test', linkText, data.formula, data, true);
