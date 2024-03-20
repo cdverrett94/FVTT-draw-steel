@@ -5,7 +5,7 @@ export class AbilitySheet extends BaseItemSheet {
         classes: ['ability'],
         position: {
             width: 600,
-            height: 1000,
+            height: 865,
         },
     };
 

@@ -54,7 +54,6 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     };
 
     async _prepareContext(options) {
-        console.log('preparing context');
         return {
             actor: this.actor,
             skills: this.actor.system.skills,

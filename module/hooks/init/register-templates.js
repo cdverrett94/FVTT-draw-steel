@@ -2,9 +2,9 @@ export function registerTemplates() {
     // Load templates
     const templatePaths = [
         // Partials
-        'systems/mcdmrpg/templates/documents/partials/abilities-container.hbs',
-        'systems/mcdmrpg/templates/documents/partials/abilities-filter.hbs',
-        'systems/mcdmrpg/templates/documents/partials/abilities.hbs',
+        'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
+        'systems/mcdmrpg/templates/documents/partials/actor-abilities-filter.hbs',
+        'systems/mcdmrpg/templates/documents/partials/actor-abilities.hbs',
         'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs',
 
         // Heroes

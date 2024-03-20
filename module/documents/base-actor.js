@@ -1,8 +1,6 @@
 import { ABILITIES } from '../constants/abilities.js';
 import { CHARACTERISTICS } from '../constants/characteristics.js';
-import { DamageRollDialog } from './rolls/damage/roll-dialog/roll-dialog.js';
-import { ResistanceRollDialog } from './rolls/resistance/roll-dialog/roll-dialog.js';
-import { TestRollDialog } from './rolls/test/roll-dialog/roll-dialog.js';
+import { DamageRollDialog, ResistanceRollDialog, TestRollDialog } from '../rolls/_index.js';
 
 export class BaseActor extends Actor {
     get allowedAbilityTypes() {
@@ -146,22 +144,16 @@ export class BaseActor extends Actor {
     async rollDamage(data = {}) {
         let { abilityName, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = data;
 
-        if (this.system.banes.attacker) banes += Number(this.system.banes.attacker);
-        if (this.system.boons.attacker) boons += Number(this.system.boons.attacker);
+        const targets = game.user.targets;
+        if (!targets.size) return ui.notifications.error('You must select a target');
+        let targetsBoons = {};
+        targets.forEach((target) => {
+            targetsBoons[target.document.uuid] = this.#getTargetBoons(target);
+        });
 
-        // General boon/bane adjustments from effects
-        let [target] = game.user.targets;
-        if (target) {
-            if (target.actor.system.boons.attacked) boons += target.actor.system.boons.attacked;
-            if (target.actor.system.banes.attacked) banes += target.actor.system.banes.attacked;
-        }
-
-        // boon/bane adjustments from frightened
-        if (this.system.frightened && target && this.system.frightened.includes(target?.actor.uuid)) banes += 1;
-        if (target?.actor.system.frightened && target?.actor.system.frightened.includes(this.uuid)) banes += 1;
-
-        // boon/bane adjustments from taunted
-        if (this.system.taunted.length && target && !this.system.taunted.includes(target.actor.uuid)) banes += 1;
+        const actorBoons = this.#getActorBoons();
+        boons += actorBoons.boons;
+        banes += actorBoons.banes;
 
         let context = {
             abilityName,
@@ -174,7 +166,44 @@ export class BaseActor extends Actor {
             damageType,
             formula,
             impacts,
+            targets: targetsBoons,
         };
         await new DamageRollDialog(context).render(true);
+    }
+
+    #getActorBoons() {
+        let rollData = {
+            boons: 0,
+            banes: 0,
+        };
+        if (this.system.banes.attacker) rollData.banes += Number(this.system.banes.attacker);
+        if (this.system.boons.attacker) rollData.boons += Number(this.system.boons.attacker);
+
+        return rollData;
+    }
+
+    #getTargetBoons(target) {
+        let rollData = {
+            boons: 0,
+            banes: 0,
+            impacts: 0,
+        };
+
+        // Get Boons/Banes that apply when target is attacked
+        if (target) {
+            if (target.actor.system.boons.attacked) rollData.boons += target.actor.system.boons.attacked;
+            if (target.actor.system.banes.attacked) rollData.banes += target.actor.system.banes.attacked;
+        }
+
+        // Get Banes if attacking a creature you are frightened by
+        if (this.system.frightened.length && this.system.frightened.includes(target.actor.uuid)) rollData.banes += 1;
+
+        // Get Boons if attacking a creature you have frightened
+        if (target.actor.system.frightened.length && target.actor.system.frightened.includes(this.uuid)) rollData.boons += 1;
+
+        // Get Banes if attacking a creature a creature other than one that has you taunted
+        if (this.system.taunted.length && target && !this.system.taunted.includes(target.actor.uuid)) rollData.banes += 1;
+
+        return rollData;
     }
 }
