@@ -1,5 +1,6 @@
 import { ABILITIES } from '../../constants/abilities.js';
 import { CONDITIONS } from '../../constants/conditions.js';
+import { SkillConfig } from '../skill-config.js';
 
 const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;
 export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) {
@@ -85,12 +86,12 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         new SkillConfig({ actor: this.actor }).render(true);
         this.minimize();
     }
+
     static async #addAbilty(event, target) {
         let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
         item[0].sheet.render(true);
         this.render(true);
     }
-
     static #editAbility(event, target) {
         const abilityId = target.dataset.abilityId;
         const abilityItem = this.actor.items.find((item) => item._id === abilityId);
@@ -117,7 +118,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             this.filters[secondaryFilter] = null;
         }
 
-        this.render(true);
+        this.render({ parts: ['abilities'] });
     }
 
     static #toggleCondition(event, target) {

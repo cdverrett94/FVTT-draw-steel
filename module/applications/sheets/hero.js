@@ -53,16 +53,23 @@ export class HeroSheet extends BaseActorSheet {
             },
             tabs: {
                 id: 'tabs',
-                template: 'systems/mcdmrpg/templates/documents/hero/tabs.hbs',
+                template: 'systems/mcdmrpg/templates/documents/partials/tabs.hbs',
+            },
+            abilities: {
+                id: 'abilities',
+                template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
+            },
+            notes: {
+                id: 'notes',
+                template: 'systems/mcdmrpg/templates/documents/hero/notes.hbs',
+            },
+            effects: {
+                id: 'effects',
+                template: 'systems/mcdmrpg/templates/documents/hero/effects.hbs',
             },
         },
         { inplace: false }
     );
-
-    static #rollCharacteristic(event, target) {
-        const characteristic = target.dataset.characteristic;
-        this.actor.rollCharacteristic(characteristic);
-    }
 
     static #rollSkill(event, target) {
         let { skill, subskill } = target.dataset;

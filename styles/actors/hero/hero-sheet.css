@@ -7,7 +7,7 @@
 .sheet.actor.hero .window-content {
     display: grid;
     grid-template-columns: 200px 250px repeat(8, auto);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-rows: auto auto 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
     max-height: 1054px;
 }
@@ -27,11 +27,19 @@
     grid-row: 2 / 11;
 }
 
-.sheet.actor.hero .tabbed-content {
+.sheet.actor.hero .tabs {
     grid-column: 3 / 11;
-    grid-row: 2 / 11;
-    max-height: 931px;
+    grid-row: 2 / 3;
 }
+
+.sheet.actor.hero .tab {
+    grid-column: 3/ 11;
+    grid-row: 3 / 11;
+}
+
+/* .sheet.actor.hero .tab:not(.active) {
+    display: none;
+} */
 /*     */
 
 .sheet.actor.hero .sidebar > div,
@@ -57,5 +65,5 @@
 
 .sheet.actor.hero div.actor-abilities .abilities-list {
     overflow-y: scroll;
-    max-height: 663px;
+    max-height: 700px;
 }

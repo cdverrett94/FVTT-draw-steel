@@ -1,38 +1,40 @@
-<div class='mcdmrpg-header'>{{localize 'system.conditions.label'}}</div>
-<div class='conditions'>
-    {{#each conditions as |condition|}}
-        <div class='condition'>
-            <div>{{localize condition.name}}</div>
-            <div class='toggle-condition' data-condition-id='{{condition.id}}'>
-                {{#if (or (eq condition.id 'ongoingdamage') (eq condition.id 'taunted') (eq condition.id 'frightened'))}}
-                    <i
-                        class='fa-regular fa-pencil'
-                        data-action='toggleCondition'
-                        data-condition-id='{{condition.id}}'
-                        data-tooltip='{{localize "system.sheets.actor.conditions.edit" condition=(localize condition.name)}}'
-                    >
-                    </i>
-                {{else}}
+<div class='tab effects-tab' data-group='main' data-tab='effects'>
+    <div class='mcdmrpg-header'>{{localize 'system.conditions.label'}}</div>
+    <div class='conditions'>
+        {{#each conditions as |condition|}}
+            <div class='condition'>
+                <div>{{localize condition.name}}</div>
+                <div class='toggle-condition' data-condition-id='{{condition.id}}'>
+                    {{#if (or (eq condition.id 'ongoingdamage') (eq condition.id 'taunted') (eq condition.id 'frightened'))}}
+                        <i
+                            class='fa-regular fa-pencil'
+                            data-action='toggleCondition'
+                            data-condition-id='{{condition.id}}'
+                            data-tooltip='{{localize "system.sheets.actor.conditions.edit" condition=(localize condition.name)}}'
+                        >
+                        </i>
+                    {{else}}
 
-                    <i
-                        class='fa-solid fa-toggle-{{ifThen (includes @root.actor.effects condition._id) "on" "off"}}'
-                        data-tooltip='{{localize "system.sheets.actor.conditions.toggle" condition=(localize condition.name)}}'
-                        data-action='toggleCondition'
-                        data-condition-id='{{condition.id}}'
-                    ></i>
-                {{/if}}
+                        <i
+                            class='fa-solid fa-toggle-{{ifThen (includes @root.actor.effects condition._id) "on" "off"}}'
+                            data-tooltip='{{localize "system.sheets.actor.conditions.toggle" condition=(localize condition.name)}}'
+                            data-action='toggleCondition'
+                            data-condition-id='{{condition.id}}'
+                        ></i>
+                    {{/if}}
+                </div>
+                <div class='condition-values'>
+                    {{#if (eq condition.id 'ongoingdamage')}}
+                        {{#each @root.actor.system.ongoingDamage as |value|}}
+                            {{#unless (eq value 0)}}
+                                {{@key}}
+                                -
+                                {{value}}
+                            {{/unless}}
+                        {{/each}}
+                    {{/if}}
+                </div>
             </div>
-            <div class='condition-values'>
-                {{#if (eq condition.id 'ongoingdamage')}}
-                    {{#each @root.actor.system.ongoingDamage as |value|}}
-                        {{#unless (eq value 0)}}
-                            {{@key}}
-                            -
-                            {{value}}
-                        {{/unless}}
-                    {{/each}}
-                {{/if}}
-            </div>
-        </div>
-    {{/each}}
+        {{/each}}
+    </div>
 </div>
