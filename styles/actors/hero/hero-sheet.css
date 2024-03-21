@@ -1,7 +1,6 @@
 @import url('sidebar.css');
 @import url('header.css');
 @import url('skills.css');
-@import url('effects.css');
 
 /* Define Sheet Layout Via Grid */
 .sheet.actor.hero .window-content {

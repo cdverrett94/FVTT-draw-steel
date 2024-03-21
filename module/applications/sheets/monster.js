@@ -15,22 +15,19 @@ export class MonsterSheet extends BaseActorSheet {
     //     resizable: true,
     // };
 
-    // tabGroups = {
-    //     main: null,
-    // };
-    // defaultTabs = {
-    //     main: 'abilities',
-    // };
-    // _onRender(context, options) {
-    //     console.log(
-    //         this.actor.class.system.schema.fields.resources.element.fields.name.label,
-    //         this.actor.class.system.schema.fields.resources.element.fields.max.label
-    //     );
-    //     for (const [group, tab] of Object.entries(this.tabGroups)) {
-    //         if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
-    //         else this.changeTab(tab, group, { force: true });
-    //     }
-    // }
+    tabGroups = {
+        main: null,
+    };
+    defaultTabs = {
+        main: 'abilities',
+    };
+
+    _onRender(context, options) {
+        for (const [group, tab] of Object.entries(this.tabGroups)) {
+            if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
+            else this.changeTab(tab, group, { force: true });
+        }
+    }
 
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
@@ -51,9 +48,21 @@ export class MonsterSheet extends BaseActorSheet {
                 id: 'skills',
                 template: 'systems/mcdmrpg/templates/documents/monster/skills.hbs',
             },
+            tabs: {
+                id: 'tabs',
+                template: 'systems/mcdmrpg/templates/documents/partials/tabs.hbs',
+            },
             abilities: {
                 id: 'abilities',
                 template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
+            },
+            notes: {
+                id: 'notes',
+                template: 'systems/mcdmrpg/templates/documents/hero/notes.hbs',
+            },
+            effects: {
+                id: 'effects',
+                template: 'systems/mcdmrpg/templates/documents/hero/effects.hbs',
             },
         },
         { inplace: false }

@@ -25,6 +25,7 @@ export class HeroSheet extends BaseActorSheet {
     defaultTabs = {
         main: 'abilities',
     };
+
     _onRender(context, options) {
         for (const [group, tab] of Object.entries(this.tabGroups)) {
             if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });

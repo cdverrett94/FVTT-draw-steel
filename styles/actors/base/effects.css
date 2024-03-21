@@ -1,21 +1,21 @@
-.sheet.actor.hero .effects-tab .effect {
+.sheet.actor .effects-tab .effect {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 5px 0px;
 }
 
-.sheet.actor.hero .effects-tab .effect:nth-child(odd) {
+.sheet.actor .effects-tab .effect:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.sheet.actor.hero .effects-tab .conditions {
+.sheet.actor .effects-tab .conditions {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 5px;
     margin-bottom: 5px;
 }
 
-.sheet.actor.hero .effects-tab .conditions .condition {
+.sheet.actor .effects-tab .conditions .condition {
     padding: 5px;
     border: 1px solid black;
     display: grid;
@@ -23,6 +23,6 @@
     cursor: pointer;
 }
 
-.sheet.actor.hero .effects-tab .conditions .condition .toggle-condition {
+.sheet.actor .effects-tab .conditions .condition .toggle-condition {
     text-align: right;
 }
