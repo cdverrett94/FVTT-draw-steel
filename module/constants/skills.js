@@ -36,7 +36,7 @@ export const SKILLS = {
         default: 'intuition',
     },
     skulduggery: {
-        label: 'system.skills.skullduggery.label',
+        label: 'system.skills.skulduggery.label',
         default: 'agility',
     },
     stealth: {

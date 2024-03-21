@@ -1,6 +1,5 @@
 import { CHARACTERISTICS, DIFFICULTY } from '../constants/_index.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from '../enrichers/helpers.js';
-import { ResistanceRoll } from '../rolls/_index.js';
 
 function enrichResistance(match, options) {
     let data = _getEnrichedOptions(match, options);
@@ -16,8 +15,6 @@ function enrichResistance(match, options) {
     // Return early if there's no characteristic
     if (!data.characteristic) return false;
 
-    data.formula = ResistanceRoll.constructFinalFormula(data.baseFormula, data);
-
     if (data.tn in DIFFICULTY) data.tn = DIFFICULTY[data.tn];
     if (!data.tn && options.actor) {
         let bonusTN = options.actor.type === 'monster' ? options.actor.system.bonusDamage : options.actor.system.kit?.system.damage;
@@ -28,7 +25,7 @@ function enrichResistance(match, options) {
         tn: data.tn ? `${data.tn} ` : '',
         characteristicAbbreviation: game.i18n.localize(CHARACTERISTICS[data.characteristic].abbreviation),
     });
-    let link = createRollLink('resistance', linkText, data.formula, data, true);
+    let link = createRollLink('resistance', linkText, {}, data, true);
 
     return link;
 }

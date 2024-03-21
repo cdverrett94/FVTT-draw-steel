@@ -7,17 +7,17 @@ import { enrichTest, postTestToChat, rollTest } from './enrich-test.js';
 
 function registerCustomEnrichers() {
     CONFIG.TextEditor.enrichers.push({
-        pattern: /@(?<type>Damage)\[(?<formula>[^\]\|]+)(?:\|*(?<config>.*))\]/gi,
+        pattern: /@(?<type>Damage)\[(?<formula>[^\]\|]+)(?:\|*(?<config>[^\[\]]*))\]/gi,
         enricher: enrichDamage,
     });
 
     CONFIG.TextEditor.enrichers.push({
-        pattern: /@(?<type>Test)\[(?:\|*(?<config>.*))\]/gi,
+        pattern: /@(?<type>Test)\[(?:\|*(?<config>[^\]\[]*))\]/gi,
         enricher: enrichTest,
     });
 
     CONFIG.TextEditor.enrichers.push({
-        pattern: /@(?<type>Resistance)\[(?<characteristic>[A-Za-z]+)(?:\|*(?<config>.*))\]/gi,
+        pattern: /@(?<type>Resistance)\[(?<characteristic>[A-Za-z]+)(?:\|*(?<config>[^\[\]]*))\]/gi,
         enricher: enrichResistance,
     });
 
