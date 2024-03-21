@@ -14,6 +14,15 @@
     -webkit-clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0% 100%);
 }
 
+.mcdmrpg-header:has(.right-button) {
+    position: relative;
+}
+
+.mcdmrpg-header span.right-button {
+    position: absolute;
+    right: 20px;
+}
+
 .mcdmrpg-container {
     border: 1px solid black;
 }

@@ -1,12 +1,3 @@
-.mcdmrpg.sheet.actor .mcdmrpg-header:has(.right-button) {
-    position: relative;
-}
-
-.mcdmrpg.sheet.actor .mcdmrpg-header span.right-button {
-    position: absolute;
-    right: 20px;
-}
-
 .sheet.actor .edit-skills {
     cursor: pointer;
 }
@@ -154,4 +145,11 @@
     border: 0px;
     height: 40px;
     font-size: 1.5rem;
+}
+
+.sheet.actor .effects-tab .condition-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    align-items: center;
+    justify-items: center;
 }
