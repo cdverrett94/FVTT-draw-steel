@@ -1,13 +1,15 @@
-import { registerCustomEnrichers } from './module/enrichers/helpers.js';
-import { registerCustomHandlebarHelpers } from './module/hooks/init/register-custom-handlebar-helpers.js';
-import { registerDataModels } from './module/hooks/init/register-data-models.js';
-import { registerDocumentClasses } from './module/hooks/init/register-document-classes.js';
-import { registerDocumentSheets } from './module/hooks/init/register-document-sheets.js';
-import { registerRolls } from './module/hooks/init/register-rolls.js';
-import { registerStatusEffects } from './module/hooks/init/register-status-effects.js';
-import { registerTemplates } from './module/hooks/init/register-templates.js';
-import { setCSSVariables } from './module/hooks/init/setCSSVariables.js';
-import { registerDamageTargetListners } from './module/hooks/renderChatMessage/add-damage-target-listeners.js';
+import {
+    registerCustomEnrichers,
+    registerCustomHandlebarHelpers,
+    registerDamageTargetListners,
+    registerDataModels,
+    registerDocumentClasses,
+    registerDocumentSheets,
+    registerRolls,
+    registerStatusEffects,
+    registerTemplates,
+    setCSSVariables,
+} from './module/hooks/_index.js';
 
 Hooks.on('init', () => {
     CONFIG.ActiveEffect.legacyTransferral = false;
