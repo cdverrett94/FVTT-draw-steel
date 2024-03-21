@@ -1,5 +1,8 @@
-// Other Apps
-export { SkillConfig } from './skill-config.js';
+// Configs
+export { FrightenedConfig } from './configs/frightened-config.js';
+export { OngoingDamageConfig } from './configs/ongoing-damage-config.js';
+export { SkillConfig } from './configs/skill-config.js';
+export { TauntedConfig } from './configs/taunted-config.js';
 
 // Actor Sheets
 export { BaseActorSheet } from './sheets/base-actor.js';

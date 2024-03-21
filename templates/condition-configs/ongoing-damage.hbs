@@ -1,0 +1,24 @@
+<div class='list'>
+    <div class='mcdmrpg-header'>
+        {{localize headerLabel}}
+        <span class='add right-button' data-action='addChange'><i class='fa-solid fa-plus'></i></span>
+    </div>
+    <div class='item'>
+        <div class='title'>Title</div>
+        <div class='key'>Key</div>
+        <div class='value'>Value</div>
+        <div class='delete'></div>
+    </div>
+    {{#each effect.changes as |change|}}
+        <div class='item'>
+            <div class='title'><input type='text' value='{{lookup @root.titles @index}}' name='title.{{@index}}' /></div>
+            <div class='key'>
+                <select name='damage.{{@index}}' id=''>
+                    {{selectOptions @root.damage labelAttr='label' localize=true selected=(lookup @root.currentSelections @index)}}
+                </select>
+            </div>
+            <div class='value'><input type='text' value='{{change.value}}' name='value.{{@index}}' /></div>
+            <div class='delete' data-action='deleteChange' data-index='{{@index}}'><i class='fa-solid fa-trash-can'></i></div>
+        </div>
+    {{/each}}
+</div>

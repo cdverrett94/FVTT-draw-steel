@@ -1,5 +1,7 @@
 @import url('global.css');
 @import url('roll-dialog.css');
+@import url('condition-configs/ongoing-damage-config.css');
+@import url('condition-configs/taunted.css');
 
 /* Actor Imports */
 @import url('actors/base/base-sheet.css');
@@ -17,4 +19,9 @@
     100% {
         transform: rotate(360deg);
     }
+}
+:root {
+    --delete-color: red;
+    --add-color: green;
+    --grid-gap: 5px;
 }

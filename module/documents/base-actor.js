@@ -1,4 +1,6 @@
+import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
 import { ABILITIES, CHARACTERISTICS } from '../constants/_index.js';
+import { toId } from '../helpers.js';
 import { DamageRollDialog, ResistanceRollDialog, TestRollDialog } from '../rolls/_index.js';
 
 export class BaseActor extends Actor {
@@ -46,43 +48,24 @@ export class BaseActor extends Actor {
     }
 
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
-        const isSpecialStatus = ['ongoingdamage', 'taunted', 'frightened'].includes(statusId);
-        const status = CONFIG.statusEffects.find((e) => e.id === statusId);
-        if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
-        const existing = [];
+        if (['ongoingdamage', 'taunted', 'frightened'].includes(statusId)) active = true;
+        let returnedEffect = await super.toggleStatusEffect(statusId, { active, overlay });
+        if (returnedEffect === false) return false;
 
-        // Find the effect with the static _id of the status effect
-        if (status._id) {
-            const effect = this.effects.get(status._id);
-            if (effect) existing.push(effect.id);
+        let effect = returnedEffect;
+        if (returnedEffect === true) effect = this.effects.get(toId(statusId));
+
+        let config;
+        if (statusId === 'ongoingdamage') {
+            config = new OngoingDamageConfig({ effect });
+        } else if (statusId === 'taunted') {
+            config = new TauntedConfig({ effect });
+        } else if (statusId === 'frightened') {
+            config = new FrightenedConfig({ effect });
         }
+        config?.render(true);
 
-        // If no static _id, find all single-status effects that have this status
-        else {
-            for (const effect of this.effects) {
-                const statuses = effect.statuses;
-                if (statuses.size === 1 && statuses.has(status.id)) existing.push(effect.id);
-            }
-        }
-
-        // Remove the existing effects unless the status effect is forced active
-        if (existing.length && !isSpecialStatus) {
-            if (active) return true;
-            await this.deleteEmbeddedDocuments('ActiveEffect', existing);
-            return false;
-        } else if (existing.length && isSpecialStatus) {
-            const effect = this.effects.get(existing[0]);
-            effect.sheet.render(true);
-            return effect;
-        }
-
-        // Create a new effect unless the status effect is forced inactive
-        if (!active && active !== undefined) return;
-        const effect = await ActiveEffect.implementation.fromStatusEffect(statusId);
-        if (overlay) effect.updateSource({ 'flags.core.overlay': true });
-        const createdEffect = await ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
-        if (isSpecialStatus) createdEffect.sheet.render(true);
-        return createdEffect;
+        return returnedEffect;
     }
 
     async rollCharacteristic(characteristic) {

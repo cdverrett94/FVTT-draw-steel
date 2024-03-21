@@ -28,6 +28,18 @@ const CONDITIONS = {
         _id: toId('frightened'),
         name: 'system.conditions.frightened',
         label: 'system.conditions.frightened',
+        changes: [
+            {
+                key: 'system.frightened',
+                value: '',
+                mode: 2,
+            },
+        ],
+        flags: {
+            mcdmrpg: {
+                titles: ['New Frightened'],
+            },
+        },
     },
     grappled: {
         img: 'icons/svg/net.svg',
@@ -49,6 +61,18 @@ const CONDITIONS = {
         _id: toId('ongoingdamage'),
         name: 'system.conditions.ongoing-damage',
         label: 'system.conditions.ongoing-damage',
+        changes: [
+            {
+                key: 'system.ongoingDamage.untyped',
+                value: '0',
+                mode: 2,
+            },
+        ],
+        flags: {
+            mcdmrpg: {
+                titles: ['New Ongoing Damage'],
+            },
+        },
     },
     prone: {
         img: 'icons/svg/falling.svg',
@@ -131,6 +155,18 @@ const CONDITIONS = {
         _id: toId('taunted'),
         name: 'system.conditions.taunted',
         label: 'system.conditions.taunted',
+        changes: [
+            {
+                key: 'system.taunted',
+                value: '',
+                mode: 2,
+            },
+        ],
+        flags: {
+            mcdmrpg: {
+                titles: ['New Taunted'],
+            },
+        },
     },
     unbalanced: {
         img: 'icons/svg/ruins.svg',

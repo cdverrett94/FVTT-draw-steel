@@ -1,0 +1,26 @@
+<div class='list'>
+    <div class='mcdmrpg-header'>
+        {{localize headerLabel}}
+        <span class='add right-button' data-action='addTargets'><i class='fa-solid fa-bullseye'></i></span>
+    </div>
+    <div class='item'>
+        <div class='title'>Title</div>
+        <div class='key'>Actor</div>
+        <div class='delete'></div>
+    </div>
+    {{#each effect.changes as |change|}}
+        <div class='item'>
+            <div class='title'><input type='text' value='{{lookup @root.titles @index}}' name='title.{{@index}}' /></div>
+            <div class='actor'>{{lookup (lookup @root.actors change.value) 'name'}}<input
+                    type='text'
+                    value='{{change.value}}'
+                    name='actor.{{@index}}'
+                    style='display:none;'
+                /></div>
+            <div class='delete' data-action='deleteChange' data-index='{{@index}}'><i class='fa-solid fa-trash-can'></i></div>
+        </div>
+    {{/each}}
+    {{#unless effect.changes}}
+        <div class='notice'>NO ACTORS SELECTED. CLICK THE TARGET BUTTON TO ADD TARGETS</div>
+    {{/unless}}
+</div>

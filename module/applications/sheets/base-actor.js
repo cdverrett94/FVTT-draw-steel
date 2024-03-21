@@ -1,5 +1,5 @@
-import { ABILITIES, CONDITIONS } from '../../constants/_index.js';
-import { SkillConfig } from '../skill-config.js';
+import { ABILITIES, CONDITIONS, DAMAGE } from '../../constants/_index.js';
+import { SkillConfig } from '../_index.js';
 
 const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;
 export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) {
@@ -43,6 +43,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             filters: this.filters,
             abilities: ABILITIES,
             conditions: CONDITIONS,
+            damages: DAMAGE.TYPES,
         };
         // Enrich Content
         let enrichContext = {

@@ -1,0 +1,23 @@
+.sheet.ongoing-damage-config .item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.5fr 20px;
+    grid-gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.sheet.ongoing-damage-config .item .delete,
+.sheet.ongoing-damage-config .mcdmrpg-header .add {
+    cursor: pointer;
+}
+
+.sheet.ongoing-damage-config .item .delete {
+    text-align: center;
+}
+.sheet.ongoing-damage-config .item .delete:hover {
+    color: var(--delete-color);
+}
+
+.sheet.ongoing-damage-config .mcdmrpg-header .add:hover {
+    color: var(--add-color);
+}
