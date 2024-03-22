@@ -198,7 +198,8 @@ export class BaseActor extends Actor {
     }
 
     async _preUpdate(changed, options, user) {
-        if ('hp' in changed.system) {
+        // Cap HP to new max and bloodied value
+        if (changed.system && 'hp' in changed.system) {
             const currentHP = this.system.hp.current;
 
             let newCurrentHP = changed.system.hp.current ?? this.system.hp.current;
@@ -215,11 +216,11 @@ export class BaseActor extends Actor {
         await super._preUpdate(changed, options, user);
     }
 
-    _onUpdate(changes, options, userId) {
-        super._onUpdate(changes, options, userId);
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
 
         // HP CHANGES SCROLLING STATUS TEXT
-        if ('hp' in changes.system && 'current' in changes.system.hp) {
+        if (changed.system && 'hp' in changed.system && 'current' in changed.system.hp) {
             const tokens = this.isToken ? [this.token] : this.getActiveTokens(true, true);
             if (!tokens.length) return;
             const pct = Math.clamp(Math.abs(options.hpDelta) / this.system.hp.max, 0, 1);
