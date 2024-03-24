@@ -35,6 +35,7 @@ export class AbilityData extends BaseItemData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             cost: new fields.StringField({
                 label: ABILITIES.FIELDS.cost.label,
             }),

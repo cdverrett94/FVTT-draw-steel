@@ -34,4 +34,53 @@ export class MCDMActiveEffect extends ActiveEffect {
         }
         changes[change.key] = update;
     }
+
+    applyItem(item, change) {
+        // Determine the data type of the target field
+        const current = foundry.utils.getProperty(item, change.key) ?? null;
+        let target = current;
+        if (current === null) {
+            const model = game.model.Item[item.type] || {};
+            target = foundry.utils.getProperty(model, change.key) ?? null;
+        }
+        let targetType = foundry.utils.getType(target);
+
+        // Cast the effect change value to the correct type
+        let delta;
+        try {
+            if (targetType === 'Array') {
+                const innerType = target.length ? foundry.utils.getType(target[0]) : 'string';
+                delta = this._castArray(change.value, innerType);
+            } else delta = this._castDelta(change.value, targetType);
+        } catch (err) {
+            console.warn(`Item [${item.id}] | Unable to parse active effect change for ${change.key}: "${change.value}"`);
+            return;
+        }
+
+        // Apply the change depending on the application mode
+        const modes = CONST.ACTIVE_EFFECT_MODES;
+        const changes = {};
+        switch (change.mode) {
+            case modes.ADD:
+                this._applyAdd(item, change, current, delta, changes);
+                break;
+            case modes.MULTIPLY:
+                this._applyMultiply(item, change, current, delta, changes);
+                break;
+            case modes.OVERRIDE:
+                this._applyOverride(item, change, current, delta, changes);
+                break;
+            case modes.UPGRADE:
+            case modes.DOWNGRADE:
+                this._applyUpgrade(item, change, current, delta, changes);
+                break;
+            default:
+                this._applyCustom(item, change, current, delta, changes);
+                break;
+        }
+
+        // Apply all changes to the Item data
+        foundry.utils.mergeObject(item, changes);
+        return changes;
+    }
 }

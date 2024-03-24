@@ -69,4 +69,17 @@ export class HeroActor extends BaseActor {
 
         this.update({ 'system.currentResources': updateData });
     }
+
+    rollOptions(prefix = 'actor') {
+        const rollOptions = super.rollOptions(prefix);
+
+        // add class
+        rollOptions.push(`${prefix}:class:${this.class?.name.slugify()}`);
+        // add kit
+        rollOptions.push(`${prefix}:kit:${this.kit?.name.slugify()}`);
+        // add ancestry
+        rollOptions.push(`${prefix}:ancestry:${this.ancestry?.name.slugify()}`);
+
+        return rollOptions.sort();
+    }
 }

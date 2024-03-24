@@ -1,0 +1,34 @@
+<div class='rules tab' data-group='main' data-tab='rules'>
+    <div class='add-rule' data-action='addNewRule'>Add New Rule</div>
+    {{#each item.system.rules as |rule|}}
+        <div class='rule'>
+            <div class='rule-affects'>
+                <div class='label'>Affects</div>
+                <div class='value'>
+                    {{formInput @root.fields.rules.element.fields.affects value=rule.affects name=(concat 'system.rules.' @index '.affects')}}
+                </div>
+            </div>
+            <div class='rule-key'>
+                <div class='label'>Key</div>
+                <div class='value'>{{formInput @root.fields.rules.element.fields.key value=rule.key name=(concat 'system.rules.' @index '.key')}}</div>
+            </div>
+            <div class='rule-mode'>
+                <div class='label'>Mode</div>
+                <div class='value'>{{formInput @root.fields.rules.element.fields.mode value=rule.mode name=(concat 'system.rules.' @index '.mode')}}</div>
+            </div>
+            <div class='rule-value'>
+                <div class='label'>Value</div>
+                <div class='value'>{{formInput @root.fields.rules.element.fields.value value=rule.value name=(concat 'system.rules.' @index '.value')}}</div>
+            </div>
+            <div class='rule-delete' data-action='deleteRule' data-rule-index='{{@index}}'>
+                <div class='label' style='visibility:hidden;'>Delete</div>
+                <div class='value'><i class='fa-solid fa-trash-can'></i></div>
+
+            </div>
+            <div class='rule-predicate'>
+                <div class='label'>Predicate</div>
+                <div class='value'><input type='text' spellcheck='false' value='{{stringify rule.predicate}}' name='system.rules.{{@index}}.predicate' /></div>
+            </div>
+        </div>
+    {{/each}}
+</div>

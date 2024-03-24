@@ -1,14 +1,13 @@
-<fieldset class='ability-damage'>
+<fieldset class='ability-damage tab' data-group='main' data-tab='details'>
     <legend>{{fields.damage.label}}</legend>
-    {{formField fields.damage.fields.doesDamage value=item.system.damage.doesDamage classes='damage-applies'}}
-
-    {{#if item.system.damage.doesDamage}}
-        {{formField fields.damage.fields.baseFormula value=item.system.damage.baseFormula classes='base-damage'}}
-        {{formField fields.damage.fields.characteristic value=item.system.damage.characteristic classes='damage-characteristic'}}
-        {{formField fields.damage.fields.applyExtraDamage value=item.system.damage.applyExtraDamage classes='damage-extra'}}
-        {{formField fields.damage.fields.boons value=item.system.damage.boons classes='damage-boons'}}
-        {{formField fields.damage.fields.banes value=item.system.damage.banes classes='damage-banes'}}
-        {{formField fields.damage.fields.impacts value=item.system.damage.impacts classes='damage-impacts'}}
-        {{formField fields.damage.fields.type value=item.system.damage.type classes='damage-type' labelAttr='label'}}
+    {{formField fields.damage.fields.doesDamage value=source.system.damage.doesDamage classes='damage-applies'}}
+    {{#if source.system.damage.doesDamage}}
+        {{formField fields.damage.fields.baseFormula value=source.system.damage.baseFormula classes='base-damage'}}
+        {{formField fields.damage.fields.characteristic value=source.system.damage.characteristic classes='damage-characteristic'}}
+        {{formField fields.damage.fields.applyExtraDamage value=source.system.damage.applyExtraDamage classes='damage-extra'}}
+        {{formField fields.damage.fields.boons value=source.system.damage.boons classes='damage-boons'}}
+        {{formField fields.damage.fields.banes value=source.system.damage.banes classes='damage-banes'}}
+        {{formField fields.damage.fields.impacts value=source.system.damage.impacts classes='damage-impacts'}}
+        {{formField fields.damage.fields.type value=source.system.damage.type classes='damage-type' labelAttr='label'}}
     {{/if}}
 </fieldset>

@@ -7,6 +7,7 @@ const CONDITIONS = {
         _id: toId('dead'),
         name: 'system.conditions.dead',
         label: 'system.conditions.dead',
+        statuses: ['dead'],
     },
     bloodied: {
         img: 'icons/svg/blood.svg',
@@ -14,6 +15,7 @@ const CONDITIONS = {
         _id: toId('bloodied'),
         name: 'system.conditions.bloodied',
         label: 'system.conditions.bloodied',
+        statuses: ['bloodied'],
     },
     dazed: {
         img: 'icons/svg/daze.svg',
@@ -21,6 +23,7 @@ const CONDITIONS = {
         _id: toId('dazed'),
         name: 'system.conditions.dazed',
         label: 'system.conditions.dazed',
+        statuses: ['dazed'],
     },
     frightened: {
         img: 'icons/svg/terror.svg',
@@ -28,6 +31,7 @@ const CONDITIONS = {
         _id: toId('frightened'),
         name: 'system.conditions.frightened',
         label: 'system.conditions.frightened',
+        statuses: ['frightened'],
         changes: [
             {
                 key: 'system.frightened',
@@ -44,9 +48,10 @@ const CONDITIONS = {
     grappled: {
         img: 'icons/svg/net.svg',
         id: 'grappled',
-        _id: toId('grappled00000000'),
+        _id: toId('grappled'),
         name: 'system.conditions.grappled',
         label: 'system.conditions.grappled',
+        statuses: ['grappled'],
         changes: [
             {
                 key: 'system.speed',
@@ -61,6 +66,7 @@ const CONDITIONS = {
         _id: toId('ongoingdamage'),
         name: 'system.conditions.ongoing-damage',
         label: 'system.conditions.ongoing-damage',
+        statuses: ['ongoingdamage'],
         changes: [
             {
                 key: 'system.ongoingDamage.untyped',
@@ -80,6 +86,7 @@ const CONDITIONS = {
         _id: toId('prone'),
         name: 'system.conditions.prone',
         label: 'system.conditions.prone',
+        statuses: ['prone'],
         changes: [
             {
                 key: 'system.banes.attacker',
@@ -104,6 +111,7 @@ const CONDITIONS = {
         _id: toId('restrained'),
         name: 'system.conditions.restrained',
         label: 'system.conditions.restrained',
+        statuses: ['restrained'],
         changes: [
             {
                 key: 'system.banes.attacker',
@@ -125,6 +133,7 @@ const CONDITIONS = {
         _id: toId('slowed'),
         name: 'system.conditions.slowed',
         label: 'system.conditions.slowed',
+        statuses: ['slowed'],
         changes: [
             {
                 key: 'system.speed',
@@ -140,6 +149,7 @@ const CONDITIONS = {
         _id: toId('surprised'),
         name: 'system.conditions.surprised',
         label: 'system.conditions.surprised',
+        statuses: ['surprised'],
         changes: [
             {
                 key: 'system.boons.attacked',
@@ -155,6 +165,7 @@ const CONDITIONS = {
         _id: toId('taunted'),
         name: 'system.conditions.taunted',
         label: 'system.conditions.taunted',
+        statuses: ['taunted'],
         changes: [
             {
                 key: 'system.taunted',
@@ -174,6 +185,7 @@ const CONDITIONS = {
         _id: toId('unbalanced'),
         name: 'system.conditions.unbalanced',
         label: 'system.conditions.unbalanced',
+        statuses: ['unbalanced'],
     },
     unconscious: {
         img: 'icons/svg/unconscious.svg',
@@ -181,6 +193,7 @@ const CONDITIONS = {
         _id: toId('unconscious'),
         name: 'system.conditions.unconscious',
         label: 'system.conditions.unconscious',
+        statuses: ['unconscious', 'prone'],
         changes: [
             {
                 key: 'system.speed',
@@ -195,7 +208,6 @@ const CONDITIONS = {
                 priority: null,
             },
         ],
-        statuses: ['prone'],
     },
     weakend: {
         img: 'icons/svg/stoned.svg',
@@ -203,6 +215,7 @@ const CONDITIONS = {
         _id: toId('weakened'),
         name: 'system.conditions.weakened',
         label: 'system.conditions.weakened',
+        statuses: ['weakened'],
         changes: [
             {
                 key: 'system.banes.attacker',

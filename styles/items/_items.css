@@ -11,9 +11,31 @@
 }
 
 .sheet.item:is(.ability, .ancestry, .kit, .class) div.header {
+    height: 100px;
+}
+
+.sheet.item:is(.ability, .ancestry, .kit, .class) div.header {
     grid-template-columns: 100px 1fr;
 }
 
 .sheet.item:is(.ability, .ancestry, .kit, .class) fieldset label {
     text-align: right;
+}
+
+.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 20px;
+    margin-bottom: 10px;
+    grid-gap: 5px;
+    align-items: center;
+}
+.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-delete {
+    text-align: center;
+    cursor: pointer;
+}
+.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-delete:hover {
+    color: var(--delete-color);
+}
+.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-predicate {
+    grid-column: 1 / -1;
 }

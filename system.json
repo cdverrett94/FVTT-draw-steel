@@ -57,5 +57,17 @@
             "extensions": ["css", "hbs", "json"],
             "paths": ["lang", "styles", "module", "templates"]
         }
+    },
+    "documentTypes": {
+        "Actor": {
+            "hero": {},
+            "monster": {}
+        },
+        "Item": {
+            "ability": {},
+            "ancestry": {},
+            "class": {},
+            "kit": {}
+        }
     }
 }

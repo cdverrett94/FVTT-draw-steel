@@ -5,4 +5,8 @@ export function registerCustomHandlebarHelpers() {
         else if (typeof object === 'object') return value in object;
         else return false;
     });
+
+    Handlebars.registerHelper('stringify', function (object) {
+        return JSON.stringify(object);
+    });
 }

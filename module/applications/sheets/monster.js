@@ -50,7 +50,7 @@ export class MonsterSheet extends BaseActorSheet {
             },
             tabs: {
                 id: 'tabs',
-                template: 'systems/mcdmrpg/templates/documents/partials/tabs.hbs',
+                template: 'systems/mcdmrpg/templates/documents/partials/actor-tabs.hbs',
             },
             abilities: {
                 id: 'abilities',

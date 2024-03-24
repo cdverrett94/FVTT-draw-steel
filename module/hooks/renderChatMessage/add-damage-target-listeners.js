@@ -7,7 +7,7 @@ function registerDamageTargetListners(document, html) {
             const token = await fromUuid(targetId);
             const actor = token.actor;
 
-            await actor.applyDamage(damageAmount);
+            await actor.applyDamage({ amount: damageAmount });
         });
     });
 }

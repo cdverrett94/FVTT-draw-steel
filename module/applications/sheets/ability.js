@@ -5,7 +5,7 @@ export class AbilitySheet extends BaseItemSheet {
         classes: ['ability'],
         position: {
             width: 600,
-            height: 865,
+            height: 'auto',
         },
     };
 
@@ -14,10 +14,6 @@ export class AbilitySheet extends BaseItemSheet {
     static PARTS = foundry.utils.mergeObject(
         super.PARTS,
         {
-            header: {
-                id: 'header',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
-            },
             keywords: {
                 id: 'size',
                 template: 'systems/mcdmrpg/templates/documents/ability/ability-keywords.hbs',
@@ -34,6 +30,10 @@ export class AbilitySheet extends BaseItemSheet {
             effect: {
                 id: 'effect',
                 template: 'systems/mcdmrpg/templates/documents/ability/ability-effect.hbs',
+            },
+            rules: {
+                id: 'rules',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-rules.hbs',
             },
         },
         { inplace: false }

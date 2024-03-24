@@ -1,8 +1,8 @@
 <div class='header'>
     <div class='item-img {{item.type}}-img'>
-        <img src='{{item.img}}' data-tooltip='{{item.name}}' data-edit='img' />
+        <img src='{{source.img}}' data-tooltip='{{item.name}}' data-edit='img' />
     </div>
     <div class='item-name {{item.type}}-name'>
-        {{formInput item.schema.fields.name value=item.name}}
+        {{formInput item.schema.fields.name value=source.name}}
     </div>
 </div>

@@ -1,22 +1,21 @@
 <div class='header'>
     <div class='actor-basics'>
-        <div class='portrait'>
+        <div class='portrait left'>
             <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-edit='img' />
         </div>
-        <div class='name'>
-            {{formInput actor.schema.fields.name value=actor.name}}
-        </div>
-    </div>
-
-    <div class='role-and-level'>
-        <div class='role'>
-            <select name='system.role' class='{{actor.system.role}}'>
-                {{selectOptions monsterRoles selected=actor.system.role labelAttr='label' localize=true}}
-            </select>
-        </div>
-        <div class='level property'>
-            <div class='label'>{{localize fields.level.label}}</div>
-            <div class='value'>{{formInput fields.level value=actor.system.level}}</div>
+        <div class='right'>
+            <div class='name'>{{formInput actor.schema.fields.name value=actor.name}}</div>
+            <div class='role-and-level'>
+                <div class='role'>
+                    <select name='system.role' class='{{actor.system.role}}'>
+                        {{selectOptions monsterRoles selected=actor.system.role labelAttr='label' localize=true}}
+                    </select>
+                </div>
+                <div class='level property'>
+                    <div class='label'>{{localize fields.level.label}}</div>
+                    <div class='value'>{{formInput fields.level value=actor.system.level}}</div>
+                </div>
+            </div>
         </div>
     </div>
 

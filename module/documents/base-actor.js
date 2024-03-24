@@ -1,9 +1,29 @@
 import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
-import { ABILITIES, CHARACTERISTICS } from '../constants/_index.js';
+import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../constants/_index.js';
 import { toId } from '../helpers.js';
 import { DamageRollDialog, ResistanceRollDialog, TestRollDialog } from '../rolls/_index.js';
+import { Predicate } from '../rules/predicate.js';
+import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
+    prepareBaseData() {
+        this.grantHealthBasedConditions('bloodied', this.system.hp.bloodied);
+        this.grantHealthBasedConditions('unbalanced', 0);
+        this.grantHealthBasedConditions('dead', -this.system.hp.bloodied);
+
+        super.prepareBaseData();
+    }
+
+    grantHealthBasedConditions(condition, threshold) {
+        const existingEffect = this.effects.find((effect) => effect._id === CONDITIONS[condition]._id);
+        if (this.system.hp.current <= threshold && !existingEffect) {
+            const newEffect = new MCDMActiveEffect(CONDITIONS[condition]);
+            this.effects.set(newEffect._id, newEffect);
+        } else if (this.system.hp.current > threshold && existingEffect) {
+            this.effects.delete(CONDITIONS[condition]._id);
+        }
+    }
+
     get allowedAbilityTypes() {
         const allowedAbilityTypes = {};
         for (const [key, value] of Object.entries(ABILITIES.TYPES)) {
@@ -15,9 +35,13 @@ export class BaseActor extends Actor {
     get abilities() {
         let allAbilities = this.items.filter((item) => item.type === 'ability');
         const abilities = {};
-        for (const type in this.allowedAbilityTypes) {
-            abilities[type] = allAbilities.filter((ability) => ability.system.type === type);
-        }
+        Object.keys(this.allowedAbilityTypes).forEach((type) => (abilities[type] = []));
+        abilities.invalid = [];
+
+        allAbilities.forEach((ability) => {
+            if (ability.system.type in this.allowedAbilityTypes) abilities[ability.system.type].push(ability);
+            else abilities['invalid'].push(ability);
+        });
         return abilities;
     }
 
@@ -176,23 +200,28 @@ export class BaseActor extends Actor {
             if (target.actor.system.boons.attacked) rollData.boons += target.actor.system.boons.attacked;
             if (target.actor.system.banes.attacked) rollData.banes += target.actor.system.banes.attacked;
         }
-
         // Get Banes if attacking a creature you are frightened by
-        if (this.system.frightened.length && this.system.frightened.includes(target.actor.uuid)) rollData.banes += 1;
+        const attackingFrightenedByPredicate = new Predicate([`actor:condition:frightened:${target.actor.uuid}`], this.rollOptions());
+        if (attackingFrightenedByPredicate.validate()) rollData.banes += 1;
 
         // Get Boons if attacking a creature you have frightened
-        if (target.actor.system.frightened.length && target.actor.system.frightened.includes(this.uuid)) rollData.boons += 1;
+        const attackingFrightenedPredicate = new Predicate([`target:condition:frightened:${this.uuid}`], target.actor.rollOptions('target'));
+        if (attackingFrightenedPredicate.validate()) rollData.boons += 1;
 
         // Get Banes if attacking a creature a creature other than one that has you taunted
-        if (this.system.taunted.length && target && !this.system.taunted.includes(target.actor.uuid)) rollData.banes += 1;
+        const attackingNontauntedPredicate = new Predicate(
+            ['actor:condition:taunted', { not: [`actor:condition:taunted`, target.actor.uuid] }],
+            this.rollOptions()
+        );
+        if (attackingNontauntedPredicate.validate()) rollData.banes += 1;
 
         return rollData;
     }
 
-    async applyDamage(damageAmount = 0) {
+    async applyDamage({ amount = 0, type = 'untyped' } = {}) {
         // TODO: LATER APPLY WEAKNESSES AND IMMUNITIES
         const currentHP = this.system.hp.current;
-        const newHP = currentHP - damageAmount;
+        const newHP = currentHP - amount;
 
         await this.update({ 'system.hp.current': newHP });
     }
@@ -238,5 +267,50 @@ export class BaseActor extends Actor {
                 });
             }
         }
+    }
+
+    rollOptions(prefix = 'actor') {
+        const rollOptions = [];
+
+        // add uuid
+        rollOptions.push(`${prefix}:uuid:${this.uuid}`);
+
+        // add level
+        rollOptions.push(`${prefix}:level:${this.system.level}`);
+
+        // add hp
+        Object.entries(this.system.hp).forEach((entry) => rollOptions.push(`${prefix}:hp:${entry[0]}:${entry[1]}`));
+        const hpPercentage = Math.floor(this.system.hp.current / this.system.hp.max);
+        rollOptions.push(`${prefix}:hp:percentage:${hpPercentage}`);
+
+        // add characteristics
+        Object.entries(this.system.characteristics).forEach((entry) => rollOptions.push(`${prefix}:characteristic:${entry[0]}:${entry[1]}`));
+
+        // add abilities
+        Object.entries(this.abilities).forEach((entry) => {
+            const [abilityGroup, abilities] = entry;
+
+            abilities.forEach((ability) => rollOptions.push(`${prefix}:abilities:${abilityGroup}:${ability.name.slugify()}`));
+        });
+
+        // add conditions
+        Object.entries(CONDITIONS).forEach((condition) => {
+            const [key, value] = condition;
+            const actorCondition = this.effects.find((effect) => effect._id === value._id);
+            if (!actorCondition) return;
+
+            rollOptions.push(`${prefix}:condition:${key}`);
+            if (key === 'ongoingdamage') {
+                Object.keys(DAMAGE.TYPES).forEach((type) => {
+                    if (this.ongoingDamage[type] > 0) rollOptions.push(`${prefix}:condition:${key}:${this.ongoingDamage[type]}`);
+                });
+            } else if (key === 'taunted' || key === 'frightened') {
+                actorCondition.changes.forEach((change) => {
+                    if (change.value) rollOptions.push(`${prefix}:condition:${key}:${change.value}`);
+                });
+            }
+        });
+
+        return rollOptions.sort();
     }
 }
