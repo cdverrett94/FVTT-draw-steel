@@ -21,13 +21,29 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
         main: null,
     };
     defaultTabs = {
-        main: 'rules',
+        main: 'details',
     };
 
     _onRender(context, options) {
         for (const [group, tab] of Object.entries(this.tabGroups)) {
             if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
             else this.changeTab(tab, group, { force: true });
+        }
+    }
+
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+        if (partId === 'rules') {
+            htmlElement.querySelectorAll('textarea')?.forEach((element) => {
+                element.onkeydown = function (e) {
+                    if (e.keyCode == 9 || e.which == 9) {
+                        e.preventDefault();
+                        var s = this.selectionStart;
+                        this.value = this.value.substring(0, this.selectionStart) + '  ' + this.value.substring(this.selectionEnd);
+                        this.selectionEnd = s + 1;
+                    }
+                };
+            });
         }
     }
 
@@ -83,10 +99,12 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
     _prepareSubmitData(formData) {
         formData = super._prepareSubmitData(formData);
 
-        Object.entries(formData.system?.rules).forEach((rule) => {
-            const [index, ruleData] = rule;
-            formData.system.rules[index].predicate = JSON.parse(ruleData.predicate);
-        });
+        if (formData.system?.rules) {
+            Object.entries(formData.system?.rules).forEach((rule) => {
+                const [index, ruleData] = rule;
+                formData.system.rules[index].predicate = JSON.parse(ruleData.predicate);
+            });
+        }
 
         return formData;
     }

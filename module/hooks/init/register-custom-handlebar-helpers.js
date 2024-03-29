@@ -7,6 +7,6 @@ export function registerCustomHandlebarHelpers() {
     });
 
     Handlebars.registerHelper('stringify', function (object) {
-        return JSON.stringify(object);
+        return JSON.stringify(object, null, '  ');
     });
 }

@@ -27,7 +27,11 @@
             </div>
             <div class='rule-predicate'>
                 <div class='label'>Predicate</div>
-                <div class='value'><input type='text' spellcheck='false' value='{{stringify rule.predicate}}' name='system.rules.{{@index}}.predicate' /></div>
+                <div class='value'>
+                    <textarea spellcheck='false' value='{{stringify rule.predicate}}' name='system.rules.{{@index}}.predicate' style='height: 200px'>{{stringify
+                            rule.predicate
+                        }}</textarea>
+                </div>
             </div>
         </div>
     {{/each}}

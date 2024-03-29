@@ -16,3 +16,7 @@ export { MCDMTokenDocument } from './token.js';
 
 // Effects
 export { MCDMActiveEffect } from './active-effects.js';
+
+// Combats
+export { MCDMCombat } from './combat.js';
+export { MCDMCombatant } from './combatant.js';

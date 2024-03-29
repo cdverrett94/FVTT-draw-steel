@@ -3,13 +3,14 @@ import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseItem extends Item {
     overrides = this.overrides ?? {};
+    appliedEffects = false;
+
     prepareBaseData() {
         const actorRules = this.system.rules?.filter((rule) => rule.affects === 'actor');
         const itemRules = this.system.rules?.filter((rule) => rule.affects === 'item');
 
-        if (actorRules)
-            this.createEffectsFromRules({ target: this.parent, name: `${this.name} Applied Actor Effects From Rules`, rules: actorRules, transfer: true });
-        if (itemRules) this.createEffectsFromRules({ target: this, name: `${this.name} Applied Item Effects Fom Rules`, rules: itemRules, transfer: false });
+        if (actorRules) this.createEffectsFromRules({ target: this.parent, name: `${this.name} Applied Actor Effects From Rules`, rules: actorRules });
+        if (itemRules) this.createEffectsFromRules({ target: this, name: `${this.name} Applied Item Effects Fom Rules`, rules: itemRules });
 
         super.prepareBaseData();
     }
@@ -49,6 +50,8 @@ export class BaseItem extends Item {
 
         // Expand the set of final overrides
         this.overrides = foundry.utils.expandObject(overrides);
+
+        this.appliedEffects = true;
     }
 
     *allApplicableEffects() {
@@ -58,17 +61,27 @@ export class BaseItem extends Item {
     }
 
     createEffectsFromRules({ target, name, rules, transfer }) {
-        if (rules.length && target) {
-            const existingEffect = target.effects.find((effect) => effect.origin === this.uuid);
-            if (existingEffect) target.effects.delete(existingEffect._id);
+        const existingEffect = target?.effects.find((effect) => effect.origin === this.uuid);
+        if (existingEffect) target?.effects.delete(existingEffect._id);
 
+        if (rules.length) {
             const changes = rules.reduce((changes, rule) => {
                 const predicate = new Predicate(rule.predicate, [...this.rollOptions(), ...this.parent?.rollOptions()]);
+                let value = rule.value;
                 if (predicate.validate() && Number.isNumeric(rule.mode)) {
+                    if (rule.value.startsWith('@')) {
+                        if (rule.value.startsWith('@actor') && this.parent) {
+                            const path = rule.value.split('@actor.')[1];
+                            value = foundry.utils.getProperty(this.parent, path) ?? value;
+                        } else if (rule.value.startsWith('@item')) {
+                            const path = rule.value.split('@item.')[1];
+                            value = foundry.utils.getProperty(this, path) ?? value;
+                        }
+                    }
                     changes.push({
                         key: rule.key,
                         mode: rule.mode,
-                        value: Number.isNumeric(rule.value) ? Number(rule.value) : rule.value,
+                        value: Number.isNumeric(value) ? Number(value) : value,
                     });
                     return changes;
                 }
@@ -77,13 +90,11 @@ export class BaseItem extends Item {
 
             const effectData = {
                 name,
-                _id: foundry.utils.randomID(),
                 changes,
-                transfer,
                 origin: this.uuid,
                 statuses: ['dead'],
             };
-            target.effects.set(effectData._id, new MCDMActiveEffect(effectData));
+            target?.effects.set(effectData._id, new MCDMActiveEffect(effectData));
         }
     }
 
@@ -95,5 +106,4 @@ export class BaseItem extends Item {
 
         return rollOptions;
     }
-    [{ or: ['actor:class:tactician', { gte: ['actor:level', 2] }] }];
 }

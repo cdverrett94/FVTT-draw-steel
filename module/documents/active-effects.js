@@ -37,7 +37,7 @@ export class MCDMActiveEffect extends ActiveEffect {
 
     applyItem(item, change) {
         // Determine the data type of the target field
-        const current = foundry.utils.getProperty(item, change.key) ?? null;
+        const current = foundry.utils.getProperty(item._source, change.key) ?? null;
         let target = current;
         if (current === null) {
             const model = game.model.Item[item.type] || {};
@@ -56,7 +56,6 @@ export class MCDMActiveEffect extends ActiveEffect {
             console.warn(`Item [${item.id}] | Unable to parse active effect change for ${change.key}: "${change.value}"`);
             return;
         }
-
         // Apply the change depending on the application mode
         const modes = CONST.ACTIVE_EFFECT_MODES;
         const changes = {};
@@ -81,6 +80,7 @@ export class MCDMActiveEffect extends ActiveEffect {
 
         // Apply all changes to the Item data
         foundry.utils.mergeObject(item, changes);
+
         return changes;
     }
 }
