@@ -1,0 +1,11 @@
+.combat-sidebar.mcdmrpg .combatant.turn-completed {
+    opacity: 50%;
+}
+
+.combat-sidebar.mcdmrpg .mcdmrpg-header {
+    margin: 0px;
+}
+
+.combat-sidebar.mcdmrpg .combat-side:is(:first-child) {
+    margin-bottom: 5px;
+}

@@ -1,3 +1,4 @@
+import { MCDMCombatTracker } from './module/applications/sidebar/combat-tracker.js';
 import {
     registerCustomEnrichers,
     registerCustomHandlebarHelpers,
@@ -40,6 +41,19 @@ Hooks.on('init', () => {
 
     // Set CSS Variables
     setCSSVariables();
+
+    CONFIG.ui.combat = MCDMCombatTracker;
+
+    CONFIG.Actor.trackableAttributes = {
+        hero: {
+            value: ['turns'],
+            bar: ['hp'],
+        },
+        monster: {
+            value: ['turns'],
+            bar: ['hp'],
+        },
+    };
 });
 
 Hooks.on('ready', async () => {

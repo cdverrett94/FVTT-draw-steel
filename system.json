@@ -68,6 +68,12 @@
             "ancestry": {},
             "class": {},
             "kit": {}
+        },
+        "Combat": {
+            "mcdmrpg": {}
+        },
+        "Combatant": {
+            "mcdmrpg": {}
         }
     }
 }
