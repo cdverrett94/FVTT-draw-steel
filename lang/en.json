@@ -159,6 +159,9 @@
                 }
             }
         },
+        "combat": {
+            "toggleTurnCompleted": "Toggle Turn Completed"
+        },
         "conditions": {
             "bloodied": "Bloodied",
             "dazed": "Dazed",
@@ -429,16 +432,36 @@
             },
             "kit": {
                 "FIELDS": {
-                    "area": "Area",
-                    "armor": "Armor",
-                    "damage": "Damage",
-                    "health": "Health",
-                    "range": "Range",
-                    "reach": "Reach",
-                    "resistanceTn": "Resistance TN",
-                    "speed": "Speed",
-                    "type": "Type",
-                    "weapon": "Weapon"
+                    "area": {
+                        "label": "Area"
+                    },
+                    "armor": {
+                        "label": "Armor"
+                    },
+                    "damage": {
+                        "label": "Damage"
+                    },
+                    "health": {
+                        "label": "Health"
+                    },
+                    "range": {
+                        "label": "Range"
+                    },
+                    "reach": {
+                        "label": "Reach"
+                    },
+                    "resistanceTn": {
+                        "label": "Resistance TN"
+                    },
+                    "speed": {
+                        "label": "Speed"
+                    },
+                    "type": {
+                        "label": "Type"
+                    },
+                    "weapon": {
+                        "label": "Weapon"
+                    }
                 },
                 "label": "Kit"
             }

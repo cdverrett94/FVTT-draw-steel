@@ -114,6 +114,11 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             attacked: 0,
             tests: 0,
         };
+        this.edges = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+        };
         this.banes = {
             attacker: 0,
             attacked: 0,
@@ -125,5 +130,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
         }
         this.taunted = [];
         this.frightened = [];
+
+        this.turns = 1;
     }
 }

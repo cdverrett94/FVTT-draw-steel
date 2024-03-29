@@ -1,4 +1,16 @@
-.message .message-content .target {
+.message .message-content .actor {
+    display: grid;
+    grid-template-columns: 50px auto;
+    align-items: center;
+    grid-gap: var(--grid-gap);
+    font-size: 1.5rem;
+}
+
+.message .message-content .actor img {
+    border: none;
+}
+
+.message .message-content > .target {
     margin-top: 5px;
 }
 
@@ -8,4 +20,16 @@
 
 .message .message-content .tn.roll-failure {
     color: red;
+}
+
+.dice-total span {
+    position: absolute;
+    font-size: smaller;
+}
+
+.dice-total span.dice-modifier {
+    left: 5px;
+}
+.dice-total span.dice-tier {
+    right: 5px;
 }

@@ -11,7 +11,7 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.roll-dialog div.boons-banes-impacts {
+.roll-dialog div.edges-banes-impacts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
     align-items: center;
@@ -20,13 +20,13 @@
     grid-gap: 10px;
 }
 
-.roll-dialog div.boons,
+.roll-dialog div.edges,
 .roll-dialog div.banes,
 .roll-dialog div.impacts {
     width: 100%;
 }
 
-.roll-dialog div.boons-banes-impacts > div > :nth-child(2) {
+.roll-dialog div.edges-banes-impacts > div > :nth-child(2) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -43,7 +43,7 @@
     color: red;
 }
 
-.roll-dialog .dice-adjustment div.roll-button {
+.roll-dialog div.roll-button {
     margin-top: 5px;
     width: 100%;
     position: relative;
@@ -55,4 +55,8 @@
     position: absolute;
     right: 10px;
     color: rgb(0, 249, 0);
+}
+
+.roll-dialog .adjust-dice.hidden-visibility {
+    visibility: hidden;
 }

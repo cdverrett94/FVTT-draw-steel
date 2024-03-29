@@ -25,10 +25,14 @@
 .sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule {
     display: grid;
     grid-template-columns: repeat(4, 1fr) 20px;
-    margin-bottom: 10px;
+
     grid-gap: 5px;
     align-items: center;
 }
+.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule:not(:last-child) {
+    margin-bottom: 10px;
+}
+
 .sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-delete {
     text-align: center;
     cursor: pointer;

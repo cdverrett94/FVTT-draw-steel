@@ -3,10 +3,13 @@
     {{#if flavor}}
         <div class='dice-flavor'>{{flavor}}</div>
     {{/if}}
+    {{#if roll.isCritical}}
+        <div class='isCritical'>CRITICAL HIT - TAKE AN EXTRA ACTION</div>
+    {{/if}}
     <div class='dice-result'>
         <div class='dice-formula'>{{roll.formula}}</div>
         {{{tooltip}}}
-        <h4 class='dice-total'>{{roll.total}}</h4>
+        <h4 class='dice-total {{ifThen roll.isCritical "success" ""}}'>{{roll.total}}</h4>
     </div>
 </div>
 {{#if target}}

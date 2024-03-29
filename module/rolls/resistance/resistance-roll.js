@@ -6,6 +6,7 @@ export class ResistanceRoll extends MCDMRoll {
         this.characteristic = options.characteristic;
         this.tn = options.tn;
     }
+    static type = 'resistance';
 
     static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/test-message.hbs';
     async toMessage(messageData = {}, { rollMode, create = true } = {}) {

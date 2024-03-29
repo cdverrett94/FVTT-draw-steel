@@ -17,7 +17,7 @@ function enrichDamage(match, options) {
 
     data.type = data.type in DAMAGE.TYPES ? data.type : 'untyped';
     data.applyExtraDamage = data.applyExtraDamage === 'false' ? false : true;
-    data.formula = new DamageRoll(data.baseFormula, {}, data);
+    data.formula = new DamageRoll(data.baseFormula, {}, data).formula;
     data.replaceCharacteristic ??= true;
     data.impacts ??= 0;
     data.abilityName = game.i18n.localize(data.abilityName ?? data.item?.name ?? '');

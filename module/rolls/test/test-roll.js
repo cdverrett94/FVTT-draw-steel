@@ -9,6 +9,8 @@ export class TestRoll extends MCDMRoll {
         this.proficient = options.proficient;
         this.tn = options.tn;
     }
+    static type = 'test';
+
     static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/test-message.hbs';
     async toMessage(messageData = {}, { rollMode, create = true } = {}) {
         // Perform the roll, if it has not yet been rolled

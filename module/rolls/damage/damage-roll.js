@@ -7,6 +7,11 @@ export class DamageRoll extends MCDMRoll {
 
         this.damageType = options.damageType in DAMAGE.TYPES ? options.damageType : 'untyped';
     }
+    static type = 'damage';
+
+    get isCritical() {
+        return this.terms.find((term) => term.formula === '2d6')?.total >= 11;
+    }
 
     static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/damage-message.hbs';
 
