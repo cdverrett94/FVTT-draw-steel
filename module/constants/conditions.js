@@ -94,7 +94,7 @@ const CONDITIONS = {
                 mode: 2,
             },
             {
-                key: 'system.boons.attacked',
+                key: 'system.edges.attacked',
                 value: '1',
                 mode: 2,
             },
@@ -120,7 +120,7 @@ const CONDITIONS = {
                 priority: null,
             },
             {
-                key: 'system.boons.attacked',
+                key: 'system.edges.attacked',
                 value: '1',
                 mode: 2,
                 priority: null,
@@ -152,7 +152,7 @@ const CONDITIONS = {
         statuses: ['surprised'],
         changes: [
             {
-                key: 'system.boons.attacked',
+                key: 'system.edges.attacked',
                 value: '1',
                 mode: 2,
                 priority: null,
@@ -202,7 +202,7 @@ const CONDITIONS = {
                 priority: null,
             },
             {
-                key: 'system.boons.attacked',
+                key: 'system.edges.attacked',
                 value: '2',
                 mode: 2,
                 priority: null,

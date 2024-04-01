@@ -8,10 +8,10 @@
 }
 
 .roll-dialog .dice-adjustment:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--alternating-bg-color);
 }
 
-.roll-dialog div.edges-banes-impacts {
+.roll-dialog div.edges-banes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
     align-items: center;
@@ -21,12 +21,11 @@
 }
 
 .roll-dialog div.edges,
-.roll-dialog div.banes,
-.roll-dialog div.impacts {
+.roll-dialog div.banes {
     width: 100%;
 }
 
-.roll-dialog div.edges-banes-impacts > div > :nth-child(2) {
+.roll-dialog div.edges-banes > div > :nth-child(2) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
