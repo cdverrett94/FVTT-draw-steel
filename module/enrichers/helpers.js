@@ -2,23 +2,11 @@ import { CHARACTERISTICS } from '../constants/_index.js';
 
 import { getRollActor } from '../helpers.js';
 import { enrichDamage, postDamageToChat, rollDamage } from './enrich-damage.js';
-import { enrichResistance, postResistanceToChat, rollResistance } from './enrich-resistance.js';
-import { enrichTest, postTestToChat, rollTest } from './enrich-test.js';
 
 function registerCustomEnrichers() {
     CONFIG.TextEditor.enrichers.push({
         pattern: /@(?<type>Damage)\[(?<formula>[^\]\|]+)(?:\|*(?<config>[^\[\]]*))\]/gi,
         enricher: enrichDamage,
-    });
-
-    CONFIG.TextEditor.enrichers.push({
-        pattern: /@(?<type>Test)\[(?:\|*(?<config>[^\]\[]*))\]/gi,
-        enricher: enrichTest,
-    });
-
-    CONFIG.TextEditor.enrichers.push({
-        pattern: /@(?<type>Resistance)\[(?<characteristic>[A-Za-z]+)(?:\|*(?<config>[^\[\]]*))\]/gi,
-        enricher: enrichResistance,
     });
 
     document.body.addEventListener('click', rollAction);
@@ -37,7 +25,7 @@ function _getEnrichedOptions(match, options) {
         }
     });
 
-    data.boons ??= 0;
+    data.edges ??= 0;
     data.banes ??= 0;
     data.actor = options.actor ?? options.rollData?.parent;
     data.actorId = data.actor?.uuid;
@@ -46,12 +34,7 @@ function _getEnrichedOptions(match, options) {
 
     if (type.toLowerCase() === 'damage') {
         data.baseFormula = formula;
-    } else if (type.toLowerCase() === 'test') {
-        data.baseFormula = '2d6';
-    } else if (type.toLowerCase() === 'resistance') {
-        data.baseFormula = '2d6';
-        data.characteristic = characteristic;
-    }
+    } else data.baseFormula = '2d6';
 
     // Remove characteristic from data if not valid characteristic or 'highest'
     if (data.characteristic && !(data.characteristic in CHARACTERISTICS) && data.characteristic !== 'highest') delete data.characteristic;
@@ -95,28 +78,23 @@ async function rollAction(event) {
     if (!target) return;
 
     const isDamage = target.classList.contains('roll-damage');
-    const isTest = target.classList.contains('roll-test');
-    const isResistance = target.classList.contains('roll-resistance');
     if (isDamage) rollDamage(event);
-    else if (isTest) rollTest(event);
-    else if (isResistance) rollResistance(event);
-    else return console.error('No accepted roll type provided; must be damage, resistance, or test');
+    else return console.error('No accepted roll type provided; must be damage');
 }
 
 async function getRollContextData(dataset) {
-    let { abilityName, actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn } = {
+    let { abilityName, actorId, baseFormula, edges, banes, characteristic, damageType, formula, skill, subskill, tn } = {
         ...dataset,
     };
 
-    boons = Math.abs(Number(boons) || 0);
+    edges = Math.abs(Number(edges) || 0);
     banes = Math.abs(Number(banes) || 0);
-    impacts = Math.abs(Number(impacts) || 0);
 
     let actor;
     if (dataset.actorId) actor = await fromUuid(actorId);
     else actor = await getRollActor();
 
-    return { abilityName, actor, actorId, applyExtraDamage, baseFormula, boons, banes, characteristic, damageType, formula, impacts, skill, subskill, tn };
+    return { abilityName, actor, actorId, baseFormula, edges, banes, characteristic, damageType, formula, skill, subskill, tn };
 }
 
 async function postRollToChat(event) {
@@ -124,9 +102,7 @@ async function postRollToChat(event) {
     if (!target) return;
 
     if (target.classList.contains('roll-damage-to-chat')) postDamageToChat({ dataset: target.dataset });
-    else if (target.classList.contains('roll-resistance-to-chat')) postResistanceToChat({ dataset: target.dataset });
-    else if (target.classList.contains('roll-test-to-chat')) postTestToChat({ dataset: target.dataset });
-    else return console.error('No accepted roll type provided; must be damage, resistance, or test');
+    else return console.error('No accepted roll type provided; must be damage');
 }
 
 export { _getEnrichedOptions, createRollLink, getRollContextData, registerCustomEnrichers };

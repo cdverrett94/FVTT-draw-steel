@@ -1,7 +1,6 @@
 import { DAMAGE } from '../../constants/_index.js';
-import { MCDMRoll } from '../base/base-roll.js';
 
-export class DamageRoll extends MCDMRoll {
+export class DamageRoll extends Roll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
 

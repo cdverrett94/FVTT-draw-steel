@@ -7,19 +7,15 @@ function enrichDamage(match, options) {
 
     type = damage type
     replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
-    applyExtraDamage = should a kits damage apply to the roll - default true
-    boons = # of boons to apply to roll
+    edges = # of edges to apply to roll
     banes = number of banes to apply to roll
-    impacts = number of impact dice to roll
     characteristic = charcteristic to add to the roll
     */
     let data = _getEnrichedOptions(match, options);
 
     data.type = data.type in DAMAGE.TYPES ? data.type : 'untyped';
-    data.applyExtraDamage = data.applyExtraDamage === 'false' ? false : true;
     data.formula = new DamageRoll(data.baseFormula, {}, data).formula;
     data.replaceCharacteristic ??= true;
-    data.impacts ??= 0;
     data.abilityName = game.i18n.localize(data.abilityName ?? data.item?.name ?? '');
 
     let linkText = `${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;

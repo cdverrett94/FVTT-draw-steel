@@ -1,7 +1,6 @@
 import { CHARACTERISTICS } from '../../constants/characteristics.js';
-import { MCDMRoll } from '../base/base-roll.js';
 
-export class PowerRoll extends MCDMRoll {
+export class PowerRoll extends Roll {
     constructor(characteristic, data = {}, options = {}) {
         const modifiers = PowerRoll.combineModifiers(options.modifiers);
         const modifier = modifiers.edges - modifiers.banes;
