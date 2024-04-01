@@ -1,9 +1,22 @@
+.sheet.actor.hero .skills {
+    overflow-y: scroll;
+}
+
+.sheet.actor.hero .skills .skill-category .category-name {
+    font-weight: bold;
+    font-size: 1rem;
+    position: sticky;
+    top: 0;
+    background-color: var(--background-color);
+    padding: 5px;
+}
+
 .sheet.actor.hero .skills .skill {
     display: grid;
     grid-gap: 5px;
     grid-template-columns: 1fr auto;
     align-items: center;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
 }
 
 .sheet.actor.hero .skills .skill:nth-child(2n) {
@@ -18,15 +31,4 @@
 
 .sheet.actor.hero .skills .skill:hover .skill-proficiency i {
     animation: var(--icon-rotation);
-}
-
-.sheet.actor.hero .skills .skill:hover .skill-proficiency i.fa-light.fa-dice-d6 {
-    display: none;
-}
-.sheet.actor.hero .skills .skill .skill-proficiency i.fa-regular.fa-dice-d6 {
-    display: none;
-}
-
-.sheet.actor.hero .skills .skill:hover .skill-proficiency i.fa-regular.fa-dice-d6 {
-    display: inline-block;
 }

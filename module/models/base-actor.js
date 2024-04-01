@@ -1,7 +1,8 @@
 import { CHARACTERISTICS, DAMAGE, SKILLS } from '../constants/_index.js';
+import { getDataModelChoices } from '../helpers.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
-    static LOCALIZATION_PREFIXES = ['system.actors.base'];
+    static LOCALIZATION_PREFIXES = ['system.actors.base', 'system.skills'];
     static defineSchema() {
         const fields = foundry.data.fields;
         const schema = {};
@@ -22,45 +23,48 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
         // Skills
         const skills = {};
-        for (const skill in SKILLS) {
-            if (['craft', 'knowledge'].includes(skill)) {
-                skills[skill] = new fields.ArrayField(
-                    new fields.SchemaField(
-                        {
-                            subskill: new fields.StringField({
-                                required: true,
-                                nullable: false,
-                            }),
-                            proficient: new fields.BooleanField({
-                                initial: false,
-                            }),
-                            characteristic: new fields.StringField({
-                                initial: SKILLS[skill].default,
-                                choices: Object.keys(characteristics),
-                            }),
-                        },
-                        {
-                            label: SKILLS[skill].label,
-                        }
-                    )
-                );
-            } else {
-                skills[skill] = new fields.SchemaField(
-                    {
-                        proficient: new fields.BooleanField({
-                            initial: false,
-                        }),
-                        characteristic: new fields.StringField({
-                            initial: SKILLS[skill].default,
-                            choices: Object.keys(characteristics),
-                        }),
-                    },
-                    {
-                        label: SKILLS[skill].label,
-                    }
-                );
+        for (const skillCategory in SKILLS) {
+            if (skillCategory === 'label') continue;
+            const category = SKILLS[skillCategory];
+            const subskills = {};
+            for (const skill in category) {
+                if (skill === 'label') continue;
+                subskills[skill] = new fields.SchemaField({
+                    proficient: new fields.BooleanField({
+                        initial: false,
+                    }),
+                    characteristic: new fields.StringField({
+                        initial: SKILLS[skillCategory][skill].default,
+                        choices: getDataModelChoices(CHARACTERISTICS),
+                    }),
+                    display: new fields.BooleanField({
+                        initial: false,
+                    }),
+                });
             }
+
+            skills[skillCategory] = new fields.SchemaField(subskills);
         }
+        skills.customSkills = new fields.ArrayField(
+            new fields.SchemaField({
+                name: new fields.StringField(),
+                proficient: new fields.BooleanField({
+                    initial: false,
+                }),
+                characteristic: new fields.StringField({
+                    initial: 'reason',
+                    choices: getDataModelChoices(CHARACTERISTICS),
+                }),
+                category: new fields.StringField({
+                    initial: 'crafting',
+                    choices: getDataModelChoices(SKILLS),
+                }),
+                display: new fields.BooleanField({
+                    initial: false,
+                }),
+            })
+        );
+
         schema.skills = new fields.SchemaField(skills);
 
         return {
@@ -100,20 +104,26 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             this[characteristic] = score;
         }
 
+        for (const customSkill in this.skills.customSkills) {
+            const skill = this.skills.customSkills[customSkill];
+            console.log('skill name', skill, skill.name);
+            if (!this.skills[skill.category][skill.name.slugify()]) {
+                this.skills[skill.category][skill.name.slugify()] = {
+                    characteristic: skill.characteristic,
+                    proficient: skill.proficient,
+                    label: skill.name,
+                    isCustom: true,
+                    display: skill.display,
+                };
+            }
+        }
+
         this.hp.healing = Math.floor(this.hp.max / 3);
         this.hp.bloodied = Math.floor(this.hp.max / 2);
-
-        this.highest = Math.max(...Object.values(this.characteristics));
-        this.chanceHit = '@Damage[1d4|characteristic=highest|abilityName=system.rolls.damage.chancehit]';
 
         this.grappleTN = 7 + this.characteristics.might;
 
         // Setting values for Active Effects to target
-        this.boons = {
-            attacker: 0,
-            attacked: 0,
-            tests: 0,
-        };
         this.edges = {
             attacker: 0,
             attacked: 0,

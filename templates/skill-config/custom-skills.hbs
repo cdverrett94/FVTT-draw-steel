@@ -1,0 +1,43 @@
+<div class='custom-skills'>
+    <div class='skill-category category-custom-skills tab' data-group='main' data-tab='customSkills'>
+        <div class='add-skill'>
+            <button data-action='addSkill'>Add Skill</button>
+        </div>
+        <div class='skill header'>
+            <div class='skill-category'>Category</div>
+            <div class='skill-characteristic'>Characteristic</div>
+            <div class='skill-name'>Skill</div>
+            <div class='skill-proficiency'>Proficient</div>
+            <div class='skill-display'>Display</div>
+            <div class='skill-delete'></div>
+
+        </div>
+        {{#each skills.customSkills as |skill|}}
+            <div class='skill'>
+                <div class='skill-category'>
+                    <select name='system.skills.customSkills.{{@index}}.category'>
+                        {{selectOptions @root.skillsList selected=skill.category labelAttr='label' localize=true}}
+                    </select>
+                </div>
+                <div class='skill-characteristic'>
+                    <select name='system.skills.customSkills.{{@index}}.characteristic'>
+                        {{selectOptions @root.characteristics selected=skill.characteristic labelAttr='label' localize=true}}
+                    </select>
+                </div>
+                <div class='skill-name'>
+                    <input type='text' name='system.skills.customSkills.{{@index}}.name' value='{{skill.name}}' />
+                </div>
+                <div class='skill-proficiency'>
+                    <input type='checkbox' name='system.skills.customSkills.{{@index}}.proficient' {{checked skill.proficient}} />
+                </div>
+                <div class='skill-display'>
+                    <input type='checkbox' name='system.skills.customSkills.{{@index}}.display' {{checked skill.display}} />
+                </div>
+                <div class='skill-delete' data-action='deleteSkill' data-index='{{@index}}'>
+                    <i class='fa-solid fa-trash-can'></i>
+                </div>
+
+            </div>
+        {{/each}}
+    </div>
+</div>

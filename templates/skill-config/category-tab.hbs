@@ -1,0 +1,37 @@
+<div class='skills'>
+
+    {{#each skills as |skills|}}
+        {{#with @key as |category|}}
+            {{#unless (eq @key 'customSkills')}}
+                <div class='skill-category category-{{category}} tab' data-group='main' data-tab='{{category}}'>
+                    <div class='skill'>
+                        <div class='skill-characteristic'>Characteristic</div>
+                        <div class='skill-name'>Skill</div>
+                        <div class='skill-proficiency'>Proficient</div>
+                        <div>Display</div>
+                    </div>
+                    {{#each skills as |skill|}}
+                        <div class='skill'>
+                            <div class='skill-characteristic'>
+                                <select name='system.skills.{{category}}.{{@key}}.characteristic'>
+                                    {{selectOptions @root.characteristics selected=skill.characteristic labelAttr='label' localize=true}}
+                                </select>
+                            </div>
+                            <div class='skill-name'>
+                                {{localize (concat 'system.skills.' category '.' @key '.label')}}
+                            </div>
+                            <div class='skill-proficiency'>
+                                <div class='skill-proficiency'>
+                                    <input type='checkbox' name='system.skills.{{category}}.{{@key}}.proficient' {{checked skill.proficient}} />
+                                </div>
+                            </div>
+                            <div class='skill-display'>
+                                <input type='checkbox' name='system.skills.{{category}}.{{@key}}.display' {{checked skill.display}} />
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/unless}}
+        {{/with}}
+    {{/each}}
+</div>

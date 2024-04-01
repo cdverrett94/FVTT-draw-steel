@@ -1,4 +1,4 @@
-import { ABILITIES, CONDITIONS, DAMAGE } from '../../constants/_index.js';
+import { ABILITIES, CONDITIONS, DAMAGE, SKILLS } from '../../constants/_index.js';
 import { SkillConfig } from '../_index.js';
 
 const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;
@@ -36,8 +36,22 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     }
 
     async _prepareContext(options) {
+        const skills = {};
+        Object.keys(SKILLS).forEach((category) => {
+            if (category === 'customSkills') return false;
+            for (const skill in this.actor.system.skills[category]) {
+                if (this.actor.system.skills[category][skill].proficient || this.actor.system.skills[category][skill].display) {
+                    skills[category] ??= {};
+                    skills[category][skill] = this.actor.system.skills[category][skill];
+                }
+            }
+        });
+
+        console.log(skills);
+
         const context = {
             actor: this.actor,
+            actorSkills: skills,
             source: this.actor.toObject(),
             fields: this.actor.system.schema.fields,
             filters: this.filters,
@@ -52,12 +66,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         };
         for (const [group, abilities] of Object.entries(context.actor.abilities)) {
             for (const [index, ability] of abilities.entries()) {
-                let damageText;
-                if (ability.system.damage.doesDamage) {
-                    let { baseFormula, characteristic, boons, banes, impacts, type, applyExtraDamage } = ability.system.damage;
-                    damageText = `@Damage[${baseFormula}|characteristic=${characteristic}|boons=${boons}|banes=${banes}|impacts=${impacts}|type=${type}|applyExtraDamage=${applyExtraDamage}]`;
-                }
-                context.actor.abilities[group][index].system.enrichedDamage = await TextEditor.enrichHTML(damageText, { ...enrichContext, item: ability });
                 context.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, {
                     ...enrichContext,
                     item: ability,

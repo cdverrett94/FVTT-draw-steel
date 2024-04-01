@@ -1,4 +1,4 @@
-import { CHARACTERISTICS } from '../../constants/_index.js';
+import { CHARACTERISTICS, SKILLS } from '../../constants/_index.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -20,7 +20,7 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
         tag: 'form',
         classes: ['mcdmrpg', 'sheet', 'skill-config'],
         position: {
-            width: 400,
+            width: 600,
             height: 'auto',
         },
         actions: {
@@ -29,7 +29,7 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
         },
         form: {
             handler: this.onSubmitForm,
-            submitOnChange: false,
+            submitOnChange: true,
             closeOnSubmit: false,
         },
     };
@@ -39,49 +39,64 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
 
     /** @override */
     static PARTS = {
-        addSkills: {
-            id: 'add-skill-buttons',
-            template: 'systems/mcdmrpg/templates/skill-config/add-skill-buttons.hbs',
+        tabs: {
+            id: 'tabs',
+            template: 'systems/mcdmrpg/templates/skill-config/nav-tabs.hbs',
         },
         skills: {
             id: 'skills',
-            template: 'systems/mcdmrpg/templates/skill-config/skills-list.hbs',
+            template: 'systems/mcdmrpg/templates/skill-config/category-tab.hbs',
         },
-        saveSkills: {
-            id: 'saveSkills',
-            template: 'systems/mcdmrpg/templates/skill-config/save-skills-button.hbs',
+        customSkills: {
+            id: 'custom-skills',
+            template: 'systems/mcdmrpg/templates/skill-config/custom-skills.hbs',
         },
     };
+
+    tabGroups = {
+        main: null,
+    };
+    defaultTabs = {
+        main: 'crafting',
+    };
+
+    _onRender(context, options) {
+        for (const [group, tab] of Object.entries(this.tabGroups)) {
+            if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
+            else this.changeTab(tab, group, { force: true });
+        }
+    }
 
     async _prepareContext(options) {
         return {
             actor: this.actor,
-            skills: this.actor.system.skills,
+            skillsList: SKILLS,
+            skills: this.actor.system.toObject().skills,
             characteristics: CHARACTERISTICS,
         };
     }
 
-    static async addSkill(event, target) {
-        let skill = target.dataset.skill;
-        let actor = await this.actor.addSkill({ skill, subskill: 'New ' + game.i18n.localize(`system.skills.${skill}.label`) + ' Skill' });
+    static async addSkill() {
+        const actor = await this.actor.addCustomSkill();
         this.context.actor = actor;
-        await this.render({ parts: ['skills'] });
+        await this.render({ parts: ['customSkills'] });
         this.setPosition({ height: 'auto' });
     }
 
     static async deleteSkill(event, target) {
-        let skill = target.dataset.skill;
-        let subskill = target.dataset.subskill;
+        const index = target.dataset.index;
 
-        let actor = await this.actor.deleteSkill({ skill, subskill });
+        const actor = await this.actor.deleteSkill({ index });
         this.context.actor = actor;
-        await this.render({ parts: ['skills'] });
+        await this.render({ parts: ['customSkills'] });
         this.setPosition({ height: 'auto' });
     }
 
     static async onSubmitForm(event, form, formData) {
-        await this.actor.update(formData.object);
-        this.close();
+        const actor = await this.actor.update(foundry.utils.expandObject(formData.object));
+    }
+
+    _onClose() {
         if (this.actor.sheet.rendered) this.actor.sheet.maximize();
     }
 }

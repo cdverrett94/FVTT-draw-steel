@@ -1,42 +1,36 @@
-.mcdmrpg.sheet.skill-config .skill-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 5px;
+.sheet.skill-config .tabs {
+    margin-bottom: 10px;
 }
 
-.mcdmrpg.sheet.skill-config .skills .skill-name input {
-    width: 100px;
-    color: white;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.mcdmrpg.sheet.skill-config .skills .skill,
-.mcdmrpg.sheet.skill-config .skills .skills-header {
+.sheet.skill-config .skill {
     display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 95px 1fr auto 20px;
+    grid-gap: var(--grid-gap);
+    padding: 10px;
     align-items: center;
-    padding: 5px;
 }
 
-.mcdmrpg.sheet.skill-config .skills .skill:nth-child(2n) {
-    background-color: rgba(255, 255, 255, 0.05);
+.sheet.skill-config .skill:nth-child(odd):not(:first-child) {
+    background-color: var(--alternating-bg-color);
 }
 
-.mcdmrpg.sheet.skill-config .skills .skill .delete-skill:hover {
+.sheet.skill-config .skills .skill {
+    grid-template-columns: 1fr 1fr 60px 50px;
+}
+
+.sheet.skill-config .category-custom-skills .add-skill button {
+    width: 100%;
+}
+
+.sheet.skill-config .category-custom-skills .skill {
+    grid-template-columns: 1fr 1fr 2fr 60px 50px 20px;
+}
+
+.sheet.skill-config .skill .skill-proficiency,
+.sheet.skill-config .category-custom-skills .skill .skill-delete {
+    justify-self: center;
+}
+
+.sheet.skill-config .category-custom-skills .skill:not(.header) .skill-delete:hover {
+    color: var(--delete-color);
     cursor: pointer;
-    color: red;
-}
-
-.mcdmrpg.sheet.skill-config .skills .skill select {
-    color: white;
-}
-.mcdmrpg.sheet.skill-config .skills .skill option {
-    color: black;
-}
-
-.mcdmrpg.sheet.skill-config .save-skills button {
-    color: white;
 }

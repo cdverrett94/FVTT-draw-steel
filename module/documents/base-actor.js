@@ -1,8 +1,6 @@
 import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
 import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../constants/_index.js';
 import { toId } from '../helpers.js';
-import { DamageRollDialog, ResistanceRollDialog, TestRollDialog } from '../rolls/_index.js';
-import { Predicate } from '../rules/predicate.js';
 import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
@@ -45,30 +43,32 @@ export class BaseActor extends Actor {
         return abilities;
     }
 
-    // Add new craft/knowledge subskill
-    async addSkill({ skill, subskill = 'New Skill', characteristic = 'reason', proficient = true } = {}) {
-        if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');
-        if (!(characteristic in CHARACTERISTICS)) return ui.notifications.error('The used characteristic must be a valid one.');
-        let skillArray = this.system.skills[skill];
+    // Add Custom Skill
+    async addCustomSkill({ name = 'New Skill', characteristic = 'might', proficient = true, category = 'crafting' } = {}) {
+        if (!(characteristic in CHARACTERISTICS)) characteristic = 'might';
+        const skillArray = this.system.skills.customSkills;
         skillArray.push({
-            subskill: subskill,
-            characteristic: characteristic,
-            proficient: proficient,
+            name,
+            characteristic,
+            proficient,
+            category,
         });
 
-        return await this.update({ [`system.skills.${skill}`]: skillArray });
+        return await this.update({ 'system.skills.customSkills': skillArray });
     }
 
     // Delete craft/knowledge subskill
-    async deleteSkill({ skill, subskill } = {}) {
-        if (!skill || !subskill) return ui.notifications.error('Must provide a skill and subskill');
-        if (skill !== 'craft' && skill !== 'knowledge') return ui.notifications.error('Skill must be "craft" or "knowledge".');
-        let skillArray = this.system.skills[skill];
-        let skillIndex = skillArray.findIndex((s) => s.subskill === subskill);
-        if (skillIndex === -1) return ui.notifications.error(`No subskill ${subskill} found in ${skill}`);
+    async deleteSkill({ name, index } = {}) {
+        const skillArray = this.system.skills.customSkills;
+        if (!skillArray) return false;
+        if (!index) {
+            if (!name) return ui.notifications.error('A custom skill name or index must be provided.');
+            index = skillArray.findIndex((s) => s.name === name);
+            if (index === -1) return ui.notifications.error(`No custom skill found with that name.`);
+        }
 
-        skillArray.splice(skillIndex, 1);
-        return await this.update({ [`system.skills.${skill}`]: skillArray });
+        skillArray.splice(index, 1);
+        return await this.update({ 'system.skills.customSkills': skillArray });
     }
 
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
@@ -98,124 +98,6 @@ export class BaseActor extends Actor {
         roll.toMessage({
             flavor: `${characteristic} Roll`,
         });
-    }
-
-    async rollTest(data = {}) {
-        let { baseFormula, banes, boons, characteristic, formula, skill, subskill, tn } = data;
-
-        // set skill proficiency
-        let proficient;
-        if (['craft', 'knowledge'].includes(skill)) proficient = this.system.skills[skill].find((sub) => sub.subskill === subskill)?.proficient ?? false;
-        else proficient = this.system.skills[skill].proficient;
-
-        // set skill characteristic if there is none;
-        if (!characteristic) {
-            if (['craft', 'knowledge'].includes(skill)) characteristic = this.system.skills[skill].find((sub) => sub.subskill === subskill)?.characteristic;
-            else characteristic = this.system.skills[skill].characteristic;
-        }
-
-        if (this.system.banes.tests) banes += Number(this.system.banes.tests);
-        if (this.system.boons.tests) banes += Number(this.system.boons.tests);
-
-        let context = {
-            actor: this,
-            baseFormula,
-            banes,
-            boons,
-            characteristic,
-            formula,
-            proficient,
-            skill,
-            subskill,
-            tn,
-        };
-        await new TestRollDialog(context).render(true);
-    }
-
-    async rollResistance(data = {}) {
-        let { baseFormula, banes, boons, characteristic, formula, tn } = data;
-
-        let context = {
-            actor: this,
-            baseFormula,
-            banes,
-            boons,
-            characteristic,
-            formula,
-            tn,
-        };
-        await new ResistanceRollDialog(context).render(true);
-    }
-
-    async rollDamage(data = {}) {
-        let { abilityName, applyExtraDamage, baseFormula, banes, boons, characteristic, damageType, formula, impacts } = data;
-
-        const targets = game.user.targets;
-        if (!targets.size) return ui.notifications.error('You must select a target');
-        let targetsBoons = {};
-        targets.forEach((target) => {
-            targetsBoons[target.document.uuid] = this.#getTargetBoons(target);
-        });
-
-        const actorBoons = this.#getActorBoons();
-        boons += actorBoons.boons;
-        banes += actorBoons.banes;
-
-        let context = {
-            abilityName,
-            actor: this,
-            applyExtraDamage,
-            baseFormula,
-            banes,
-            boons,
-            characteristic,
-            damageType,
-            formula,
-            impacts,
-            targets: targetsBoons,
-        };
-        await new DamageRollDialog(context).render(true);
-    }
-
-    #getActorBoons() {
-        let rollData = {
-            boons: 0,
-            banes: 0,
-        };
-        if (this.system.banes.attacker) rollData.banes += Number(this.system.banes.attacker);
-        if (this.system.boons.attacker) rollData.boons += Number(this.system.boons.attacker);
-
-        return rollData;
-    }
-
-    #getTargetBoons(target) {
-        let rollData = {
-            boons: 0,
-            banes: 0,
-            impacts: 0,
-        };
-
-        // Get Boons/Banes that apply when target is attacked
-        if (target) {
-            if (target.actor.system.boons.attacked) rollData.boons += target.actor.system.boons.attacked;
-            if (target.actor.system.banes.attacked) rollData.banes += target.actor.system.banes.attacked;
-        }
-        // Get Banes if attacking a creature you are frightened by
-        const attackingFrightenedByPredicate = new Predicate([`actor:condition:frightened:${target.actor.uuid}`], this.rollOptions());
-        if (attackingFrightenedByPredicate.validate()) rollData.banes += 1;
-
-        // Get Boons if attacking a creature you have frightened
-        const attackingFrightenedPredicate = new Predicate([`target:condition:frightened:${this.uuid}`], target.actor.rollOptions('target'));
-        if (attackingFrightenedPredicate.validate()) rollData.boons += 1;
-
-        // Get Banes if attacking a creature a creature other than one that has you taunted
-        const attackingNontauntedPredicate = new Predicate(
-            ['actor:condition:taunted', { not: [`actor:condition:taunted`, target.actor.uuid] }],
-            this.rollOptions()
-        );
-        if (attackingNontauntedPredicate.validate()) rollData.banes += 1;
-
-        return rollData;
     }
 
     async applyDamage({ amount = 0, type = 'untyped' } = {}) {
