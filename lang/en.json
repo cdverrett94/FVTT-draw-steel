@@ -218,17 +218,9 @@
                 "plural": "Banes",
                 "singular": "Bane"
             },
-            "boon": {
-                "plural": "Boons",
-                "singular": "Boon"
-            },
             "edge": {
                 "plural": "Edges",
                 "singular": "Edge"
-            },
-            "impact": {
-                "plural": "Impacts",
-                "singular": "Impact"
             }
         },
         "general": {
@@ -248,18 +240,6 @@
                     "cost": {
                         "hint": "",
                         "label": "Cost"
-                    },
-                    "damage": {
-                        "applyExtraDamage": { "label": "Appy Extra Damage" },
-                        "baseFormula": { "label": "Base Formula" },
-                        "doesDamage": { "label": "Does Damage" },
-                        "characteristic": { "label": "Characteristic" },
-                        "boons": { "label": "Boons" },
-                        "banes": { "label": "Banes" },
-                        "impacts": { "label": "Impacts" },
-                        "hint": "",
-                        "label": "Damage",
-                        "type": { "label": "Damage Type" }
                     },
                     "distance": {
                         "hint": "",
@@ -475,20 +455,6 @@
                 "label": "Damage"
             },
             "label": "Roll",
-            "resistance": {
-                "button": "{tn}{characteristicAbbreviation} Resists",
-                "dialog": {
-                    "headerLabel": "{tn}{characteristicAbbreviation} Resistance Roll"
-                },
-                "label": "Resistance"
-            },
-            "test": {
-                "button": "{tn}{characteristic}{skill}{subskill} Test",
-                "dialog": {
-                    "headerLabel": "{tn}{characteristic}{skill}{subskill} Test Roll"
-                },
-                "label": "Test"
-            },
             "tn": {
                 "abbreviation": "TN",
                 "label": "Test Number"
@@ -564,45 +530,292 @@
             }
         },
         "skills": {
-            "acrobatics": {
-                "label": "Acrobatics"
-            },
-            "athletics": {
-                "label": "Athletics"
-            },
-            "charm": {
-                "label": "Charm"
-            },
-            "craft": {
-                "label": "Craft"
-            },
-            "deceive": {
-                "label": "Deceive"
-            },
-            "empathy": {
-                "label": "Empathy"
-            },
-            "intimidate": {
-                "label": "Intimidate"
-            },
-            "knowledge": {
-                "label": "Knowledge"
-            },
             "label": {
                 "plural": "Skills",
                 "singular": "Skill"
             },
-            "notice": {
-                "label": "Notice"
+            "crafting": {
+                "label": "Crafting",
+                "alchemy": {
+                    "label": "Alchemy",
+                    "use": "Make bombs and potions",
+                    "default": "presence"
+                },
+                "architecture": {
+                    "label": "Architecture",
+                    "use": "Create buildings and vehicles",
+                    "default": "presence"
+                },
+                "blacksmithing": {
+                    "label": "Blacksmithing",
+                    "use": "Forge metal armor and weapons",
+                    "default": "presence"
+                },
+                "fletching": {
+                    "label": "Fletching",
+                    "use": "Make ranged weapons and ammunition",
+                    "default": "presence"
+                },
+                "forgery": {
+                    "label": "Forgery",
+                    "use": "Create false badges, documents, and other items",
+                    "default": "presence"
+                },
+                "jewelry": {
+                    "label": "Jewelry",
+                    "use": "Create bracelets, crowns, rings, and other jewelry",
+                    "default": "presence"
+                },
+                "mechanics": {
+                    "label": "Mechanics",
+                    "use": "Build machines and clockwork items",
+                    "default": "presence"
+                },
+                "tailoring": {
+                    "label": "Tailoring",
+                    "use": "Craft cloth and leather clothing",
+                    "default": "presence"
+                }
             },
-            "skulduggery": {
-                "label": "Skulduggery"
+            "exploration": {
+                "label": "Exploration",
+                "climb": {
+                    "label": "Climb",
+                    "use": "system.skills.exploration.climb.use",
+                    "default": "presence"
+                },
+                "drive": {
+                    "label": "Drive",
+                    "use": "system.skills.exploration.drive.use",
+                    "default": "presence"
+                },
+                "endurance": {
+                    "label": "Endurance",
+                    "use": "system.skills.exploration.endurance.use",
+                    "default": "presence"
+                },
+                "gymnastics": {
+                    "label": "Gymnastics",
+                    "use": "system.skills.exploration.gymnastics.use",
+                    "default": "presence"
+                },
+                "heal": {
+                    "label": "Heal",
+                    "use": "system.skills.exploration.heal.use",
+                    "default": "presence"
+                },
+                "jump": {
+                    "label": "Jump",
+                    "use": "system.skills.exploration.jump.use",
+                    "default": "presence"
+                },
+                "lift": {
+                    "label": "Lift",
+                    "use": "system.skills.exploration.lift.use",
+                    "default": "presence"
+                },
+                "navigate": {
+                    "label": "Navigate",
+                    "use": "system.skills.exploration.navigate.use",
+                    "default": "presence"
+                },
+                "ride": {
+                    "label": "Ride",
+                    "use": "system.skills.exploration.ride.use",
+                    "default": "presence"
+                },
+                "swim": {
+                    "label": "Swim",
+                    "use": "system.skills.exploration.swim.use",
+                    "default": "presence"
+                }
             },
-            "stealth": {
-                "label": "Stealth"
+            "interpersonal": {
+                "label": "Interpersonal",
+                "brag": {
+                    "label": "Brag",
+                    "use": "system.skills.interpersonal.brag.use",
+                    "default": "presence"
+                },
+                "empathize": {
+                    "label": "Empathize",
+                    "use": "system.skills.interpersonal.empathize.use",
+                    "default": "presence"
+                },
+                "flirt": {
+                    "label": "Flirt",
+                    "use": "system.skills.interpersonal.flirt.use",
+                    "default": "presence"
+                },
+                "gamble": {
+                    "label": "Gamble",
+                    "use": "system.skills.interpersonal.gamble.use",
+                    "default": "presence"
+                },
+                "handle": {
+                    "label": "Handle",
+                    "use": "system.skills.interpersonal.handle.use",
+                    "default": "presence"
+                },
+                "interrogate": {
+                    "label": "Interrogate",
+                    "use": "system.skills.interpersonal.interrogate.use",
+                    "default": "presence"
+                },
+                "intimidate": {
+                    "label": "Intimidate",
+                    "use": "system.skills.interpersonal.intimidate.use",
+                    "default": "presence"
+                },
+                "lead": {
+                    "label": "Lead",
+                    "use": "system.skills.interpersonal.lead.use",
+                    "default": "presence"
+                },
+                "lie": {
+                    "label": "Lie",
+                    "use": "system.skills.interpersonal.lie.use",
+                    "default": "presence"
+                },
+                "music": {
+                    "label": "Music",
+                    "use": "system.skills.interpersonal.music.use",
+                    "default": "presence"
+                },
+                "persuade": {
+                    "label": "Persuade",
+                    "use": "system.skills.interpersonal.persuade.use",
+                    "default": "presence"
+                },
+                "read": {
+                    "label": "Read",
+                    "use": "system.skills.interpersonal.read.use",
+                    "default": "presence"
+                }
             },
-            "vigor": {
-                "label": "Vigor"
+            "intrigue": {
+                "label": "Intrigue",
+                "alertness": {
+                    "label": "Alertness",
+                    "use": "system.skills.intrigue.alertness.use",
+                    "default": "presence"
+                },
+                "concealObject": {
+                    "label": "Conceal Object",
+                    "use": "system.skills.intrigue.concealObject.use",
+                    "default": "presence"
+                },
+                "disguise": {
+                    "label": "Disguise",
+                    "use": "system.skills.intrigue.disguise.use",
+                    "default": "presence"
+                },
+                "eavesdrop": {
+                    "label": "Eavesdrop",
+                    "use": "system.skills.intrigue.eavesdrop.use",
+                    "default": "presence"
+                },
+                "escapeArtist": {
+                    "label": "Escape Artist",
+                    "use": "system.skills.intrigue.escapeArtist.use",
+                    "default": "presence"
+                },
+                "hide": {
+                    "label": "Hide",
+                    "use": "system.skills.intrigue.hide.use",
+                    "default": "presence"
+                },
+                "pickLock": {
+                    "label": "Pick Lock",
+                    "use": "system.skills.intrigue.pickLock.use",
+                    "default": "presence"
+                },
+                "pickPocket": {
+                    "label": "Pick Pocket",
+                    "use": "system.skills.intrigue.pickPocket.use",
+                    "default": "presence"
+                },
+                "sabotage": {
+                    "label": "Sabotage",
+                    "use": "system.skills.intrigue.sabotage.use",
+                    "default": "presence"
+                },
+                "search": {
+                    "label": "Search",
+                    "use": "system.skills.intrigue.search.use",
+                    "default": "presence"
+                },
+                "sneak": {
+                    "label": "Sneak",
+                    "use": "system.skills.intrigue.sneak.use",
+                    "default": "presence"
+                },
+                "track": {
+                    "label": "Track",
+                    "use": "system.skills.intrigue.track.use",
+                    "default": "presence"
+                }
+            },
+            "lore": {
+                "label": "Lore",
+                "culture": {
+                    "label": "Culture",
+                    "use": "system.skills.lore.culture.use",
+                    "default": "presence"
+                },
+                "criminalUnderworld": {
+                    "label": "Criminal Underworld",
+                    "use": "system.skills.lore.criminalUnderworld.use",
+                    "default": "presence"
+                },
+                "history": {
+                    "label": "History",
+                    "use": "system.skills.lore.history.use",
+                    "default": "presence"
+                },
+                "magic": {
+                    "label": "Magic",
+                    "use": "system.skills.lore.magic.use",
+                    "default": "presence"
+                },
+                "monsters": {
+                    "label": "Monsters",
+                    "use": "system.skills.lore.monsters.use",
+                    "default": "presence"
+                },
+                "nature": {
+                    "label": "Nature",
+                    "use": "system.skills.lore.nature.use",
+                    "default": "presence"
+                },
+                "psionics": {
+                    "label": "Psionics",
+                    "use": "system.skills.lore.psionics.use",
+                    "default": "presence"
+                },
+                "religion": {
+                    "label": "Religion",
+                    "use": "system.skills.lore.religion.use",
+                    "default": "presence"
+                },
+                "rumors": {
+                    "label": "Rumors",
+                    "use": "system.skills.lore.rumors.use",
+                    "default": "presence"
+                },
+                "society": {
+                    "label": "Society",
+                    "use": "system.skills.lore.society.use",
+                    "default": "presence"
+                },
+                "timescape": {
+                    "label": "Timescape",
+                    "use": "system.skills.lore.timescape.use",
+                    "default": "presence"
+                }
+            },
+            "customSkills": {
+                "label": "Custom Skills"
             }
         }
     },
