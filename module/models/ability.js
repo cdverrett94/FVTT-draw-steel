@@ -36,42 +36,27 @@ export class AbilityData extends BaseItemData {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            cost: new fields.StringField({
-                label: ABILITIES.FIELDS.cost.label,
-            }),
+            cost: new fields.StringField(),
             tiers: new fields.SchemaField({
-                1: new fields.StringField(),
-                2: new fields.StringField(),
-                3: new fields.StringField(),
+                one: new fields.StringField(),
+                two: new fields.StringField(),
+                three: new fields.StringField(),
             }),
-            distance: new fields.StringField({
-                label: ABILITIES.FIELDS.distance.label,
-            }),
-            effect: new fields.StringField({
-                label: game.i18n.localize(ABILITIES.FIELDS.effect.label),
-            }),
+            distance: new fields.StringField(),
+            effect: new fields.StringField(),
             keywords: new KeywordField(
                 new fields.StringField({
                     nullable: true,
                     choices: getDataModelChoices(ABILITIES.KEYWORDS),
-                }),
-                {
-                    label: ABILITIES.FIELDS.keywords.label,
-                }
+                })
             ),
-            target: new fields.StringField({
-                label: ABILITIES.FIELDS.target.label,
-            }),
+            target: new fields.StringField(),
             time: new fields.StringField({
                 choices: getDataModelChoices(ABILITIES.TIMES),
-                label: ABILITIES.FIELDS.time.label,
             }),
-            trigger: new fields.StringField({
-                label: ABILITIES.FIELDS.trigger.label,
-            }),
+            trigger: new fields.StringField(),
             type: new fields.StringField({
                 choices: getDataModelChoices(ABILITIES.TYPES),
-                label: ABILITIES.FIELDS.type.label,
             }),
         };
     }
