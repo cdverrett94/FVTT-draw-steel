@@ -92,7 +92,6 @@ export class BaseItem extends Item {
                 name,
                 changes,
                 origin: this.uuid,
-                statuses: ['dead'],
             };
             target?.effects.set(effectData._id, new MCDMActiveEffect(effectData));
         }
