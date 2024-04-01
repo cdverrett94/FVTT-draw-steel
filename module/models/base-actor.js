@@ -106,7 +106,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
         for (const customSkill in this.skills.customSkills) {
             const skill = this.skills.customSkills[customSkill];
-            console.log('skill name', skill, skill.name);
+
             if (!this.skills[skill.category][skill.name.slugify()]) {
                 this.skills[skill.category][skill.name.slugify()] = {
                     characteristic: skill.characteristic,

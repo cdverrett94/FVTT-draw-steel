@@ -47,8 +47,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             }
         });
 
-        console.log(skills);
-
         const context = {
             actor: this.actor,
             actorSkills: skills,
@@ -77,7 +75,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
                 else ability.show = false;
             }
         }
-        context.actor.system.chanceHit = await TextEditor.enrichHTML(context.actor.system.chanceHit, enrichContext);
+
         return context;
     }
 

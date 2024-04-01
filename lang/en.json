@@ -258,6 +258,18 @@
                         "hint": "",
                         "label": "Target"
                     },
+                    "tiers": {
+                        "label": "Tiers",
+                        "one": {
+                            "label": "Tier 1"
+                        },
+                        "two": {
+                            "label": "Tier 2"
+                        },
+                        "three": {
+                            "label": "Tier 3"
+                        }
+                    },
                     "time": {
                         "hint": "",
                         "label": "Time"
@@ -448,7 +460,6 @@
         },
         "rolls": {
             "damage": {
-                "chancehit": "Chance Hit",
                 "dialog": {
                     "headerLabel": "{abilityName} Damage Roll"
                 },
@@ -474,7 +485,6 @@
                 },
                 "bonusDamage": "Bonus Damage",
                 "bonusTN": "Bonus TN",
-                "chanceHit": "Chance Hit",
                 "conditions": {
                     "edit": "Edit {condition}",
                     "toggle": "Toggle {condition}"
