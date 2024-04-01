@@ -45,12 +45,6 @@
                         <div class='value'>{{ability.system.target}}</div>
                     </div>
                     {{/if}}
-                    {{#if ability.system.damage.doesDamage}}
-                    <div class='property ability-damage'>
-                        <div class='label'><i class="fa-duotone fa-arrow-pointer" style="--fa-secondary-color: #511f1f; --fa-secondary-opacity: 0;"></i>{{localize 'system.items.ability.FIELDS.damage.label'}}</div>
-                        <div class='value'>{{{ability.system.enrichedDamage}}}</div>
-                    </div>
-                    {{/if}}
                     {{#if ability.system.effect}}
                     <div class='property ability-effect'>
                         <div class='label'>{{localize 'system.items.ability.FIELDS.effect.label'}}</div>

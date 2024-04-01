@@ -1,4 +1,4 @@
-import { ABILITIES, CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
+import { ABILITIES } from '../constants/_index.js';
 import { getDataModelChoices } from '../helpers.js';
 import { BaseItemData } from './base-item.js';
 
@@ -39,41 +39,11 @@ export class AbilityData extends BaseItemData {
             cost: new fields.StringField({
                 label: ABILITIES.FIELDS.cost.label,
             }),
-            damage: new fields.SchemaField(
-                {
-                    doesDamage: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    baseFormula: new fields.StringField({
-                        initial: '2d6',
-                    }),
-                    characteristic: new fields.StringField({
-                        choices: getDataModelChoices(CHARACTERISTICS),
-                    }),
-                    applyExtraDamage: new fields.BooleanField({}),
-                    banes: new fields.NumberField({
-                        initial: 0,
-                        min: 0,
-                        integer: true,
-                    }),
-                    boons: new fields.NumberField({
-                        initial: 0,
-                        min: 0,
-                        integer: true,
-                    }),
-                    impacts: new fields.NumberField({
-                        initial: 0,
-                        integer: true,
-                        min: 0,
-                    }),
-                    type: new fields.StringField({
-                        choices: getDataModelChoices(DAMAGE.TYPES),
-                    }),
-                },
-                {
-                    label: ABILITIES.FIELDS.damage.label,
-                }
-            ),
+            tiers: new fields.SchemaField({
+                1: new fields.StringField(),
+                2: new fields.StringField(),
+                3: new fields.StringField(),
+            }),
             distance: new fields.StringField({
                 label: ABILITIES.FIELDS.distance.label,
             }),

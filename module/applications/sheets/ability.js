@@ -23,9 +23,9 @@ export class AbilitySheet extends BaseItemSheet {
                 template: 'systems/mcdmrpg/templates/documents/ability/ability-properties.hbs',
             },
 
-            damage: {
-                id: 'damage',
-                template: 'systems/mcdmrpg/templates/documents/ability/ability-damage.hbs',
+            tiers: {
+                id: 'tiers',
+                template: 'systems/mcdmrpg/templates/documents/ability/ability-tiers.hbs',
             },
             effect: {
                 id: 'effect',
