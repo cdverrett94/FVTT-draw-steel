@@ -18,16 +18,6 @@ export class MonsterSheet extends BaseActorSheet {
     tabGroups = {
         main: null,
     };
-    defaultTabs = {
-        main: 'abilities',
-    };
-
-    _onRender(context, options) {
-        for (const [group, tab] of Object.entries(this.tabGroups)) {
-            if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
-            else this.changeTab(tab, group, { force: true });
-        }
-    }
 
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
@@ -55,6 +45,7 @@ export class MonsterSheet extends BaseActorSheet {
             abilities: {
                 id: 'abilities',
                 template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
+                scrollable: ['.abilities-list'],
             },
             notes: {
                 id: 'notes',

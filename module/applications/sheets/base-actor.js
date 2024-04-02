@@ -14,6 +14,14 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         window: {
             icon: 'fas fa-user',
             positioned: true,
+            controls: [
+                {
+                    icon: 'fas fa-user-circle',
+                    label: 'Configure Token',
+                    action: 'configureToken',
+                    visible: true,
+                },
+            ],
         },
         classes: ['mcdmrpg', 'sheet', 'actor'],
         form: {
@@ -28,6 +36,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             deleteAbility: this.#deleteAbility,
             filterAbilities: this.#filterAbilities,
             toggleCondition: this.#toggleCondition,
+            configureToken: this.#configureToken,
         },
     };
 
@@ -56,6 +65,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             abilities: ABILITIES,
             conditions: CONDITIONS,
             damages: DAMAGE.TYPES,
+            activeTabs: this.tabGroups,
         };
         // Enrich Content
         let enrichContext = {
@@ -130,5 +140,15 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
     static #toggleCondition(event, target) {
         const conditionId = target.dataset.conditionId;
         this.actor.toggleStatusEffect(conditionId);
+    }
+
+    static #configureToken(event, target) {
+        event.preventDefault();
+        const renderOptions = {
+            left: Math.max(this.position.left - 560 - 10, 10),
+            top: this.position.top,
+        };
+        if (this.actor.isToken) return this.token.sheet.render(true, renderOptions);
+        else new CONFIG.Token.prototypeSheetClass(this.actor.prototypeToken, renderOptions).render(true);
     }
 }

@@ -14,24 +14,10 @@ export class HeroSheet extends BaseActorSheet {
             deleteEffect: this.#deleteEffect,
         },
     };
-    // overrides = {
-    //     scrollY: ['.skill-list', '.tab'],
-    //     resizable: true,
-    // };
 
     tabGroups = {
         main: null,
     };
-    defaultTabs = {
-        main: 'abilities',
-    };
-
-    _onRender(context, options) {
-        for (const [group, tab] of Object.entries(this.tabGroups)) {
-            if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
-            else this.changeTab(tab, group, { force: true });
-        }
-    }
 
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, HeroSheet.additionalOptions, { inplace: false });
@@ -51,6 +37,7 @@ export class HeroSheet extends BaseActorSheet {
             skills: {
                 id: 'skill',
                 template: 'systems/mcdmrpg/templates/documents/hero/skills.hbs',
+                scrollable: ['.skill-list'],
             },
             tabs: {
                 id: 'tabs',
@@ -59,6 +46,7 @@ export class HeroSheet extends BaseActorSheet {
             abilities: {
                 id: 'abilities',
                 template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
+                scrollable: ['.abilities-list'],
             },
             notes: {
                 id: 'notes',
