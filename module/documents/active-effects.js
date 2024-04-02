@@ -35,6 +35,19 @@ export class MCDMActiveEffect extends ActiveEffect {
         changes[change.key] = update;
     }
 
+    _applyUpgrade(actor, change, current, delta, changes) {
+        let update;
+        const ct = foundry.utils.getType(current);
+        switch (ct) {
+            case 'boolean':
+            case 'number':
+                if (change.mode === CONST.ACTIVE_EFFECT_MODES.UPGRADE && delta >= current) update = delta;
+                else if (change.mode === CONST.ACTIVE_EFFECT_MODES.DOWNGRADE && delta <= current) update = delta;
+                break;
+        }
+        changes[change.key] = update;
+    }
+
     applyItem(item, change) {
         // Determine the data type of the target field
         const current = foundry.utils.getProperty(item._source, change.key) ?? null;
