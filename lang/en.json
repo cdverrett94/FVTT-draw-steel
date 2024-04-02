@@ -160,7 +160,7 @@
             }
         },
         "combat": {
-            "toggleTurnCompleted": "Toggle Turn Completed"
+            "markTurnTaken": "Mark Turn Taken: Decrement Turns Left By 1"
         },
         "conditions": {
             "bloodied": "Bloodied",

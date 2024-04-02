@@ -9,3 +9,7 @@
 .combat-sidebar.mcdmrpg .combat-side:is(:first-child) {
     margin-bottom: 5px;
 }
+
+.combat-sidebar.mcdmrpg .token-turns {
+    line-height: normal;
+}

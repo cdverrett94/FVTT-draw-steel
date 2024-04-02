@@ -19,12 +19,12 @@ export class MCDMCombatTracker extends CombatTracker {
             data.initiative = this.viewed.system.initiative;
             data.order = this.viewed.initiativeOrder;
             data.total = {
-                heroes: data.heroes?.length ?? 0,
-                enemies: data.enemies?.length ?? 0,
+                heroes: data.heroes?.reduce((total, hero) => (total += hero.system.turns.total ?? 0), 0),
+                enemies: data.enemies?.reduce((total, enemy) => (total += enemy.system.turns.total ?? 0), 0),
             };
             data.left = {
-                heroes: data.heroes?.filter((hero) => !hero.system?.turnCompleted).length ?? 0,
-                enemies: data.enemies?.filter((enemy) => !enemy.system?.turnCompleted).length ?? 0,
+                heroes: data.heroes?.reduce((total, hero) => (total += hero.system.turns.left ?? 0), 0),
+                enemies: data.enemies?.reduce((total, enemy) => (total += enemy.system.turns.left ?? 0), 0),
             };
         }
 
@@ -35,12 +35,7 @@ export class MCDMCombatTracker extends CombatTracker {
         super.activateListeners($html);
         const html = $html[0];
 
-        // Create new Combat encounter
-        html.querySelector('.combat-create').addEventListener('click', (event) => {
-            this._onCombatCreate(event);
-        });
-
-        html.querySelectorAll('.roll-initiative').forEach(async (element) => {
+        for (const element of html.querySelectorAll('.roll-initiative')) {
             element.addEventListener('click', async (event) => {
                 const side = element.dataset.side;
 
@@ -59,19 +54,33 @@ export class MCDMCombatTracker extends CombatTracker {
 
                 this.render(true);
             });
-        });
+        }
 
-        html.querySelectorAll('a[data-control="toggleTurnCompleted"').forEach(async (element) => {
+        for (const element of html.querySelectorAll('a[data-control="markTurnTaken"]:not(.active)')) {
             element.addEventListener('click', async (event) => {
                 const combatantId = element.closest('li.combatant').dataset.combatantId;
                 const combatant = this.viewed.combatants.find((combatant) => combatant.id === combatantId);
-                const turnCompleted = combatant.system.turnCompleted;
 
-                await combatant.update({ system: { turnCompleted: !turnCompleted } });
+                await this.updateCombatant(combatant);
+                const combat = await this.viewed.nextTurn();
 
-                this.render(true);
+                //await this.render(true);
             });
-        });
+        }
+    }
+
+    async updateCombatant(combatant) {
+        const turnsLeft = Math.max(combatant.system.turns.left - 1, 0);
+
+        const updateData = {
+            system: {
+                turns: {
+                    left: turnsLeft,
+                },
+            },
+        };
+
+        await combatant.update(updateData, { turnEvents: false });
     }
 
     async _onCombatCreate(event) {

@@ -2,7 +2,14 @@ export class CombatantData extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            turnCompleted: new fields.BooleanField(),
+            turns: new fields.SchemaField({
+                left: new fields.NumberField(),
+            }),
         };
+    }
+
+    prepareBaseData() {
+        super.prepareBaseData();
+        this.turns.total = this.parent.actor.system.combat.turns ?? 0;
     }
 }
