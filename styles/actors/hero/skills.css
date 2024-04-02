@@ -1,5 +1,6 @@
-.sheet.actor.hero .skills {
-    overflow-y: scroll;
+.sheet.actor.hero .skill-list {
+    overflow-y: auto;
+    height: calc(100%- 10px);
 }
 
 .sheet.actor.hero .skills .skill-category .category-name {

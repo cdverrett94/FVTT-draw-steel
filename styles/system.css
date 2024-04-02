@@ -27,5 +27,5 @@
     --add-color: green;
     --grid-gap: 5px;
     --alternating-bg-color: rgba(255, 255, 255, 0.05);
-    --icon-rotation: rotate 3s linear infinite;
+    --icon-rotation: rotate 2s linear infinite;
 }

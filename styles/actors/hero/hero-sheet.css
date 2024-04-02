@@ -8,7 +8,6 @@
     grid-template-columns: 200px 250px repeat(8, auto);
     grid-template-rows: auto auto 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
-    max-height: 1054px;
 }
 
 .sheet.actor.hero .sidebar {
@@ -60,9 +59,4 @@
 }
 .sheet.actor.hero .tabbed-content .sheet-tabs a.active {
     border-bottom: 2px solid black;
-}
-
-.sheet.actor.hero div.actor-abilities .abilities-list {
-    overflow-y: scroll;
-    max-height: 700px;
 }

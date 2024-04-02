@@ -2,14 +2,15 @@
 .sheet.actor.hero .header .character-info {
     display: grid;
     grid-template-columns: 1fr 75px 75px;
+    grid-gap: var(--grid-gap);
 }
 .sheet.actor.hero .header .character-info input {
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--color-light-2);
     border-radius: 0px;
 }
 .sheet.actor.hero .header .character-info input:focus {
-    box-shadow: 0 0px 5px black;
+    box-shadow: 0 0px 5px var(--color-light-2);
 }
 
 /* Characteristics */

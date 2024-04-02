@@ -42,7 +42,6 @@
 }
 
 .sheet.actor.hero .sidebar .actor-ack > div,
-.sheet.actor.hero .sidebar .chance-hit,
 .sheet.actor.hero .sidebar .size-values > div {
     display: grid;
     grid-template-columns: 70px 1fr;
@@ -50,7 +49,6 @@
 }
 
 .sheet.actor.hero .sidebar .actor-ack > div .label,
-.sheet.actor.hero .sidebar .chance-hit .label,
 .sheet.actor.hero .sidebar .size-values > div .label {
     text-align: right;
 }

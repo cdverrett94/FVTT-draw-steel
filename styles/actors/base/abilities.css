@@ -11,6 +11,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 5px;
+    overflow-y: auto;
+    height: calc(100% - 150px - 1rem);
 }
 
 .sheet.actor div.actor-abilities .ability-group-label {
