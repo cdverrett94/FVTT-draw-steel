@@ -96,6 +96,11 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             reach: new fields.NumberField({
                 label: 'system.sheets.actor.reach',
             }),
+            combat: new fields.SchemaField({
+                turns: new fields.NumberField({
+                    initial: 2,
+                }),
+            }),
         };
     }
 
@@ -140,7 +145,5 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
         }
         this.taunted = [];
         this.frightened = [];
-
-        this.turns = 1;
     }
 }
