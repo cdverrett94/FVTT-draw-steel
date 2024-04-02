@@ -14,7 +14,11 @@
             </div>
             <div class='rule-mode'>
                 <div class='label'>Mode</div>
-                <div class='value'>{{formInput @root.fields.rules.element.fields.mode value=rule.mode name=(concat 'system.rules.' @index '.mode')}}</div>
+                <div class='value'>
+                    <select name='system.rules.{{@index}}.mode' data-dtype='Number'>
+                        {{selectOptions @root.aeModes selected=rule.mode}}
+                    </select>
+                </div>
             </div>
             <div class='rule-value'>
                 <div class='label'>Value</div>

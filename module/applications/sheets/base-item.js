@@ -73,6 +73,10 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
             item: this.item,
             source: this.item.toObject(),
             fields: this.item.system.schema.fields,
+            aeModes: Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((obj, e) => {
+                obj[e[1]] = game.i18n.localize(`EFFECT.MODE_${e[0]}`);
+                return obj;
+            }, {}),
         };
     }
 
