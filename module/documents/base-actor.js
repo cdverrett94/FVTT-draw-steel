@@ -1,6 +1,7 @@
 import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
 import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../constants/_index.js';
-import { toId } from '../helpers.js';
+import { capitalize, toId } from '../helpers.js';
+import { TestPowerRollDialog } from '../rolls/test/roll-dialog.js';
 import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
@@ -92,12 +93,44 @@ export class BaseActor extends Actor {
         return returnedEffect;
     }
 
-    async rollCharacteristic(characteristic) {
+    async rollCharacteristic({ characteristic, title }) {
         let modifier = this.system.characteristics[characteristic];
         let roll = await Roll.create(`2d6 + ${modifier}`).evaluate();
         roll.toMessage({
             flavor: `${characteristic} Roll`,
         });
+    }
+
+    async rollSkillTest({ category, skill, characteristic }) {
+        if (!skill) return ui.notifications.error('No skill provided to roll');
+        if (!category) {
+            const foundCategory = Object.entries(this.system.skills).find((category) => skill in category[1]);
+            if (foundCategory) category = foundCategory[0];
+        }
+
+        const foundSkill = this.system.skills[category]?.[skill];
+        if (!foundSkill & (characteristic in CHARACTERISTICS)) await this.rollCharacteristic({ characteristic });
+        else {
+            let edges = foundSkill?.proficient ? 1 : 0;
+            edges += this.system.edges.tests;
+            characteristic ??= foundSkill.characteristic;
+            const title = game.i18n.format('system.rolls.test.title', {
+                skill: capitalize(skill),
+                characteristic: game.i18n.localize(`system.characteristics.${characteristic}.label`),
+            });
+
+            const rollData = {
+                actor: this,
+                banes: this.system.banes.tests,
+                category,
+                edges,
+                skill,
+                title,
+            };
+
+            console.log(rollData);
+            await new TestPowerRollDialog(rollData).render(true);
+        }
     }
 
     async applyDamage({ amount = 0, type = 'untyped' } = {}) {

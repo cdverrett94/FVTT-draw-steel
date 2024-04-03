@@ -7,10 +7,6 @@ export const CHARACTERISTICS = {
         label: 'system.characteristics.agility.label',
         abbreviation: 'system.characteristics.agility.abbreviation',
     },
-    endurance: {
-        label: 'system.characteristics.endurance.label',
-        abbreviation: 'system.characteristics.endurance.abbreviation',
-    },
     reason: {
         label: 'system.characteristics.reason.label',
         abbreviation: 'system.characteristics.reason.abbreviation',

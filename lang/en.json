@@ -126,10 +126,6 @@
                 "abbreviation": "AGL",
                 "label": "Agility"
             },
-            "endurance": {
-                "abbreviation": "END",
-                "label": "Endurance"
-            },
             "highest": {
                 "abbreviation": "Highest",
                 "label": "Highest"
@@ -466,6 +462,9 @@
                 "label": "Damage"
             },
             "label": "Roll",
+            "test": {
+                "title": "{characteristic}-{skill} Test"
+            },
             "tn": {
                 "abbreviation": "TN",
                 "label": "Test Number"

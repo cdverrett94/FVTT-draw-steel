@@ -18,4 +18,15 @@ function toId(string) {
     return string.slice(0, 16).padEnd(16, '0');
 }
 
-export { getDataModelChoices, getRollActor, toId };
+function capitalize(string) {
+    let words = string.split(' ');
+
+    words = words
+        .map((word) => {
+            return word[0].toUpperCase() + word.substring(1);
+        })
+        .join(' ');
+    return words;
+}
+
+export { capitalize, getDataModelChoices, getRollActor, toId };

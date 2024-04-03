@@ -1,4 +1,5 @@
 import { CHARACTERISTICS } from '../../constants/_index.js';
+import { capitalize } from '../../helpers.js';
 import { PowerRoll } from './power-roll.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -14,7 +15,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.context.edges ??= 0;
         this.context.banes ??= 0;
         this.context.replaceCharacteristic ??= true;
-        this.context.headerLabel = this.context.ability?.name ?? 'Power Roll';
+        this.context.title = this.context.ability?.name ?? 'Power Roll';
     }
 
     static additionalOptions = {
@@ -30,7 +31,6 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         },
         actions: {
             adjustDice: PowerRollDialog.adjustDice,
-            roll: PowerRollDialog.roll,
         },
     };
 
@@ -75,6 +75,10 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         if (partId === 'characteristic') {
             htmlElement.querySelector('select').addEventListener('change', (event) => {
                 this.context.characteristic = event.target.value;
+                this.context.title = game.i18n.format('system.rolls.test.title', {
+                    skill: capitalize(this.context.skill),
+                    characteristic: game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`),
+                });
                 this.render({ parts: ['header', 'adjustments', 'roll'] });
             });
         }
@@ -122,12 +126,12 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
                     ability: this.context.ability,
                     baseRoll,
                     actor: this.context.actor,
-                    title: this.context.headerLabel,
+                    title: this.context.title,
                 },
             },
             content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/power-roll.hbs', {
                 rolls,
-                title: this.context.headerLabel,
+                title: this.context.title,
                 isCritical: baseRoll.isCritical,
                 baseRoll,
                 ability: this.context.ability,

@@ -1,4 +1,5 @@
 import { CHARACTERISTICS } from '../../constants/characteristics.js';
+import { TIERS } from '../../constants/power-tier.js';
 
 export class PowerRoll extends Roll {
     constructor(characteristic, data = {}, options = {}) {
@@ -49,6 +50,7 @@ export class PowerRoll extends Roll {
     }
 
     get tier() {
-        return this.ability?.getTier(this.total);
+        const tier = Object.entries(TIERS).find((entry) => this.total >= entry[1].start && this.total <= entry[1].end);
+        return Number(tier[0]) ?? 1;
     }
 }
