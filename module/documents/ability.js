@@ -1,5 +1,4 @@
-import { TIERS } from '../constants/power-tier.js';
-import { PowerRollDialog } from '../rolls/power/roll-dialog.js';
+import { AbilityPowerRollDialog } from '../rolls/ability/roll-dialog.js';
 import { Predicate } from '../rules/predicate.js';
 import { BaseItem } from './base-item.js';
 
@@ -16,7 +15,7 @@ export class AbilityItem extends BaseItem {
     }
 
     roll() {
-        const dialog = new PowerRollDialog({
+        const rollData = {
             actor: this.parent,
             ability: this,
             targets: game.user.targets.reduce((targets, target) => {
@@ -31,9 +30,11 @@ export class AbilityItem extends BaseItem {
             general: {
                 ...this.#getOwnerModifiers(),
             },
-        });
-        dialog.render(true);
+        };
+
+        new AbilityPowerRollDialog(rollData).render(true);
     }
+
     #getOwnerModifiers() {
         const rollData = {
             edges: 0,
@@ -43,6 +44,7 @@ export class AbilityItem extends BaseItem {
         if (this.parent?.system.edges.attacker) rollData.edges += Number(this.parent.system.edges.attacker);
         return rollData;
     }
+
     #getTargetModifiers(target) {
         let rollData = {
             edges: 0,
@@ -64,13 +66,7 @@ export class AbilityItem extends BaseItem {
         if (attackingNontauntedPredicate.validate()) rollData.banes += 1;
         return rollData;
     }
-    getTier(total) {
-        total ??= 0;
-        const HAS_TIER_4 = false;
-        if (HAS_TIER_4 && total >= TIERS[4].start) return 4;
-        const tier = Object.entries(TIERS).find((entry) => total >= entry[1].start && total <= entry[1].end);
-        return Number(tier[0]) ?? 1;
-    }
+
     getTierEffect(tier) {
         return this.system.tiers[tier];
     }
