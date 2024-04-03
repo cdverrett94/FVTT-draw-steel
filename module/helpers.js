@@ -19,7 +19,7 @@ function toId(string) {
 }
 
 function capitalize(string) {
-    let words = string.split(' ');
+    let words = string.split(/ |-/);
 
     words = words
         .map((word) => {

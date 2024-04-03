@@ -10,10 +10,9 @@ export class TestPowerRollDialog extends PowerRollDialog {
 
         Object.assign(this.context, options);
 
-        this.context.characteristic = this.context.ability?.characteristic ?? 'might';
+        this.context.characteristic = this.context.characteristic ?? 'might';
         this.context.edges ??= 0;
         this.context.banes ??= 0;
-        this.context.replaceCharacteristic ??= true;
         this.context.title = game.i18n.format('system.rolls.test.title', {
             skill: capitalize(this.context.skill),
             characteristic: game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`),

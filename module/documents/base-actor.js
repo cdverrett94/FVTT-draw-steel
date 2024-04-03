@@ -109,28 +109,32 @@ export class BaseActor extends Actor {
         }
 
         const foundSkill = this.system.skills[category]?.[skill];
-        if (!foundSkill & (characteristic in CHARACTERISTICS)) await this.rollCharacteristic({ characteristic });
-        else {
-            let edges = foundSkill?.proficient ? 1 : 0;
-            edges += this.system.edges.tests;
-            characteristic ??= foundSkill.characteristic;
-            const title = game.i18n.format('system.rolls.test.title', {
-                skill: capitalize(skill),
-                characteristic: game.i18n.localize(`system.characteristics.${characteristic}.label`),
+        let title = '';
+        if (foundSkill) {
+            const localizedSkill = foundSkill.isCustom ? foundSkill.label : game.i18n.localize(`system.skills.${category}.${skill}`);
+            localizedCharacteristic = game.i18n.localize(`system.characteristics.${foundSkill.characteristic}.label`);
+            title = game.i18n.format('system.rolls.test.title', {
+                skill: localizedSkill,
+                characteristic: localizedCharacteristic,
             });
-
-            const rollData = {
-                actor: this,
-                banes: this.system.banes.tests,
-                category,
-                edges,
-                skill,
-                title,
-            };
-
-            console.log(rollData);
-            await new TestPowerRollDialog(rollData).render(true);
+        } else {
+            title = capitalize(skill);
         }
+
+        let edges = foundSkill?.proficient ? 1 : 0;
+        edges += this.system.edges.tests;
+
+        const rollData = {
+            actor: this,
+            banes: this.system.banes.tests,
+            characteristic,
+            category,
+            edges,
+            skill,
+            title,
+        };
+
+        await new TestPowerRollDialog(rollData).render(true);
     }
 
     async applyDamage({ amount = 0, type = 'untyped' } = {}) {
