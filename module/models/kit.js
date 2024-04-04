@@ -15,6 +15,7 @@ export class KitData extends BaseItemData {
             speed: new fields.StringField(),
             range: new fields.NumberField(),
             resistanceTN: new fields.NumberField(),
+            description: new fields.HTMLField(),
         };
     }
 }

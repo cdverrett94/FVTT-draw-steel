@@ -101,6 +101,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     initial: 2,
                 }),
             }),
+            notes: new fields.HTMLField(),
         };
     }
 

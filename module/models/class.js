@@ -16,9 +16,9 @@ export class ClassData extends BaseItemData {
                     max: new fields.StringField(),
                 })
             ),
-            description: new fields.StringField(),
-            victoryBenefits: new fields.StringField(),
-            resourceGain: new fields.StringField(),
+            description: new fields.HTMLField(),
+            victoryBenefits: new fields.HTMLField(),
+            resourceGain: new fields.HTMLField(),
         };
     }
 }

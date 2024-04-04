@@ -14,7 +14,7 @@ export class AncestryData extends BaseItemData {
             }),
             reach: new fields.NumberField({}),
             speed: new fields.NumberField({}),
-            description: new fields.StringField({}),
+            description: new fields.HTMLField({}),
         };
     }
 }

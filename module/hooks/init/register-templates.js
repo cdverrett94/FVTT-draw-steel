@@ -1,4 +1,4 @@
-export function registerTemplates() {
+export async function registerTemplates() {
     // Load templates
     const templatePaths = [
         // Partials
@@ -14,6 +14,7 @@ export function registerTemplates() {
 
         // Chat Messages
         'systems/mcdmrpg/templates/chat-messages/damage-message.hbs',
+        'systems/mcdmrpg/templates/chat-messages/ability-message.hbs',
     ];
-    loadTemplates(templatePaths);
+    await loadTemplates(templatePaths);
 }
