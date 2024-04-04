@@ -13,7 +13,7 @@
 @import url('items/_items.css');
 
 /* Chat Imports */
-@import url('chat/message.css');
+@import url('chat/_chat.css');
 
 @import url('combat/combat-tracker.css');
 

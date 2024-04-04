@@ -2,7 +2,7 @@
 @import url('./ability-sheet.css');
 
 .sheet.item:is(.ability, .ancestry, .kit, .class) div.header,
-.sheet.item:is(.ability, .ancestry, .kit) fieldset > div {
+.sheet.item:is(.ability, .ancestry, .kit) fieldset > div:not(.editor) {
     display: grid;
     grid-template-columns: 100px 1fr;
     grid-gap: 5px;

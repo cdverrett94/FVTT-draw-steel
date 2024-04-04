@@ -254,16 +254,22 @@
                         "hint": "",
                         "label": "Target"
                     },
-                    "tiers": {
-                        "label": "Tiers",
-                        "one": {
-                            "label": "Tier 1"
+                    "power": {
+                        "label": "Power Roll",
+                        "characteristic": {
+                            "label": "Characteristic"
                         },
-                        "two": {
-                            "label": "Tier 2"
-                        },
-                        "three": {
-                            "label": "Tier 3"
+                        "tiers": {
+                            "label": "Tiers",
+                            "one": {
+                                "label": "Tier 1"
+                            },
+                            "two": {
+                                "label": "Tier 2"
+                            },
+                            "three": {
+                                "label": "Tier 3"
+                            }
                         }
                     },
                     "time": {
