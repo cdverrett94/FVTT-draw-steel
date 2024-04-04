@@ -6,17 +6,28 @@ export class TestPowerRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
 
-        this.context = {};
+        console.log(this.context);
+    }
 
-        Object.assign(this.context, options);
+    get title() {
+        let category;
+        const foundCategory = Object.entries(this.context.actor.system.skills).find((category) => this.context.skill in category[1]);
+        if (foundCategory) category = foundCategory[0];
 
-        this.context.characteristic = this.context.characteristic ?? 'might';
-        this.context.edges ??= 0;
-        this.context.banes ??= 0;
-        this.context.title = game.i18n.format('system.rolls.test.title', {
-            skill: capitalize(this.context.skill),
-            characteristic: game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`),
-        });
+        const foundSkill = this.context.actor.system.skills[category]?.[this.context.skill];
+
+        let title = '';
+        if (foundSkill) {
+            const localizedSkill = foundSkill.isCustom ? foundSkill.label : game.i18n.localize(`system.skills.${category}.${this.context.skill}.label`);
+            const localizedCharacteristic = game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`);
+            title = game.i18n.format('system.rolls.test.title', {
+                skill: localizedSkill,
+                characteristic: localizedCharacteristic,
+            });
+        } else {
+            title = capitalize(skill);
+        }
+        return title;
     }
 
     static additionalOptions = {
@@ -60,11 +71,9 @@ export class TestPowerRollDialog extends PowerRollDialog {
     }
 
     static async roll() {
-        const rolls = [];
         const actorRollData = this.context.actor.getRollData();
 
-        const roll = new PowerRoll(this.context.characteristic, actorRollData, { modifiers: [this.context] });
-        console.log(roll.formula);
+        const roll = new PowerRoll(this.context.characteristic, actorRollData, { modifiers: [this.getModifiers(this.context)] });
         await roll.evaluate();
         roll.options.tooltip = await roll.getTooltip();
 
@@ -74,7 +83,6 @@ export class TestPowerRollDialog extends PowerRollDialog {
             rolls: [roll],
             flags: {
                 mcdmrpg: {
-                    ability: this.context.skill,
                     roll,
                     actor: this.context.actor,
                     title: this.context.headerLabel,
@@ -84,7 +92,6 @@ export class TestPowerRollDialog extends PowerRollDialog {
                 title: this.context.title,
                 isCritical: roll.isCritical,
                 roll,
-                ability: this.context.ability,
                 actor: this.context.actor,
             }),
         });

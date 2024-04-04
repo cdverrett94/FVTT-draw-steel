@@ -1,5 +1,4 @@
 import { CHARACTERISTICS } from '../../constants/_index.js';
-import { capitalize } from '../../helpers.js';
 import { PowerRoll } from '../power/power-roll.js';
 import { PowerRollDialog } from '../power/roll-dialog.js';
 
@@ -8,15 +7,12 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
 
-        this.context = {};
-
-        Object.assign(this.context, options);
-
         this.context.characteristic = this.context.ability?.characteristic ?? 'might';
-        this.context.edges ??= 0;
-        this.context.banes ??= 0;
-        this.context.replaceCharacteristic ??= true;
-        this.context.title = this.context.ability?.name ?? 'Power Roll';
+        this.context.hasTargets = Object.keys(this.context.targets).length ? true : false;
+    }
+
+    get title() {
+        return this.context.ability?.name ?? super.title;
     }
 
     static additionalOptions = {
@@ -60,11 +56,16 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
 
     async _prepareContext(options) {
         this.#addRollToTargets();
+        this.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
+            modifiers: [this.context],
+            ability: this.context.ability,
+        });
 
         const context = {
             characteristics: CHARACTERISTICS,
             context: {
                 ...this.context,
+                baseRoll: this.baseRoll,
             },
         };
 
@@ -76,10 +77,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
         if (partId === 'characteristic') {
             htmlElement.querySelector('select').addEventListener('change', (event) => {
                 this.context.characteristic = event.target.value;
-                this.context.title = game.i18n.format('system.rolls.test.title', {
-                    skill: capitalize(this.context.skill),
-                    characteristic: game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`),
-                });
+                this.context.title = this.title;
                 this.render({ parts: ['header', 'adjustments', 'roll'] });
             });
         }
@@ -105,7 +103,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
         const rolls = [];
         const actorRollData = this.context.actor.getRollData();
 
-        const baseRoll = new PowerRoll(this.context.characteristic, actorRollData);
+        const baseRoll = this.context.hasTargets ? new PowerRoll(this.context.characteristic, actorRollData, { ability: this.context.ability }) : this.baseRoll;
         await baseRoll.evaluate();
         baseRoll.options.tooltip = await baseRoll.getTooltip();
 

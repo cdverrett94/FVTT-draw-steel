@@ -1,4 +1,4 @@
-import { ABILITIES } from '../constants/_index.js';
+import { ABILITIES, CHARACTERISTICS } from '../constants/_index.js';
 import { getDataModelChoices } from '../helpers.js';
 import { BaseItemData } from './base-item.js';
 
@@ -31,19 +31,24 @@ class KeywordField extends foundry.data.fields.ArrayField {
 }
 
 export class AbilityData extends BaseItemData {
-    static LOCALIZATION_PREFIXES = ['system.items.ability'];
+    static LOCALIZATION_PREFIXES = ['system.items.ability', 'system.general'];
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
             cost: new fields.StringField(),
-            tiers: new fields.SchemaField({
-                one: new fields.StringField(),
-                two: new fields.StringField(),
-                three: new fields.StringField(),
+            power: new fields.SchemaField({
+                characteristic: new fields.StringField({
+                    choices: getDataModelChoices(CHARACTERISTICS),
+                }),
+                tiers: new fields.SchemaField({
+                    one: new fields.StringField(),
+                    two: new fields.StringField(),
+                    three: new fields.StringField(),
+                }),
             }),
             distance: new fields.StringField(),
-            effect: new fields.StringField(),
+            effect: new fields.HTMLField(),
             keywords: new KeywordField(
                 new fields.StringField({
                     nullable: true,

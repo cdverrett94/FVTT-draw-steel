@@ -1,0 +1,74 @@
+<div class='ability {{ability.system.type}}-ability' data-ability-group='{{ability.system.type}}' data-ability-id='{{ability._id}}'>
+    <div class='ability-group-label'>{{localize (concat 'system.items.ability.types.' ability.system.type '.label')}}</div>
+    <div class='ability-header'>
+        <div class='ability-name'>{{ability.name}}</div>
+        <div class='ability-cost'>{{ability.system.cost}}</div>
+    </div>
+    {{#unless isRoll}}
+        <div class='property ability-keywords'>
+            <div class='label'>{{localize 'system.items.ability.FIELDS.keywords.label'}}</div>
+            <div class='value'>
+                {{#each ability.system.keywords as |keyword|}}
+                    {{#if keyword}}
+                        {{localize (concat 'system.items.ability.keywords.' keyword '.label')}}{{#unless @last}}, {{/unless}}
+                    {{/if}}
+                {{/each}}
+                {{#unless ability.system.keywords}} &mdash; {{/unless}}
+            </div>
+        </div>
+    {{/unless}}
+    {{#if ability.system.trigger}}
+        <div class='property ability-trigger'>
+            <div class='label'>{{localize 'system.items.ability.FIELDS.trigger.label'}}</div>
+            <div class='value'>{{ability.system.trigger}}</div>
+        </div>
+    {{/if}}
+    {{#unless isRoll}}
+        {{#if ability.system.time}}
+            <div class='property ability-time'>
+                <div class='label'>{{localize 'system.items.ability.FIELDS.time.label'}}</div>
+                <div class='value'>{{localize (concat 'system.items.ability.times.' ability.system.time '.label')}}</div>
+            </div>
+        {{/if}}
+    {{/unless}}
+    {{#unless isRoll}}
+        {{#if ability.system.distance}}
+            <div class='property ability-distance'>
+                <div class='label'>{{localize 'system.items.ability.FIELDS.distance.label'}}</div>
+                <div class='value'>{{ability.system.distance}}</div>
+            </div>
+        {{/if}}
+    {{/unless}}
+    {{#unless isRoll}}
+        {{#if ability.system.target}}
+            <div class='property ability-target'>
+                <div class='label'>{{localize 'system.items.ability.FIELDS.target.label'}}</div>
+                <div class='value'>{{ability.system.target}}</div>
+            </div>
+        {{/if}}
+    {{/unless}}
+    {{#if ability.system.power.tiers.one}}
+        <div class='tier-one property ability-tiers'>
+            <div class='label'>{{localize 'system.items.ability.FIELDS.power.tiers.one.label'}}</div>
+            <div class='value'>{{ability.system.power.tiers.one}}</div>
+        </div>
+    {{/if}}
+    {{#if ability.system.power.tiers.two}}
+        <div class='tier-two property ability-tiers'>
+            <div class='label'>{{localize 'system.items.ability.FIELDS.power.tiers.two.label'}}</div>
+            <div class='value'>{{ability.system.power.tiers.two}}</div>
+        </div>
+    {{/if}}
+    {{#if ability.system.power.tiers.three}}
+        <div class='tier-three property ability-tiers'>
+            <div class='label'>{{localize 'system.items.ability.FIELDS.power.tiers.three.label'}}</div>
+            <div class='value'>{{ability.system.power.tiers.three}}</div>
+        </div>
+    {{/if}}
+    {{#if ability.system.effect}}
+        <div class='property ability-effect'>
+            <div class='label'>{{localize 'system.items.ability.FIELDS.effect.label'}}</div>
+            <div class='value'>{{{ability.system.enrichedEffect}}}</div>
+        </div>
+    {{/if}}
+</div>

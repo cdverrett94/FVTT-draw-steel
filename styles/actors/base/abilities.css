@@ -24,11 +24,13 @@
     text-shadow: 2px 2px 2px black;
     padding: 5px;
     display: grid;
-    grid-template-columns: 1fr auto 25px 25px;
+    grid-template-columns: 1fr auto auto auto 25px 25px;
     align-items: center;
     grid-gap: 5px;
 }
 
+.sheet.actor div.actor-abilities .ability-header .ability-roll:hover,
+.sheet.actor div.actor-abilities .ability-header .ability-to-chat:hover,
 .sheet.actor div.actor-abilities .ability-header .ability-edit:hover,
 .sheet.actor div.actor-abilities .ability-header .ability-delete:hover {
     color: black;

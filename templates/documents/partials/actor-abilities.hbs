@@ -3,12 +3,20 @@
         {{#with @key as |group|}}
             {{#each abilityGroup as |ability|}}
                 {{#if ability.show}}
-
-                    <div class='ability {{group}}-ability' data-ability-type='{{group}}' data-ability-id='{{ability._id}}'>
+                    <div class='ability {{group}}-ability' data-ability-group='{{group}}' data-ability-id='{{ability._id}}'>
                         <div class='ability-group-label'>{{localize (concat 'system.items.ability.types.' group '.label')}}</div>
                         <div class='ability-header'>
                             <div class='ability-name'>{{ability.name}}</div>
                             <div class='ability-cost'>{{ability.system.cost}}</div>
+                            <div class='ability-roll' data-action='rollAbility' data-action='Roll Ability'>
+                                {{#if ability.isRollable}}
+                                    <span class='roll-icons'>
+                                        <i class='fa-solid fa-dice-d6 fa-lg'></i>
+                                        <i class='fa-solid fa-dice-d6'></i>
+                                    </span>
+                                {{/if}}
+                            </div>
+                            <div class='ability-to-chat' data-action='postAbility' data-tooltip='Post to Chat'><i class='fa-solid fa-comment'></i></div>
                             <div class='ability-edit' data-action='editAbility' data-ability-id='{{ability._id}}'>
                                 <i
                                     class='fa-solid fa-pencil'
@@ -59,32 +67,31 @@
                                 <div class='value'>{{ability.system.target}}</div>
                             </div>
                         {{/if}}
+                        {{#if ability.system.power.tiers.one}}
+                            <div class='tier-one property ability-tiers'>
+                                <div class='label'>{{localize 'system.items.ability.FIELDS.power.tiers.one.label'}}</div>
+                                <div class='value'>{{ability.system.power.tiers.one}}</div>
+                            </div>
+                        {{/if}}
+                        {{#if ability.system.power.tiers.two}}
+                            <div class='tier-two property ability-tiers'>
+                                <div class='label'>{{localize 'system.items.ability.FIELDS.power.tiers.two.label'}}</div>
+                                <div class='value'>{{ability.system.power.tiers.two}}</div>
+                            </div>
+                        {{/if}}
+                        {{#if ability.system.power.tiers.three}}
+                            <div class='tier-three property ability-tiers'>
+                                <div class='label'>{{localize 'system.items.ability.FIELDS.power.tiers.three.label'}}</div>
+                                <div class='value'>{{ability.system.power.tiers.three}}</div>
+                            </div>
+                        {{/if}}
                         {{#if ability.system.effect}}
                             <div class='property ability-effect'>
                                 <div class='label'>{{localize 'system.items.ability.FIELDS.effect.label'}}</div>
                                 <div class='value'>{{{ability.system.enrichedEffect}}}</div>
                             </div>
                         {{/if}}
-                        {{#if ability.system.tiers.one}}
-                            <div class='tier-one property ability-tiers'>
-                                <div class='label'>{{localize 'system.items.ability.FIELDS.tiers.one.label'}}</div>
-                                <div class='value'>{{ability.system.tiers.one}}</div>
-                            </div>
-                        {{/if}}
-                        {{#if ability.system.tiers.two}}
-                            <div class='tier-two property ability-tiers'>
-                                <div class='label'>{{localize 'system.items.ability.FIELDS.tiers.two.label'}}</div>
-                                <div class='value'>{{ability.system.tiers.two}}</div>
-                            </div>
-                        {{/if}}
-                        {{#if ability.system.tiers.three}}
-                            <div class='tier-three property ability-tiers'>
-                                <div class='label'>{{localize 'system.items.ability.FIELDS.tiers.three.label'}}</div>
-                                <div class='value'>{{ability.system.tiers.three}}</div>
-                            </div>
-                        {{/if}}
                     </div>
-
                 {{/if}}
             {{/each}}
         {{/with}}

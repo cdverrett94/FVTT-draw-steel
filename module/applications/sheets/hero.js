@@ -61,8 +61,8 @@ export class HeroSheet extends BaseActorSheet {
     );
 
     static #rollSkill(event, target) {
-        let { skill, subskill } = target.dataset;
-        this.actor.rollTest({ skill, subskill });
+        let { skill, category } = target.dataset;
+        this.actor.rollSkillTest({ skill, category });
     }
 
     static #openACKSheet(event, target) {

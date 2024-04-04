@@ -1,6 +1,7 @@
 <fieldset class='tab' data-group='main' data-tab='details'>
-    <legend>{{fields.tiers.label}}</legend>
-    {{#each fields.tiers as |field|}}
-        {{formField field value=(lookup @root.source.system.tiers field.name)}}
+    <legend>{{fields.power.label}}</legend>
+    {{formField fields.power.fields.characteristic value=source.system.power.characteristic}}
+    {{#each fields.power.fields.tiers as |field|}}
+        {{formField field value=(lookup @root.source.system.power.tiers field.name)}}
     {{/each}}
 </fieldset>

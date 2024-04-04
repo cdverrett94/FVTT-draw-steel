@@ -1,5 +1,4 @@
 import { CHARACTERISTICS } from '../../constants/_index.js';
-import { capitalize } from '../../helpers.js';
 import { PowerRoll } from './power-roll.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -11,11 +10,19 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
         Object.assign(this.context, options);
 
-        this.context.characteristic = this.context.ability?.characteristic ?? 'might';
+        this.context.characteristic ??= 'might';
         this.context.edges ??= 0;
         this.context.banes ??= 0;
-        this.context.replaceCharacteristic ??= true;
-        this.context.title = this.context.ability?.name ?? 'Power Roll';
+
+        this.context.title = this.title;
+    }
+
+    get title() {
+        return 'Power Roll';
+    }
+
+    getModifiers(context) {
+        return Object.fromEntries(Object.entries(context).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes'));
     }
 
     static additionalOptions = {
@@ -59,6 +66,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     async _prepareContext(options) {
         this.#addRollToTargets();
+        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), { modifiers: [this.getModifiers(this.context)] });
 
         const context = {
             characteristics: CHARACTERISTICS,
@@ -75,10 +83,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         if (partId === 'characteristic') {
             htmlElement.querySelector('select').addEventListener('change', (event) => {
                 this.context.characteristic = event.target.value;
-                this.context.title = game.i18n.format('system.rolls.test.title', {
-                    skill: capitalize(this.context.skill),
-                    characteristic: game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`),
-                });
+                this.context.title = this.title;
                 this.render({ parts: ['header', 'adjustments', 'roll'] });
             });
         }
@@ -147,8 +152,8 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
             const actorRollData = this.context.actor.getRollData();
             const targetContext = this.context.targets[targetUuid];
 
-            const contextRollData = Object.fromEntries(Object.entries(this.context).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes'));
-            const targetRollData = Object.fromEntries(Object.entries(targetContext).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes'));
+            const contextRollData = this.getModifiers(this.context);
+            const targetRollData = this.getModifiers(targetContext);
             const rollData = {
                 target: targetContext.actor,
                 modifiers: [contextRollData, targetRollData],

@@ -4,42 +4,42 @@ export const SKILLS = {
         alchemy: {
             label: 'system.skills.crafting.alchemy.label',
             use: 'system.skills.crafting.alchemy.use',
-            default: 'presence',
+            default: 'reason',
         },
         architecture: {
             label: 'system.skills.crafting.architecture.label',
             use: 'system.skills.crafting.architecture.use',
-            default: 'presence',
+            default: 'reason',
         },
         blacksmithing: {
             label: 'system.skills.crafting.blacksmithing.label',
             use: 'system.skills.crafting.blacksmithing.use',
-            default: 'presence',
+            default: 'reason',
         },
         fletching: {
             label: 'system.skills.crafting.fletching.label',
             use: 'system.skills.crafting.fletching.use',
-            default: 'presence',
+            default: 'reason',
         },
         forgery: {
             label: 'system.skills.crafting.forgery.label',
             use: 'system.skills.crafting.forgery.use',
-            default: 'presence',
+            default: 'reason',
         },
         jewelry: {
             label: 'system.skills.crafting.jewelry.label',
             use: 'system.skills.crafting.jewelry.use',
-            default: 'presence',
+            default: 'reason',
         },
         mechanics: {
             label: 'system.skills.crafting.mechanics.label',
             use: 'system.skills.crafting.mechanics.use',
-            default: 'presence',
+            default: 'reason',
         },
         tailoring: {
             label: 'system.skills.crafting.tailoring.label',
             use: 'system.skills.crafting.tailoring.use',
-            default: 'presence',
+            default: 'reason',
         },
     },
     exploration: {
@@ -47,52 +47,52 @@ export const SKILLS = {
         climb: {
             label: 'system.skills.exploration.climb.label',
             use: 'system.skills.exploration.climb.use',
-            default: 'presence',
+            default: 'might',
         },
         drive: {
             label: 'system.skills.exploration.drive.label',
             use: 'system.skills.exploration.drive.use',
-            default: 'presence',
+            default: 'intuition',
         },
         endurance: {
             label: 'system.skills.exploration.endurance.label',
             use: 'system.skills.exploration.endurance.use',
-            default: 'presence',
+            default: 'might',
         },
         gymnastics: {
             label: 'system.skills.exploration.gymnastics.label',
             use: 'system.skills.exploration.gymnastics.use',
-            default: 'presence',
+            default: 'agility',
         },
         heal: {
             label: 'system.skills.exploration.heal.label',
             use: 'system.skills.exploration.heal.use',
-            default: 'presence',
+            default: 'intuition',
         },
         jump: {
             label: 'system.skills.exploration.jump.label',
             use: 'system.skills.exploration.jump.use',
-            default: 'presence',
+            default: 'might',
         },
         lift: {
             label: 'system.skills.exploration.lift.label',
             use: 'system.skills.exploration.lift.use',
-            default: 'presence',
+            default: 'might',
         },
         navigate: {
             label: 'system.skills.exploration.navigate.label',
             use: 'system.skills.exploration.navigate.use',
-            default: 'presence',
+            default: 'intuition',
         },
         ride: {
             label: 'system.skills.exploration.ride.label',
             use: 'system.skills.exploration.ride.use',
-            default: 'presence',
+            default: 'agility',
         },
         swim: {
             label: 'system.skills.exploration.swim.label',
             use: 'system.skills.exploration.swim.use',
-            default: 'presence',
+            default: 'might',
         },
     },
     interpersonal: {
@@ -155,7 +155,7 @@ export const SKILLS = {
         read: {
             label: 'system.skills.interpersonal.read.label',
             use: 'system.skills.interpersonal.read.use',
-            default: 'presence',
+            default: 'intuition',
         },
     },
     intrigue: {
@@ -163,12 +163,12 @@ export const SKILLS = {
         alertness: {
             label: 'system.skills.intrigue.alertness.label',
             use: 'system.skills.intrigue.alertness.use',
-            default: 'presence',
+            default: 'intuition',
         },
         concealObject: {
             label: 'system.skills.intrigue.concealObject.label',
             use: 'system.skills.intrigue.concealObject.use',
-            default: 'presence',
+            default: 'agility',
         },
         disguise: {
             label: 'system.skills.intrigue.disguise.label',
@@ -178,47 +178,47 @@ export const SKILLS = {
         eavesdrop: {
             label: 'system.skills.intrigue.eavesdrop.label',
             use: 'system.skills.intrigue.eavesdrop.use',
-            default: 'presence',
+            default: 'intuition',
         },
         escapeArtist: {
             label: 'system.skills.intrigue.escapeArtist.label',
             use: 'system.skills.intrigue.escapeArtist.use',
-            default: 'presence',
+            default: 'agility',
         },
         hide: {
             label: 'system.skills.intrigue.hide.label',
             use: 'system.skills.intrigue.hide.use',
-            default: 'presence',
+            default: 'agility',
         },
         pickLock: {
             label: 'system.skills.intrigue.pickLock.label',
             use: 'system.skills.intrigue.pickLock.use',
-            default: 'presence',
+            default: 'agility',
         },
         pickPocket: {
             label: 'system.skills.intrigue.pickPocket.label',
             use: 'system.skills.intrigue.pickPocket.use',
-            default: 'presence',
+            default: 'agility',
         },
         sabotage: {
             label: 'system.skills.intrigue.sabotage.label',
             use: 'system.skills.intrigue.sabotage.use',
-            default: 'presence',
+            default: 'agility',
         },
         search: {
             label: 'system.skills.intrigue.search.label',
             use: 'system.skills.intrigue.search.use',
-            default: 'presence',
+            default: 'intuition',
         },
         sneak: {
             label: 'system.skills.intrigue.sneak.label',
             use: 'system.skills.intrigue.sneak.use',
-            default: 'presence',
+            default: 'agility',
         },
         track: {
             label: 'system.skills.intrigue.track.label',
             use: 'system.skills.intrigue.track.use',
-            default: 'presence',
+            default: 'intuition',
         },
     },
     lore: {
@@ -226,57 +226,57 @@ export const SKILLS = {
         culture: {
             label: 'system.skills.lore.culture.label',
             use: 'system.skills.lore.culture.use',
-            default: 'presence',
+            default: 'reason',
         },
         criminalUnderworld: {
             label: 'system.skills.lore.criminalUnderworld.label',
             use: 'system.skills.lore.criminalUnderworld.use',
-            default: 'presence',
+            default: 'reason',
         },
         history: {
             label: 'system.skills.lore.history.label',
             use: 'system.skills.lore.history.use',
-            default: 'presence',
+            default: 'reason',
         },
         magic: {
             label: 'system.skills.lore.magic.label',
             use: 'system.skills.lore.magic.use',
-            default: 'presence',
+            default: 'reason',
         },
         monsters: {
             label: 'system.skills.lore.monsters.label',
             use: 'system.skills.lore.monsters.use',
-            default: 'presence',
+            default: 'reason',
         },
         nature: {
             label: 'system.skills.lore.nature.label',
             use: 'system.skills.lore.nature.use',
-            default: 'presence',
+            default: 'reason',
         },
         psionics: {
             label: 'system.skills.lore.psionics.label',
             use: 'system.skills.lore.psionics.use',
-            default: 'presence',
+            default: 'reason',
         },
         religion: {
             label: 'system.skills.lore.religion.label',
             use: 'system.skills.lore.religion.use',
-            default: 'presence',
+            default: 'reason',
         },
         rumors: {
             label: 'system.skills.lore.rumors.label',
             use: 'system.skills.lore.rumors.use',
-            default: 'presence',
+            default: 'reason',
         },
         society: {
             label: 'system.skills.lore.society.label',
             use: 'system.skills.lore.society.use',
-            default: 'presence',
+            default: 'reason',
         },
         timescape: {
             label: 'system.skills.lore.timescape.label',
             use: 'system.skills.lore.timescape.use',
-            default: 'presence',
+            default: 'reason',
         },
     },
 };

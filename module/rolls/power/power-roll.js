@@ -50,7 +50,14 @@ export class PowerRoll extends Roll {
     }
 
     get tier() {
-        const tier = Object.entries(TIERS).find((entry) => this.total >= entry[1].start && this.total <= entry[1].end);
-        return Number(tier[0]) ?? 1;
+        const tierEntry = Object.entries(TIERS).find((entry) => this.total >= entry[1].start && this.total <= entry[1].end);
+
+        const tier = Number(tierEntry[0]) ?? 1;
+        return tier;
+    }
+
+    get abilityTierEffect() {
+        if (!this.ability) return null;
+        return this.ability.getTierEffect(this.tier);
     }
 }

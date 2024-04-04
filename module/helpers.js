@@ -19,6 +19,7 @@ function toId(string) {
 }
 
 function capitalize(string) {
+    if (string === undefined || typeof string !== 'string') return string;
     let words = string.split(/ |-/);
 
     words = words

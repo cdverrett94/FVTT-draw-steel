@@ -14,22 +14,34 @@
     margin-top: 5px;
 }
 
-.message .message-content .tn.roll-success {
-    color: green;
-}
-
-.message .message-content .tn.roll-failure {
-    color: red;
-}
-
-.dice-total span {
+.message .message-content .dice-total span {
     position: absolute;
     font-size: smaller;
 }
 
-.dice-total span.dice-modifier {
+.message .message-content .dice-total span.dice-modifier {
     left: 5px;
 }
-.dice-total span.dice-tier {
+.message .message-content .dice-total span.dice-tier {
     right: 5px;
+}
+
+.message .message-content .target-roll {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+.message .message-content .target-roll:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.message .message-content .ability-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.message .message-content .ability-info .keywords {
+    flex-basis: 100%;
 }

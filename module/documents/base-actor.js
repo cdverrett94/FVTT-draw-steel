@@ -1,7 +1,7 @@
 import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
 import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../constants/_index.js';
-import { capitalize, toId } from '../helpers.js';
-import { TestPowerRollDialog } from '../rolls/test/roll-dialog.js';
+import { toId } from '../helpers.js';
+import { TestPowerRollDialog } from '../rolls/_index.js';
 import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
@@ -109,29 +109,18 @@ export class BaseActor extends Actor {
         }
 
         const foundSkill = this.system.skills[category]?.[skill];
-        let title = '';
-        if (foundSkill) {
-            const localizedSkill = foundSkill.isCustom ? foundSkill.label : game.i18n.localize(`system.skills.${category}.${skill}`);
-            localizedCharacteristic = game.i18n.localize(`system.characteristics.${foundSkill.characteristic}.label`);
-            title = game.i18n.format('system.rolls.test.title', {
-                skill: localizedSkill,
-                characteristic: localizedCharacteristic,
-            });
-        } else {
-            title = capitalize(skill);
-        }
 
         let edges = foundSkill?.proficient ? 1 : 0;
         edges += this.system.edges.tests;
+        const banes = this.system.banes.tests;
 
         const rollData = {
             actor: this,
-            banes: this.system.banes.tests,
+            banes,
             characteristic,
             category,
             edges,
             skill,
-            title,
         };
 
         await new TestPowerRollDialog(rollData).render(true);

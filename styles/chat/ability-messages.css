@@ -1,0 +1,70 @@
+.message .message-content .ability .ability-group-label {
+    font-weight: bold;
+}
+
+.message .message-content .ability .ability-header {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.message .message-content .ability {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.message .message-content .ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--default-ability-color) 100%);
+}
+
+.message .message-content .ability.passive-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--passive-ability-color) 100%);
+}
+
+.message .message-content .ability.action-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--action-ability-color) 100%);
+}
+
+.message .message-content .ability.basic-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--basic-ability-color) 100%);
+}
+
+.message .message-content .ability.maneuver-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--maneuver-ability-color) 100%);
+}
+
+.message .message-content .ability.heroic-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--heroic-ability-color) 100%);
+}
+
+.message .message-content .ability.signature-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--signature-ability-color) 100%);
+}
+
+.message .message-content .ability.triggered-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--triggered-ability-color) 100%);
+}
+
+.message .message-content .ability.villain-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--villain-ability-color) 100%);
+}
+
+.message .message-content .ability .property {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-gap: 10px;
+}
+
+.message .message-content .ability .property .label {
+    text-align: right;
+}
+
+.message .message-content .ability .ability-damage .fa-arrow-pointer {
+    rotate: 115deg;
+    margin-right: 10px;
+}

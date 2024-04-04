@@ -28,6 +28,11 @@
                 </div>
             </div>
         </div>
+        {{#unless context.hasTargets}}
+            <div class='roll-button roll-dialog-section'>
+                <button class='roll-button' data-formula='{{context.baseRoll.formula}}' data-action='roll' disabled>{{context.baseRoll.formula}}</button>
+            </div>
+        {{/unless}}
     </div>
 
     {{#each context.targets as |target|}}<div class='dice-adjustment target-adjustments'>

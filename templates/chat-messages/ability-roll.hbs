@@ -3,16 +3,11 @@
     <div class='name'>{{actor.name}}</div>
 </div>
 
-<div class='mcdmrpg-header'>{{ability.name}}</div>
-<div class='ability'>
-    <div class='keyword'>keywords -
-        {{#each ability.system.keywords as |keyword|}}
-            {{localize (concat 'system.items.ability.keywords.' keyword '.label')}}{{#unless @last}},{{/unless}}
-        {{/each}}
-    </div>
-    <div class='distance'>distance - {{ability.system.distance}}</div>
-    <div class='target'>target - {{ability.system.target}}</div>
-</div>
+
+{{> 'systems/mcdmrpg/templates/chat-messages/ability-message.hbs' ability=ability isRoll=true}}
+
+<hr>
+
 <div class='dice-roll base-roll'>
     {{#if baseRoll.flavor}}
         <div class='dice-flavor'>{{baseRoll.flavor}}</div>
@@ -33,27 +28,66 @@
         {{/unless}}
     </div>
 </div>
+{{!-- {{#if ability}}
+    {{#unless rolls}}
+        <div class='ability-result'>
+            {{baseRoll.abilityTierEffect}}
+        </div>
+    {{/unless}}
+{{/if}} --}}
 {{#if isCritical}}CRITICAL POWER ROLL - TAKE ANOTHER ACTION{{/if}}
 {{#each rolls as |roll|}}
-    <div class='target'>
-        Target:
-        {{roll.options.target.name}}
-    </div>
-    <div class='dice-roll'>
-        {{#if roll.flavor}}
-            <div class='dice-flavor'>{{roll.flavor}}</div>
-        {{/if}}
-        <div class='dice-result'>
-            {{!-- <div class='dice-formula'>{{roll.formula}}</div> --}}
-            {{!-- {{{roll.options.tooltip}}} --}}
-            <h4 class='dice-total {{ifThen @root.isCritical "success" ""}}'>
-                <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
-                {{roll.total}}
-                <span class='dice-tier'>
-                    Tier
-                    {{roll.tier}}
-                </span>
-            </h4>
+    <div class='target-roll'>
+        <div class='target'>
+            Target:
+            {{roll.options.target.name}}
         </div>
+        <div class='dice-roll'>
+            {{#if roll.flavor}}
+                <div class='dice-flavor'>{{roll.flavor}}</div>
+            {{/if}}
+            <div class='dice-result'>
+                <h4 class='dice-total {{ifThen @root.isCritical "success" ""}}'>
+                    <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
+                    {{roll.total}}
+                    <span class='dice-tier'>
+                        Tier
+                        {{roll.tier}}
+                    </span>
+                </h4>
+            </div>
+        </div>
+        {{!-- {{#if @root.ability}}
+            <div class='ability-result'>
+                {{roll.abilityTierEffect}}
+            </div>
+        {{/if}} --}}
     </div>
 {{/each}}
+<hr />
+<div class='ability-info'>
+    {{#if ability.system.keywords}}
+        <div class='keywords'>
+            {{localize 'system.items.ability.FIELDS.keywords.label'}}:
+            {{#each ability.system.keywords as |keyword|}}
+                {{localize (concat 'system.items.ability.keywords.' keyword '.label')}}{{#unless @last}},{{/unless}}
+            {{/each}}
+        </div>
+    {{/if}}
+    {{#if ability.system.time}}
+        <div class="time">
+            <i class="fa-solid fa-clock"></i> {{localize (concat 'system.items.ability.times.' ability.system.time '.label')}}
+        </div>
+    {{/if}}
+    {{#if ability.system.distance}}
+        <div class='distance'>
+            <i class='fa-solid fa-ruler'></i> {{ability.system.distance}}
+        </div>
+    {{/if}}
+    {{#if ability.system.target}}
+        <div class='target'>
+            <i class='fa-solid fa-bullseye'></i> {{ability.system.target}}
+        </div>
+    {{/if}}
+    
+</div>

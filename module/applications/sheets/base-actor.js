@@ -32,8 +32,10 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             rollCharacteristic: this.#rollCharacteristic,
             editSkills: this.#editSkills,
             addAbility: this.#addAbilty,
+            rollAbility: this.#rollAbility,
             editAbility: this.#editAbility,
             deleteAbility: this.#deleteAbility,
+            postAbility: this.#postAbility,
             filterAbilities: this.#filterAbilities,
             toggleCondition: this.#toggleCondition,
             configureToken: this.#configureToken,
@@ -107,6 +109,18 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         let item = await this.actor.createEmbeddedDocuments('Item', [{ type: 'ability', name: 'New Ability' }]);
         item[0].sheet.render(true);
         this.render(true);
+    }
+    static async #rollAbility(event, target) {
+        const { abilityId, abilityGroup } = target.closest('.ability').dataset;
+        const ability = this.actor.abilities[abilityGroup].find((ability) => ability._id === abilityId);
+
+        ability.roll();
+    }
+    static async #postAbility(event, target) {
+        const { abilityId, abilityGroup } = target.closest('.ability').dataset;
+        const ability = this.actor.abilities[abilityGroup].find((ability) => ability._id === abilityId);
+
+        await ability.toChat();
     }
     static #editAbility(event, target) {
         const abilityId = target.dataset.abilityId;

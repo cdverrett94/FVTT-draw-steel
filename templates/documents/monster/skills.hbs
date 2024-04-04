@@ -14,7 +14,10 @@
                         data-edges='{{ifThen skill.proficient "1" "0"}}'
                         data-characteristic='{{skill.characteristic}}'
                     >
-                        <i class='fa-solid fa-dice-d6'></i>
+                        <span class='roll-icons'>
+                            <i class='fa-solid fa-dice-d6 fa-lg'></i>
+                            <i class='fa-solid fa-dice-d6'></i>
+                        </span>
                         {{#if skill.isCustom}}
                             {{skill.label}}
                         {{else}}

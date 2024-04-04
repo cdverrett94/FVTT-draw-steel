@@ -1,4 +1,4 @@
-import { AbilityPowerRollDialog } from '../rolls/ability/roll-dialog.js';
+import { AbilityPowerRollDialog } from '../rolls/_index.js';
 import { Predicate } from '../rules/predicate.js';
 import { BaseItem } from './base-item.js';
 
@@ -15,9 +15,13 @@ export class AbilityItem extends BaseItem {
     }
 
     roll() {
+        if (!this.isRollable) return;
+
         const rollData = {
             actor: this.parent,
             ability: this,
+            title: this.name,
+            characteristic: this.system.power.characteristic,
             targets: game.user.targets.reduce((targets, target) => {
                 const targetActor = target.actor;
                 const targetModifiers = this.#getTargetModifiers(targetActor);
@@ -33,6 +37,11 @@ export class AbilityItem extends BaseItem {
         };
 
         new AbilityPowerRollDialog(rollData).render(true);
+    }
+
+    get isRollable() {
+        if (this.system.power.tiers.one || this.system.power.tiers.two || this.system.power.tiers.three) return true;
+        else return false;
     }
 
     #getOwnerModifiers() {
@@ -68,6 +77,25 @@ export class AbilityItem extends BaseItem {
     }
 
     getTierEffect(tier) {
-        return this.system.tiers[tier];
+        if (tier === 1) tier = 'one';
+        else if (tier === 2) tier = 'two';
+        else if (tier === 3) tier = 'three';
+        else if (tier === 4) tier = 'four';
+
+        return this.system.power.tiers[tier];
+    }
+
+    async toChat() {
+        await ChatMessage.create({
+            user: game.user.id,
+            flags: {
+                mcdmrpg: {
+                    ability: this,
+                },
+            },
+            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-message.hbs', {
+                ability: this,
+            }),
+        });
     }
 }

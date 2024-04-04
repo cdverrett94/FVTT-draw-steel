@@ -22,6 +22,9 @@
 span.roll-container {
     display: inline-block;
 }
+span.roll-container:hover span.roll-icons i {
+    animation: var(--icon-rotation);
+}
 
 a.roll-link,
 a.roll-to-chat {
@@ -36,4 +39,11 @@ a.roll-to-chat {
 
 a.roll-to-chat {
     margin-left: 5px;
+}
+
+span.roll-icons i {
+    position: relative;
+}
+span.roll-icons i:nth-child(2) {
+    right: 5px;
 }

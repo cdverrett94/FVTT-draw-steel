@@ -12,7 +12,7 @@
                 <div class='category-name'>{{localize (concat 'system.skills.' @key '.label')}}</div>
                 {{#with @key as |category|}}
                     {{#each skills as |skill|}}
-                        <div class='skill' data-action='rollSkill' data-skill='{{@key}}' data-cateogry='{{category}}'>
+                        <div class='skill' data-action='rollSkill' data-skill='{{@key}}' data-category='{{category}}'>
                             <div class='skill-name'>
                                 {{#if skill.isCustom}}
                                     {{skill.label}}
@@ -22,7 +22,10 @@
                             </div>
                             <div class='skill-proficiency'>
                                 {{#if skill.proficient}} +1{{/if}}
-                                <i class='fa-regular fa-dice-d6'></i>
+                                <span class='roll-icons'>
+                                    <i class='fa-solid fa-dice-d6 fa-lg'></i>
+                                    <i class='fa-solid fa-dice-d6'></i>
+                                </span>
                             </div>
                         </div>
                     {{/each}}
