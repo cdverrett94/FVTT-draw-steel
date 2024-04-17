@@ -6,7 +6,7 @@
                     <div class='ability {{group}}-ability' data-ability-group='{{group}}' data-ability-id='{{ability._id}}'>
                         <div class='ability-group-label'>{{localize (concat 'system.items.ability.types.' group '.label')}}</div>
                         <div class='ability-header'>
-                            <div class='ability-name'>{{ability.name}}</div>
+                            <div class='ability-name' data-tooltip='{{ability.name}}' data-tooltip-direction='UP'>{{ability.name}}</div>
                             <div class='ability-cost'>{{ability.system.cost}}</div>
                             <div class='ability-roll' data-action='rollAbility' data-action='Roll Ability'>
                                 {{#if ability.isRollable}}

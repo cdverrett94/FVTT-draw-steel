@@ -9,6 +9,7 @@
                     value=resource.name
                     localize=true
                     classes='resource-name'
+                    placeholder='Resource Name'
                 }}
                 {{formField
                     @root.fields.resources.element.fields.max
@@ -16,6 +17,7 @@
                     value=resource.max
                     localize=true
                     classes='resource-max'
+                    placeholder='Resource Maximum'
                 }}
 
                 <div class='delete-class-resource' data-action='deleteResource' data-resource-index='{{@index}}'>
