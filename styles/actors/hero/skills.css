@@ -1,6 +1,6 @@
 .sheet.actor.hero .skill-list {
     overflow-y: auto;
-    height: calc(100%- 10px);
+    height: calc(100% - 20px);
 }
 
 .sheet.actor.hero .skills .skill-category .category-name {
@@ -21,7 +21,7 @@
 }
 
 .sheet.actor.hero .skills .skill:nth-child(2n) {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .sheet.actor.hero .skills .skill:hover {

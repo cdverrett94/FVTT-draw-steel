@@ -5,8 +5,6 @@ import { PowerRollDialog } from '../power/roll-dialog.js';
 export class TestPowerRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
-
-        console.log(this.context);
     }
 
     get title() {

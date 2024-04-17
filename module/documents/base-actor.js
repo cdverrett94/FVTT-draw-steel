@@ -110,6 +110,8 @@ export class BaseActor extends Actor {
 
         const foundSkill = this.system.skills[category]?.[skill];
 
+        characteristic ??= foundSkill?.characteristic;
+
         let edges = foundSkill?.proficient ? 1 : 0;
         edges += this.system.edges.tests;
         const banes = this.system.banes.tests;
