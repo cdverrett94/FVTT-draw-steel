@@ -22,7 +22,8 @@
 span.roll-container {
     display: inline-block;
 }
-span.roll-container:hover span.roll-icons i {
+
+span.roll-icons:hover i {
     animation: var(--icon-rotation);
 }
 
@@ -46,4 +47,8 @@ span.roll-icons i {
 }
 span.roll-icons i:nth-child(2) {
     right: 5px;
+}
+
+.application optgroup {
+    background: transparent;
 }

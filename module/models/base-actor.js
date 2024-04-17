@@ -2,7 +2,6 @@ import { CHARACTERISTICS, DAMAGE, SKILLS } from '../constants/_index.js';
 import { getDataModelChoices } from '../helpers.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
-    static LOCALIZATION_PREFIXES = ['system.actors.base', 'system.skills'];
     static defineSchema() {
         const fields = foundry.data.fields;
         const schema = {};

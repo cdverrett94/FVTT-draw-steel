@@ -74,6 +74,9 @@
         },
         "Combatant": {
             "mcdmrpg": {}
+        },
+        "ChatMessage": {
+            "ability": {}
         }
     }
 }

@@ -1,4 +1,4 @@
-import { AbilityData, AncestryData, ClassData, CombatData, CombatantData, HeroData, KitData, MonsterData } from '../../models/_index.js';
+import { AbilityData, AbilityMessagesData, AncestryData, ClassData, CombatData, CombatantData, HeroData, KitData, MonsterData } from '../../models/_index.js';
 
 export function registerDataModels() {
     // Set System Actor Data Models
@@ -14,4 +14,7 @@ export function registerDataModels() {
     // Set System Combat Data Models
     CONFIG.Combat.dataModels.mcdmrpg = CombatData;
     CONFIG.Combatant.dataModels.mcdmrpg = CombatantData;
+
+    // Set Chat Message Data Models
+    CONFIG.ChatMessage.dataModels.ability = AbilityMessagesData;
 }

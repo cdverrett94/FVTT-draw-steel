@@ -172,3 +172,7 @@
 .sheet.actor.monster .tab {
     grid-row: 5 / 11;
 }
+
+.sheet.actor.monster .abilities-list {
+    max-height: 475px;
+}

@@ -16,7 +16,7 @@
         <div class='dice-formula'>{{baseRoll.formula}}</div>
         {{{baseRoll.options.tooltip}}}
         {{#unless rolls}}
-            <h4 class='dice-total {{ifThen @root.isCritical "success" ""}}'>
+            <h4 class='dice-total {{ifThen @root.critical "success" ""}}'>
                 <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
                 {{baseRoll.total}}
                 <span class='dice-tier'>
@@ -28,14 +28,7 @@
         {{/unless}}
     </div>
 </div>
-{{!-- {{#if ability}}
-    {{#unless rolls}}
-        <div class='ability-result'>
-            {{baseRoll.abilityTierEffect}}
-        </div>
-    {{/unless}}
-{{/if}} --}}
-{{#if isCritical}}CRITICAL POWER ROLL - TAKE ANOTHER ACTION{{/if}}
+{{#if critical}}CRITICAL POWER ROLL{{/if}}
 {{#each rolls as |roll|}}
     <div class='target-roll'>
         <div class='target'>
@@ -47,7 +40,7 @@
                 <div class='dice-flavor'>{{roll.flavor}}</div>
             {{/if}}
             <div class='dice-result'>
-                <h4 class='dice-total {{ifThen @root.isCritical "success" ""}}'>
+                <h4 class='dice-total {{ifThen @root.critical "success" ""}}'>
                     <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
                     {{roll.total}}
                     <span class='dice-tier'>

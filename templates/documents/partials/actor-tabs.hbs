@@ -11,4 +11,9 @@
     <a class='nav-tab {{ifThen (eq activeTabs.main "effects") "active" ""}}' data-action='tab' data-group='main' data-tab='effects'>{{localize
             'system.general.effect.plural'
         }}</a>
+    {{#if (eq actor.type 'monster')}}
+        <a class='nav-tab {{ifThen (eq activeTabs.main "negotiation") "active" ""}}' data-action='tab' data-group='main' data-tab='negotiation'>{{localize
+                'system.actors.monsters.negotiation.label'
+            }}</a>
+    {{/if}}
 </div>

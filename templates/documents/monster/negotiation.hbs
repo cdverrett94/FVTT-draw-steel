@@ -1,0 +1,6 @@
+<div class='tab negotiation-tab {{ifThen (eq activeTabs.main "negotiation") "active" ""}}' data-group='main' data-tab='negotiation'>
+    {{formField fields.negotiation.fields.interest value=actor.system.negotiation.interest}}
+    {{formField fields.negotiation.fields.patience value=actor.system.negotiation.patience}}
+    {{formField fields.negotiation.fields.motivations value=actor.system.negotiation.motivations}}
+    {{formField fields.negotiation.fields.pitfalls value=actor.system.negotiation.pitfalls widget=widgets.pitfalls}}
+</div>

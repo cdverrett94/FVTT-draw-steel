@@ -116,7 +116,16 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             rolls.push(targetRoll);
         }
 
+        const chatSystemData = {
+            abilityUuid: this.context.ability.uuid,
+            actor: this.context.actor.id,
+            title: this.context.title,
+            critical: baseRoll.isCritical,
+        };
+
         await ChatMessage.create({
+            type: 'ability',
+            system: chatSystemData,
             user: game.user.id,
             sound: CONFIG.sounds.dice,
             rolls,
@@ -130,10 +139,9 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             },
             content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-roll.hbs', {
                 rolls,
-                title: this.context.title,
-                isCritical: baseRoll.isCritical,
                 baseRoll,
                 ability: this.context.ability,
+                ...chatSystemData,
                 actor: this.context.actor,
             }),
         });

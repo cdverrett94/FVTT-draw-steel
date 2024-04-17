@@ -99,7 +99,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         const characteristic = target.dataset.characteristic;
         this.actor.rollCharacteristic(characteristic);
     }
-
     static async #editSkills(event, target) {
         new SkillConfig({ actor: this.actor }).render(true);
         this.minimize();
@@ -134,7 +133,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
 
         this.actor.deleteEmbeddedDocuments('Item', [abilityItem._id]);
     }
-
     static async #filterAbilities(event, target) {
         const { filter, selection } = target.dataset;
         if (selection === 'clear') {
@@ -148,7 +146,8 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             this.filters[secondaryFilter] = null;
         }
 
-        this.render({ parts: ['abilities'] });
+        await this.render({ parts: ['abilities'] });
+        this.setPosition({ height: 'auto' });
     }
 
     static #toggleCondition(event, target) {

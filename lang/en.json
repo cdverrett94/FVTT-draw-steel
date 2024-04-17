@@ -84,6 +84,72 @@
                         "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options.",
                         "label": "Support"
                     }
+                },
+                "negotiation": {
+                    "label": "Negotiation",
+                    "benevolence": {
+                        "label": "Benevolence"
+                    },
+                    "discovery": {
+                        "label": "Discovery"
+                    },
+                    "freedom": {
+                        "label": "Freedom",
+                        "description": ""
+                    },
+                    "greed": {
+                        "label": "Greed",
+                        "description": ""
+                    },
+                    "higherAuthority": {
+                        "label": "Higher Authority",
+                        "description": ""
+                    },
+                    "justice": {
+                        "label": "Justice",
+                        "description": ""
+                    },
+                    "legacy": {
+                        "label": "Legacy",
+                        "description": ""
+                    },
+                    "peace": {
+                        "label": "Peace",
+                        "description": ""
+                    },
+                    "power": {
+                        "label": "Power",
+                        "description": ""
+                    },
+                    "protection": {
+                        "label": "Protection",
+                        "description": ""
+                    },
+                    "revelry": {
+                        "label": "Revelry",
+                        "description": ""
+                    },
+                    "vengeance": {
+                        "label": "Vengeance",
+                        "description": ""
+                    }
+                },
+                "FIELDS": {
+                    "negotiation": {
+                        "label": "Negotiation",
+                        "interest": {
+                            "label": "Interest"
+                        },
+                        "patience": {
+                            "label": "Patience"
+                        },
+                        "motivations": {
+                            "label": "Motivations"
+                        },
+                        "pitfalls": {
+                            "label": "Pitfalls"
+                        }
+                    }
                 }
             },
             "hero": {
