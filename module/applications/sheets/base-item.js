@@ -1,6 +1,6 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
-const { ItemSheet } = foundry.applications.sheets;
-export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
+const { ItemSheetV2 } = foundry.applications.sheets;
+export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     static additionalOptions = {
         window: {
             icon: 'fas fa-suitcase',
@@ -100,8 +100,8 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheet) {
         this.item.update({ system: { rules } });
     }
 
-    _prepareSubmitData(formData) {
-        formData = super._prepareSubmitData(formData);
+    _prepareSubmitData(event, form, formData) {
+        formData = super._prepareSubmitData(event, form, formData);
 
         if (formData.system?.rules) {
             Object.entries(formData.system?.rules).forEach((rule) => {
