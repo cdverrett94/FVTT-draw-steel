@@ -93,12 +93,19 @@ export class BaseActor extends Actor {
         return returnedEffect;
     }
 
-    async rollCharacteristic({ characteristic, title }) {
+    async rollCharacteristic({ characteristic } = {}) {
+        if (!characteristic || !(characteristic in CHARACTERISTICS)) return false;
         let modifier = this.system.characteristics[characteristic];
         let roll = await Roll.create(`2d6 + ${modifier}`).evaluate();
-        roll.toMessage({
-            flavor: `${characteristic} Roll`,
+        let title = game.i18n.format('system.rolls.characteristic.label', {
+            characteristic: game.i18n.localize(`system.characteristics.${characteristic}.label`),
         });
+
+        roll.toMessage({
+            flavor: title,
+        });
+
+        return roll;
     }
 
     async rollSkillTest({ category, skill, characteristic }) {
