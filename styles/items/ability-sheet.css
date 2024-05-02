@@ -1,12 +1,12 @@
-.sheet.item.ability fieldset > div.form-group.ability-keywords {
+.sheet.item.ability .keywords multi-checkbox {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
-.sheet.item.ability .ability-damage > div {
-    grid-template-columns: 115px 1fr;
-}
-
-.sheet.item.ability .ability-keywords .ability-value input:nth-child(1) {
+.sheet.item.ability .keywords .ability-value input:nth-child(1) {
     margin-left: 0px;
+}
+
+.sheet.item.ability .effect .editor {
+    height: 300px;
 }
