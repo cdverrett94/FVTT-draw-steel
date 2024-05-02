@@ -1,8 +1,9 @@
 import { ABILITIES, CONDITIONS, DAMAGE, SKILLS } from '../../constants/_index.js';
 import { SkillConfig } from '../_index.js';
 
-const { HandlebarsApplicationMixin, DocumentSheetV2 } = foundry.applications.api;
-export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) {
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+const { ActorSheetV2 } = foundry.applications.sheets;
+export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     constructor(...args) {
         super(...args);
         this.filters = {
@@ -14,6 +15,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         window: {
             icon: 'fas fa-user',
             positioned: true,
+            resizable: true,
             controls: [
                 {
                     icon: 'fas fa-user-circle',
@@ -42,10 +44,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
         },
     };
 
-    get actor() {
-        return this.document;
-    }
-
     async _prepareContext(options) {
         const skills = {};
         Object.keys(SKILLS).forEach((category) => {
@@ -69,17 +67,20 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
             damages: DAMAGE.TYPES,
             activeTabs: this.tabGroups,
         };
-        // Enrich Content
-        let enrichContext = {
-            async: true,
-            actor: this.actor,
-        };
+
         for (const [group, abilities] of Object.entries(context.actor.abilities)) {
             for (const [index, ability] of abilities.entries()) {
-                context.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, {
-                    ...enrichContext,
+                const enrichContext = {
+                    async: true,
+                    actor: this.actor,
                     item: ability,
-                });
+                };
+                context.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, enrichContext);
+                context.actor.abilities[group][index].system.power.enrichedTiers = {
+                    one: await TextEditor.enrichHTML(ability.system.power.tiers.one, enrichContext),
+                    two: await TextEditor.enrichHTML(ability.system.power.tiers.two, enrichContext),
+                    three: await TextEditor.enrichHTML(ability.system.power.tiers.three, enrichContext),
+                };
                 let isCurrentTypeFilter = ability.system.type === this.filters.type;
                 let isCurrentTimeFilter = ability.system.time === this.filters.time;
                 let noFilters = !this.filters.type && !this.filters.time;
@@ -97,7 +98,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(DocumentSheetV2) 
 
     static #rollCharacteristic(event, target) {
         const characteristic = target.dataset.characteristic;
-        this.actor.rollCharacteristic(characteristic);
+        this.actor.rollCharacteristic({ characteristic });
     }
     static async #editSkills(event, target) {
         new SkillConfig({ actor: this.actor }).render(true);

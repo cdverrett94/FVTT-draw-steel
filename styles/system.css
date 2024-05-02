@@ -28,4 +28,11 @@
     --grid-gap: 5px;
     --alternating-bg-color: rgba(255, 255, 255, 0.05);
     --icon-rotation: rotate 2s linear infinite;
+    --color-text-selection-bg: white;
+    --color-text-selection: black;
+}
+
+::selection {
+    --color-text-selection-bg: #82817d;
+    background: var(--color-text-selection-bg) !important;
 }
