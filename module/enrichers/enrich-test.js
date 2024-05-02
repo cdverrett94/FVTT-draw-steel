@@ -1,24 +1,31 @@
 import { CHARACTERISTICS } from '../constants/characteristics.js';
-import { capitalize } from '../helpers.js';
+import { SKILLS } from '../constants/skills.js';
 import { _getEnrichedOptions, createRollLink, getRollContextData } from './helpers.js';
 
-function enrichTest(match, options) {
-    /* Currently accounted for  config options
-
-    replaceCharacteristic = should a characteristic be replaced with it's value in the formatted roll - default true
-    edges = # of edges to apply to roll
-    banes = number of banes to apply to roll
-    characteristic = charcteristic to add to the roll
-    */
-    let data = _getEnrichedOptions(match, options);
+async function enrichTest(match, options) {
+    let data = await _getEnrichedOptions(match, options);
 
     if (!data.skill) return false;
-    let linkText = capitalize(data.skill);
+    let skillCategory;
+    Object.entries(SKILLS).some((entry) => {
+        const [category, skills] = entry;
+        if (data.skill in skills) {
+            skillCategory = category;
+            return true;
+        }
+    });
+    console.log(skillCategory);
+    let label = skillCategory ? game.i18n.localize(`system.skills.${skillCategory}.${data.skill}.label`) : capitalize(data.skill);
     if (data.characteristic && data.characteristic in CHARACTERISTICS) {
         const localizedCharacteristic = game.i18n.localize(`system.characteristics.${data.characteristic}.label`);
-        linkText = `${localizedCharacteristic}-${linkText}`;
+        label = `${localizedCharacteristic}-${label}`;
     }
-    let link = createRollLink('test', linkText, '', data, false);
+    let link = createRollLink({
+        enrichType: 'test',
+        label,
+        data,
+        postToChat: false,
+    });
 
     return link;
 }
@@ -28,7 +35,6 @@ async function rollTest(event) {
     let data = await getRollContextData(eventTarget.dataset);
 
     if (!data.actor) return ui.notifications.error('No valid actor selected');
-    console.log('data', data);
     data.actor.rollSkillTest(data);
 }
 

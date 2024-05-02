@@ -18,8 +18,13 @@ function enrichPower(match, options) {
     data.replaceCharacteristic ??= true;
     data.abilityName = game.i18n.localize(data.abilityName ?? data.item?.name ?? '');
 
-    let linkText = `${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;
-    let link = createRollLink('damage', linkText, data.formula, data, false);
+    let label = `${data.formula}${data.type !== 'untyped' ? ' ' + data.type : ''}`;
+    let link = createRollLink({
+        type: 'power',
+        label,
+        data,
+        postToChat: false,
+    });
 
     return link;
 }
