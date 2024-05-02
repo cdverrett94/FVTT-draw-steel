@@ -4,8 +4,8 @@ export class AncestrySheet extends BaseItemSheet {
     static additionalOptions = {
         classes: ['ancestry'],
         position: {
-            width: 400,
-            height: 540,
+            width: 500,
+            height: 'auto',
         },
     };
 
