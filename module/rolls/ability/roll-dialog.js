@@ -68,6 +68,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
                 baseRoll: this.baseRoll,
             },
         };
+        console.log(context);
 
         return context;
     }
@@ -102,8 +103,18 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
         const targets = this.context.targets;
         const rolls = [];
         const actorRollData = this.context.actor.getRollData();
-
         const baseRoll = this.context.hasTargets ? new PowerRoll(this.context.characteristic, actorRollData, { ability: this.context.ability }) : this.baseRoll;
+        const chatSystemData = {
+            origin: {
+                actor: this.context.actor.uuid,
+                item: this.context.ability.uuid,
+            },
+            context: {
+                critical: baseRoll.isCritical,
+            },
+            targets: {},
+        };
+
         await baseRoll.evaluate();
         baseRoll.options.tooltip = await baseRoll.getTooltip();
 
@@ -114,14 +125,17 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             if (!targetRoll._evaluated) await targetRoll.evaluate();
             targetRoll.options.tooltip = await targetRoll.getTooltip();
             rolls.push(targetRoll);
-        }
 
-        const chatSystemData = {
-            abilityUuid: this.context.ability.uuid,
-            actor: this.context.actor.id,
-            title: this.context.title,
-            critical: baseRoll.isCritical,
-        };
+            chatSystemData.targets[`${targets[target].actor.id}`] = {
+                uuid: targets[target].actor.uuid,
+                token: targets[target].token.uuid,
+                applied: {
+                    damage: false,
+                    knockback: false,
+                },
+                tier: targetRoll.tier,
+            };
+        }
 
         await ChatMessage.create({
             type: 'ability',
@@ -158,9 +172,11 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             const targetRollData = Object.fromEntries(Object.entries(targetContext).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes'));
             const rollData = {
                 target: targetContext.actor,
+                token: targetContext.token,
                 modifiers: [contextRollData, targetRollData],
                 ability: this.context.ability,
             };
+            console.log(rollData);
             this.context.targets[targetUuid].roll = new PowerRoll(this.context.characteristic, actorRollData, rollData);
         }
     }
