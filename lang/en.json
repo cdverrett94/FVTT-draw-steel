@@ -531,7 +531,12 @@
                 "dialog": {
                     "headerLabel": "{abilityName} Damage Roll"
                 },
-                "label": "Damage"
+                "label": "Damage",
+                "linkLabel": "{amount}{type} Damage",
+                "chatDamageButton": {
+                    "apply": "Apply {amount}{type} Damage",
+                    "applied": "{amount}{type} Damage Applied"
+                }
             },
             "label": "Roll",
             "test": {
@@ -540,6 +545,9 @@
             "tn": {
                 "abbreviation": "TN",
                 "label": "Test Number"
+            },
+            "characteristic": {
+                "label": "{characteristic} Roll"
             }
         },
         "sheets": {
@@ -897,6 +905,12 @@
             },
             "customSkills": {
                 "label": "Custom Skills"
+            }
+        },
+        "terms": {
+            "knockback": {
+                "label": "Knockback",
+                "applied": "Target Knocked Back"
             }
         }
     },
