@@ -1,4 +1,6 @@
-<fieldset class='tab' data-group='main' data-tab='details'>
+<fieldset class='tab keywords' data-group='main' data-tab='details'>
     <legend>{{fields.keywords.label}}</legend>
-    {{formField fields.keywords value=source.system.keywords classes='abilty-keywords'}}
+    <multi-checkbox name='system.keywords' value='{{source.system.keywords}}' class='ability-keywords'>
+        {{selectOptions constants.keywords selected=source.system.keywords localize=true}}
+    </multi-checkbox>
 </fieldset>

@@ -1,3 +1,4 @@
+import { ABILITIES } from '../../constants/abilities.js';
 import { BaseItemSheet } from './base-item.js';
 
 export class AbilitySheet extends BaseItemSheet {
@@ -39,9 +40,30 @@ export class AbilitySheet extends BaseItemSheet {
         { inplace: false }
     );
 
-    _prepareSubmitData(formData) {
-        formData = super._prepareSubmitData(formData);
-        formData.system.keywords = formData.system.keywords?.filter((keyword) => keyword);
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        context.constants = {
+            keywords: ABILITIES.KEYWORDS,
+        };
+
+        return context;
+    }
+
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+        if (partId === 'keywords') {
+            htmlElement.querySelectorAll('multi-checkbox').forEach((element) => {
+                element.addEventListener('change', (event) => {
+                    this.element.requestSubmit();
+                });
+            });
+        }
+    }
+
+    _prepareSubmitData(event, form, formData) {
+        formData = super._prepareSubmitData(event, form, formData);
+        formData.system.keywords.sort();
 
         return formData;
     }
