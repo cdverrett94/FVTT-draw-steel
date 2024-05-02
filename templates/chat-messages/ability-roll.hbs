@@ -30,7 +30,7 @@
 </div>
 {{#if critical}}CRITICAL POWER ROLL{{/if}}
 {{#each rolls as |roll|}}
-    <div class='target-roll'>
+    <div class='target-roll' data-target-uuid="{{roll.options.target.uuid}}" data-target-id="{{roll.options.target.id}}" data-token-uuid="{{roll.options.token.uuid}}">
         <div class='target'>
             Target:
             {{roll.options.target.name}}

@@ -10,4 +10,4 @@ export { registerTemplates } from './init/register-templates.js';
 export { setCSSVariables } from './init/setCSSVariables.js';
 
 //Render Chat Message
-export { registerDamageTargetListners } from './renderChatMessage/add-damage-target-listeners.js';
+export { addButtonsToTargets } from './renderChatMessage/add-target-buttons.js';

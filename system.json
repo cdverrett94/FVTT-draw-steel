@@ -30,7 +30,7 @@
         }
     ],
     "system": [],
-    "socket": false,
+    "socket": true,
     "url": "https://github.com/cdverrett94/FVTT-mcdmrpg",
     "bugs": "https://github.com/cdverrett94/FVTT-mcdmrpg/issues",
     "manifest": "https://github.com/cdverrett94/FVTT-mcdmrpg/releases/latest/download/module.json",

@@ -1,8 +1,8 @@
 import { MCDMCombatTracker } from './module/applications/sidebar/combat-tracker.js';
 import {
+    addButtonsToTargets,
     registerCustomEnrichers,
     registerCustomHandlebarHelpers,
-    registerDamageTargetListners,
     registerDataModels,
     registerDocumentClasses,
     registerDocumentSheets,
@@ -57,12 +57,28 @@ Hooks.on('init', () => {
 });
 
 Hooks.on('ready', async () => {
-    game.actors.contents.find((actor) => actor.type === 'monster').sheet.render(true);
+    // game.actors.contents.find((actor) => actor.type === 'hero').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
+    game.socket.on('system.mcdmrpg', async (response) => {
+        if (response.action === 'knockback-request') {
+            console.log(response); // Other clients only react to the broadcast
+            if (game.user !== game.users.activeGM) return false;
+
+            let approved = !!Math.round(Math.random());
+            if (!approved) response.payload.approved = false;
+            else {
+                let token = await fromUuid(response.payload.token);
+                await token.update({ x: response.payload.position.x, y: response.payload.position.y });
+                response.payload.approved = true;
+            }
+
+            response.action = 'knockback-response';
+            game.socket.emit('system.mcdmrpg', response);
+        }
+    });
 });
 
 Hooks.on('renderChatMessage', async (document, $html) => {
     const html = $html[0];
-
-    registerDamageTargetListners(document, html);
+    addButtonsToTargets(document, html);
 });

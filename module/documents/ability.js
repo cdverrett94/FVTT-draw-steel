@@ -1,3 +1,4 @@
+import { _getEnrichedOptions } from '../enrichers/helpers.js';
 import { AbilityPowerRollDialog } from '../rolls/_index.js';
 import { Predicate } from '../rules/predicate.js';
 import { BaseItem } from './base-item.js';
@@ -28,6 +29,7 @@ export class AbilityItem extends BaseItem {
                 targets[targetActor.uuid] = {
                     ...targetModifiers,
                     actor: targetActor,
+                    token: target.document,
                 };
                 return targets;
             }, {}),
@@ -76,12 +78,29 @@ export class AbilityItem extends BaseItem {
         return rollData;
     }
 
-    getTierEffect(tier) {
+    get appliesKitDamage() {
+        return true;
+    }
+
+    get kitDamage() {
+        if (!this.appliesKitDamage || !this.isOwned) return 0;
+
+        const kitDamage = this.parent.type === 'hero' ? this.parent.kit.system.damage : this.parent.system.bonusDamage;
+
+        return kitDamage;
+    }
+
+    convertTierNumberToWord(tier) {
         if (tier === 1) tier = 'one';
         else if (tier === 2) tier = 'two';
         else if (tier === 3) tier = 'three';
         else if (tier === 4) tier = 'four';
 
+        return tier;
+    }
+
+    getTierEffect(tier) {
+        tier = this.convertTierNumberToWord(tier);
         return this.system.power.tiers[tier];
     }
 
@@ -97,5 +116,30 @@ export class AbilityItem extends BaseItem {
                 ability: this,
             }),
         });
+    }
+
+    async getDamageAtTier(tier) {
+        tier = this.convertTierNumberToWord(tier);
+        const regex = new RegExp(/@(?<enrichType>Damage)\[(?<damageAmount>[^\]\|]+)(?:\|*(?<config>[^\[\]]*))\]/, 'gi');
+        if (this.system.power.tiers[tier].match(regex)) {
+            const match = regex.exec(this.system.power.tiers[tier]);
+            const data = await _getEnrichedOptions(match, { item: this });
+            return data.damage;
+        }
+        return {
+            amount: 0,
+            type: 'untyped',
+        };
+    }
+
+    async getKnockbackAtTier(tier) {
+        tier = this.convertTierNumberToWord(tier);
+        const regex = new RegExp(/@(?<enrichType>Knockback)\[(?<distance>\d+)\]/, 'gi');
+        if (this.system.power.tiers[tier].match(regex)) {
+            const match = regex.exec(this.system.power.tiers[tier]);
+            const data = await _getEnrichedOptions(match, { item: this });
+            return data.distance;
+        }
+        return 0;
     }
 }

@@ -13,4 +13,4 @@ export { CombatData } from './combat.js';
 export { CombatantData } from './combatant.js';
 
 // Chat Messages
-export { AbilityMessagesData } from './ability-messages.js';
+export { AbilityMessageData } from './ability-message.js';

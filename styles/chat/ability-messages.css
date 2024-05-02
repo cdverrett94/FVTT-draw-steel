@@ -68,3 +68,13 @@
     rotate: 115deg;
     margin-right: 10px;
 }
+
+.message .message-content .target-roll .apply-damage-button,
+.message .message-content .target-roll .apply-knockback-button {
+    margin-top: 5px;
+}
+
+.message .message-content .target-roll .apply-damage-button.disabled,
+.message .message-content .target-roll .apply-knockback-button.disabled {
+    pointer-events: none;
+}
