@@ -91,6 +91,9 @@ class Knockback {
     graphics = null;
     result = null;
     requestId = foundry.utils.randomID();
+    #clickListener = this.#knockbackClick.bind(this)
+    #moveListener = this.#knockbackMove.bind(this)
+    #rightClickListener = this.#knockbackRightClick.bind(this)
 
     static take({ token, distance, action } = {}) {
         return new Knockback({ token, distance, action });
@@ -150,25 +153,25 @@ class Knockback {
             const gridLayer = canvas.interface.grid;
             gridLayer.addChild(this.graphics);
 
-            console.log('in func', this.graphics);
-
-            canvas.stage.addEventListener('click', this.#knockbackClick.bind(this));
-            canvas.stage.addEventListener('mousemove', this.#knockbackMove.bind(this));
+            canvas.stage.addEventListener('click', this.#clickListener);
+            canvas.stage.addEventListener('mousemove', this.#moveListener);
+            canvas.stage.addEventListener('contextmenu', this.#rightClickListener);
         });
+        
+        return actionCompleted;
     }
 
     #createGraphics() {
-        console.log('distance', this.distance);
         let x = this.token.x - canvas.grid.size * this.distance;
         let y = this.token.y - canvas.grid.size * this.distance;
         let width = canvas.grid.size * this.distance * 2 + this.token.width * canvas.grid.size;
         let height = canvas.grid.size * this.distance * 2 + this.token.height * canvas.grid.size;
         let graphics = new PIXI.Graphics();
 
-        graphics.beginFill(0xffffff, 0.1);
+        graphics.beginFill(0xff0000, 0.1);
 
         // set the line style to have a width of 5 and set the color to red
-        graphics.lineStyle(5, 0x000000);
+        graphics.lineStyle(5, 0xff0000);
 
         // draw a rectangle
         graphics.drawRect(x, y, width, height);
@@ -186,14 +189,14 @@ class Knockback {
             document.body.style.cursor = 'default';
             canvas.interface.grid.clearHighlightLayer('knockback');
             this.graphics.destroy();
-            canvas.stage.removeEventListener('click', this.#knockbackClick.bind(this));
-            canvas.stage.removeEventListener('mousemove', this.#knockbackMove.bind(this));
+            canvas.stage.removeEventListener('click', this.#clickListener);
+            canvas.stage.removeEventListener('mousemove', this.#moveListener);
+            document.removeEventListener('contextmenu', this.#rightClickListener);
 
             let mousePosition = canvas.mousePosition;
             let position = canvas.grid.getTopLeftPoint(mousePosition);
 
             if (game.user.isGM) {
-                console.log(position);
                 await this.#updateTokenPosition({ position });
                 this.#knockBackResolve(true);
             } else {
@@ -219,8 +222,27 @@ class Knockback {
         }
     }
 
+    #knockbackRightClick(event) {
+        document.body.style.cursor = 'default';
+        canvas.interface.grid.clearHighlightLayer('knockback');
+        this.graphics.destroy();
+        canvas.stage.removeEventListener('click', this.#clickListener);
+        canvas.stage.removeEventListener('mousemove', this.#moveListener);
+        document.removeEventListener('contextmenu', this.#rightClickListener);
+    }
+
     async #knockbackMove(event) {
-        console.log('knockback move');
+        canvas.interface.grid.clearHighlightLayer('knockback');
+        let mousePosition = canvas.mousePosition;
+        if (this.graphics.containsPoint(event.global)) {
+            document.body.style.cursor = 'pointer';
+            let highlight = canvas.interface.grid.addHighlightLayer('knockback');
+            let gridPoint = canvas.grid.getTopLeftPoint({ x: mousePosition.x, y: mousePosition.y });
+            highlight.beginFill(0xffffff, 0.5);
+            highlight.drawRect(gridPoint.x, gridPoint.y, canvas.grid.size, canvas.grid.size);
+        } else {
+            document.body.style.cursor = 'default';
+        }
     }
 
     async #updateTokenPosition({ position } = {}) {
