@@ -1,6 +1,3 @@
-import { toId } from "../helpers.js";
-
-
 class Knockback {
     constructor({ token, distance, action } = {}) {
         this.token = token instanceof Token ? token.document : token;
@@ -9,16 +6,21 @@ class Knockback {
     }
 
     #knockBackResolve = null;
-    graphics = null;
+    graphics = {
+        clickable: undefined,
+        highlight: undefined,
+    };
     result = null;
     requestId = foundry.utils.randomID();
     #clickListener = this.#knockbackClick.bind(this);
     #moveListener = this.#knockbackMove.bind(this);
 
-    static take({ token, distance, action } = {}) {
+    // function to add the knockback action to the game.mcdmrpg.actions namespace
+    static do({ token, distance, action } = {}) {
         return new Knockback({ token, distance, action });
     }
 
+    // start the request to knockback
     async request() {
         if (!this.action || !(this.action === 'prone' || this.action === 'knockback')) {
             this.action = await this.#requestDialog();
@@ -31,6 +33,7 @@ class Knockback {
         return this.result;
     }
 
+    // dialog that shows to requesting user to make a choice of knockback or knock prone
     async #requestDialog() {
         const dialogResult = await new Promise((resolve, reject) => {
             new foundry.applications.api.DialogV2({
@@ -63,13 +66,46 @@ class Knockback {
         return dialogResult;
     }
 
+    // create the graphics for the clickable and hightlighted areas
+    #createGraphics({ x, y, width, height, fill = {}, border = {} } = {}) {
+        let graphics = new PIXI.Graphics();
+
+        graphics.beginFill(fill.color ?? 0x000000, fill.opacity ?? 1);
+
+        // set the line style to have a width of 5 and set the color to red
+        graphics.lineStyle(border.width ?? 0, border.color ?? 0x000000);
+
+        // draw a rectangle
+        graphics.drawRect(x, y, width, height);
+        graphics.endFill();
+
+        return graphics;
+    }
+
+    // render the knockback area and add click and move listeners
     async #knockBack() {
         const actionCompleted = await new Promise((resolve, reject) => {
             this.#knockBackResolve = resolve;
-            this.#createGraphics();
+            let x = this.token.x - canvas.grid.size * this.distance;
+            let y = this.token.y - canvas.grid.size * this.distance;
+            let dimensions = canvas.grid.size * (this.distance * 2 + 1);
+            this.graphics.clickable = this.#createGraphics({
+                x,
+                y,
+                width: dimensions,
+                height: dimensions,
+                fill: {
+                    color: 0xff0000,
+                    opacity: 0.1,
+                },
+                border: {
+                    color: 0xff0000,
+                    width: 5,
+                },
+            });
 
-            const gridLayer = canvas.interface.grid;
-            gridLayer.addChild(this.graphics);
+            const layer = canvas.interface.tokens;
+            layer.addChild(this.graphics.clickable);
 
             canvas.stage.addEventListener('click', this.#clickListener);
             canvas.stage.addEventListener('mousemove', this.#moveListener);
@@ -78,29 +114,71 @@ class Knockback {
         return actionCompleted;
     }
 
-    #createGraphics() {
-        let x = this.token.x - canvas.grid.size * this.distance;
-        let y = this.token.y - canvas.grid.size * this.distance;
-        let width = canvas.grid.size * this.distance * 2 + this.token.width * canvas.grid.size;
-        let height = canvas.grid.size * this.distance * 2 + this.token.height * canvas.grid.size;
-        let graphics = new PIXI.Graphics();
+    // knockback click listener to send the knockback location
+    async #knockbackClick(event) {
+        if (this.graphics.clickable.containsPoint(event.global)) {
+            event.preventDefault();
+            event.stopPropagation();
+            let mousePosition = canvas.mousePosition;
+            let position = canvas.grid.getTopLeftPoint(mousePosition);
 
-        graphics.beginFill(0xff0000, 0.1);
+            if (game.user.isGM) {
+                await Knockback.#updateTokenPosition({ token: this.token, position });
+                this.#knockBackResolve(true);
+            } else {
+                const approved = await this.#sendSocketToGM({ position });
+                this.#knockBackResolve(approved);
+            }
+        } else {
+            this.#knockBackResolve(false);
+        }
 
-        // set the line style to have a width of 5 and set the color to red
-        graphics.lineStyle(5, 0xff0000);
-
-        // draw a rectangle
-        graphics.drawRect(x, y, width, height);
-        graphics.endFill();
-
-        this.graphics = graphics;
+        document.body.style.cursor = 'default';
+        this.graphics.clickable = this.graphics.clickable.destroy();
+        this.graphics.highlight = this.graphics.highlight?.destroy();
+        canvas.stage.removeEventListener('click', this.#clickListener);
+        canvas.stage.removeEventListener('mousemove', this.#moveListener);
     }
 
+    // knockback move listener to display the highlighted area when in the clickable range
+    async #knockbackMove(event) {
+        this.graphics.highlight = this.graphics.highlight?.destroy();
+
+        let mousePosition = canvas.mousePosition;
+        if (this.graphics.clickable.containsPoint(event.global)) {
+            document.body.style.cursor = 'pointer';
+            let gridPoint = canvas.grid.getTopLeftPoint({ x: mousePosition.x, y: mousePosition.y });
+            this.graphics.highlight = this.#createGraphics({
+                x: gridPoint.x,
+                y: gridPoint.y,
+                width: this.token.width * canvas.grid.size,
+                height: this.token.height * canvas.grid.size,
+                fill: {
+                    color: 0xffffff,
+                    opacity: 0.5,
+                },
+                border: {
+                    color: 0xff0000,
+                    width: 0,
+                },
+            });
+            const layer = canvas.interface.tokens;
+            layer.addChild(this.graphics.highlight);
+        } else {
+            document.body.style.cursor = 'default';
+        }
+    }
+
+    // update the target tokens position
+    static async #updateTokenPosition({ token, position } = {}) {
+        return await token.update({ x: position.x, y: position.y });
+    }
+
+    // request to add the prone effect to the target
     async #knockProne() {
         const actionCompleted = await new Promise(async (resolve, reject) => {
             if (game.user.isGM) {
-                await Knockback.#addProneEffect({token: this.token});
+                await Knockback.#addProneEffect({ token: this.token });
                 resolve(true);
             } else {
                 const approved = await this.#sendSocketToGM();
@@ -111,52 +189,13 @@ class Knockback {
         return actionCompleted;
     }
 
-    async #knockbackClick(event) {
-        if (this.graphics.containsPoint(event.global)) {
-            let mousePosition = canvas.mousePosition;
-            let position = canvas.grid.getTopLeftPoint(mousePosition);
-
-            if (game.user.isGM) {
-                await Knockback.#updateTokenPosition({ token: this.token, position });
-                this.#knockBackResolve(true);
-            } else {
-                const approved = await this.#sendSocketToGM({position});
-                this.#knockBackResolve(approved);
-            }
-        } else {
-            this.#knockBackResolve(false)
-        }
-
-        document.body.style.cursor = 'default';
-        canvas.interface.grid.clearHighlightLayer('knockback');
-        this.graphics.destroy();
-        canvas.stage.removeEventListener('click', this.#clickListener);
-        canvas.stage.removeEventListener('mousemove', this.#moveListener);
+    // add the prone effect
+    static async #addProneEffect({ token } = {}) {
+        return await token.actor.toggleStatusEffect('prone', { active: true });
     }
 
-    async #knockbackMove(event) {
-        canvas.interface.grid.clearHighlightLayer('knockback');
-        let mousePosition = canvas.mousePosition;
-        if (this.graphics.containsPoint(event.global)) {
-            document.body.style.cursor = 'pointer';
-            let highlight = canvas.interface.grid.addHighlightLayer('knockback');
-            let gridPoint = canvas.grid.getTopLeftPoint({ x: mousePosition.x, y: mousePosition.y });
-            highlight.beginFill(0xffffff, 0.5);
-            highlight.drawRect(gridPoint.x, gridPoint.y, canvas.grid.size, canvas.grid.size);
-        } else {
-            document.body.style.cursor = 'default';
-        }
-    }
-
-    static async #updateTokenPosition({ token, position } = {}) {
-        return await token.update({ x: position.x, y: position.y });
-    }
-
-    static async #addProneEffect({token} ={}) {
-        return await token.actor.toggleStatusEffect('prone', {active: true});
-    }
-
-    async #sendSocketToGM({position} = {}) {
+    // send the request to the GM for approval
+    async #sendSocketToGM({ position } = {}) {
         const request = {
             action: 'knockback-request',
             payload: {
@@ -164,7 +203,7 @@ class Knockback {
                 position,
                 randomId: this.requestId,
                 action: this.action,
-                user:game.user
+                user: game.user,
             },
         };
         let approved = await new Promise((resolveSocket) => {
@@ -179,6 +218,7 @@ class Knockback {
         return approved;
     }
 
+    // regiser the sockets for the GM to listen to
     static registerGMSocket() {
         game.socket.on('system.mcdmrpg', async (response) => {
             if (response.action === 'knockback-request') {
@@ -189,28 +229,27 @@ class Knockback {
                 let approved = await Knockback._approveDialog(response);
                 if (!approved) response.payload.approved = false;
                 else {
-                    
-                    const actionTaken = response.payload.action
+                    const actionTaken = response.payload.action;
                     const position = response.payload.position;
-                    if(actionTaken === 'knockback') await Knockback.#updateTokenPosition({token, position})
-                    else if(actionTaken=== 'prone') await Knockback.#addProneEffect({token})
+                    if (actionTaken === 'knockback') await Knockback.#updateTokenPosition({ token, position });
+                    else if (actionTaken === 'prone') await Knockback.#addProneEffect({ token });
 
-                    response.payload.approved =  true;
+                    response.payload.approved = true;
                 }
-                
 
                 response.action = 'knockback-response';
                 game.socket.emit('system.mcdmrpg', response);
             }
         });
     }
-    
+
+    // GM's approval dialog
     static async _approveDialog(data) {
         const approved = await new Promise((resolve, reject) => {
             new foundry.applications.api.DialogV2({
                 window: { title: 'Choose an option' },
                 content: `
-                <div>${data.payload.user.name} is requesting to knock ${data.payload.token.name} ${data.payload.action === 'knockback'? 'back': 'prone'}</div>
+                <div>${data.payload.user.name} is requesting to knock ${data.payload.token.name} ${data.payload.action === 'knockback' ? 'back' : 'prone'}</div>
                    <label><input type="radio" name="choice" value="approve"> Approve</label>
                      <label><input type="radio" name="choice" value="decline"> Decline</label>
                    `,

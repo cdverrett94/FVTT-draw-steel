@@ -1,5 +1,3 @@
-import { Knockback } from "../../actions/knockback.js";
-
 function createTargetDamageButton(damage, document, targetId, targetUuid) {
     const damageButton = globalThis.document.createElement('button');
     damageButton.dataset.targetUuid = targetUuid;
@@ -47,7 +45,6 @@ async function addButtonsToTargets(document, html) {
     const ability = await fromUuid(document.system.origin?.item);
     html.querySelectorAll('.target-roll').forEach(async (element) => {
         const hasPermissions = document.isAuthor || document.testUserPermission(game.user, 3);
-        console.log(document.isAuthor);
         if (!hasPermissions) return;
         const { targetUuid, targetId, tokenUuid } = element.dataset;
         const targetTier = document.system?.targets?.[targetId]?.tier;
@@ -88,10 +85,9 @@ async function registerKnockbackTargetListeners(element, document) {
         if (!targetUuid) return ui.notifications.error('No target selected');
         const actor = await fromUuid(targetUuid);
         const token = await fromUuid(tokenUuid);
-        console.log(token)
         if (!token.parent._view) return ui.notifications.error(`Target token's scene is not viewed. Please view scene ${token.parent.name}`);
-        const actionTaken = await Knockback.take({ token: token, distance: knockbackDistance}).request();
-        
+        const actionTaken = await game.mcdmrpg.actions.knockback({ token: token, distance: knockbackDistance }).request();
+
         if (actionTaken) {
             const updateData = {
                 system: {
