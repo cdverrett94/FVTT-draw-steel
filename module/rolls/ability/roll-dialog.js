@@ -175,7 +175,6 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
                 modifiers: [contextRollData, targetRollData],
                 ability: this.context.ability,
             };
-            console.log(rollData);
             this.context.targets[targetUuid].roll = new PowerRoll(this.context.characteristic, actorRollData, rollData);
         }
     }

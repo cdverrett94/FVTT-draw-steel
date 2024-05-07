@@ -14,7 +14,6 @@ async function enrichTest(match, options) {
             return true;
         }
     });
-    console.log(skillCategory);
     let label = skillCategory ? game.i18n.localize(`system.skills.${skillCategory}.${data.skill}.label`) : capitalize(data.skill);
     if (data.characteristic && data.characteristic in CHARACTERISTICS) {
         const localizedCharacteristic = game.i18n.localize(`system.characteristics.${data.characteristic}.label`);
