@@ -228,6 +228,13 @@ export class BaseActor extends Actor {
             }
         });
 
+        if (this.inCombat) {
+            const combatants = game.combat.getCombatantsByActor(this);
+            combatants.forEach((combatant) => {
+                rollOptions.push(`${prefix}:combat:turns-left:${combatant.system.turns.left ?? 0}`);
+            });
+        }
+
         return rollOptions.sort();
     }
 }

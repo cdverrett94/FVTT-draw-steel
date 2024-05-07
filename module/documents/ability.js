@@ -16,7 +16,19 @@ export class AbilityItem extends BaseItem {
     }
 
     roll() {
-        if (!this.isRollable) return;
+        if (!this.isRollable || !this.parent) return;
+
+        const rollOptions = [];
+        rollOptions.push(...this.parent.rollOptions());
+        game.user.targets.forEach((target) => {
+            rollOptions.push(...target.actor.rollOptions('target'));
+            const isFlanking = this.parent.getActiveTokens(true, true).some((token) => {
+                return token.isFlanking({ target: target.document });
+            });
+            if (isFlanking) rollOptions.push('target:flanked');
+        });
+
+        rollOptions.push(...this.rollOptions());
 
         const rollData = {
             actor: this.parent,
