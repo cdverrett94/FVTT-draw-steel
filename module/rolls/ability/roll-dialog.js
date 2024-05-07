@@ -68,7 +68,6 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
                 baseRoll: this.baseRoll,
             },
         };
-        console.log(context);
 
         return context;
     }
