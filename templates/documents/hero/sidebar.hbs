@@ -16,20 +16,20 @@
         </div>
     </div>
 
-    <div class='hp'>
-        <div class='mcdmrpg-header'>{{fields.hp.label}}</div>
-        <div class='hp-values'>
+    <div class='stamina'>
+        <div class='mcdmrpg-header'>{{fields.stamina.label}}</div>
+        <div class='stamina-values'>
             <div class='current'>
-                {{formInput fields.hp.fields.current value=actor.system.hp.current}}
+                {{formInput fields.stamina.fields.current value=actor.system.stamina.current}}
             </div>
-            <div class='other-hp'>
+            <div class='other-stamina'>
                 <div class='max'>
-                    <div class='label'>{{fields.hp.fields.max.label}} </div>
-                    <div class='value'>{{formInput fields.hp.fields.max value=actor.system.hp.max}}</div>
+                    <div class='label'>{{fields.stamina.fields.max.label}} </div>
+                    <div class='value'>{{formInput fields.stamina.fields.max value=actor.system.stamina.max}}</div>
                 </div>
                 <div class='bloodied'>
                     <div>{{localize 'system.conditions.bloodied'}}</div>
-                    <div>{{actor.system.hp.bloodied}}</div>
+                    <div>{{actor.system.stamina.bloodied}}</div>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class='healing'>
                     <div class='label'>{{localize 'system.conditions.bloodied'}}</div>
-                    <div class='value'>{{actor.system.hp.healing}}</div>
+                    <div class='value'>{{actor.system.stamina.healing}}</div>
                 </div>
             </div>
         </div>

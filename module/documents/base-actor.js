@@ -6,19 +6,19 @@ import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
     prepareBaseData() {
-        this.grantHealthBasedConditions('bloodied', this.system.hp.bloodied);
-        this.grantHealthBasedConditions('unbalanced', 0);
-        this.grantHealthBasedConditions('dead', -this.system.hp.bloodied);
+        this.grantStaminaBasedConditions('bloodied', this.system.stamina.bloodied);
+        this.grantStaminaBasedConditions('unbalanced', 0);
+        this.grantStaminaBasedConditions('dead', -this.system.stamina.bloodied);
 
         super.prepareBaseData();
     }
 
-    grantHealthBasedConditions(condition, threshold) {
+    grantStaminaBasedConditions(condition, threshold) {
         const existingEffect = this.effects.find((effect) => effect._id === CONDITIONS[condition]._id);
-        if (this.system.hp.current <= threshold && !existingEffect) {
+        if (this.system.stamina.current <= threshold && !existingEffect) {
             const newEffect = new MCDMActiveEffect(CONDITIONS[condition]);
             this.effects.set(newEffect._id, newEffect);
-        } else if (this.system.hp.current > threshold && existingEffect) {
+        } else if (this.system.stamina.current > threshold && existingEffect) {
             this.effects.delete(CONDITIONS[condition]._id);
         }
     }
@@ -137,26 +137,26 @@ export class BaseActor extends Actor {
 
     async applyDamage({ amount = 0, type = 'untyped' } = {}) {
         // TODO: LATER APPLY WEAKNESSES AND IMMUNITIES
-        const currentHP = this.system.hp.current;
+        const currentHP = this.system.stamina.current;
         const newHP = currentHP - amount;
 
-        await this.update({ 'system.hp.current': newHP });
+        await this.update({ 'system.stamina.current': newHP });
     }
 
     async _preUpdate(changed, options, user) {
         // Cap HP to new max and bloodied value
-        if (changed.system && 'hp' in changed.system) {
-            const currentHP = this.system.hp.current;
+        if (changed.system && 'stamina' in changed.system) {
+            const currentStamina = this.system.stamina.current;
 
-            let newCurrentHP = changed.system.hp.current ?? this.system.hp.current;
-            let newMaxHP = changed.system.hp.max ?? this.system.hp.max;
-            let newBloodiedValue = Math.floor(newMaxHP / 2);
+            let newCurrentStamina = changed.system.stamina.current ?? this.system.stamina.current;
+            let newMaxStamina = changed.system.stamina.max ?? this.system.stamina.max;
+            let newBloodiedValue = Math.floor(newMaxStamina / 2);
 
-            const newAppliedHP = Math.clamp(newCurrentHP, -newBloodiedValue, newMaxHP);
-            const hpDelta = newAppliedHP - currentHP;
+            const newAppliedStamina = Math.clamp(newCurrentStamina, -newBloodiedValue, newMaxStamina);
+            const staminaDelta = newAppliedStamina - currentStamina;
 
-            options.hpDelta = hpDelta;
-            changed.system.hp.current = newAppliedHP;
+            options.staminaDelta = staminaDelta;
+            changed.system.stamina.current = newAppliedStamina;
         }
 
         await super._preUpdate(changed, options, user);
@@ -166,18 +166,18 @@ export class BaseActor extends Actor {
         super._onUpdate(changed, options, userId);
 
         // HP CHANGES SCROLLING STATUS TEXT
-        if (changed.system && 'hp' in changed.system && 'current' in changed.system.hp) {
+        if (changed.system && 'stamina' in changed.system && 'current' in changed.system.stamina) {
             const tokens = this.isToken ? [this.token] : this.getActiveTokens(true, true);
             if (!tokens.length) return;
-            const pct = Math.clamp(Math.abs(options.hpDelta) / this.system.hp.max, 0, 1);
+            const pct = Math.clamp(Math.abs(options.staminaDelta) / this.system.stamina.max, 0, 1);
             for (const token of tokens) {
                 if (!token.object?.visible || !token.object?.renderable) continue;
                 const t = token.object;
-                canvas.interface.createScrollingText(t.center, options.hpDelta.signedString(), {
+                canvas.interface.createScrollingText(t.center, options.staminaDelta.signedString(), {
                     anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
                     // Adapt the font size relative to the Actor's HP total to emphasize more significant blows
                     fontSize: 16 + 32 * pct, // Range between [16, 48]
-                    fill: options.hpDelta > 0 ? 'green' : 'red',
+                    fill: options.staminaDelta > 0 ? 'green' : 'red',
                     stroke: 0x000000,
                     strokeThickness: 4,
                     jitter: Math.random(),
@@ -195,10 +195,10 @@ export class BaseActor extends Actor {
         // add level
         rollOptions.push(`${prefix}:level:${this.system.level}`);
 
-        // add hp
-        Object.entries(this.system.hp).forEach((entry) => rollOptions.push(`${prefix}:hp:${entry[0]}:${entry[1]}`));
-        const hpPercentage = Math.floor(this.system.hp.current / this.system.hp.max);
-        rollOptions.push(`${prefix}:hp:percentage:${hpPercentage}`);
+        // add stamina
+        Object.entries(this.system.stamina).forEach((entry) => rollOptions.push(`${prefix}:stamina:${entry[0]}:${entry[1]}`));
+        const staminaPercentage = Math.floor(this.system.stamina.current / this.system.stamina.max);
+        rollOptions.push(`${prefix}:stamina:percentage:${staminaPercentage}`);
 
         // add characteristics
         Object.entries(this.system.characteristics).forEach((entry) => rollOptions.push(`${prefix}:characteristic:${entry[0]}:${entry[1]}`));

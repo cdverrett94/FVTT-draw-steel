@@ -7,7 +7,7 @@
     width: 100%;
 }
 
-.sheet.actor.hero .sidebar .hp .hp-values,
+.sheet.actor.hero .sidebar .stamina .stamina-values,
 .sheet.actor.hero .sidebar .recoveries .recoveries-values,
 .sheet.actor.hero .sidebar .resources .resource.has-max {
     display: grid;
@@ -15,15 +15,15 @@
     grid-gap: 5px;
 }
 
-.sheet.actor.hero .sidebar .hp .hp-values .current input,
+.sheet.actor.hero .sidebar .stamina .stamina-values .current input,
 .sheet.actor.hero .sidebar .recoveries .recoveries-values .current input,
 .sheet.actor.hero .sidebar .resources .resource .resource-current input {
     height: 100%;
     font-size: 2rem;
 }
 
-.sheet.actor.hero .sidebar .hp .hp-values input,
-.sheet.actor.hero .sidebar .hp .hp-values .other-hp > div div,
+.sheet.actor.hero .sidebar .stamina .stamina-values input,
+.sheet.actor.hero .sidebar .stamina .stamina-values .other-stamina > div div,
 .sheet.actor.hero .sidebar .recoveries .recoveries-values input,
 .sheet.actor.hero .sidebar .recoveries .recoveries-values .other-recoveries > div div,
 .sheet.actor.hero .sidebar .resources .resource .resource-current input,
@@ -31,7 +31,7 @@
     text-align: center;
 }
 
-.sheet.actor.hero .sidebar .hp .hp-values .other-hp .form-group {
+.sheet.actor.hero .sidebar .stamina .stamina-values .other-stamina .form-group {
     display: block;
 }
 

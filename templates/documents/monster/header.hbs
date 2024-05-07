@@ -19,25 +19,25 @@
         </div>
     </div>
 
-    <div class='health-size'>
-        <div class='health'>
-            <div class='current-health'>
-                <div class='label'>{{localize fields.hp.fields.current.label}}</div>
-                <div class='value'>{{formInput fields.hp.fields.current value=actor.system.hp.current}}</div>
+    <div class='stamina-size'>
+        <div class='stamina'>
+            <div class='current-stamina'>
+                <div class='label'>{{localize fields.stamina.fields.current.label}}</div>
+                <div class='value'>{{formInput fields.stamina.fields.current value=actor.system.stamina.current}}</div>
             </div>
 
-            <div class='other-health'>
+            <div class='other-stamina'>
                 <div class='bloodied'>
                     <div class='bloodied-icon'>
                         <i class='fa-solid fa-droplet'></i>
                         <i class='fa-solid fa-droplet'></i>
                         <i class='fa-solid fa-droplet'></i>
                     </div>
-                    <div class='bloodied-value'>{{actor.system.hp.bloodied}}</div>
+                    <div class='bloodied-value'>{{actor.system.stamina.bloodied}}</div>
                 </div>
-                <div class='max-health'>
-                    <div class='label'>{{localize fields.hp.fields.max.label}}</div>
-                    <div class='value'>{{formInput fields.hp.fields.max value=actor.system.hp.max}}</div>
+                <div class='max-stamina'>
+                    <div class='label'>{{localize fields.stamina.fields.max.label}}</div>
+                    <div class='value'>{{formInput fields.stamina.fields.max value=actor.system.stamina.max}}</div>
                 </div>
 
             </div>

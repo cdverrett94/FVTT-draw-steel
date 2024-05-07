@@ -68,7 +68,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
         return {
             ...schema,
-            hp: new fields.SchemaField({
+            stamina: new fields.SchemaField({
                 current: new fields.NumberField({
                     required: true,
                     initial: 0,
@@ -123,8 +123,8 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             }
         }
 
-        this.hp.healing = Math.floor(this.hp.max / 3);
-        this.hp.bloodied = Math.floor(this.hp.max / 2);
+        this.stamina.healing = Math.floor(this.stamina.max / 3);
+        this.stamina.bloodied = Math.floor(this.stamina.max / 2);
 
         this.grappleTN = 7 + this.characteristics.might;
 

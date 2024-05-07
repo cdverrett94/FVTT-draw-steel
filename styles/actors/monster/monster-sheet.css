@@ -58,7 +58,7 @@
 }
 
 /* Header Health and Size */
-.sheet.actor.monster .header .health-size {
+.sheet.actor.monster .header .stamina-size {
     display: grid;
     grid-template-columns: 1fr 2fr;
     border-bottom: 2px solid black;
@@ -67,39 +67,39 @@
 }
 
 /* Header Health */
-.sheet.actor.monster .header .health {
+.sheet.actor.monster .header .stamina {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
     grid-gap: 5px;
 }
 
-.sheet.actor.monster .header .health .current-health,
-.sheet.actor.monster .header .health .max-health {
+.sheet.actor.monster .header .stamina .current-stamina,
+.sheet.actor.monster .header .stamina .max-stamina {
     display: grid;
     grid-template-rows: auto 1fr;
 }
 
-.sheet.actor.monster .header .health .current-health input {
+.sheet.actor.monster .header .stamina .current-stamina input {
     height: 100%;
     font-size: 4rem;
 }
 
-.sheet.actor.monster .header .health .current-health > div {
+.sheet.actor.monster .header .stamina .current-stamina > div {
     height: 100%;
 }
 
-.sheet.actor.monster .header .health .other-health {
+.sheet.actor.monster .header .stamina .other-stamina {
     display: grid;
     grid-template-rows: 1fr auto;
     align-items: center;
 }
 
-.sheet.actor.monster .header .health .other-health .bloodied .bloodied-icon {
+.sheet.actor.monster .header .stamina .other-stamina .bloodied .bloodied-icon {
     color: rgb(157, 0, 0);
 }
 
-.sheet.actor.monster .header .health .other-health .bloodied .bloodied-value {
+.sheet.actor.monster .header .stamina .other-stamina .bloodied .bloodied-value {
     font-size: 3rem;
 }
 

@@ -9,7 +9,7 @@ export class KitData extends BaseItemData {
             armor: new fields.StringField(),
             weapon: new fields.StringField(),
             area: new fields.StringField(),
-            health: new fields.StringField(),
+            stamina: new fields.StringField(),
             damage: new fields.NumberField(),
             reach: new fields.StringField(),
             speed: new fields.StringField(),

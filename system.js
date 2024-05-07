@@ -48,11 +48,11 @@ Hooks.on('init', () => {
     CONFIG.Actor.trackableAttributes = {
         hero: {
             value: ['turns'],
-            bar: ['hp'],
+            bar: ['stamina'],
         },
         monster: {
             value: ['turns'],
-            bar: ['hp'],
+            bar: ['stamina'],
         },
     };
 });

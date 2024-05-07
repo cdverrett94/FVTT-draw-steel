@@ -6,13 +6,13 @@
                     "level": {
                         "label": "Level"
                     },
-                    "hp": {
-                        "label": "HP",
+                    "stamina": {
+                        "label": "Stamina",
                         "current": {
-                            "label": "Current HP"
+                            "label": "Current Stamina"
                         },
                         "max": {
-                            "label": "Max HP"
+                            "label": "Max Stamina"
                         }
                     },
                     "characteristics": {
@@ -49,7 +49,7 @@
                         "label": "Artillery"
                     },
                     "brute": {
-                        "description": "Brutes are hardy creatures who have lots of health and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression.",
+                        "description": "Brutes are hardy creatures who have lots of stamina and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression.",
                         "label": "Brute"
                     },
                     "bystander": {
@@ -501,8 +501,8 @@
                     "damage": {
                         "label": "Damage"
                     },
-                    "health": {
-                        "label": "Health"
+                    "stamina": {
+                        "label": "Stamina"
                     },
                     "range": {
                         "label": "Range"
@@ -570,11 +570,11 @@
                 },
                 "grapple": "Grapple",
                 "grappleTn": "GP/KB TN",
-                "health": {
-                    "abbreviation": "HP",
-                    "current": "Current HP",
-                    "label": "Health",
-                    "max": "Max HP"
+                "stamina": {
+                    "abbreviation": "SP",
+                    "current": "Current Stamina",
+                    "label": "Stamina",
+                    "max": "Max Stamina"
                 },
                 "knockback": "Knockback",
                 "notes": "Notes",
