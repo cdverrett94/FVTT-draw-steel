@@ -10,13 +10,19 @@
     -webkit-clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0% 100%);
 }
 
-.mcdmrpg-header:has(.right-button) {
+div:has(> .right-button, > .left-button) {
     position: relative;
 }
 
-.mcdmrpg-header span.right-button {
+div > span.right-button {
     position: absolute;
     right: 20px;
+    cursor: pointer;
+}
+div > span.left-button {
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
 }
 
 span.roll-container {

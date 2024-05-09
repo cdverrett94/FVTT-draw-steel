@@ -5,9 +5,21 @@ export class AbilitySheet extends BaseItemSheet {
     static additionalOptions = {
         classes: ['ability'],
         position: {
-            width: 600,
+            width: 800,
             height: 'auto',
         },
+        actions: {
+            addTierEffect: this.addTierEffect,
+            deleteTierEffect: this.deleteTierEffect,
+            toggleTierVisibility: this.toggleTierVisibility,
+        },
+    };
+
+    tierVisibility = {
+        one: 'hidden',
+        two: 'hidden',
+        three: 'hidden',
+        four: 'hidden',
     };
 
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilitySheet.additionalOptions, { inplace: false });
@@ -45,6 +57,7 @@ export class AbilitySheet extends BaseItemSheet {
 
         context.constants = {
             keywords: ABILITIES.KEYWORDS,
+            tierVisibility: this.tierVisibility,
         };
 
         return context;
@@ -66,5 +79,45 @@ export class AbilitySheet extends BaseItemSheet {
         formData.system.keywords.sort();
 
         return formData;
+    }
+
+    static async addTierEffect(event, target) {
+        const { tier } = target.dataset;
+        console.log(tier);
+        const updateData = foundry.utils.duplicate(this.item.system.power.tiers[tier]);
+        console.log(updateData);
+
+        updateData.push({
+            type: 'damage',
+        });
+
+        await this.item.update({ [`system.power.tiers.${tier}`]: updateData });
+    }
+
+    static async deleteTierEffect(event, target) {
+        const { tier, effectIndex } = target.dataset;
+        console.log(tier);
+        const updateData = foundry.utils.duplicate(this.item.system.power.tiers[tier]);
+        console.log(updateData);
+
+        updateData.splice(effectIndex, 1);
+
+        await this.item.update({ [`system.power.tiers.${tier}`]: updateData });
+    }
+
+    static toggleTierVisibility(event, target) {
+        const { tier } = target.dataset;
+        const parent = this.element.querySelector(`.power-tier.tier-${tier}`);
+        const toggleButton = parent.querySelector('.tier-label span i');
+        const tierEffects = parent.querySelector('.tier-effects');
+        const currentlyHidden = tierEffects.classList.contains('hidden') ? true : false;
+
+        const oldButtonClass = currentlyHidden ? 'fa-chevron-down' : 'fa-chevron-up';
+        const newButtonClass = currentlyHidden ? 'fa-chevron-up' : 'fa-chevron-down';
+        toggleButton.classList.remove(oldButtonClass);
+        toggleButton.classList.add(newButtonClass);
+
+        tierEffects.classList.toggle('hidden');
+        this.tierVisibility[tier] = currentlyHidden ? 'visible' : 'hidden';
     }
 }

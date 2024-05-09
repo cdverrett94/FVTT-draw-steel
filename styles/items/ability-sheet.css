@@ -7,6 +7,62 @@
     margin-left: 0px;
 }
 
+.sheet.item.ability .power-tier {
+    margin-bottom: 5px;
+}
+
+.sheet.item.ability .tier-label {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+.sheet.item.ability .tier-effects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: var(--grid-gap);
+    padding-top: 5px;
+}
+
+.sheet.item.ability .tier-effects.hidden {
+    display: none;
+}
+
+.sheet.item.ability .tier-effects .no-effects {
+    text-align: center;
+    grid-column: 1 / 3;
+}
+
+.sheet.item.ability div.tier-effect > div {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-gap: var(--grid-gap);
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sheet.item.ability div.tier-effect > div.tier-type {
+    display: grid;
+    grid-template-columns: 100px 1fr 25px;
+    grid-gap: 5px;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sheet.item.ability .tier-effect .delete-tier-effect {
+    text-align: center;
+}
+
+.sheet.item.ability .tier-effect .delete-tier-effect:hover {
+    color: var(--delete-color);
+    cursor: pointer;
+}
+
+.sheet.item.ability .tier-effect {
+    background-color: var(--alternating-bg-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .sheet.item.ability .effect .editor {
     height: 300px;
 }
