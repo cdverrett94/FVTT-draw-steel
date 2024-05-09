@@ -26,7 +26,7 @@
     --delete-color: red;
     --add-color: green;
     --grid-gap: 5px;
-    --alternating-bg-color: rgba(255, 255, 255, 0.05);
+    --alternating-bg-color: rgba(255, 255, 255, 0.02);
     --icon-rotation: rotate 2s linear infinite;
     --color-text-selection-bg: white;
     --color-text-selection: black;
