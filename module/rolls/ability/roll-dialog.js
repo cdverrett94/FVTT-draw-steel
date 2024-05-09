@@ -125,13 +125,19 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             targetRoll.options.tooltip = await targetRoll.getTooltip();
             rolls.push(targetRoll);
 
+            let targetTier;
+            if (targetRoll.tier === 1) targetTier = 'one';
+            else if (targetRoll.tier === 2) targetTier = 'two';
+            else if (targetRoll.tier === 3) targetTier = 'three';
+            else if (targetRoll.tier === 4) targetTier = 'four';
+
             chatSystemData.targets[`${targets[target].actor.id}`] = {
                 uuid: targets[target].actor.uuid,
                 token: targets[target].token.uuid,
-                applied: {
-                    damage: false,
-                    knockback: false,
-                },
+                appliedEffects: foundry.utils.duplicate(this.context.ability.system.power.tiers[targetTier]).map((effect) => {
+                    effect.applied = effect.type === 'damage' || effect.type === 'knockback' ? false : true;
+                    return effect;
+                }),
                 tier: targetRoll.tier,
             };
         }

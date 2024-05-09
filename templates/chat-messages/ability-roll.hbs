@@ -50,11 +50,7 @@
                 </h4>
             </div>
         </div>
-        {{!-- {{#if @root.ability}}
-            <div class='ability-result'>
-                {{roll.abilityTierEffect}}
-            </div>
-        {{/if}} --}}
+        <div class="target-buttons" data-target-uuid="{{roll.options.target.uuid}}" data-target-id="{{roll.options.target.id}}" data-token-uuid="{{roll.options.token.uuid}}"></div>
     </div>
 {{/each}}
 <hr />

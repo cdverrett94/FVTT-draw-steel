@@ -8,14 +8,7 @@ export class AbilityMessageData extends ChatMessageData {
             targets: new fields.ObjectField({
                 uuid: new fields.DocumentUUIDField(),
                 token: new fields.DocumentUUIDField(),
-                applied: new fields.SchemaField({
-                    damage: new fields.BooleanField({
-                        initial: false,
-                    }),
-                    knockback: new fields.BooleanField({
-                        initial: false,
-                    }),
-                }),
+                appliedEffects: new fields.ArrayField(new fields.ObjectField()),
                 tier: new fields.NumberField({
                     min: 1,
                     max: 4,
