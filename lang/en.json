@@ -225,7 +225,7 @@
             "markTurnTaken": "Mark Turn Taken: Decrement Turns Left By 1"
         },
         "conditions": {
-            "bloodied": "Bloodied",
+            "winded": "Winded",
             "dazed": "Dazed",
             "dead": "Dead",
             "frightened": "Frightened",
@@ -335,6 +335,31 @@
                             },
                             "three": {
                                 "label": "Tier 3"
+                            },
+                            "four": {
+                                "label": "Tier 4",
+                                "types": {
+                                    "damage": {
+                                        "label": "Damage Effect",
+                                        "amount": "Damage Amount",
+                                        "dType": "Damage Type"
+                                    }
+                                }
+                            },
+                            "types": {
+                                "damage": {
+                                    "label": "Damage Effect",
+                                    "amount": "Amount",
+                                    "dType": "Type"
+                                },
+                                "knockback": {
+                                    "label": "Knockback Effect",
+                                    "distance": "Distance"
+                                },
+                                "other": {
+                                    "label": "Other Effect",
+                                    "description": "Description"
+                                }
                             }
                         }
                     },
@@ -419,6 +444,9 @@
                     },
                     "villain": {
                         "label": "Villain Ability"
+                    },
+                    "invalid": {
+                        "label": "Invalid Ability Type"
                     }
                 }
             },
@@ -910,6 +938,7 @@
         "terms": {
             "knockback": {
                 "label": "Knockback",
+                "linkLabel": "Knockback {distance}",
                 "applied": "Target Knocked Back"
             }
         }
