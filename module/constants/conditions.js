@@ -9,14 +9,6 @@ const CONDITIONS = {
         label: 'system.conditions.dead',
         statuses: ['dead'],
     },
-    bloodied: {
-        img: 'icons/svg/blood.svg',
-        id: 'bloodied',
-        _id: toId('bloodied'),
-        name: 'system.conditions.bloodied',
-        label: 'system.conditions.bloodied',
-        statuses: ['bloodied'],
-    },
     dazed: {
         img: 'icons/svg/daze.svg',
         id: 'dazed',
@@ -230,6 +222,14 @@ const CONDITIONS = {
                 priority: null,
             },
         ],
+    },
+    winded: {
+        img: 'icons/svg/blood.svg',
+        id: 'winded',
+        _id: toId('winded'),
+        name: 'system.conditions.winded',
+        label: 'system.conditions.winded',
+        statuses: ['winded'],
     },
 };
 

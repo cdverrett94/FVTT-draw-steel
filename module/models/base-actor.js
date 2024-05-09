@@ -124,7 +124,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
         }
 
         this.stamina.healing = Math.floor(this.stamina.max / 3);
-        this.stamina.bloodied = Math.floor(this.stamina.max / 2);
+        this.stamina.winded = Math.floor(this.stamina.max / 2);
 
         this.grappleTN = 7 + this.characteristics.might;
 

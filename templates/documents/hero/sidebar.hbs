@@ -27,9 +27,9 @@
                     <div class='label'>{{fields.stamina.fields.max.label}} </div>
                     <div class='value'>{{formInput fields.stamina.fields.max value=actor.system.stamina.max}}</div>
                 </div>
-                <div class='bloodied'>
-                    <div>{{localize 'system.conditions.bloodied'}}</div>
-                    <div>{{actor.system.stamina.bloodied}}</div>
+                <div class='winded'>
+                    <div>{{localize 'system.conditions.winded'}}</div>
+                    <div>{{actor.system.stamina.winded}}</div>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                     <div class='value'>{{formInput fields.recoveries.fields.max value=actor.system.recoveries.max}}</div>
                 </div>
                 <div class='healing'>
-                    <div class='label'>{{localize 'system.conditions.bloodied'}}</div>
+                    <div class='label'>{{localize 'system.conditions.winded'}}</div>
                     <div class='value'>{{actor.system.stamina.healing}}</div>
                 </div>
             </div>

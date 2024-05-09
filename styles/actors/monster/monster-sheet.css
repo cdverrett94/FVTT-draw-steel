@@ -95,11 +95,11 @@
     align-items: center;
 }
 
-.sheet.actor.monster .header .stamina .other-stamina .bloodied .bloodied-icon {
+.sheet.actor.monster .header .stamina .other-stamina .winded .winded-icon {
     color: rgb(157, 0, 0);
 }
 
-.sheet.actor.monster .header .stamina .other-stamina .bloodied .bloodied-value {
+.sheet.actor.monster .header .stamina .other-stamina .winded .winded-value {
     font-size: 3rem;
 }
 
