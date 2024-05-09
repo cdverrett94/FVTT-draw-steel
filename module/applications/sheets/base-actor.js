@@ -11,6 +11,8 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             type: null,
         };
     }
+    actor = this.document;
+
     static additionalOptions = {
         window: {
             icon: 'fas fa-user',
@@ -96,6 +98,18 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
     static PARTS = {};
 
+    _onRender(context, options) {
+        super._onRender(context, options);
+
+        const dd = new DragDrop({
+            dropSelector: '.window-content',
+            callbacks: {
+                drop: this.#onDrop.bind(this),
+            },
+        });
+        dd.bind(this.element);
+    }
+
     static #rollCharacteristic(event, target) {
         const characteristic = target.dataset.characteristic;
         this.actor.rollCharacteristic({ characteristic });
@@ -164,5 +178,57 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         };
         if (this.actor.isToken) return this.token.sheet.render(true, renderOptions);
         else new CONFIG.Token.prototypeSheetClass(this.actor.prototypeToken, renderOptions).render(true);
+    }
+
+    async #onDrop(event) {
+        if (!this.actor.isOwner) return false;
+        const data = TextEditor.getDragEventData(event);
+        const actor = this.actor;
+        const allowed = Hooks.call('dropActorSheetData', actor, this, data);
+        if (allowed === false) return;
+
+        switch (data.type) {
+            case 'Item':
+                return this.#onDropItem(event, data);
+            case 'Folder':
+                return this.#onDropFolder(event, data);
+            case 'ActiveEffect':
+                return this.#onDropActiveEffect(event, data);
+            case 'Actor':
+                return false;
+        }
+    }
+
+    async #onDropItem(event, data) {
+        if (!this.actor.isOwner) return false;
+        const item = await Item.implementation.fromDropData(data);
+        const itemData = item.toObject();
+
+        return this.#onDropItemCreate(itemData, event);
+    }
+
+    async #onDropItemCreate(itemData, event) {
+        itemData = itemData instanceof Array ? itemData : [itemData];
+        return this.actor.createEmbeddedDocuments('Item', itemData);
+    }
+
+    async #onDropFolder(event, data) {
+        const folder = await Folder.implementation.fromDropData(data);
+        console.log(folder);
+        if (folder.type !== 'Item') return [];
+        const droppedItemData = await Promise.all(
+            folder.contents.map(async (item) => {
+                if (!(document instanceof Item)) item = await fromUuid(item.uuid);
+                return item.toObject();
+            })
+        );
+        return this.#onDropItemCreate(droppedItemData, event);
+    }
+
+    async #onDropActiveEffect(event, data) {
+        const effect = await ActiveEffect.implementation.fromDropData(data);
+        if (!this.actor.isOwner || !effect) return false;
+        if (effect.target === this.actor) return false;
+        return ActiveEffect.create(effect.toObject(), { parent: this.actor });
     }
 }
