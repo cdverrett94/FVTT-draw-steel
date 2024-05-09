@@ -4,12 +4,12 @@ export class MonsterActor extends BaseActor {
     async _preUpdate(changed, options, user) {
         // update prototype token size when size is updated
         let prototypeChanged = false;
-        if (changed.system && 'width' in changed.system.size) {
+        if (changed.system && changed.system.size && 'width' in changed.system.size) {
             changed.prototypeToken ??= {};
             changed.prototypeToken.width = changed.system.size.width;
             prototypeChanged = true;
         }
-        if (changed.system && 'length' in changed.system.size) {
+        if (changed.system && changed.system.size && 'length' in changed.system.size) {
             changed.prototypeToken ??= {};
             changed.prototypeToken.height = changed.system.size.length;
             prototypeChanged = true;
