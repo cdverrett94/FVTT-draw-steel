@@ -5,7 +5,7 @@ export class PowerRoll extends Roll {
     constructor(characteristic, data = {}, options = {}) {
         const modifiers = PowerRoll.combineModifiers(options.modifiers);
         const modifier = modifiers.edges - modifiers.banes;
-        let formula = '2d6';
+        let formula = '2d10';
         if (characteristic in CHARACTERISTICS) formula = `${formula} + @${characteristic}`;
         if (modifier !== 0) formula = `${formula} + ${modifier}`;
 
