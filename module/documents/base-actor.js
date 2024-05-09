@@ -6,9 +6,9 @@ import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
     prepareBaseData() {
-        this.grantStaminaBasedConditions('bloodied', this.system.stamina.bloodied);
+        this.grantStaminaBasedConditions('winded', this.system.stamina.winded);
         this.grantStaminaBasedConditions('unbalanced', 0);
-        this.grantStaminaBasedConditions('dead', -this.system.stamina.bloodied);
+        this.grantStaminaBasedConditions('dead', -this.system.stamina.winded);
 
         super.prepareBaseData();
     }
@@ -74,6 +74,11 @@ export class BaseActor extends Actor {
 
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         if (['ongoingdamage', 'taunted', 'frightened'].includes(statusId)) active = true;
+        else if (statusId === 'prone') {
+            const effect = this.effects.get(toId('unconscious'));
+            if (effect) active = true;
+            ui.notifications.error(`You can't remove prone while unconsious`);
+        }
         let returnedEffect = await super.toggleStatusEffect(statusId, { active, overlay });
         if (returnedEffect === false) return false;
 
@@ -87,6 +92,8 @@ export class BaseActor extends Actor {
             config = new TauntedConfig({ effect });
         } else if (statusId === 'frightened') {
             config = new FrightenedConfig({ effect });
+        } else if (statusId === 'unconscious') {
+            await this.toggleStatusEffect('prone', { active: true });
         }
         config?.render(true);
 
@@ -144,15 +151,15 @@ export class BaseActor extends Actor {
     }
 
     async _preUpdate(changed, options, user) {
-        // Cap HP to new max and bloodied value
+        // Cap HP to new max and winded value
         if (changed.system && 'stamina' in changed.system) {
             const currentStamina = this.system.stamina.current;
 
             let newCurrentStamina = changed.system.stamina.current ?? this.system.stamina.current;
             let newMaxStamina = changed.system.stamina.max ?? this.system.stamina.max;
-            let newBloodiedValue = Math.floor(newMaxStamina / 2);
+            let newWindedValue = Math.floor(newMaxStamina / 2);
 
-            const newAppliedStamina = Math.clamp(newCurrentStamina, -newBloodiedValue, newMaxStamina);
+            const newAppliedStamina = Math.clamp(newCurrentStamina, -newWindedValue, newMaxStamina);
             const staminaDelta = newAppliedStamina - currentStamina;
 
             options.staminaDelta = staminaDelta;
