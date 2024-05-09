@@ -1,7 +1,7 @@
 class Knockback {
     constructor({ token, distance, action } = {}) {
         this.token = token instanceof Token ? token.document : token;
-        this.distance = distance;
+        this.distance = Number(distance);
         this.action = action;
     }
 
@@ -82,18 +82,42 @@ class Knockback {
         return graphics;
     }
 
+    #createClickableGraphics({ x, y, distance, fill, border }) {
+        let graphics = new PIXI.Graphics();
+
+        graphics.beginFill(fill.color ?? 0x000000, fill.opacity ?? 0.1);
+        // set the line style to have a width of 5 and set the color to red
+        graphics.lineStyle(border.width ?? 1, border.color ?? 0x000000);
+
+        // draw a rectangle
+        let polygon;
+        // Grid circle
+        if (game.settings.get('core', 'gridTemplates')) {
+            polygon = new PIXI.Polygon(canvas.grid.getCircle({ x, y }, distance));
+        } else {
+            // Euclidean circle
+            return new PIXI.Circle(x, y, distance * canvas.dimensions.distancePixels);
+        }
+        graphics.drawPolygon(polygon);
+        graphics.endFill();
+
+        graphics.beginHole();
+        graphics.drawRect(x - canvas.grid.size * 0.5, y - canvas.grid.size * 0.5, canvas.grid.size, canvas.grid.size);
+        graphics.endHole();
+
+        return graphics;
+    }
+
     // render the knockback area and add click and move listeners
     async #knockBack() {
         const actionCompleted = await new Promise((resolve, reject) => {
             this.#knockBackResolve = resolve;
-            let x = this.token.x - canvas.grid.size * this.distance;
-            let y = this.token.y - canvas.grid.size * this.distance;
-            let dimensions = canvas.grid.size * (this.distance * 2 + 1);
-            this.graphics.clickable = this.#createGraphics({
+            let x = this.token.x + canvas.grid.size * 0.5;
+            let y = this.token.y + canvas.grid.size * 0.5;
+            this.graphics.clickable = this.#createClickableGraphics({
                 x,
                 y,
-                width: dimensions,
-                height: dimensions,
+                distance: this.distance,
                 fill: {
                     color: 0xff0000,
                     opacity: 0.1,
