@@ -103,6 +103,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
         const rolls = [];
         const actorRollData = this.context.actor.getRollData();
         const baseRoll = this.context.hasTargets ? new PowerRoll(this.context.characteristic, actorRollData, { ability: this.context.ability }) : this.baseRoll;
+        await baseRoll.evaluate();
         const chatSystemData = {
             origin: {
                 actor: this.context.actor.uuid,
@@ -114,7 +115,6 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             targets: {},
         };
 
-        await baseRoll.evaluate();
         baseRoll.options.tooltip = await baseRoll.getTooltip();
 
         for (const target in targets) {
