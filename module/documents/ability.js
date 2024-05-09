@@ -37,11 +37,20 @@ export class AbilityItem extends BaseItem {
             characteristic: this.system.power.characteristic,
             targets: game.user.targets.reduce((targets, target) => {
                 const targetActor = target.actor;
+                const targetRollOptions = [...rollOptions];
+                targetRollOptions.push(...target.actor.rollOptions('target'));
+
+                const isFlanked = this.parent.getActiveTokens(true, true).some((token) => {
+                    return token.isFlanking({ target: target.document });
+                });
+                if (isFlanked) targetRollOptions.push('target:flanked');
+
                 const targetModifiers = this.#getTargetModifiers(targetActor);
                 targets[targetActor.uuid] = {
                     ...targetModifiers,
                     actor: targetActor,
                     token: target.document,
+                    rollOptions: [...targetRollOptions],
                 };
                 return targets;
             }, {}),
@@ -87,6 +96,7 @@ export class AbilityItem extends BaseItem {
         // Get Banes if attacking a creature a creature other than one that has you taunted
         const attackingNontauntedPredicate = new Predicate(['actor:condition:taunted', { not: [`actor:condition:taunted`, target.uuid] }], actorRollOptions);
         if (attackingNontauntedPredicate.validate()) rollData.banes += 1;
+
         return rollData;
     }
 
@@ -153,5 +163,43 @@ export class AbilityItem extends BaseItem {
             return data.distance;
         }
         return 0;
+    }
+
+    get tierText() {
+        return {
+            one: this.parseTierText('one'),
+            two: this.parseTierText('two'),
+            three: this.parseTierText('three'),
+            four: this.parseTierText('four'),
+        };
+    }
+
+    parseTierText(tier) {
+        const tierEffects = this.system.power.tiers[tier];
+        const effectsText = [];
+
+        tierEffects.forEach((effect) => {
+            if (effect.type === 'damage') effectsText.push(this.parseDamageEffect(effect));
+            else if (effect.type === 'knockback') effectsText.push(this.parseKnockbackEffect(effect));
+            else if (effect.type === 'other') effectsText.push(effect.description);
+        });
+
+        return effectsText.join(', ');
+    }
+
+    parseDamageEffect(effect) {
+        let damageTypeText = '';
+        effect.type ??= 'untyped';
+        if (effect.dType !== 'untyped') damageTypeText = ' ' + game.i18n.localize(`system.damage.types.${effect.dType}.label`);
+        return game.i18n.format('system.rolls.damage.linkLabel', {
+            amount: effect.amount ?? 0,
+            type: damageTypeText,
+        });
+    }
+
+    parseKnockbackEffect(effect) {
+        return game.i18n.format('system.terms.knockback.linkLabel', {
+            distance: effect.distance ?? 0,
+        });
     }
 }

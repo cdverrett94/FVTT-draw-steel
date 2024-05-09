@@ -1,7 +1,70 @@
 <fieldset class='tab tiers' data-group='main' data-tab='details'>
     <legend>{{fields.power.label}}</legend>
     {{formField fields.power.fields.characteristic value=source.system.power.characteristic}}
-    {{#each fields.power.fields.tiers as |field|}}
-        {{formField field value=(lookup @root.source.system.power.tiers field.name)}}
-    {{/each}}
+    <div class='power-tiers'>
+        {{#each fields.power.fields.tiers as |field|}}
+            <div class='power-tier tier-{{field.name}}'>
+                <div class='tier-label'>
+                    <span class='left-button' data-action='toggleTierVisibility' data-tier='{{field.name}}'>
+                        {{#if (eq (lookup @root.constants.tierVisibility field.name) 'hidden')}}
+                            <i class='fa-solid fa-chevron-down'></i>
+                        {{else}}
+                            <i class='fa-solid fa-chevron-up'></i>
+                        {{/if}}
+                    </span>
+                    {{field.label}}
+                    <span class='add-tier-effect right-button' data-action='addTierEffect' data-tier='{{field.name}}'>+</span>
+                </div>
+                {{log field.name}}
+                {{log (lookup @root.constants.tierVisibility field.name)}}
+                <div class='tier-effects {{ifThen (eq (lookup @root.constants.tierVisibility field.name) "hidden") "hidden" ""}}'>
+                    {{#unless (lookup @root.source.system.power.tiers field.name)}}
+                        <div class='no-effects'>
+                            No Effects At This Tier
+                        </div>{{/unless}}
+
+                    {{#each (lookup @root.source.system.power.tiers field.name) as |effect|}}
+                        <div class='tier-effect'>
+                            {{!-- <div class='delete-tier-effect' data-action='deleteTierEffect' data-tier='{{field.name}}' data-effect-index='{{@index}}'>Delete effect</div> --}}
+                            <div class='tier-type'>
+                                <label>{{field.element.types.label}}Type</label>
+                                <select name='system.power.tiers.{{field.name}}.{{@index}}.type'>
+                                    {{selectOptions field.element.types localize=true selected=effect.type}}
+                                </select>
+                                <div class='delete-tier-effect' data-action='deleteTierEffect' data-tier='{{field.name}}' data-effect-index='{{@index}}'>
+                                    <i class='fas fa-trash'></i>
+                                </div>
+                            </div>
+                            {{#if (eq effect.type 'damage')}}
+
+                                {{formField
+                                    field.element.types.damage.fields.amount
+                                    value=effect.amount
+                                    name=(concat 'system.power.tiers.' field.name '.' @index '.amount')
+                                }}
+                                {{formField
+                                    field.element.types.damage.fields.dType
+                                    value=effect.dType
+                                    name=(concat 'system.power.tiers.' field.name '.' @index '.dType')
+                                    localize=true
+                                }}
+                            {{else if (eq effect.type 'knockback')}}
+                                {{formField
+                                    field.element.types.knockback.fields.distance
+                                    value=effect.distance
+                                    name=(concat 'system.power.tiers.' field.name '.' @index '.distance')
+                                }}
+                            {{else if (eq effect.type 'other')}}
+                                {{formField
+                                    field.element.types.other.fields.description
+                                    value=effect.description
+                                    name=(concat 'system.power.tiers.' field.name '.' @index '.description')
+                                }}
+                            {{/if}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
 </fieldset>

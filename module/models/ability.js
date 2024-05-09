@@ -1,4 +1,4 @@
-import { ABILITIES, CHARACTERISTICS } from '../constants/_index.js';
+import { ABILITIES, CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
 import { getDataModelChoices } from '../helpers.js';
 import { BaseItemData } from './base-item.js';
 
@@ -30,10 +30,100 @@ class KeywordField extends foundry.data.fields.ArrayField {
     }
 }
 
+class TierField {
+    constructor() {
+        const fields = foundry.data.fields;
+        const tierTypeLocalization = {
+            damage: {
+                type: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.damage.label'),
+                amount: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.damage.amount'),
+                dType: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.damage.dType'),
+            },
+            knockback: {
+                type: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.knockback.label'),
+                distance: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.knockback.distance'),
+            },
+            other: {
+                type: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.other.label'),
+                description: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.other.description'),
+            },
+        };
+
+        return new fields.ArrayField(
+            new fields.TypedSchemaField(
+                {
+                    damage: new fields.SchemaField(
+                        {
+                            type: new fields.StringField({
+                                initial: 'damage',
+                                required: true,
+                                blank: false,
+                                label: tierTypeLocalization.damage.type,
+                            }),
+                            amount: new fields.NumberField({
+                                label: tierTypeLocalization.damage.amount,
+                                initial: 0,
+                            }),
+                            dType: new fields.StringField({
+                                choices: DAMAGE.TYPES,
+                                label: tierTypeLocalization.damage.dType,
+                                initial: 'untyped',
+                            }),
+                        },
+                        {
+                            label: tierTypeLocalization.damage.type,
+                        }
+                    ),
+                    knockback: new fields.SchemaField(
+                        {
+                            type: new fields.StringField({
+                                initial: 'knockback',
+                                required: true,
+                                blank: false,
+                                label: tierTypeLocalization.knockback.type,
+                            }),
+                            distance: new fields.NumberField({
+                                label: tierTypeLocalization.knockback.distance,
+                            }),
+                        },
+                        {
+                            label: tierTypeLocalization.knockback.type,
+                        }
+                    ),
+                    other: new fields.SchemaField(
+                        {
+                            type: new fields.StringField({
+                                initial: 'other',
+                                required: true,
+                                blank: false,
+                                label: tierTypeLocalization.other.type,
+                            }),
+                            description: new fields.StringField({
+                                label: tierTypeLocalization.other.description,
+                            }),
+                        },
+                        {
+                            label: tierTypeLocalization.other.type,
+                        }
+                    ),
+                },
+                {
+                    required: false,
+                    nullable: true,
+                }
+            ),
+            {
+                min: 0,
+            }
+        );
+    }
+}
+
 export class AbilityData extends BaseItemData {
     static LOCALIZATION_PREFIXES = ['system.items.ability', 'system.general'];
     static defineSchema() {
         const fields = foundry.data.fields;
+
         return {
             ...super.defineSchema(),
             cost: new fields.StringField(),
@@ -42,9 +132,10 @@ export class AbilityData extends BaseItemData {
                     choices: getDataModelChoices(CHARACTERISTICS),
                 }),
                 tiers: new fields.SchemaField({
-                    one: new fields.StringField(),
-                    two: new fields.StringField(),
-                    three: new fields.StringField(),
+                    one: new TierField(),
+                    two: new TierField(),
+                    three: new TierField(),
+                    four: new TierField(),
                 }),
             }),
             distance: new fields.StringField(),
@@ -65,4 +156,36 @@ export class AbilityData extends BaseItemData {
             }),
         };
     }
+}
+
+function hi() {
+    let ability = game.items.contents.find((item) => item.type === 'ability');
+    ability.update({
+        system: {
+            power: {
+                tiers: {
+                    four: [
+                        {
+                            type: 'damage',
+                            amount: 5,
+                            dType: 'fire',
+                        },
+                        {
+                            type: 'knockback',
+                            distance: 10,
+                        },
+                        {
+                            type: 'knockback',
+                            distance: 5,
+                        },
+                        {
+                            type: 'damage',
+                            amount: 5,
+                            dType: 'holy',
+                        },
+                    ],
+                },
+            },
+        },
+    });
 }
