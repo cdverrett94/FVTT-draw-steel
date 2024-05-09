@@ -2,6 +2,7 @@
     <div class='mcdmrpg-header'>{{localize 'system.conditions.label'}}</div>
     <div class='conditions'>
         {{#each conditions as |condition|}}
+            {{log condition}}
             <div class='condition'>
                 <div>{{localize condition.name}}</div>
                 <div class='toggle-condition' data-condition-id='{{condition.id}}'>
@@ -39,6 +40,6 @@
         {{/each}}
     </div>
     {{#each actor.effects as |effect|}}
-        {{effect.name}}
+        {{localize effect.name}}
     {{/each}}
 </div>

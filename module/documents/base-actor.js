@@ -15,6 +15,7 @@ export class BaseActor extends Actor {
 
     grantStaminaBasedConditions(condition, threshold) {
         const existingEffect = this.effects.find((effect) => effect._id === CONDITIONS[condition]._id);
+        console.log(existingEffect, condition, threshold);
         if (this.system.stamina.current <= threshold && !existingEffect) {
             const newEffect = new MCDMActiveEffect(CONDITIONS[condition]);
             this.effects.set(newEffect._id, newEffect);
@@ -78,6 +79,9 @@ export class BaseActor extends Actor {
             const effect = this.effects.get(toId('unconscious'));
             if (effect) active = true;
             ui.notifications.error(`You can't remove prone while unconsious`);
+        } else if (['winded', 'unbalanced'].includes(statusId)) {
+            ui.notifications.error(`You can't manually toggle ${statusId}. It will automatically apply based on current stamina`);
+            return false;
         }
         let returnedEffect = await super.toggleStatusEffect(statusId, { active, overlay });
         if (returnedEffect === false) return false;
