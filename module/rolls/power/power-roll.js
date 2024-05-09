@@ -22,7 +22,7 @@ export class PowerRoll extends Roll {
     static type = 'power';
 
     get isCritical() {
-        return this.terms.find((term) => term.formula === '2d6')?.total === 12;
+        return this.terms.find((term) => term.formula === '2d10')?.total === 20;
     }
 
     get formula() {
