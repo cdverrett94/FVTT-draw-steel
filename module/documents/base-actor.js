@@ -15,7 +15,6 @@ export class BaseActor extends Actor {
 
     grantStaminaBasedConditions(condition, threshold) {
         const existingEffect = this.effects.find((effect) => effect._id === CONDITIONS[condition]._id);
-        console.log(existingEffect, condition, threshold);
         if (this.system.stamina.current <= threshold && !existingEffect) {
             const newEffect = new MCDMActiveEffect(CONDITIONS[condition]);
             this.effects.set(newEffect._id, newEffect);

@@ -214,7 +214,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
     async #onDropFolder(event, data) {
         const folder = await Folder.implementation.fromDropData(data);
-        console.log(folder);
         if (folder.type !== 'Item') return [];
         const droppedItemData = await Promise.all(
             folder.contents.map(async (item) => {

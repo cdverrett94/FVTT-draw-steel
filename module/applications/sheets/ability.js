@@ -83,9 +83,7 @@ export class AbilitySheet extends BaseItemSheet {
 
     static async addTierEffect(event, target) {
         const { tier } = target.dataset;
-        console.log(tier);
         const updateData = foundry.utils.duplicate(this.item.system.power.tiers[tier]);
-        console.log(updateData);
 
         updateData.push({
             type: 'damage',
@@ -96,9 +94,7 @@ export class AbilitySheet extends BaseItemSheet {
 
     static async deleteTierEffect(event, target) {
         const { tier, effectIndex } = target.dataset;
-        console.log(tier);
         const updateData = foundry.utils.duplicate(this.item.system.power.tiers[tier]);
-        console.log(updateData);
 
         updateData.splice(effectIndex, 1);
 
