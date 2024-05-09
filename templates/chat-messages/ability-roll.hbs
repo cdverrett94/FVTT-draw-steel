@@ -16,7 +16,8 @@
         <div class='dice-formula'>{{baseRoll.formula}}</div>
         {{{baseRoll.options.tooltip}}}
         {{#unless rolls}}
-            <h4 class='dice-total {{ifThen @root.critical "success" ""}}'>
+            {{log @root}}
+            <h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
                 <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
                 {{baseRoll.total}}
                 <span class='dice-tier'>
@@ -28,7 +29,7 @@
         {{/unless}}
     </div>
 </div>
-{{#if critical}}CRITICAL POWER ROLL{{/if}}
+{{#if @root.context.critical}}CRITICAL POWER ROLL{{/if}}
 {{#each rolls as |roll|}}
     <div class='target-roll' data-target-uuid="{{roll.options.target.uuid}}" data-target-id="{{roll.options.target.id}}" data-token-uuid="{{roll.options.token.uuid}}">
         <div class='target'>
@@ -40,7 +41,7 @@
                 <div class='dice-flavor'>{{roll.flavor}}</div>
             {{/if}}
             <div class='dice-result'>
-                <h4 class='dice-total {{ifThen @root.critical "success" ""}}'>
+                <h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
                     <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
                     {{roll.total}}
                     <span class='dice-tier'>
