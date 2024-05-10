@@ -59,7 +59,7 @@ export class BaseActor extends Actor {
     }
 
     // Delete craft/knowledge subskill
-    async deleteSkill({ name, index } = {}) {
+    async deleteCustomSkill({ name, index } = {}) {
         const skillArray = this.system.skills.customSkills;
         if (!skillArray) return false;
         if (!index) {

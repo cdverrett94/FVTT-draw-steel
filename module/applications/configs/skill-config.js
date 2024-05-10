@@ -86,7 +86,7 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     static async deleteSkill(event, target) {
         const index = target.dataset.index;
 
-        const actor = await this.actor.deleteSkill({ index });
+        const actor = await this.actor.deleteCustomSkill({ index });
         this.context.actor = actor;
         await this.render({ parts: ['customSkills'] });
         this.setPosition({ height: 'auto' });
