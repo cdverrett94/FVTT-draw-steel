@@ -16,7 +16,6 @@
         <div class='dice-formula'>{{baseRoll.formula}}</div>
         {{{baseRoll.options.tooltip}}}
         {{#unless rolls}}
-            {{log @root}}
             <h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
                 <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
                 {{baseRoll.total}}

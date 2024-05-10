@@ -15,8 +15,6 @@
                     {{field.label}}
                     <span class='add-tier-effect right-button' data-action='addTierEffect' data-tier='{{field.name}}'>+</span>
                 </div>
-                {{log field.name}}
-                {{log (lookup @root.constants.tierVisibility field.name)}}
                 <div class='tier-effects {{ifThen (eq (lookup @root.constants.tierVisibility field.name) "hidden") "hidden" ""}}'>
                     {{#unless (lookup @root.source.system.power.tiers field.name)}}
                         <div class='no-effects'>
