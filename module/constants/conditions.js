@@ -13,16 +13,18 @@ const CONDITIONS = {
         img: 'icons/svg/daze.svg',
         id: 'dazed',
         _id: toId('dazed'),
-        name: 'system.conditions.dazed',
-        label: 'system.conditions.dazed',
+        name: 'system.conditions.dazed.label',
+        label: 'system.conditions.dazed.label',
+        description: 'system.conditions.dazed.description',
         statuses: ['dazed'],
     },
     frightened: {
         img: 'icons/svg/terror.svg',
         id: 'frightened',
         _id: toId('frightened'),
-        name: 'system.conditions.frightened',
-        label: 'system.conditions.frightened',
+        name: 'system.conditions.frightened.label',
+        label: 'system.conditions.frightened.label',
+        description: 'system.conditions.frightened.description',
         statuses: ['frightened'],
         changes: [
             {
@@ -41,8 +43,9 @@ const CONDITIONS = {
         img: 'icons/svg/net.svg',
         id: 'grappled',
         _id: toId('grappled'),
-        name: 'system.conditions.grappled',
-        label: 'system.conditions.grappled',
+        name: 'system.conditions.grappled.label',
+        label: 'system.conditions.grappled.label',
+        description: 'system.conditions.grappled.description',
         statuses: ['grappled'],
         changes: [
             {
@@ -56,8 +59,9 @@ const CONDITIONS = {
         img: 'icons/svg/fire.svg',
         id: 'ongoingdamage',
         _id: toId('ongoingdamage'),
-        name: 'system.conditions.ongoing-damage',
-        label: 'system.conditions.ongoing-damage',
+        name: 'system.conditions.ongoing-damage.label',
+        label: 'system.conditions.ongoing-damage.label',
+        description: 'system.conditions.ongoing-damage.description',
         statuses: ['ongoingdamage'],
         changes: [
             {
@@ -76,8 +80,9 @@ const CONDITIONS = {
         img: 'icons/svg/falling.svg',
         id: 'prone',
         _id: toId('prone'),
-        name: 'system.conditions.prone',
-        label: 'system.conditions.prone',
+        name: 'system.conditions.prone.label',
+        label: 'system.conditions.prone.label',
+        description: 'system.conditions.prone.description',
         statuses: ['prone'],
         changes: [
             {
@@ -101,8 +106,9 @@ const CONDITIONS = {
         img: 'icons/svg/trap.svg',
         id: 'restrained',
         _id: toId('restrained'),
-        name: 'system.conditions.restrained',
-        label: 'system.conditions.restrained',
+        name: 'system.conditions.restrained.label',
+        label: 'system.conditions.restrained.label',
+        description: 'system.conditions.restrained.description',
         statuses: ['restrained'],
         changes: [
             {
@@ -123,8 +129,9 @@ const CONDITIONS = {
         img: 'icons/svg/wingfoot.svg',
         id: 'slowed',
         _id: toId('slowed'),
-        name: 'system.conditions.slowed',
-        label: 'system.conditions.slowed',
+        name: 'system.conditions.slowed.label',
+        label: 'system.conditions.slowed.label',
+        description: 'system.conditions.slowed.description',
         statuses: ['slowed'],
         changes: [
             {
@@ -139,8 +146,9 @@ const CONDITIONS = {
         img: 'icons/svg/paralysis.svg',
         id: 'surprised',
         _id: toId('surprised'),
-        name: 'system.conditions.surprised',
-        label: 'system.conditions.surprised',
+        name: 'system.conditions.surprised.label',
+        label: 'system.conditions.surprised.label',
+        description: 'system.conditions.surprised.description',
         statuses: ['surprised'],
         changes: [
             {
@@ -155,8 +163,9 @@ const CONDITIONS = {
         img: 'icons/svg/sword.svg',
         id: 'taunted',
         _id: toId('taunted'),
-        name: 'system.conditions.taunted',
-        label: 'system.conditions.taunted',
+        name: 'system.conditions.taunted.label',
+        label: 'system.conditions.taunted.label',
+        description: 'system.conditions.taunted.description',
         statuses: ['taunted'],
         changes: [
             {
@@ -175,16 +184,18 @@ const CONDITIONS = {
         img: 'icons/svg/ruins.svg',
         id: 'unbalanced',
         _id: toId('unbalanced'),
-        name: 'system.conditions.unbalanced',
-        label: 'system.conditions.unbalanced',
+        name: 'system.conditions.unbalanced.label',
+        label: 'system.conditions.unbalanced.label',
+        description: 'system.conditions.unbalanced.description',
         statuses: ['unbalanced'],
     },
     unconscious: {
         img: 'icons/svg/unconscious.svg',
         id: 'unconscious',
         _id: toId('unconscious'),
-        name: 'system.conditions.unconscious',
-        label: 'system.conditions.unconscious',
+        name: 'system.conditions.unconscious.label',
+        label: 'system.conditions.unconscious.label',
+        description: 'system.conditions.unconscious.description',
         statuses: ['unconscious', 'prone'],
         changes: [
             {
@@ -201,12 +212,13 @@ const CONDITIONS = {
             },
         ],
     },
-    weakend: {
+    weakened: {
         img: 'icons/svg/stoned.svg',
         id: 'weakened',
         _id: toId('weakened'),
-        name: 'system.conditions.weakened',
-        label: 'system.conditions.weakened',
+        name: 'system.conditions.weakened.label',
+        label: 'system.conditions.weakened.label',
+        description: 'system.conditions.weakened.description',
         statuses: ['weakened'],
         changes: [
             {
@@ -227,8 +239,9 @@ const CONDITIONS = {
         img: 'icons/svg/blood.svg',
         id: 'winded',
         _id: toId('winded'),
-        name: 'system.conditions.winded',
-        label: 'system.conditions.winded',
+        name: 'system.conditions.winded.label',
+        label: 'system.conditions.winded.label',
+        description: 'system.conditions.winded.description',
         statuses: ['winded'],
     },
 };

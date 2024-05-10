@@ -225,21 +225,60 @@
             "markTurnTaken": "Mark Turn Taken: Decrement Turns Left By 1"
         },
         "conditions": {
-            "winded": "Winded",
-            "dazed": "Dazed",
+            "dazed": {
+                "label": "Dazed",
+                "description": "While you are dazed, you can take only a maneuver or an action on your turn, but not both. You also can’t use triggered actions or free maneuvers."
+            },
             "dead": "Dead",
-            "frightened": "Frightened",
-            "grappled": "Grappled",
+            "frightened": {
+                "label": "Frightened",
+                "description": "If you are frightened, attacks you make against the source of your fear suffer 1 bane. If that source is a creature, any attacks they make against you gain 1 boon."
+            },
+            "grappled": {
+                "label": "Grappled",
+                "description": "While you are grappled, your speed is 0 and the speed of the creature grappling you is halved. When a creature grappling you moves, they can bring you with them. If a creature has you grappled by physical means, you move with that creature if they are force moved, and they move with you if you are force moved. See Break Grappled in Maneuvers for more information on ending this condition.\nIf a creature is grappling you with magic or by some other nonphysical means, the condition ends if they don’t have line of effect to you. If you teleport while grappled, the condition ends.\nUnless otherwise noted, a creature can grapple only one other creature at a time."
+            },
             "label": "Conditions",
-            "ongoing-damage": "Ongoing Damage",
-            "prone": "Prone",
-            "restrained": "Restrained",
-            "slowed": "Slowed",
-            "surprised": "Surprised",
-            "taunted": "Taunted",
-            "unbalanced": "Unbalanced",
-            "unconscious": "Unconscious",
-            "weakened": "Weakened"
+            "ongoing-damage": {
+                "label": "Ongoing Damage",
+                "description": "This condition appears in the rules as “ongoing X,” indicating that while under the effect of the condition, you take X damage at the start of every round. You can suffer multiple instances of this condition at the same time and take damage from each instance when you do. You can suffer multiple instances of this condition from the same effect."
+            },
+            "prone": {
+                "label": "Prone",
+                "description": "While you are prone, attacks you make suffer 1 bane, and melee attacks made against you gain 1 boon. Enemies can move through your space without needing to make an Acrobatics test. You must crawl to move along the ground, which costs you 1 extra square of movement for every square you crawl.\nYou can stand up from prone by spending 2 squares of movement when you use a maneuver, an action, or an ability that allows you to move."
+            },
+            "restrained": {
+                "label": "Restrained",
+                "description": "While restrained, your speed is 0, attacks you make suffer 1 bane, and attacks made against you gain 1 boon. You can’t be force moved unless the effect making you restrained says otherwise. If you teleport while restrained, the condition ends. See Break Restrained in Maneuvers for more information on ending this condition."
+            },
+            "slowed": {
+                "label": "Slowed",
+                "description": "While you are slowed, your speed is halved (rounded down as usual)."
+            },
+            "surprised": {
+                "label": "Surprised",
+                "description": "While you are surprised, attacks against you have 1 boon and you can’t use triggered actions."
+            },
+            "taunted": {
+                "label": "Taunted",
+                "description": "If you are taunted, you suffer 2 banes on attacks that don’t include a creature who taunted you, and you can’t willingly move away from a creature who taunted you while you have line of effect to them. If you gain the taunted condition while already taunted, the new condition replaces the old one."
+            },
+            "unbalanced": {
+                "label": "Unbalanced",
+                "description": "While your Health is 0 or lower, you are unbalanced. You can’t take the Recover action in combat, and whenever you make a test using a physical characteristic, make an attack, or use an action or a triggered action, you lose 5 Health."
+            },
+            "unconscious": {
+                "label": "Unconscious",
+                "description": "If you are unconscious, you can’t take actions, maneuvers, or triggered actions, and you can’t undertake no-action activities. Additionally, your speed is 0, you are unaware of your surroundings, and you are prone. Attacks made against you gain 3 boons (including the boon from being prone)."
+            },
+            "weakened": {
+                "label": "Weakened",
+                "description": "While you are weakened, your attacks and tests suffer 2 banes."
+            },
+            "winded": {
+                "label": "Winded",
+                "description": "When your Health has been reduced to half your Health maximum or lower, you are bloodied. Although the bloodied condition has no effects on its own, certain ancestry, class, item, and title abilities affect bloodied creatures."
+            }
         },
         "damage": {
             "types": {

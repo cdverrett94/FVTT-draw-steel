@@ -2,8 +2,7 @@
     <div class='mcdmrpg-header'>{{localize 'system.conditions.label'}}</div>
     <div class='conditions'>
         {{#each conditions as |condition|}}
-            {{log condition}}
-            <div class='condition'>
+            <div class='condition' data-tooltip='{{localize condition.description}}'>
                 <div>{{localize condition.name}}</div>
                 <div class='toggle-condition' data-condition-id='{{condition.id}}'>
                     {{#if (or (eq condition.id 'ongoingdamage') (eq condition.id 'taunted') (eq condition.id 'frightened'))}}
