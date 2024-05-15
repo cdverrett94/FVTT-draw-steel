@@ -9,9 +9,10 @@ export class PowerRoll extends Roll {
         modifier = Math.abs(difference) === 1 ? Math.sign(modifiers.edges - modifiers.banes) * 2 : 0;
         let formula = '2d10';
 
-        if (characteristic in CHARACTERISTICS) formula = `${formula} + @${characteristic}`;
-        if (modifier) formula = `${formula} + ${modifier}`;
-        if (modifiers.bonuses) formula = `${formula} + ${modifiers.bonuses}`;
+        if (characteristic in CHARACTERISTICS)
+            formula = `${formula} + @${characteristic}[${game.i18n.localize('system.characteristics.' + characteristic + '.label').toLowerCase()}]`;
+        if (modifier) formula = `${formula} + ${modifier}[${modifier < 0 ? 'bane' : 'edge'}]`;
+        if (modifiers.bonuses) formula = `${formula} + ${modifiers.bonuses}[${modifiers.bonuses < 0 ? 'penalties' : 'bonuses'}]`;
         super(formula, data, options);
 
         switch (difference) {
@@ -44,7 +45,7 @@ export class PowerRoll extends Roll {
     static type = 'power';
 
     get isCritical() {
-        return this.terms.find((term) => term.formula === '2d10')?.total > 2;
+        return this.terms.find((term) => term.formula === '2d10')?.total === 20;
     }
 
     get formula() {
