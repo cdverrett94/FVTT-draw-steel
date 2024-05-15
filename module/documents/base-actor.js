@@ -75,9 +75,11 @@ export class BaseActor extends Actor {
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         if (['ongoingdamage', 'taunted', 'frightened'].includes(statusId)) active = true;
         else if (statusId === 'prone') {
-            const effect = this.effects.get(toId('unconscious'));
-            if (effect) active = true;
-            ui.notifications.error(`You can't remove prone while unconsious`);
+            const unconscious = this.effects.get(toId('unconscious'));
+            if (unconscious) {
+                active = true;
+                ui.notifications.error(`You can't remove prone while unconsious`);
+            }
         } else if (['winded', 'unbalanced'].includes(statusId)) {
             ui.notifications.error(`You can't manually toggle ${statusId}. It will automatically apply based on current stamina`);
             return false;
@@ -131,15 +133,19 @@ export class BaseActor extends Actor {
 
         let edges = foundSkill?.proficient ? 1 : 0;
         edges += this.system.edges.tests;
-        const banes = this.system.banes.tests;
+        let banes = this.system.banes.tests;
+        let bonuses = 0;
 
         const rollData = {
             actor: this,
-            banes,
             characteristic,
             category,
-            edges,
             skill,
+            general: {
+                edges,
+                banes,
+                bonuses,
+            },
         };
 
         await new TestPowerRollDialog(rollData).render(true);
