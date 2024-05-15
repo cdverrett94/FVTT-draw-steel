@@ -11,8 +11,9 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         Object.assign(this.context, options);
 
         this.context.characteristic ??= 'might';
-        this.context.edges ??= 0;
-        this.context.banes ??= 0;
+        this.context.general.edges ??= 0;
+        this.context.general.banes ??= 0;
+        this.context.general.bonuses ??= 0;
 
         this.context.title = this.title;
     }
@@ -22,7 +23,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     getModifiers(context) {
-        return Object.fromEntries(Object.entries(context).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes'));
+        return Object.fromEntries(Object.entries(context).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes' || entry[0] === 'bonuses'));
     }
 
     static additionalOptions = {
@@ -66,7 +67,9 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     async _prepareContext(options) {
         this.#addRollToTargets();
-        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), { modifiers: [this.getModifiers(this.context)] });
+        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
+            modifiers: [this.getModifiers(this.context.general)],
+        });
 
         const context = {
             characteristics: CHARACTERISTICS,
@@ -96,56 +99,56 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static adjustDice(event, target) {
         let { type, adjustment, tokenTarget } = { ...target.dataset };
-        let object = tokenTarget ? this.context.targets[tokenTarget] : this.context;
+        let object = tokenTarget ? this.context.targets[tokenTarget] : this.context.general;
 
         if (adjustment === 'increase') object[type] = Math.max(object[type] + 1, 0);
-        else object[type] = Math.max(object[type] - 1, 0);
+        else object[type] = Math.max(object[type] - 1, type === 'bonuses' ? -Infinity : 0);
 
         this.render({ parts: ['adjustments', 'roll'] });
     }
 
-    static async roll() {
-        const targets = this.context.targets;
-        const rolls = [];
-        const actorRollData = this.context.actor.getRollData();
+    // static async roll() {
+    //     const targets = this.context.targets;
+    //     const rolls = [];
+    //     const actorRollData = this.context.actor.getRollData();
 
-        const baseRoll = new PowerRoll(this.context.characteristic, actorRollData);
-        await baseRoll.evaluate();
-        baseRoll.options.tooltip = await baseRoll.getTooltip();
+    //     const baseRoll = new PowerRoll(this.context.characteristic, actorRollData);
+    //     await baseRoll.evaluate();
+    //     baseRoll.options.tooltip = await baseRoll.getTooltip();
 
-        for (const target in targets) {
-            const targetRoll = targets[target].roll;
-            targetRoll.terms[0] = baseRoll.terms[0];
-            targetRoll.resetFormula();
-            if (!targetRoll._evaluated) await targetRoll.evaluate();
-            targetRoll.options.tooltip = await targetRoll.getTooltip();
-            rolls.push(targetRoll);
-        }
+    //     for (const target in targets) {
+    //         const targetRoll = targets[target].roll;
+    //         targetRoll.terms[0] = baseRoll.terms[0];
+    //         targetRoll.resetFormula();
+    //         if (!targetRoll._evaluated) await targetRoll.evaluate();
+    //         targetRoll.options.tooltip = await targetRoll.getTooltip();
+    //         rolls.push(targetRoll);
+    //     }
 
-        await ChatMessage.create({
-            user: game.user.id,
-            sound: CONFIG.sounds.dice,
-            rolls,
-            flags: {
-                mcdmrpg: {
-                    ability: this.context.ability,
-                    baseRoll,
-                    actor: this.context.actor,
-                    title: this.context.title,
-                },
-            },
-            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/power-roll.hbs', {
-                rolls,
-                title: this.context.title,
-                isCritical: baseRoll.isCritical,
-                baseRoll,
-                ability: this.context.ability,
-                actor: this.context.actor,
-            }),
-        });
+    //     await ChatMessage.create({
+    //         user: game.user.id,
+    //         sound: CONFIG.sounds.dice,
+    //         rolls,
+    //         flags: {
+    //             mcdmrpg: {
+    //                 ability: this.context.ability,
+    //                 baseRoll,
+    //                 actor: this.context.actor,
+    //                 title: this.context.title,
+    //             },
+    //         },
+    //         content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/power-roll.hbs', {
+    //             rolls,
+    //             title: this.context.title,
+    //             isCritical: baseRoll.isCritical,
+    //             baseRoll,
+    //             ability: this.context.ability,
+    //             actor: this.context.actor,
+    //         }),
+    //     });
 
-        this.close();
-    }
+    //     this.close();
+    // }
 
     #addRollToTargets() {
         for (const targetUuid in this.context.targets) {

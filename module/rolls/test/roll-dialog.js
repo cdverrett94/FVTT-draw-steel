@@ -71,7 +71,7 @@ export class TestPowerRollDialog extends PowerRollDialog {
     static async roll() {
         const actorRollData = this.context.actor.getRollData();
 
-        const roll = new PowerRoll(this.context.characteristic, actorRollData, { modifiers: [this.getModifiers(this.context)] });
+        const roll = new PowerRoll(this.context.characteristic, actorRollData, { modifiers: [this.getModifiers(this.context.general)] });
         await roll.evaluate();
         roll.options.tooltip = await roll.getTooltip();
 
