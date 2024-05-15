@@ -15,7 +15,7 @@
     </div>
     <div>{{localize 'system.sheets.actor.abilities.filters.time'}}</div>
     <div class='ability-time-filters'>
-        {{#each abilities.TIMES as |abilityTime|}}
+        {{#each constants.abilities.TIMES as |abilityTime|}}
             <div
                 class='ability-filter ability-time-filter{{ifThen (eq @key @root.filters.time) " active-filter" ""}}'
                 data-action='filterAbilities'
