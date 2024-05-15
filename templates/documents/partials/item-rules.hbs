@@ -5,24 +5,39 @@
             <div class='rule-affects'>
                 <div class='label'>Affects</div>
                 <div class='value'>
-                    {{formInput @root.fields.rules.element.fields.affects value=rule.affects name=(concat 'system.rules.' @index '.affects')}}
+                    {{formInput
+                        @root.fields.rules.element.fields.affects
+                        value=rule.affects
+                        name=(concat 'system.rules.' @index '.affects')
+                        placeholder='Active Effect Key'
+                    }}
                 </div>
             </div>
             <div class='rule-key'>
                 <div class='label'>Key</div>
-                <div class='value'>{{formInput @root.fields.rules.element.fields.key value=rule.key name=(concat 'system.rules.' @index '.key')}}</div>
+                <div class='value'>{{formInput
+                        @root.fields.rules.element.fields.key
+                        value=rule.key
+                        name=(concat 'system.rules.' @index '.key')
+                        placeholder='Active Effect Key3'
+                    }}</div>
             </div>
             <div class='rule-mode'>
                 <div class='label'>Mode</div>
                 <div class='value'>
                     <select name='system.rules.{{@index}}.mode' data-dtype='Number'>
-                        {{selectOptions @root.aeModes selected=rule.mode}}
+                        {{selectOptions @root.constants.activeEffectModes selected=rule.mode localize=true labelAttr='label' blank=false}}
                     </select>
                 </div>
             </div>
             <div class='rule-value'>
                 <div class='label'>Value</div>
-                <div class='value'>{{formInput @root.fields.rules.element.fields.value value=rule.value name=(concat 'system.rules.' @index '.value')}}</div>
+                <div class='value'>{{formInput
+                        @root.fields.rules.element.fields.value
+                        value=rule.value
+                        name=(concat 'system.rules.' @index '.value')
+                        placeholder='Active Effect Value'
+                    }}</div>
             </div>
             <div class='rule-delete' data-action='deleteRule' data-rule-index='{{@index}}'>
                 <div class='label' style='visibility:hidden;'>Delete</div>
