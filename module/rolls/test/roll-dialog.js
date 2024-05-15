@@ -1,5 +1,4 @@
 import { capitalize } from '../../helpers.js';
-import { PowerRoll } from '../power/power-roll.js';
 import { PowerRollDialog } from '../power/roll-dialog.js';
 
 export class TestPowerRollDialog extends PowerRollDialog {
@@ -30,7 +29,7 @@ export class TestPowerRollDialog extends PowerRollDialog {
 
     static additionalOptions = {
         actions: {
-            roll: TestPowerRollDialog.roll,
+            roll: this.roll,
         },
     };
 
@@ -38,40 +37,10 @@ export class TestPowerRollDialog extends PowerRollDialog {
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, TestPowerRollDialog.additionalOptions, { inplace: false });
 
     /** @override */
-    static PARTS = {
-        header: {
-            id: 'header',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/header.hbs',
-        },
-        characteristic: {
-            id: 'characteristic-select',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/characteristic-select.hbs',
-        },
-        adjustments: {
-            id: 'dice-adjustments',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/dice-adjustments.hbs',
-        },
-        roll: {
-            id: 'roll',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/roll-button.hbs',
-        },
-    };
-
-    async _prepareContext(options) {
-        const context = super._prepareContext(options);
-
-        return context;
-    }
-
-    _onRender(context, options) {
-        super._onRender(context, options);
-        this.setPosition({ height: 'auto' });
-    }
+    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     static async roll() {
-        const actorRollData = this.context.actor.getRollData();
-
-        const roll = new PowerRoll(this.context.characteristic, actorRollData, { modifiers: [this.getModifiers(this.context.general)] });
+        const roll = this.context.baseRoll;
         await roll.evaluate();
         roll.options.tooltip = await roll.getTooltip();
 

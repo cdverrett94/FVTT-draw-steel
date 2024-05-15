@@ -1,7 +1,6 @@
 import { PowerRoll } from '../power/power-roll.js';
 import { PowerRollDialog } from '../power/roll-dialog.js';
 
-const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class AbilityPowerRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
@@ -26,7 +25,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             height: 'auto',
         },
         actions: {
-            roll: AbilityPowerRollDialog.roll,
+            roll: this.roll,
         },
     };
 
@@ -34,64 +33,28 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilityPowerRollDialog.additionalOptions, { inplace: false });
 
     /** @override */
-    static PARTS = {
-        header: {
-            id: 'header',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/header.hbs',
-        },
-        characteristic: {
-            id: 'characteristic-select',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/characteristic-select.hbs',
-        },
-        adjustments: {
-            id: 'dice-adjustments',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/dice-adjustments.hbs',
-        },
-        roll: {
-            id: 'roll',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/roll-button.hbs',
-        },
-    };
+    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-
-        return context;
-    }
-
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-        if (partId === 'characteristic') {
-            htmlElement.querySelector('select').addEventListener('change', (event) => {
-                this.context.characteristic = event.target.value;
-                this.context.title = this.title;
-                this.render({ parts: ['header', 'adjustments', 'roll'] });
+        if (this.context.hasTargets) {
+            this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), { ability: this.context.ability });
+        } else {
+            this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
+                ability: this.context.ability,
+                modifiers: [this.getModifiers(this.context.general)],
             });
         }
-    }
+        context.context.baseRoll = this.context.baseRoll;
 
-    _onRender(context, options) {
-        super._onRender(context, options);
-        this.setPosition({ height: 'auto' });
-    }
-
-    static adjustDice(event, target) {
-        let { type, adjustment, tokenTarget } = { ...target.dataset };
-        let object = tokenTarget ? this.context.targets[tokenTarget] : this.context;
-
-        if (adjustment === 'increase') object[type] = Math.max(object[type] + 1, 0);
-        else object[type] = Math.max(object[type] - 1, 0);
-
-        this.render({ parts: ['adjustments', 'roll'] });
+        return context;
     }
 
     static async roll() {
         const targets = this.context.targets;
         const rolls = [];
-        const actorRollData = this.context.actor.getRollData();
-        const baseRoll = this.context.hasTargets
-            ? new PowerRoll(this.context.characteristic, actorRollData, { ability: this.context.ability })
-            : this.context.baseRoll;
+
+        const baseRoll = this.context.baseRoll;
         await baseRoll.evaluate();
         const chatSystemData = {
             origin: {
@@ -137,14 +100,6 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             user: game.user.id,
             sound: CONFIG.sounds.dice,
             rolls,
-            flags: {
-                mcdmrpg: {
-                    ability: this.context.ability,
-                    baseRoll,
-                    actor: this.context.actor,
-                    title: this.context.title,
-                },
-            },
             content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-roll.hbs', {
                 rolls,
                 baseRoll,
