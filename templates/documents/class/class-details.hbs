@@ -1,29 +1,52 @@
 <div class='class-details'>
-    <div class='class-description'>
-        <fieldset>
-            <legend>{{localize 'system.items.class.FIELDS.description.label'}}</legend>
-            <div>{{editor source.system.description target='system.description' editable=true collaborate=true button=true engine='prosemirror'}}</div>
-        </fieldset>
+    <div class='class-left-column'>
+        <div class='class-description'>
+            <fieldset>
+                <legend>{{localize 'system.items.class.FIELDS.description.label'}}</legend>
+
+                {{formInput
+                    fields.description
+                    value=source.system.description
+                    classes='class-description'
+                    target='system.description'
+                    localize=true
+                    toggled=true
+                    enriched=enriched.description
+                }}
+            </fieldset>
+        </div>
     </div>
     <div class='class-right-column'>
         <div class='class-victory-benefits'>
             <fieldset>
                 <legend>{{localize 'system.items.class.FIELDS.victoryBenefits.label'}}</legend>
-                <div>{{{editor
-                        source.system.victoryBenefits
-                        target='system.victoryBenefits'
-                        editable=true
-                        collaborate=true
-                        button=true
-                        engine='prosemirror'
-                    }}}</div>
+
+                {{formInput
+                    fields.victoryBenefits
+                    value=source.system.victoryBenefits
+                    classes='class-victory-benefits'
+                    target='system.victoryBenefits'
+                    localize=true
+                    toggled=true
+                    enriched=enriched.victoryBenefits
+                }}
             </fieldset>
         </div>
 
         <div class='class-resource-gain'>
             <fieldset>
                 <legend>{{localize 'system.items.class.FIELDS.resourceGain.label'}}</legend>
-                <div>{{{editor source.system.resourceGain target='system.resourceGain' editable=true collaborate=true button=true engine='prosemirror'}}}</div>
+
+                {{formInput
+                    fields.resourceGain
+                    value=source.system.resourceGain
+                    classes='class-resource-gain'
+                    target='system.resourceGain'
+                    localize=true
+                    toggled=true
+                    enriched=enriched.resourceGain
+                    editable=false
+                }}
             </fieldset>
         </div>
     </div>

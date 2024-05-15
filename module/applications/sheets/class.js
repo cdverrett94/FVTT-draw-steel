@@ -4,7 +4,7 @@ export class ClassSheet extends BaseItemSheet {
         classes: ['class'],
         position: {
             width: 900,
-            height: 755,
+            height: 'auto',
         },
         actions: {
             addResource: ClassSheet.#addResource,
@@ -31,6 +31,10 @@ export class ClassSheet extends BaseItemSheet {
                 id: 'details',
                 template: 'systems/mcdmrpg/templates/documents/class/class-details.hbs',
             },
+            rules: {
+                id: 'rules',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-rules.hbs',
+            },
         },
         { inplace: false }
     );
@@ -43,9 +47,11 @@ export class ClassSheet extends BaseItemSheet {
             async: true,
         };
 
-        context.item.system.description = (await TextEditor.enrichHTML(context.item.system.description, enrichContext)) ?? '';
-        context.item.system.victoryBenefits = (await TextEditor.enrichHTML(context.item.system.victoryBenefits, enrichContext)) ?? '';
-        context.item.system.reitemGain = (await TextEditor.enrichHTML(context.item.system.resourceGain, enrichContext)) ?? '';
+        context.enriched = {
+            description: (await TextEditor.enrichHTML(context.item.system.description, enrichContext)) ?? '',
+            victoryBenefits: (await TextEditor.enrichHTML(context.item.system.victoryBenefits, enrichContext)) ?? '',
+            resourceGain: (await TextEditor.enrichHTML(context.item.system.resourceGain, enrichContext)) ?? '',
+        };
 
         return context;
     }
@@ -57,11 +63,15 @@ export class ClassSheet extends BaseItemSheet {
         let resources = this.item.system.resources;
         resources.splice(index, 1);
         await this.item.update({ 'system.resources': resources });
+
+        this.setPosition({ height: 'auto' });
     }
 
     static async #addResource() {
         let resources = this.item.system.resources ?? [];
         resources.push({ name: 'New Resource', max: '' });
         await this.item.update({ 'system.resources': resources });
+
+        this.setPosition({ height: 'auto' });
     }
 }
