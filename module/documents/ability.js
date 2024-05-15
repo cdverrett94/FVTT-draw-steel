@@ -80,6 +80,7 @@ export class AbilityItem extends BaseItem {
         let rollData = {
             edges: 0,
             banes: 0,
+            bonuses: 0,
         };
         // Get Edges/Banes that apply when target is attacked
         if (target.system.edges.attacked) rollData.edges += target.system.edges.attacked;
