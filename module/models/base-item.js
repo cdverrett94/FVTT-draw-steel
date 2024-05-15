@@ -5,7 +5,7 @@ export class BaseItemData extends foundry.abstract.TypeDataModel {
             rules: new fields.ArrayField(
                 new fields.SchemaField({
                     affects: new fields.StringField({
-                        choices: ['actor', 'item'],
+                        choices: { actor: { label: 'DOCUMENT.Actor' }, item: { label: 'DOCUMENT.Item' } },
                         initial: 'item',
                     }),
                     key: new fields.StringField(),
