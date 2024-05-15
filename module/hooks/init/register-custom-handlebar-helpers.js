@@ -9,4 +9,12 @@ export function registerCustomHandlebarHelpers() {
     Handlebars.registerHelper('stringify', function (object) {
         return JSON.stringify(object, null, '  ');
     });
+
+    Handlebars.registerHelper('add', function (...numbers) {
+        return numbers.reduce((accumulator, current) => {
+            if (Number.isNumeric(current)) accumulator += Number(current);
+
+            return accumulator;
+        }, 0);
+    });
 }
