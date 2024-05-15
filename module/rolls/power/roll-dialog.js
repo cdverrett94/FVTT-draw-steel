@@ -38,7 +38,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
             height: 'auto',
         },
         actions: {
-            adjustDice: PowerRollDialog.adjustDice,
+            adjustDice: this.adjustDice,
         },
     };
 
@@ -87,75 +87,29 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
             htmlElement.querySelector('select').addEventListener('change', (event) => {
                 this.context.characteristic = event.target.value;
                 this.context.title = this.title;
-                this.render({ parts: ['header', 'adjustments', 'roll'] });
+                this.render({ parts: ['header', 'adjustments'] });
             });
         }
-    }
-
-    _onRender(context, options) {
-        super._onRender(context, options);
-        this.setPosition({ height: 'auto' });
     }
 
     static adjustDice(event, target) {
         let { type, adjustment, tokenTarget } = { ...target.dataset };
         let object = tokenTarget ? this.context.targets[tokenTarget] : this.context.general;
 
-        if (adjustment === 'increase') object[type] = Math.max(object[type] + 1, 0);
-        else object[type] = Math.max(object[type] - 1, type === 'bonuses' ? -Infinity : 0);
+        if (adjustment === 'increase') object[type] += 1;
+        else object[type] -= 1;
 
-        this.render({ parts: ['adjustments', 'roll'] });
+        if (type !== 'bonuses') object[type] = Math.max(object[type], 0);
+
+        this.render({ parts: ['adjustments'] });
     }
-
-    // static async roll() {
-    //     const targets = this.context.targets;
-    //     const rolls = [];
-    //     const actorRollData = this.context.actor.getRollData();
-
-    //     const baseRoll = new PowerRoll(this.context.characteristic, actorRollData);
-    //     await baseRoll.evaluate();
-    //     baseRoll.options.tooltip = await baseRoll.getTooltip();
-
-    //     for (const target in targets) {
-    //         const targetRoll = targets[target].roll;
-    //         targetRoll.terms[0] = baseRoll.terms[0];
-    //         targetRoll.resetFormula();
-    //         if (!targetRoll._evaluated) await targetRoll.evaluate();
-    //         targetRoll.options.tooltip = await targetRoll.getTooltip();
-    //         rolls.push(targetRoll);
-    //     }
-
-    //     await ChatMessage.create({
-    //         user: game.user.id,
-    //         sound: CONFIG.sounds.dice,
-    //         rolls,
-    //         flags: {
-    //             mcdmrpg: {
-    //                 ability: this.context.ability,
-    //                 baseRoll,
-    //                 actor: this.context.actor,
-    //                 title: this.context.title,
-    //             },
-    //         },
-    //         content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/power-roll.hbs', {
-    //             rolls,
-    //             title: this.context.title,
-    //             isCritical: baseRoll.isCritical,
-    //             baseRoll,
-    //             ability: this.context.ability,
-    //             actor: this.context.actor,
-    //         }),
-    //     });
-
-    //     this.close();
-    // }
 
     #addRollToTargets() {
         for (const targetUuid in this.context.targets) {
             const actorRollData = this.context.actor.getRollData();
             const targetContext = this.context.targets[targetUuid];
 
-            const contextRollData = this.getModifiers(this.context);
+            const contextRollData = this.getModifiers(this.context.general);
             const targetRollData = this.getModifiers(targetContext);
             const rollData = {
                 target: targetContext.actor,
