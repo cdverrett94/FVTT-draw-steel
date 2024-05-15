@@ -219,6 +219,16 @@
                 "button": {
                     "label": "Damage {name}"
                 }
+            },
+            "ability": {
+                "tierModified": {
+                    "doubleBane": {
+                        "label": "Tier decreased by 1 due to double bane"
+                    },
+                    "doubleEdge": {
+                        "label": "Tier increased by 1 due to double edge"
+                    }
+                }
             }
         },
         "combat": {
@@ -366,6 +376,7 @@
                         },
                         "tiers": {
                             "label": "Tiers",
+                            "singular": "Tier",
                             "one": {
                                 "label": "Tier 1"
                             },
