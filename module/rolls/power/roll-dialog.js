@@ -11,6 +11,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         Object.assign(this.context, options);
 
         this.context.characteristic ??= 'might';
+        this.context.general ??= {};
         this.context.general.edges ??= 0;
         this.context.general.banes ??= 0;
         this.context.general.bonuses ??= 0;
@@ -113,6 +114,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
             const targetRollData = this.getModifiers(targetContext);
             const rollData = {
                 target: targetContext.actor,
+                token: targetContext.token,
                 modifiers: [contextRollData, targetRollData],
                 ability: this.context.ability,
             };
