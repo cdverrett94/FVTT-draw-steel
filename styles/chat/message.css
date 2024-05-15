@@ -14,7 +14,7 @@
     margin-top: 5px;
 }
 
-.message .message-content .dice-total span {
+.message .message-content .dice-total > span {
     position: absolute;
     font-size: smaller;
 }
@@ -24,6 +24,19 @@
 }
 .message .message-content .dice-total span.dice-tier {
     right: 5px;
+}
+
+.message .message-content .dice-total span.dice-tier.tier-modified-doubleEdge {
+    color: blue;
+}
+
+.message .message-content .dice-total span.dice-tier.tier-modified-doubleBane {
+    color: red;
+}
+
+.message .message-content .dice-total span.tier-modified-info {
+    font-size: smaller;
+    color: initial;
 }
 
 .message .message-content .target-roll {
