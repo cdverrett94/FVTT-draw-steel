@@ -14,10 +14,6 @@ export class AncestrySheet extends BaseItemSheet {
     static PARTS = foundry.utils.mergeObject(
         super.PARTS,
         {
-            header: {
-                id: 'header',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
-            },
             size: {
                 id: 'size',
                 template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-size.hbs',
