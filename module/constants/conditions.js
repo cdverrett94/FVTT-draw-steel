@@ -6,7 +6,6 @@ const CONDITIONS = {
         id: 'dead',
         _id: toId('dead'),
         name: 'system.conditions.dead',
-        label: 'system.conditions.dead',
         statuses: ['dead'],
     },
     dazed: {
@@ -14,7 +13,6 @@ const CONDITIONS = {
         id: 'dazed',
         _id: toId('dazed'),
         name: 'system.conditions.dazed.label',
-        label: 'system.conditions.dazed.label',
         description: 'system.conditions.dazed.description',
         statuses: ['dazed'],
     },
@@ -23,7 +21,6 @@ const CONDITIONS = {
         id: 'frightened',
         _id: toId('frightened'),
         name: 'system.conditions.frightened.label',
-        label: 'system.conditions.frightened.label',
         description: 'system.conditions.frightened.description',
         statuses: ['frightened'],
         changes: [
@@ -44,7 +41,6 @@ const CONDITIONS = {
         id: 'grappled',
         _id: toId('grappled'),
         name: 'system.conditions.grappled.label',
-        label: 'system.conditions.grappled.label',
         description: 'system.conditions.grappled.description',
         statuses: ['grappled'],
         changes: [
@@ -60,7 +56,6 @@ const CONDITIONS = {
         id: 'ongoingdamage',
         _id: toId('ongoingdamage'),
         name: 'system.conditions.ongoing-damage.label',
-        label: 'system.conditions.ongoing-damage.label',
         description: 'system.conditions.ongoing-damage.description',
         statuses: ['ongoingdamage'],
         changes: [
@@ -81,7 +76,6 @@ const CONDITIONS = {
         id: 'prone',
         _id: toId('prone'),
         name: 'system.conditions.prone.label',
-        label: 'system.conditions.prone.label',
         description: 'system.conditions.prone.description',
         statuses: ['prone'],
         changes: [
@@ -107,7 +101,6 @@ const CONDITIONS = {
         id: 'restrained',
         _id: toId('restrained'),
         name: 'system.conditions.restrained.label',
-        label: 'system.conditions.restrained.label',
         description: 'system.conditions.restrained.description',
         statuses: ['restrained'],
         changes: [
@@ -130,7 +123,6 @@ const CONDITIONS = {
         id: 'slowed',
         _id: toId('slowed'),
         name: 'system.conditions.slowed.label',
-        label: 'system.conditions.slowed.label',
         description: 'system.conditions.slowed.description',
         statuses: ['slowed'],
         changes: [
@@ -147,7 +139,6 @@ const CONDITIONS = {
         id: 'surprised',
         _id: toId('surprised'),
         name: 'system.conditions.surprised.label',
-        label: 'system.conditions.surprised.label',
         description: 'system.conditions.surprised.description',
         statuses: ['surprised'],
         changes: [
@@ -164,7 +155,6 @@ const CONDITIONS = {
         id: 'taunted',
         _id: toId('taunted'),
         name: 'system.conditions.taunted.label',
-        label: 'system.conditions.taunted.label',
         description: 'system.conditions.taunted.description',
         statuses: ['taunted'],
         changes: [
@@ -185,7 +175,6 @@ const CONDITIONS = {
         id: 'unbalanced',
         _id: toId('unbalanced'),
         name: 'system.conditions.unbalanced.label',
-        label: 'system.conditions.unbalanced.label',
         description: 'system.conditions.unbalanced.description',
         statuses: ['unbalanced'],
     },
@@ -194,7 +183,6 @@ const CONDITIONS = {
         id: 'unconscious',
         _id: toId('unconscious'),
         name: 'system.conditions.unconscious.label',
-        label: 'system.conditions.unconscious.label',
         description: 'system.conditions.unconscious.description',
         statuses: ['unconscious', 'prone'],
         changes: [
@@ -217,7 +205,6 @@ const CONDITIONS = {
         id: 'weakened',
         _id: toId('weakened'),
         name: 'system.conditions.weakened.label',
-        label: 'system.conditions.weakened.label',
         description: 'system.conditions.weakened.description',
         statuses: ['weakened'],
         changes: [
@@ -240,7 +227,6 @@ const CONDITIONS = {
         id: 'winded',
         _id: toId('winded'),
         name: 'system.conditions.winded.label',
-        label: 'system.conditions.winded.label',
         description: 'system.conditions.winded.description',
         statuses: ['winded'],
     },
