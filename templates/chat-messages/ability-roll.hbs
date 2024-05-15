@@ -16,15 +16,7 @@
         <div class='dice-formula'>{{baseRoll.formula}}</div>
         {{{baseRoll.options.tooltip}}}
         {{#unless rolls}}
-            <h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
-                <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
-                {{baseRoll.total}}
-                <span class='dice-tier'>
-                    Tier
-                    {{baseRoll.tier}}
-                </span>
-
-            </h4>
+            {{> 'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs' roll=baseRoll}}
         {{/unless}}
     </div>
 </div>
@@ -40,15 +32,9 @@
                 <div class='dice-flavor'>{{roll.flavor}}</div>
             {{/if}}
             <div class='dice-result'>
-                <h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
-                    <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
-                    {{roll.total}}
-                    <span class='dice-tier'>
-                        Tier
-                        {{roll.tier}}
-                    </span>
-                </h4>
+                {{> 'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs' roll=roll}}
             </div>
+            {{> 'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs' roll=roll}}
         </div>
         <div class="target-buttons" data-target-uuid="{{roll.options.target.uuid}}" data-target-id="{{roll.options.target.id}}" data-token-uuid="{{roll.options.token.uuid}}"></div>
     </div>

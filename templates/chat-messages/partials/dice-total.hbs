@@ -1,0 +1,15 @@
+<h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
+    <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
+    {{roll.total}}
+
+    <span class='dice-tier {{ifThen roll.tierModified (concat "tier-modified-" roll.modifierType) ""}}'>
+        {{localize 'system.items.ability.FIELDS.power.tiers.singular'}}
+        {{roll.tier}}
+        {{#if roll.tierModified}}
+            <span class='tier-modified-info' data-tooltip='{{localize (concat "system.chat.ability.tierModified." roll.modifierType ".label")}}'>
+                <i class='fa-solid fa-circle-info'></i>
+            </span>
+        {{/if}}
+    </span>
+
+</h4>
