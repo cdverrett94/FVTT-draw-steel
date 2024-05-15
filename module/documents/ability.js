@@ -62,7 +62,7 @@ export class AbilityItem extends BaseItem {
     }
 
     get isRollable() {
-        if (this.system.power.tiers.one || this.system.power.tiers.two || this.system.power.tiers.three) return true;
+        if (this.system.power.tiers.one.length || this.system.power.tiers.two.length || this.system.power.tiers.three.length) return true;
         else return false;
     }
 
