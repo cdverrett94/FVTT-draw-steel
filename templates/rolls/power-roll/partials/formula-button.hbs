@@ -1,0 +1,12 @@
+<div class='roll-button roll-dialog-section'>
+    <button class='roll-button' data-formula='{{roll.formula}}' data-action='roll' disabled data-token-target='{{token}}'>
+        {{roll.formula}}
+        {{#if roll.tierModified}}
+            {{#if (eq roll.modifierType 'doubleBane')}}
+                - 1 Tier
+            {{else if (eq roll.modifierType 'doubleEdge')}}
+                + 1 Tier
+            {{/if}}
+        {{/if}}
+    </button>
+</div>

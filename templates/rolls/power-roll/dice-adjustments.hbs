@@ -41,9 +41,7 @@
             </div>
         </div>
         {{#unless context.hasTargets}}
-            <div class='roll-button roll-dialog-section'>
-                <button class='roll-button' data-formula='{{context.baseRoll.formula}}' data-action='roll' disabled>{{context.baseRoll.formula}}</button>
-            </div>
+             {{> 'systems/mcdmrpg/templates/rolls/power-roll/partials/formula-button.hbs' roll=context.baseRoll}}
         {{/unless}}
     </div>
 
@@ -111,15 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class='roll-button roll-dialog-section'>
-                <button
-                    class='roll-button'
-                    data-token-target='{{@key}}'
-                    data-formula='{{target.roll.formula}}'
-                    data-action='roll'
-                    disabled
-                >{{target.roll.formula}}</button>
-            </div>
+            {{> 'systems/mcdmrpg/templates/rolls/power-roll/partials/formula-button.hbs' roll=target.roll token=@key}}
         </div>
     {{/each}}
 </div>
