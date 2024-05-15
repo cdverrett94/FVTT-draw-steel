@@ -47,10 +47,6 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         }
     }
 
-    get item() {
-        return this.document;
-    }
-
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, BaseItemSheet.additionalOptions, { inplace: false });
 
     static PARTS = {
@@ -73,19 +69,21 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             item: this.item,
             source: this.item.toObject(),
             fields: this.item.system.schema.fields,
-            aeModes: Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((obj, e) => {
-                obj[e[1]] = game.i18n.localize(`EFFECT.MODE_${e[0]}`);
-                return obj;
-            }, {}),
+            constants: {
+                activeEffectModes: Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((obj, e) => {
+                    obj[e[1]] = game.i18n.localize(`EFFECT.MODE_${e[0]}`);
+                    return obj;
+                }, {}),
+            },
         };
     }
 
     static async addNewRule() {
         const updateData = foundry.utils.duplicate(this.item.system.rules);
         updateData.push({
-            key: 'AE KEY',
+            key: '',
             mode: 2,
-            value: 'AE VALUE',
+            value: '',
             predicate: [],
         });
         await this.item.update({ system: { rules: updateData } });

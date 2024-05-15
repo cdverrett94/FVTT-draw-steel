@@ -56,7 +56,15 @@ export class MonsterSheet extends BaseActorSheet {
     );
 
     async _prepareContext(options) {
-        let context = await super._prepareContext();
+        let context = foundry.utils.mergeObject(
+            await super._prepareContext(),
+            {
+                constants: {
+                    negotiation: NEGOTIATION,
+                },
+            },
+            { inplace: false }
+        );
 
         context.monsterRoles = MONSTER_ROLES;
         let proficientSkills = {};
@@ -69,7 +77,6 @@ export class MonsterSheet extends BaseActorSheet {
             }
         }
         context.proficientSkills = proficientSkills;
-        context.NEGOTIATION = NEGOTIATION;
         context.widgets = {
             pitfalls: this.createPitfallsField.bind(this),
         };

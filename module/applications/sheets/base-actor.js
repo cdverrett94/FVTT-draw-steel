@@ -11,7 +11,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             type: null,
         };
     }
-    actor = this.document;
 
     tabGroups = {
         main: null,
@@ -68,10 +67,12 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             source: this.actor.toObject(),
             fields: this.actor.system.schema.fields,
             filters: this.filters,
-            abilities: ABILITIES,
-            conditions: CONDITIONS,
-            damages: DAMAGE.TYPES,
             activeTabs: this.tabGroups,
+            constants: {
+                damages: DAMAGE.TYPES,
+                abilities: ABILITIES,
+                conditions: CONDITIONS,
+            },
         };
 
         for (const [group, abilities] of Object.entries(context.actor.abilities)) {

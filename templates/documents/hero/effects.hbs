@@ -1,7 +1,7 @@
 <div class='tab effects-tab {{ifThen (eq activeTabs.main "effects") "active" ""}}' data-group='main' data-tab='effects'>
     <div class='mcdmrpg-header'>{{localize 'system.conditions.label'}}</div>
     <div class='conditions'>
-        {{#each conditions as |condition|}}
+        {{#each constants.conditions as |condition|}}
             <div class='condition' data-tooltip='{{localize condition.description}}'>
                 <div>{{localize condition.name}}</div>
                 <div class='toggle-condition' data-condition-id='{{condition.id}}'>

@@ -53,12 +53,16 @@ export class AbilitySheet extends BaseItemSheet {
     );
 
     async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-
-        context.constants = {
-            keywords: ABILITIES.KEYWORDS,
-            tierVisibility: this.tierVisibility,
-        };
+        const context = foundry.utils.mergeObject(
+            await super._prepareContext(options),
+            {
+                constants: {
+                    keywords: ABILITIES.KEYWORDS,
+                    tierVisibility: this.tierVisibility,
+                },
+            },
+            { inplace: false }
+        );
 
         return context;
     }
