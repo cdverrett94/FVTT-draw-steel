@@ -11,10 +11,6 @@ export class MonsterSheet extends BaseActorSheet {
         actions: {},
     };
 
-    tabGroups = {
-        main: null,
-    };
-
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
 

@@ -15,10 +15,6 @@ export class HeroSheet extends BaseActorSheet {
         },
     };
 
-    tabGroups = {
-        main: null,
-    };
-
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, HeroSheet.additionalOptions, { inplace: false });
 

@@ -13,6 +13,10 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     }
     actor = this.document;
 
+    tabGroups = {
+        main: null,
+    };
+
     static additionalOptions = {
         window: {
             icon: 'fas fa-user',
