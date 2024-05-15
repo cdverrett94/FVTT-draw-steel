@@ -16,6 +16,9 @@ export async function registerTemplates() {
         'systems/mcdmrpg/templates/chat-messages/damage-message.hbs',
         'systems/mcdmrpg/templates/chat-messages/ability-message.hbs',
         'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs',
+
+        // Rolls
+        'systems/mcdmrpg/templates/rolls/power-roll/partials/formula-button.hbs',
     ];
     await loadTemplates(templatePaths);
 }

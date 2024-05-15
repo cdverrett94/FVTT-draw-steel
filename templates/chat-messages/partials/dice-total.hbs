@@ -1,5 +1,8 @@
 <h4 class='dice-total {{ifThen @root.context.critical "success" ""}}'>
-    <span class='dice-modifier'>{{ifThen (gte roll.modifier 0) '+' ''}}{{roll.modifier}}</span>
+    <span class='dice-modifier'>
+        {{ifThen (gte (add roll.modifier roll.modifiers.bonuses) 0) '+' ''}}{{add roll.modifier roll.modifiers.bonuses}}
+    </span>
+
     {{roll.total}}
 
     <span class='dice-tier {{ifThen roll.tierModified (concat "tier-modified-" roll.modifierType) ""}}'>
@@ -11,5 +14,4 @@
             </span>
         {{/if}}
     </span>
-
 </h4>
