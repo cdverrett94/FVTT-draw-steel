@@ -47,10 +47,11 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
             const actor = await fromUuid(change.value);
             actors[change.value] = actor;
         }
+
         return {
             effect: this.effect,
             titles: this.effect.flags.mcdmrpg?.titles ?? [],
-            headerLabel: CONDITIONS.frightened.label,
+            headerLabel: CONDITIONS.frightened.name,
             actors,
         };
     }

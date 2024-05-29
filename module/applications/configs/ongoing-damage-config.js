@@ -49,7 +49,7 @@ export class OngoingDamageConfig extends HandlebarsApplicationMixin(ApplicationV
             titles: this.effect.flags?.mcdmrpg?.titles,
             damage: DAMAGE.TYPES,
             currentSelections: this.effect.changes.map((change) => change.key.split('system.ongoingDamage.')[1]),
-            headerLabel: CONDITIONS.ongoingdamage.label,
+            headerLabel: CONDITIONS.ongoingdamage.name,
         };
     }
 

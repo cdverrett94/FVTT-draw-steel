@@ -50,7 +50,7 @@ export class TauntedConfig extends HandlebarsApplicationMixin(ApplicationV2) {
         return {
             effect: this.effect,
             titles: this.effect.flags.mcdmrpg?.titles ?? [],
-            headerLabel: CONDITIONS.taunted.label,
+            headerLabel: CONDITIONS.taunted.name,
             actors,
         };
     }
