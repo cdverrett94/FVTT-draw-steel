@@ -9,7 +9,7 @@ function createTargetButton(document, dataset = {}, classes = [], text = '', dis
         targetButton.disabled = true;
         targetButton.classList.add('disabled');
     } else {
-        registerListeners(targetButton, document, index);
+        registerListeners(targetButton, document, dataset.index);
     }
 
     return targetButton;
@@ -40,18 +40,20 @@ async function addButtonsToTargets(document, html) {
             let registerListeners;
 
             if (effect.type === 'damage') {
+                dataset.damageAmount = effect.amount ?? 0;
+                dataset.damageType = effect.dType ?? 'untyped';
+
                 const localizationPath = disabled ? 'system.rolls.damage.chatDamageButton.applied' : 'system.rolls.damage.chatDamageButton.apply';
                 const damageTypeText = dataset.damageType !== 'untyped' ? ' ' + game.i18n.localize(`system.damage.types.${dataset.damageType}.label`) : '';
 
                 text = game.i18n.format(localizationPath, { amount: dataset.damageAmount, type: damageTypeText });
-                dataset.damageAmount = effect.amount ?? 0;
-                dataset.damageType = effect.dType ?? 'untyped';
                 registerListeners = registerDamageTargetListeners;
             } else if (effect.type === 'knockback') {
                 const localizationPath = disabled ? 'system.terms.knockback.applied' : 'system.terms.knockback.label';
 
                 text = `${game.i18n.localize(localizationPath)} ${dataset.knockbackDistance}`;
                 dataset.knockbackDistance = effect.distance;
+                registerListeners = registerKnockbackTargetListeners;
             }
 
             const button = createTargetButton(document, dataset, classes, text, disabled, registerListeners);
@@ -67,45 +69,37 @@ function registerDamageTargetListeners(element, document, index) {
         const actor = await fromUuid(targetUuid);
         await actor.applyDamage({ amount: damageAmount, type: damageType });
 
-        const updateData = {
-            system: {
-                targets: {},
-            },
-        };
-
-        let appliedEffects = foundry.utils.duplicate(document.system.targets[targetId].appliedEffects);
-        appliedEffects[index].applied = true;
-        updateData.system.targets[targetId] = {
-            appliedEffects,
-        };
-        await document.update(updateData);
+        await setEffectApplied(document, targetId, index);
     });
 }
 
-async function registerKnockbackTargetListeners(element, document, index) {
+function registerKnockbackTargetListeners(element, document, index) {
     element.addEventListener('click', async (event) => {
         const { targetUuid, targetId, tokenUuid, knockbackDistance } = element.dataset;
         if (!targetUuid) return ui.notifications.error('No target selected');
-        const actor = await fromUuid(targetUuid);
         const token = await fromUuid(tokenUuid);
         if (!token.parent._view) return ui.notifications.error(`Target token's scene is not viewed. Please view scene ${token.parent.name}`);
         const actionTaken = await game.mcdmrpg.actions.knockback({ token: token, distance: knockbackDistance }).request();
 
         if (actionTaken) {
-            const updateData = {
-                system: {
-                    targets: {},
-                },
-            };
-
-            let appliedEffects = foundry.utils.duplicate(document.system.targets[targetId].appliedEffects);
-            appliedEffects[index].applied = true;
-            updateData.system.targets[targetId] = {
-                appliedEffects,
-            };
-            await document.update(updateData);
+            await setEffectApplied(document, targetId, index);
         }
     });
+}
+
+async function setEffectApplied(document, targetId, index) {
+    const updateData = {
+        system: {
+            targets: {},
+        },
+    };
+
+    let appliedEffects = foundry.utils.duplicate(document.system.targets[targetId].appliedEffects);
+    appliedEffects[index].applied = true;
+    updateData.system.targets[targetId] = {
+        appliedEffects,
+    };
+    await document.update(updateData);
 }
 
 export { addButtonsToTargets };
