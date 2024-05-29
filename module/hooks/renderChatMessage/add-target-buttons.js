@@ -1,49 +1,22 @@
-function createTargetDamageButton(damage, document, targetId, targetUuid, index) {
-    const damageButton = globalThis.document.createElement('button');
-    damageButton.dataset.targetUuid = targetUuid;
-    damageButton.dataset.targetId = targetId;
-    damageButton.dataset.damageAmount = damage.amount ?? 0;
-    damageButton.dataset.damageType = damage.type;
-    damageButton.classList.add('apply-damage-button');
-    if (document.system.targets[targetId].appliedEffects[index].applied) {
-        damageButton.disabled = true;
-        damageButton.classList.add('disabled');
-        damageButton.innerText = game.i18n.format('system.rolls.damage.chatDamageButton.applied', {
-            amount: damage.amount ?? 0,
-            type: damage.dType !== 'untyped' ? ' ' + game.i18n.localize(`system.damage.types.${damage.dType}.label`) : '',
-        });
-    } else {
-        damageButton.innerText = game.i18n.format('system.rolls.damage.chatDamageButton.apply', {
-            amount: damage.amount ?? 0,
-            type: damage.dType !== 'untyped' ? ' ' + game.i18n.localize(`system.damage.types.${damage.dType}.label`) : '',
-        });
-        registerDamageTargetListeners(damageButton, document, index);
-    }
-    return damageButton;
-}
+function createTargetButton(document, dataset = {}, classes = [], text = '', disabled = false, registerListeners) {
+    const targetButton = globalThis.document.createElement('button');
 
-function createTargetKnockbackButton(distance, document, targetId, targetUuid, tokenUuid, index) {
-    const knockbackButton = globalThis.document.createElement('button');
-    knockbackButton.dataset.targetUuid = targetUuid;
-    knockbackButton.dataset.targetId = targetId;
-    knockbackButton.dataset.tokenUuid = tokenUuid;
-    knockbackButton.dataset.knockbackDistance = distance;
-    knockbackButton.dataset.index = index;
-    knockbackButton.classList.add('apply-knockback-button');
-    if (document.system.targets[targetId].appliedEffects[index].applied) {
-        knockbackButton.disabled = true;
-        knockbackButton.classList.add('disabled');
-        knockbackButton.innerText = `${game.i18n.localize('system.terms.knockback.applied')} ${distance}`;
+    Object.assign(targetButton.dataset, dataset);
+    targetButton.classList.add(...classes);
+    targetButton.innerText = text;
+
+    if (disabled) {
+        targetButton.disabled = true;
+        targetButton.classList.add('disabled');
     } else {
-        knockbackButton.innerText = `${game.i18n.localize('system.terms.knockback.label')} ${distance}`;
-        registerKnockbackTargetListeners(knockbackButton, document, index);
+        registerListeners(targetButton, document, index);
     }
-    return knockbackButton;
+
+    return targetButton;
 }
 
 async function addButtonsToTargets(document, html) {
     if (document.type !== 'ability') return false;
-    const ability = await fromUuid(document.system.origin?.item);
     html.querySelectorAll('.target-roll .target-buttons').forEach(async (element) => {
         const hasPermissions = document.isAuthor || document.testUserPermission(game.user, 3);
         if (!hasPermissions) return;
@@ -57,11 +30,32 @@ async function addButtonsToTargets(document, html) {
         else if (targetTier === 4) targetTier = 'four';
 
         document.system.targets[targetId].appliedEffects?.forEach((effect, index) => {
+            const isActionableType = ['damage', 'knockback'].includes(effect.type);
+            if (!isActionableType) return;
+
+            const classes = [`apply-${effect.type}-button`];
+            const disabled = effect.applied;
+            const dataset = { targetId, targetUuid, tokenUuid, index };
+            let text;
+            let registerListeners;
+
             if (effect.type === 'damage') {
-                element.appendChild(createTargetDamageButton(effect, document, targetId, targetUuid, index));
+                const localizationPath = disabled ? 'system.rolls.damage.chatDamageButton.applied' : 'system.rolls.damage.chatDamageButton.apply';
+                const damageTypeText = dataset.damageType !== 'untyped' ? ' ' + game.i18n.localize(`system.damage.types.${dataset.damageType}.label`) : '';
+
+                text = game.i18n.format(localizationPath, { amount: dataset.damageAmount, type: damageTypeText });
+                dataset.damageAmount = effect.amount ?? 0;
+                dataset.damageType = effect.dType ?? 'untyped';
+                registerListeners = registerDamageTargetListeners;
             } else if (effect.type === 'knockback') {
-                element.appendChild(createTargetKnockbackButton(effect.distance, document, targetId, targetUuid, tokenUuid, index));
+                const localizationPath = disabled ? 'system.terms.knockback.applied' : 'system.terms.knockback.label';
+
+                text = `${game.i18n.localize(localizationPath)} ${dataset.knockbackDistance}`;
+                dataset.knockbackDistance = effect.distance;
             }
+
+            const button = createTargetButton(document, dataset, classes, text, disabled, registerListeners);
+            element.appendChild(button);
         });
     });
 }
