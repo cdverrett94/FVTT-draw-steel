@@ -54,7 +54,7 @@ export class ResistanceRollDialog extends PowerRollDialog {
                 mcdmrpg: [], //chatSystemData,
             },
             content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/test-roll.hbs', {
-                title: this.context.title,
+                title: this.title,
                 isCritical: roll.isCritical,
                 roll,
                 actor: this.context.actor,

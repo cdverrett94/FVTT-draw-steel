@@ -1,7 +1,7 @@
 import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
 import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../constants/_index.js';
 import { toId } from '../helpers.js';
-import { TestPowerRollDialog } from '../rolls/_index.js';
+import { TestRollDialog } from '../rolls/_index.js';
 import { MCDMActiveEffect } from './active-effects.js';
 
 export class BaseActor extends Actor {
@@ -148,7 +148,7 @@ export class BaseActor extends Actor {
             },
         };
 
-        await new TestPowerRollDialog(rollData).render(true);
+        await new TestRollDialog(rollData).render(true);
     }
 
     async applyDamage({ amount = 0, type = 'untyped' } = {}) {

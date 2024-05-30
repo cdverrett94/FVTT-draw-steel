@@ -1,13 +1,7 @@
 import { capitalize } from '../../helpers.js';
-import { PowerRollDialog } from '../power/roll-dialog.js';
+import { PowerRollDialog, TestRoll } from '../_index.js';
 
-export class TestPowerRollDialog extends PowerRollDialog {
-    constructor(options = {}) {
-        super(options);
-
-        this.context.rollType = 'test';
-    }
-
+export class TestRollDialog extends PowerRollDialog {
     get title() {
         let category;
         const foundCategory = Object.entries(this.context.actor.system.skills).find((category) => this.context.skill in category[1]);
@@ -35,11 +29,21 @@ export class TestPowerRollDialog extends PowerRollDialog {
         },
     };
 
+    _prepareContext(options) {
+        const rollData = {
+            modifiers: [this.extractModifiers(this.context.general)],
+            characteristic: this.context.characteristic,
+        };
+        this.context.baseRoll = new TestRoll(TestRoll.constructFinalFormula({ rollData }), this.context.actor.getRollData(), {
+            rollOptions: this.context.general.rollOptions ?? [],
+            ...rollData,
+        });
+
+        return super._prepareContext(options);
+    }
+
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
-
-    /** @override */
-    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     static async roll() {
         const roll = this.context.baseRoll;
@@ -54,11 +58,11 @@ export class TestPowerRollDialog extends PowerRollDialog {
                 mcdmrpg: {
                     roll,
                     actor: this.context.actor,
-                    title: this.context.headerLabel,
+                    title: this.title,
                 },
             },
             content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/test-roll.hbs', {
-                title: this.context.title,
+                title: this.title,
                 isCritical: roll.isCritical,
                 roll,
                 actor: this.context.actor,

@@ -7,6 +7,7 @@ export { AbilityRollDialog } from './ability/roll-dialog.js';
 export { ResistanceRoll } from './resistance/resistance-roll.js';
 export { ResistanceRollDialog } from './resistance/roll-dialog.js';
 
-export { TestPowerRollDialog } from './test/roll-dialog.js';
+export { TestRollDialog } from './test/roll-dialog.js';
+export { TestRoll } from './test/test-roll.js';
 
 export { DamageRoll } from './damage/damage-roll.js';
