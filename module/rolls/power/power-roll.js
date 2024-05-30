@@ -26,6 +26,7 @@ export class PowerRoll extends Roll {
                 this.modifierType = 'none';
                 break;
         }
+
         this.modifiedTier = ['doubleBane', 'doubleEdge'].includes(this.modifierType);
         this.characteristic = options.characteristic;
         this.ability = options.ability;
@@ -40,7 +41,6 @@ export class PowerRoll extends Roll {
         return this.options.rollOptions;
     }
 
-    modifiedTier = false;
     tier = 0;
 
     async roll(options = {}) {
@@ -123,7 +123,7 @@ export class PowerRoll extends Roll {
     }
 
     static constructFinalFormula({ formulaParts = [], rollData = {} } = {}) {
-        let formula = '2d10';
+        let formula = '';
         formulaParts = [{ term: '2d10' }, ...this.baseFormulaParts(rollData), ...formulaParts];
 
         for (const part of formulaParts) {
