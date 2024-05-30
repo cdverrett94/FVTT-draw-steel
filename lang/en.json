@@ -221,7 +221,7 @@
                 }
             },
             "ability": {
-                "tierModified": {
+                "modifiedTier": {
                     "doubleBane": {
                         "label": "Tier decreased by 1 due to double bane"
                     },
@@ -374,6 +374,9 @@
                         "characteristic": {
                             "label": "Characteristic"
                         },
+                        "isResistance": {
+                            "label": "Is Resistance Roll"
+                        },
                         "tiers": {
                             "label": "Tiers",
                             "singular": "Tier",
@@ -395,6 +398,11 @@
                                         "dType": "Damage Type"
                                     }
                                 }
+                            },
+                            "damage": {
+                                "label": "Damage Effect",
+                                "amount": "Amount",
+                                "dType": "Type"
                             },
                             "types": {
                                 "damage": {
