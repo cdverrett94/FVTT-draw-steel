@@ -2,7 +2,6 @@
     "name": "mcdmrpg",
     "title": "MCDM RPG",
     "description": "",
-    "author": "shortyverrett94 - shortyverrett94#4531",
     "version": "0.0.1",
     "compatibility": {
         "minimum": "12",
@@ -29,7 +28,6 @@
             "path": "lang/en.json"
         }
     ],
-    "system": [],
     "socket": true,
     "url": "https://github.com/cdverrett94/FVTT-mcdmrpg",
     "bugs": "https://github.com/cdverrett94/FVTT-mcdmrpg/issues",
