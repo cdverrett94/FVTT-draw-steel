@@ -67,11 +67,6 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     };
 
     async _prepareContext(options) {
-        this.#addRollToTargets();
-        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
-            modifiers: [this.getModifiers(this.context.general)],
-        });
-
         const context = {
             characteristics: CHARACTERISTICS,
             context: {
@@ -105,7 +100,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.render({ parts: ['adjustments'] });
     }
 
-    #addRollToTargets() {
+    _addRollToTargets() {
         for (const targetUuid in this.context.targets) {
             const actorRollData = this.context.actor.getRollData();
             const targetContext = this.context.targets[targetUuid];
@@ -117,6 +112,8 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
                 token: targetContext.token,
                 modifiers: [contextRollData, targetRollData],
                 ability: this.context.ability,
+                rollOptions: [...this.context.general.rollOptions, ...this.context.targets[targetUuid].rollOptions].sort(),
+                characteristic: this.context.characteristic,
             };
             this.context.targets[targetUuid].roll = new PowerRoll(this.context.characteristic, actorRollData, rollData);
         }
