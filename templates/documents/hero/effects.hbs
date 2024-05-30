@@ -28,7 +28,7 @@
                         {{#each @root.actor.system.ongoingDamage as |value|}}
                             {{#unless (eq value 0)}}
                                 <div style='color: var(--{{@key}}-damage-color)' class='damage-{{@key}}'>
-                                    {{{lookup (lookup @root.damages @key) 'icon'}}}
+                                    {{{lookup (lookup @root.constants.damages @key) 'icon'}}}
                                     {{value}}
                                 </div>
                             {{/unless}}
