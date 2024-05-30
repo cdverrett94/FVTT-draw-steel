@@ -1,6 +1,5 @@
-import { DamageRoll, PowerRoll } from '../../rolls/_index.js';
-import { AbilityRoll } from '../../rolls/ability/ability-roll.js';
+import { AbilityRoll, DamageRoll, PowerRoll, ResistanceRoll } from '../../rolls/_index.js';
 
 export function registerRolls() {
-    CONFIG.Dice.rolls.push(DamageRoll, PowerRoll, AbilityRoll);
+    CONFIG.Dice.rolls.push(DamageRoll, PowerRoll, AbilityRoll, ResistanceRoll);
 }

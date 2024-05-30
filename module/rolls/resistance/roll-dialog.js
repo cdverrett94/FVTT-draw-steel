@@ -1,9 +1,8 @@
-import { PowerRoll, PowerRollDialog } from '../_index.js';
+import { PowerRollDialog, ResistanceRoll } from '../_index.js';
 
 export class ResistanceRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
-        this.context.rollType = 'resistance';
     }
 
     get title() {
@@ -11,16 +10,6 @@ export class ResistanceRollDialog extends PowerRollDialog {
     }
 
     static additionalOptions = {
-        window: {
-            icon: 'fa-solid fa-dice-d6',
-            title: 'Resistance Roll',
-        },
-
-        classes: ['resistance-roll'],
-        position: {
-            width: 400,
-            height: 'auto',
-        },
         actions: {
             roll: this.roll,
         },
@@ -33,10 +22,21 @@ export class ResistanceRollDialog extends PowerRollDialog {
     static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     async _prepareContext(options) {
-        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
+        const rollData = {
             modifiers: [this.extractModifiers(this.context.general)],
+            characteristic: this.context.characteristic,
+        };
+        const formulaParts = [];
+        if (this.context.origin) {
+            formulaParts.push({
+                term: this.context.origin.system.characteristics[this.context.characteristic],
+                flavor: `origin ${this.context.characteristic}`,
+                sign: '-',
+            });
+        }
+        this.context.baseRoll = new ResistanceRoll(ResistanceRoll.constructFinalFormula({ formulaParts, rollData }), this.context.actor.getRollData(), {
             rollOptions: this.context.general.rollOptions ?? [],
-            ...this.context,
+            ...rollData,
         });
 
         const context = super._prepareContext(options);
@@ -60,6 +60,7 @@ export class ResistanceRollDialog extends PowerRollDialog {
                 title: this.context.title,
                 isCritical: roll.isCritical,
                 roll,
+                actor: this.context.actor,
             }),
         });
 
