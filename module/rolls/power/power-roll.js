@@ -9,10 +9,12 @@ export class PowerRoll extends Roll {
         modifier = Math.abs(difference) === 1 ? Math.sign(modifiers.edges - modifiers.banes) * 2 : 0;
         let formula = '2d10';
 
-        if (characteristic in CHARACTERISTICS)
+        if (characteristic in CHARACTERISTICS) {
             formula = `${formula} + @${characteristic}[${game.i18n.localize('system.characteristics.' + characteristic + '.label').toLowerCase()}]`;
+        }
         if (modifier) formula = `${formula} + ${modifier}[${modifier < 0 ? 'bane' : 'edge'}]`;
         if (modifiers.bonuses) formula = `${formula} + ${modifiers.bonuses}[${modifiers.bonuses < 0 ? 'penalties' : 'bonuses'}]`;
+
         super(formula, data, options);
 
         switch (difference) {
@@ -32,14 +34,61 @@ export class PowerRoll extends Roll {
                 this.modifierType = 'none';
                 break;
         }
-        this.tierModified = ['doubleBane', 'doubleEdge'].includes(this.modifierType);
+        this.modifiedTier = ['doubleBane', 'doubleEdge'].includes(this.modifierType);
         this.characteristic = characteristic;
         this.ability = options.ability;
         this.actor = options.actor;
         this.modifiers = modifiers;
         this.modifier = modifier;
+        this.options.rollOptions ??= [];
+        this.options.rollOptions.push(`roll:modifier-type:${this.modifierType}`);
 
         this._formula = this.resetFormula();
+    }
+
+    get rollOptions() {
+        return this.options.rollOptions;
+    }
+
+    modifiedTier = false;
+    tier = 0;
+
+    async roll(options = {}) {
+        //pre-roll modifications
+
+        const roll = await this.evaluate(options);
+
+        // post roll modifications
+
+        roll.tier = roll.calculateTier();
+
+        if (roll.tier !== 1 && roll.modifierType === 'doubleBane') {
+            roll.rollOptions.push(`roll:tier:downgraded`);
+            roll.modifiedTier = true;
+        } else {
+            roll.modifiedTier = false;
+        }
+
+        if (roll.tier !== 3 && roll.modifierType === 'doubleEdge') {
+            roll.rollOptions.push(`roll:tier:upgraded`);
+            roll.modifiedTier = true;
+            this;
+        } else {
+            roll.modifiedTier = false;
+        }
+
+        if (roll.modifiedTier) roll.tier = roll.calculateTier();
+
+        roll.rollOptions.push(
+            `roll:total:${roll.total}`,
+            `roll:dice:total:${this.terms.find((term) => term.formula === '2d10')?.total}`,
+            `roll:tier:${roll.tier}`
+        );
+        if (roll.isCritical) roll.rollOptions.push(`roll:critical`);
+
+        roll.rollOptions.sort();
+
+        return roll;
     }
 
     static type = 'power';
@@ -75,12 +124,12 @@ export class PowerRoll extends Roll {
         };
     }
 
-    get tier() {
+    calculateTier() {
         const tierEntry = Object.entries(TIERS).find((entry) => this.total >= entry[1].start && this.total <= entry[1].end);
         let tier = Number(tierEntry[0]) ?? 1;
 
-        if (this.modifierType === 'doubleBane') tier -= 1;
-        else if (this.modifierType === 'doubleEdge') tier += 1;
+        if (this.modifiedTier && this.modifierType === 'doubleEdge') tier += 1;
+        else if (this.modifiedTier && this.modifierType === 'doubleBane') tier -= 1;
 
         tier = Math.clamp(tier, 1, 3);
 
