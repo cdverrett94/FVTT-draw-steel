@@ -1,5 +1,5 @@
+import { PowerRoll } from '../_index.js';
 import { PowerRollDialog } from '../power/roll-dialog.js';
-import { AbilityRoll } from './ability-roll.js';
 
 export class AbilityRollDialog extends PowerRollDialog {
     constructor(options = {}) {
@@ -33,7 +33,7 @@ export class AbilityRollDialog extends PowerRollDialog {
     async _prepareContext(options) {
         this._addRollToTargets();
 
-        this.context.baseRoll = new AbilityRoll(this.context.characteristic, this.context.actor.getRollData(), {
+        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
             ability: this.context.ability,
             rollOptions: this.context.general.rollOptions,
             modifiers: this.context.hasTargets ? [] : [this.getModifiers(this.context.general)],
