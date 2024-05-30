@@ -213,7 +213,8 @@ export class BaseActor extends Actor {
 
         // add stamina
         Object.entries(this.system.stamina).forEach((entry) => rollOptions.push(`${prefix}:stamina:${entry[0]}:${entry[1]}`));
-        const staminaPercentage = Math.floor(this.system.stamina.current / this.system.stamina.max);
+        const staminaPercentage = Math.floor((this.system.stamina.current / this.system.stamina.max) * 100);
+
         rollOptions.push(`${prefix}:stamina:percentage:${staminaPercentage}`);
 
         // add characteristics
