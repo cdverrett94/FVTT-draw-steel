@@ -1,16 +1,10 @@
 import { CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
 
 import { capitalize, getRollActor } from '../helpers.js';
-import { enrichDamage, postDamageToChat, rollDamage } from './enrich-damage.js';
 import { enrichKnockback } from './enrich-knockback.js';
 import { enrichTest, rollTest } from './enrich-test.js';
 
 function registerCustomEnrichers() {
-    CONFIG.TextEditor.enrichers.push({
-        pattern: /@(?<enrichType>Damage)\[(?<damageAmount>[^\]\|]+)(?:\|*(?<config>[^\[\]]*))\]/gi,
-        enricher: enrichDamage,
-    });
-
     CONFIG.TextEditor.enrichers.push({
         pattern: /@(?<enrichType>Test)\[(?:\|*(?<config>[^\]\[]*))\]/gi,
         enricher: enrichTest,
@@ -106,8 +100,7 @@ async function rollAction(event) {
     if (!target) return;
     const { enrichType } = target.dataset;
 
-    if (enrichType === 'damage') rollDamage(event);
-    else if (enrichType === 'test') rollTest(event);
+    if (enrichType === 'test') rollTest(event);
     else return console.error('No accepted roll type provided; must be damage or test');
 }
 
@@ -129,8 +122,6 @@ async function getRollContextData(dataset) {
 async function postRollToChat(event) {
     const target = event.target.closest('.roll-to-chat');
     if (!target) return;
-
-    if (target.classList.contains('roll-damage-to-chat')) postDamageToChat({ dataset: target.dataset });
     else return console.error('No accepted roll type provided; must be damage');
 }
 
