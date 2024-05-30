@@ -47,7 +47,7 @@ export class TestRollDialog extends PowerRollDialog {
 
     static async roll() {
         const roll = this.context.baseRoll;
-        await roll.evaluate();
+        await roll.roll();
         roll.options.tooltip = await roll.getTooltip();
 
         await ChatMessage.create({
