@@ -14,7 +14,7 @@ export async function registerTemplates() {
 
         // Chat Messages
         'systems/mcdmrpg/templates/chat-messages/damage-message.hbs',
-        'systems/mcdmrpg/templates/chat-messages/ability-message.hbs',
+        'systems/mcdmrpg/templates/chat-messages/ability-roll.hbs',
         'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs',
 
         // Rolls
