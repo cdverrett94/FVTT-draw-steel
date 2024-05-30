@@ -1,51 +1,45 @@
-import { PowerRoll } from '../power/power-roll.js';
 import { PowerRollDialog } from '../power/roll-dialog.js';
+import { AbilityRoll } from './ability-roll.js';
 
-export class AbilityPowerRollDialog extends PowerRollDialog {
+export class AbilityRollDialog extends PowerRollDialog {
     constructor(options = {}) {
+        options.characteristic ??= this.context.ability?.characteristic;
         super(options);
 
-        this.context.characteristic = this.context.ability?.characteristic ?? 'might';
         this.context.hasTargets = Object.keys(this.context.targets).length ? true : false;
     }
 
     get title() {
-        return this.context.ability?.name ?? super.title;
+        return this.context.ability?.name ?? 'Ability Roll';
     }
 
     static additionalOptions = {
         window: {
             icon: 'fa-solid fa-dice-d6',
-            title: 'Power Roll',
         },
 
         classes: ['roll-dialog'],
-        position: {
-            width: 400,
-            height: 'auto',
-        },
         actions: {
             roll: this.roll,
         },
     };
 
     /** @inheritDoc */
-    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilityPowerRollDialog.additionalOptions, { inplace: false });
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilityRollDialog.additionalOptions, { inplace: false });
 
     /** @override */
     static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     async _prepareContext(options) {
+        this._addRollToTargets();
+
+        this.context.baseRoll = new AbilityRoll(this.context.characteristic, this.context.actor.getRollData(), {
+            ability: this.context.ability,
+            rollOptions: this.context.general.rollOptions,
+            modifiers: this.context.hasTargets ? [] : [this.getModifiers(this.context.general)],
+            characteristic: this.context.characteristic,
+        });
         const context = await super._prepareContext(options);
-        if (this.context.hasTargets) {
-            this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), { ability: this.context.ability });
-        } else {
-            this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
-                ability: this.context.ability,
-                modifiers: [this.getModifiers(this.context.general)],
-            });
-        }
-        context.context.baseRoll = this.context.baseRoll;
 
         return context;
     }
@@ -55,7 +49,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
         const rolls = [];
 
         const baseRoll = this.context.baseRoll;
-        await baseRoll.evaluate();
+        await baseRoll.roll();
         const chatSystemData = {
             origin: {
                 actor: this.context.actor.uuid,
@@ -73,7 +67,7 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             const targetRoll = targets[target].roll;
             targetRoll.terms[0] = baseRoll.terms[0];
             targetRoll.resetFormula();
-            if (!targetRoll._evaluated) await targetRoll.evaluate();
+            await targetRoll.roll();
             targetRoll.options.tooltip = await targetRoll.getTooltip();
             rolls.push(targetRoll);
 
@@ -100,12 +94,13 @@ export class AbilityPowerRollDialog extends PowerRollDialog {
             user: game.user.id,
             sound: CONFIG.sounds.dice,
             rolls,
-            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-roll.hbs', {
+            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-message.hbs', {
                 rolls,
                 baseRoll,
                 ability: this.context.ability,
                 ...chatSystemData,
                 actor: this.context.actor,
+                isRoll: true,
             }),
         });
 
