@@ -18,9 +18,6 @@ export class ResistanceRollDialog extends PowerRollDialog {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
 
-    /** @override */
-    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
-
     async _prepareContext(options) {
         const rollData = {
             modifiers: [this.extractModifiers(this.context.general)],
