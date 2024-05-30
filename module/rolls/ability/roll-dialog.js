@@ -1,3 +1,4 @@
+import { TIER_TEXT } from '../../constants/power-tier.js';
 import { AbilityRoll, PowerRollDialog } from '../_index.js';
 
 export class AbilityRollDialog extends PowerRollDialog {
@@ -20,10 +21,7 @@ export class AbilityRollDialog extends PowerRollDialog {
     };
 
     /** @inheritDoc */
-    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilityRollDialog.additionalOptions, { inplace: false });
-
-    /** @override */
-    static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
 
     async _prepareContext(options) {
         this.#addRollToTargets();
@@ -63,27 +61,21 @@ export class AbilityRollDialog extends PowerRollDialog {
         baseRoll.options.tooltip = await baseRoll.getTooltip();
 
         for (const target in targets) {
-            const targetRoll = targets[target].roll;
-            targetRoll.terms[0] = baseRoll.terms[0];
-            targetRoll.resetFormula();
-            await targetRoll.roll();
-            targetRoll.options.tooltip = await targetRoll.getTooltip();
-            rolls.push(targetRoll);
+            const roll = targets[target].roll;
+            roll.terms[0] = baseRoll.terms[0];
+            roll.resetFormula();
+            await roll.roll();
 
-            let targetTier;
-            if (targetRoll.tier === 1) targetTier = 'one';
-            else if (targetRoll.tier === 2) targetTier = 'two';
-            else if (targetRoll.tier === 3) targetTier = 'three';
-            else if (targetRoll.tier === 4) targetTier = 'four';
+            rolls.push(roll);
 
             chatSystemData.targets[`${targets[target].actor.id}`] = {
                 uuid: targets[target].actor.uuid,
                 token: targets[target].token.uuid,
-                appliedEffects: foundry.utils.duplicate(this.context.ability.system.power.tiers[targetTier]).map((effect) => {
+                appliedEffects: foundry.utils.duplicate(this.context.ability.system.power.tiers[TIER_TEXT[roll.tier]]).map((effect) => {
                     effect.applied = effect.type === 'damage' || effect.type === 'knockback' ? false : true;
                     return effect;
                 }),
-                tier: targetRoll.tier,
+                tier: roll.tier,
             };
         }
 
