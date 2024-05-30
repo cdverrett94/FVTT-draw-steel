@@ -66,7 +66,7 @@ class Knockback {
         return dialogResult;
     }
 
-    // create the graphics for the clickable and hightlighted areas
+    // create the graphics for the hightlighted areas
     #createGraphics({ x, y, width, height, fill = {}, border = {} } = {}) {
         let graphics = new PIXI.Graphics();
 
