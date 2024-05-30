@@ -1,5 +1,4 @@
-import { PowerRollDialog } from '../power/roll-dialog.js';
-import { AbilityRoll } from './ability-roll.js';
+import { AbilityRoll, PowerRollDialog } from '../_index.js';
 
 export class AbilityRollDialog extends PowerRollDialog {
     constructor(options = {}) {

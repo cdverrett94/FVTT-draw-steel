@@ -1,4 +1,4 @@
-import { TIERS } from '../../constants/power-tier.js';
+import { TIERS } from '../../constants/_index.js';
 
 export class PowerRoll extends Roll {
     constructor(formula, data = {}, options = {}) {
@@ -123,7 +123,7 @@ export class PowerRoll extends Roll {
     }
 
     static constructFinalFormula({ formulaParts = [], rollData = {} } = {}) {
-        let formula = '';
+        let formula = '2d10';
         formulaParts = [{ term: '2d10' }, ...this.baseFormulaParts(rollData), ...formulaParts];
 
         for (const part of formulaParts) {
@@ -137,7 +137,6 @@ export class PowerRoll extends Roll {
     }
 
     static baseFormulaParts(rollData) {
-        console.log(rollData);
         const formulaParts = [];
         if (rollData.characteristic) {
             formulaParts.push({
