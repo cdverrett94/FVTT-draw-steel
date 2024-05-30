@@ -4,6 +4,8 @@ import { PowerRollDialog } from '../power/roll-dialog.js';
 export class TestPowerRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
+
+        this.context.rollType = 'test';
     }
 
     get title() {
@@ -34,7 +36,7 @@ export class TestPowerRollDialog extends PowerRollDialog {
     };
 
     /** @inheritDoc */
-    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, TestPowerRollDialog.additionalOptions, { inplace: false });
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
 
     /** @override */
     static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });

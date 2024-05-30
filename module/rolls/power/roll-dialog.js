@@ -41,7 +41,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     };
 
     /** @inheritDoc */
-    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, PowerRollDialog.additionalOptions, { inplace: false });
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
 
     /** @override */
     static PARTS = {

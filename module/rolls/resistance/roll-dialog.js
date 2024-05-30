@@ -3,6 +3,7 @@ import { PowerRoll, PowerRollDialog } from '../_index.js';
 export class ResistanceRollDialog extends PowerRollDialog {
     constructor(options = {}) {
         super(options);
+        this.context.rollType = 'resistance';
     }
 
     get title() {
@@ -26,14 +27,14 @@ export class ResistanceRollDialog extends PowerRollDialog {
     };
 
     /** @inheritDoc */
-    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, ResistanceRollDialog.additionalOptions, { inplace: false });
+    static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, this.additionalOptions, { inplace: false });
 
     /** @override */
     static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     async _prepareContext(options) {
         this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
-            modifiers: [this.getModifiers(this.context.general)],
+            modifiers: [this.extractModifiers(this.context.general)],
             rollOptions: this.context.general.rollOptions ?? [],
             ...this.context,
         });
