@@ -65,7 +65,7 @@
 
 .sheet.actor div.ability-filters .ability-filter {
     padding: 5px;
-    background: #302831;
+    background: var(--color-cool-4);
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     cursor: pointer;
