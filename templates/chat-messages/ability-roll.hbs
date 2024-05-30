@@ -1,13 +1,3 @@
-<div class='actor'>
-    <div class='image'><img src='{{actor.img}}' /></div>
-    <div class='name'>{{actor.name}}</div>
-</div>
-
-
-{{> 'systems/mcdmrpg/templates/chat-messages/ability-message.hbs' ability=ability isRoll=true}}
-
-<hr>
-
 <div class='dice-roll base-roll'>
     {{#if baseRoll.flavor}}
         <div class='dice-flavor'>{{baseRoll.flavor}}</div>
@@ -38,30 +28,3 @@
         <div class="target-buttons" data-target-uuid="{{roll.options.target.uuid}}" data-target-id="{{roll.options.target.id}}" data-token-uuid="{{roll.options.token.uuid}}"></div>
     </div>
 {{/each}}
-<hr />
-<div class='ability-info'>
-    {{#if ability.system.keywords}}
-        <div class='keywords'>
-            {{localize 'system.items.ability.FIELDS.keywords.label'}}:
-            {{#each ability.system.keywords as |keyword|}}
-                {{localize (concat 'system.items.ability.keywords.' keyword '.label')}}{{#unless @last}},{{/unless}}
-            {{/each}}
-        </div>
-    {{/if}}
-    {{#if ability.system.time}}
-        <div class="time">
-            <i class="fa-solid fa-clock"></i> {{localize (concat 'system.items.ability.times.' ability.system.time '.label')}}
-        </div>
-    {{/if}}
-    {{#if ability.system.distance}}
-        <div class='distance'>
-            <i class='fa-solid fa-ruler'></i> {{ability.system.distance}}
-        </div>
-    {{/if}}
-    {{#if ability.system.target}}
-        <div class='target'>
-            <i class='fa-solid fa-bullseye'></i> {{ability.system.target}}
-        </div>
-    {{/if}}
-    
-</div>
