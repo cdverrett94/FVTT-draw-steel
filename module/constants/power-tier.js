@@ -4,3 +4,10 @@ export const TIERS = {
     3: { start: 17, end: Infinity },
     4: { start: 19, end: Infinity },
 };
+
+export const TIER_TEXT = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+};
