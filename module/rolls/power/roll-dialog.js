@@ -1,5 +1,4 @@
 import { CHARACTERISTICS } from '../../constants/_index.js';
-import { PowerRoll } from './power-roll.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -7,7 +6,6 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         super(options);
 
         this.context = {};
-
         Object.assign(this.context, options);
 
         this.context.characteristic ??= 'might';
@@ -15,7 +13,6 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.context.general.edges ??= 0;
         this.context.general.banes ??= 0;
         this.context.general.bonuses ??= 0;
-
         this.context.title = this.title;
     }
 
@@ -23,7 +20,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         return 'Power Roll';
     }
 
-    getModifiers(context) {
+    extractModifiers(context) {
         return Object.fromEntries(Object.entries(context).filter((entry) => entry[0] === 'edges' || entry[0] === 'banes' || entry[0] === 'bonuses'));
     }
 
@@ -98,24 +95,5 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         if (type !== 'bonuses') object[type] = Math.max(object[type], 0);
 
         this.render({ parts: ['adjustments'] });
-    }
-
-    _addRollToTargets() {
-        for (const targetUuid in this.context.targets) {
-            const actorRollData = this.context.actor.getRollData();
-            const targetContext = this.context.targets[targetUuid];
-
-            const contextRollData = this.getModifiers(this.context.general);
-            const targetRollData = this.getModifiers(targetContext);
-            const rollData = {
-                target: targetContext.actor,
-                token: targetContext.token,
-                modifiers: [contextRollData, targetRollData],
-                ability: this.context.ability,
-                rollOptions: [...this.context.general.rollOptions, ...this.context.targets[targetUuid].rollOptions].sort(),
-                characteristic: this.context.characteristic,
-            };
-            this.context.targets[targetUuid].roll = new PowerRoll(this.context.characteristic, actorRollData, rollData);
-        }
     }
 }
