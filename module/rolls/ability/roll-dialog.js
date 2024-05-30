@@ -1,5 +1,5 @@
-import { PowerRoll } from '../_index.js';
 import { PowerRollDialog } from '../power/roll-dialog.js';
+import { AbilityRoll } from './ability-roll.js';
 
 export class AbilityRollDialog extends PowerRollDialog {
     constructor(options = {}) {
@@ -10,15 +10,11 @@ export class AbilityRollDialog extends PowerRollDialog {
     }
 
     get title() {
-        return this.context.ability?.name ?? 'Ability Roll';
+        const abilityLabel = this.context.ability?.name ?? game.i18n.localize('system.items.ability.label.singular');
+        return `${abilityLabel} ${game.i18n.localize('system.items.ability.FIELDS.power.label')}`;
     }
 
     static additionalOptions = {
-        window: {
-            icon: 'fa-solid fa-dice-d6',
-        },
-
-        classes: ['roll-dialog'],
         actions: {
             roll: this.roll,
         },
@@ -31,13 +27,17 @@ export class AbilityRollDialog extends PowerRollDialog {
     static PARTS = foundry.utils.mergeObject(super.PARTS, {}, { inplace: false });
 
     async _prepareContext(options) {
-        this._addRollToTargets();
+        this.#addRollToTargets();
 
-        this.context.baseRoll = new PowerRoll(this.context.characteristic, this.context.actor.getRollData(), {
+        const rollData = {
+            modifiers: this.context.hasTargets ? [] : [this.extractModifiers(this.context.general)],
+            characteristic: this.context.characteristic,
+        };
+
+        this.context.baseRoll = new AbilityRoll(AbilityRoll.constructFinalFormula({ rollData }), this.context.actor.getRollData(), {
             ability: this.context.ability,
             rollOptions: this.context.general.rollOptions,
-            modifiers: this.context.hasTargets ? [] : [this.getModifiers(this.context.general)],
-            characteristic: this.context.characteristic,
+            ...rollData,
         });
         const context = await super._prepareContext(options);
 
@@ -105,5 +105,25 @@ export class AbilityRollDialog extends PowerRollDialog {
         });
 
         this.close();
+    }
+
+    #addRollToTargets() {
+        for (const targetUuid in this.context.targets) {
+            const actorRollData = this.context.actor.getRollData();
+            const targetContext = this.context.targets[targetUuid];
+
+            const contextRollData = this.extractModifiers(this.context.general);
+            const targetRollData = this.extractModifiers(targetContext);
+            const rollData = {
+                target: targetContext.actor,
+                token: targetContext.token,
+                modifiers: [contextRollData, targetRollData],
+                ability: this.context.ability,
+                rollOptions: [...this.context.general.rollOptions, ...this.context.targets[targetUuid].rollOptions].sort(),
+                characteristic: this.context.characteristic,
+            };
+
+            this.context.targets[targetUuid].roll = new AbilityRoll(AbilityRoll.constructFinalFormula({ rollData }), actorRollData, rollData);
+        }
     }
 }
