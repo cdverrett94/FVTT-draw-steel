@@ -1,6 +1,7 @@
 <fieldset class='tab tiers' data-group='main' data-tab='details'>
     <legend>{{fields.power.label}}</legend>
     {{formField fields.power.fields.characteristic value=source.system.power.characteristic}}
+    {{formField fields.power.fields.isResistance value=source.system.power.isResistance}}
     <div class='power-tiers'>
         {{#each fields.power.fields.tiers as |field|}}
             <div class='power-tier tier-{{field.name}}'>

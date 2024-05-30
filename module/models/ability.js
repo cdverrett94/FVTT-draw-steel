@@ -131,6 +131,9 @@ export class AbilityData extends BaseItemData {
                 characteristic: new fields.StringField({
                     choices: getDataModelChoices(CHARACTERISTICS),
                 }),
+                isResistance: new fields.BooleanField({
+                    initial: false,
+                }),
                 tiers: new fields.SchemaField({
                     one: new TierField(),
                     two: new TierField(),
