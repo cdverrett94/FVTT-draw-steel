@@ -192,7 +192,7 @@ export class BaseActor extends Actor {
                 canvas.interface.createScrollingText(t.center, options.staminaDelta.signedString(), {
                     anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
                     // Adapt the font size relative to the Actor's HP total to emphasize more significant blows
-                    fontSize: 16 + 32 * pct, // Range between [16, 48]
+                    fontSize: 32 + 32 * pct, // Range between [32, 64]
                     fill: options.staminaDelta > 0 ? 'green' : 'red',
                     stroke: 0x000000,
                     strokeThickness: 4,
