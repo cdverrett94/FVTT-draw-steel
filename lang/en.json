@@ -332,6 +332,14 @@
             "edge": {
                 "plural": "Edges",
                 "singular": "Edge"
+            },
+            "bonus": {
+                "plural": "Bonuses",
+                "singular": "Bonus"
+            },
+            "penalty": {
+                "plural": "Penalties",
+                "singular": "Penalty"
             }
         },
         "general": {
