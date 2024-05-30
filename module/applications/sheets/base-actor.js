@@ -21,14 +21,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             icon: 'fas fa-user',
             positioned: true,
             resizable: true,
-            controls: [
-                {
-                    icon: 'fas fa-user-circle',
-                    label: 'Configure Token',
-                    action: 'configureToken',
-                    visible: true,
-                },
-            ],
         },
         classes: ['mcdmrpg', 'sheet', 'actor'],
         form: {
@@ -108,6 +100,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
         const dd = new DragDrop({
             dropSelector: '.window-content',
+            dragSelector: 'div.ability',
             callbacks: {
                 drop: this.#onDrop.bind(this),
             },
