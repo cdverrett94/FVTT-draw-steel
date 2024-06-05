@@ -2,6 +2,10 @@ import { capitalize } from '../../helpers.js';
 import { PowerRollDialog, TestRoll } from '../_index.js';
 
 export class TestRollDialog extends PowerRollDialog {
+    constructor(options) {
+        super(options);
+        this.context.type = 'test';
+    }
     get title() {
         let category;
         const foundCategory = Object.entries(this.context.actor.system.skills).find((category) => this.context.skill in category[1]);

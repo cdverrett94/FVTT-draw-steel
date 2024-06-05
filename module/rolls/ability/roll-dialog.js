@@ -7,6 +7,7 @@ export class AbilityRollDialog extends PowerRollDialog {
         super(options);
 
         this.context.hasTargets = Object.keys(this.context.targets).length ? true : false;
+        this.context.type = 'ability';
     }
 
     get title() {

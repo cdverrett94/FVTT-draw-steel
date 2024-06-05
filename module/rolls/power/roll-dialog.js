@@ -14,6 +14,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.context.general.banes ??= 0;
         this.context.general.bonuses ??= 0;
         this.context.title = this.title;
+        this.context.type = 'power';
     }
 
     get title() {
@@ -77,7 +78,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
         if (partId === 'characteristic') {
-            htmlElement.querySelector('select').addEventListener('change', (event) => {
+            htmlElement.querySelector('select')?.addEventListener('change', (event) => {
                 this.context.characteristic = event.target.value;
                 this.context.title = this.title;
                 this.render({ parts: ['header', 'adjustments'] });
