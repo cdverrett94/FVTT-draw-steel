@@ -1,6 +1,11 @@
 <div class='characteristic-select roll-dialog-section'>
-    Characteristic Select
-    <select name='characteristic' id='characteristic-select'>
-        {{selectOptions characteristics selected=context.characteristic labelAttr='label' localize=true}}
-    </select>
+    {{#if (eq context.type 'test')}}
+        Characteristic Select
+        <select name='characteristic' id='characteristic-select'>
+            {{selectOptions characteristics selected=context.characteristic labelAttr='label' localize=true}}
+        </select>
+    {{else}}
+        {{localize 'system.characteristics.label'}}:
+        {{localize (concat 'system.characteristics.' context.characteristic '.label')}}
+    {{/if}}
 </div>
