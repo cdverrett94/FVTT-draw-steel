@@ -44,11 +44,3 @@
     grid-template-rows: 1fr 1fr;
     grid-gap: var(--grid-gap);
 }
-
-/* .sheet.item.class .class-description .editor {
-    height: 438px;
-}
-.sheet.item.class .class-victory-benefits .editor,
-.sheet.item.class .class-resource-gain .editor {
-    height: 200px;
-} */

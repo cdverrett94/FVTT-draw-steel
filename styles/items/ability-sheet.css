@@ -48,15 +48,6 @@
     margin-bottom: 5px;
 }
 
-.sheet.item.ability .tier-effect .delete-tier-effect {
-    text-align: center;
-}
-
-.sheet.item.ability .tier-effect .delete-tier-effect:hover {
-    color: var(--delete-color);
-    cursor: pointer;
-}
-
 .sheet.item.ability .tier-effect {
     background-color: var(--alternating-bg-color);
     border-radius: 5px;

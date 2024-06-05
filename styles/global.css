@@ -10,7 +10,7 @@
     -webkit-clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0% 100%);
 }
 
-div:has(> .right-button, > .left-button) {
+.sheet.system div:has(> .right-button, > .left-button) {
     position: relative;
 
     & > span {

@@ -24,13 +24,17 @@
 
                     {{#each (lookup @root.source.system.power.tiers field.name) as |effect|}}
                         <div class='tier-effect'>
-                            {{!-- <div class='delete-tier-effect' data-action='deleteTierEffect' data-tier='{{field.name}}' data-effect-index='{{@index}}'>Delete effect</div> --}}
                             <div class='tier-type'>
                                 <label>{{field.element.types.label}}Type</label>
                                 <select name='system.power.tiers.{{field.name}}.{{@index}}.type'>
                                     {{selectOptions field.element.types localize=true selected=effect.type}}
                                 </select>
-                                <div class='delete-tier-effect' data-action='deleteTierEffect' data-tier='{{field.name}}' data-effect-index='{{@index}}'>
+                                <div
+                                    class='delete-tier-effect delete-button'
+                                    data-action='deleteTierEffect'
+                                    data-tier='{{field.name}}'
+                                    data-effect-index='{{@index}}'
+                                >
                                     <i class='fas fa-trash'></i>
                                 </div>
                             </div>
