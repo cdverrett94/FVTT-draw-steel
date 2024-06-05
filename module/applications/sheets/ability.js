@@ -2,6 +2,10 @@ import { ABILITIES } from '../../constants/abilities.js';
 import { BaseItemSheet } from './base-item.js';
 
 export class AbilitySheet extends BaseItemSheet {
+    constructor(options) {
+        super(options);
+        this.constructor.PARTS.tabs.template = 'systems/mcdmrpg/templates/documents/ability/ability-tabs.hbs';
+    }
     static additionalOptions = {
         classes: ['ability'],
         position: {
