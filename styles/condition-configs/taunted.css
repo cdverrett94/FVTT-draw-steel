@@ -6,16 +6,8 @@
     align-items: center;
 }
 
-.sheet.taunted-config .item .delete,
 .sheet.taunted-config .mcdmrpg-header .add {
     cursor: pointer;
-}
-
-.sheet.taunted-config .item .delete {
-    text-align: center;
-}
-.sheet.taunted-config .item .delete:hover {
-    color: var(--delete-color);
 }
 
 .sheet.taunted-config .mcdmrpg-header .add:hover {

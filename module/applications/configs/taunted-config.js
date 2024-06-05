@@ -14,7 +14,7 @@ export class TauntedConfig extends HandlebarsApplicationMixin(ApplicationV2) {
             title: 'Configure Taunted',
         },
         tag: 'form',
-        classes: ['mcdmrpg', 'sheet', 'taunted-config'],
+        classes: ['mcdmrpg', 'sheet', 'taunted-config', 'system'],
         position: {
             width: 500,
             height: 'auto',

@@ -6,16 +6,8 @@
     align-items: center;
 }
 
-.sheet.ongoing-damage-config .item .delete,
 .sheet.ongoing-damage-config .mcdmrpg-header .add {
     cursor: pointer;
-}
-
-.sheet.ongoing-damage-config .item .delete {
-    text-align: center;
-}
-.sheet.ongoing-damage-config .item .delete:hover {
-    color: var(--delete-color);
 }
 
 .sheet.ongoing-damage-config .mcdmrpg-header .add:hover {

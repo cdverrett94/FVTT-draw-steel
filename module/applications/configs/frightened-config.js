@@ -14,7 +14,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
             title: 'Configure Frightened',
         },
         tag: 'form',
-        classes: ['mcdmrpg', 'sheet', 'taunted-config'],
+        classes: ['mcdmrpg', 'sheet', 'taunted-config', 'system'],
         position: {
             width: 500,
             height: 'auto',

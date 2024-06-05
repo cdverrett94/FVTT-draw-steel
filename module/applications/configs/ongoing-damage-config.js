@@ -15,7 +15,7 @@ export class OngoingDamageConfig extends HandlebarsApplicationMixin(ApplicationV
             title: 'Configure Ongoing Damage',
         },
         tag: 'form',
-        classes: ['mcdmrpg', 'sheet', 'ongoing-damage-config'],
+        classes: ['mcdmrpg', 'sheet', 'ongoing-damage-config', 'system'],
         position: {
             width: 500,
             height: 'auto',
