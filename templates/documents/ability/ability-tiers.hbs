@@ -1,4 +1,4 @@
-<fieldset class='tab tiers' data-group='main' data-tab='details'>
+<fieldset class='tab tiers' data-group='main' data-tab='power'>
     <legend>{{fields.power.label}}</legend>
     {{formField fields.power.fields.characteristic value=source.system.power.characteristic}}
     {{formField fields.power.fields.isResistance value=source.system.power.isResistance}}
@@ -47,18 +47,39 @@
                                     name=(concat 'system.power.tiers.' field.name '.' @index '.dType')
                                     localize=true
                                 }}
+                                {{#if @root.source.system.power.isResistance}}
+                                    {{formField
+                                        field.element.types.damage.fields.ending
+                                        value=effect.ending
+                                        name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
+                                    }}
+                                {{/if}}
                             {{else if (eq effect.type 'knockback')}}
                                 {{formField
                                     field.element.types.knockback.fields.distance
                                     value=effect.distance
                                     name=(concat 'system.power.tiers.' field.name '.' @index '.distance')
                                 }}
+                                {{#if @root.source.system.power.isResistance}}
+                                    {{formField
+                                        field.element.types.knockback.fields.ending
+                                        value=effect.ending
+                                        name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
+                                    }}
+                                {{/if}}
                             {{else if (eq effect.type 'other')}}
                                 {{formField
                                     field.element.types.other.fields.description
                                     value=effect.description
                                     name=(concat 'system.power.tiers.' field.name '.' @index '.description')
                                 }}
+                                {{#if @root.source.system.power.isResistance}}
+                                    {{formField
+                                        field.element.types.other.fields.ending
+                                        value=effect.ending
+                                        name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
+                                    }}
+                                {{/if}}
                             {{/if}}
                         </div>
                     {{/each}}
