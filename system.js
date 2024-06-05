@@ -12,7 +12,7 @@ import {
     registerTemplates,
     setCSSVariables,
 } from './module/hooks/_index.js';
-import { ResistanceRollDialog } from './module/rolls/_index.js';
+import { createResistanceRollButton } from './module/hooks/renderChatMessage/roll-resistance-button.js';
 
 Hooks.on('init', () => {
     CONFIG.ActiveEffect.legacyTransferral = false;
@@ -67,15 +67,10 @@ Hooks.on('ready', async () => {
     // game.actors.contents.find((actor) => actor.type === 'hero').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
     Knockback.registerGMSocket();
-
-    new ResistanceRollDialog({
-        actor: await fromUuid('Actor.63jhwBlpo8yQzur5'),
-        origin: await fromUuid('Actor.BF7qtt2mgYtWCQgq'),
-        characteristic: 'agility',
-    }).render(true);
 });
 
 Hooks.on('renderChatMessage', async (document, $html) => {
     const html = $html[0];
     addButtonsToTargets(document, html);
+    createResistanceRollButton(document, html);
 });
