@@ -29,8 +29,3 @@
 .sheet.skill-config .category-custom-skills .skill .skill-delete {
     justify-self: center;
 }
-
-.sheet.skill-config .category-custom-skills .skill:not(.header) .skill-delete:hover {
-    color: var(--delete-color);
-    cursor: pointer;
-}

@@ -12,17 +12,20 @@
 
 div:has(> .right-button, > .left-button) {
     position: relative;
-}
 
-div > span.right-button {
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-}
-div > span.left-button {
-    position: absolute;
-    left: 20px;
-    cursor: pointer;
+    & > span {
+        position: absolute;
+        cursor: pointer;
+        --button-float: 20px;
+
+        &.right-button {
+            right: var(--button-float);
+        }
+
+        &.left-button {
+            left: var(--button-float);
+        }
+    }
 }
 
 span.roll-container {
@@ -50,11 +53,21 @@ a.roll-to-chat {
 
 span.roll-icons i {
     position: relative;
-}
-span.roll-icons i:nth-child(2) {
-    right: 5px;
+
+    &:nth-child(2) {
+        right: 5px;
+    }
 }
 
 .application optgroup {
     background: transparent;
+}
+
+.sheet.system .delete-button {
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--delete-color);
+    }
 }

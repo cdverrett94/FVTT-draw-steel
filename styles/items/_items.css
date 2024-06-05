@@ -1,8 +1,7 @@
 @import url('./class-sheet.css');
 @import url('./ability-sheet.css');
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) div.header,
-.sheet.item:is(.ability, .ancestry, .kit) fieldset > div:not(.editor, .power-tiers) {
+.sheet.item.system:is(.ability, .ancestry, .kit) fieldset > div:not(.editor, .power-tiers) {
     display: grid;
     grid-template-columns: 100px 1fr;
     grid-gap: 5px;
@@ -10,12 +9,18 @@
     margin-bottom: 5px;
 }
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) div.header {
-    height: 100px;
-}
+.sheet.system.item div.header {
+    display: grid;
+    --header-size: 75px;
+    height: var(--header-size);
+    grid-template-columns: var(--header-size) 1fr;
+    align-items: center;
+    grid-gap: 5px;
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) div.header {
-    grid-template-columns: 100px 1fr;
+    .item-img img {
+        height: var(--header-size);
+        width: var(--header-size);
+    }
 }
 
 .sheet.item:is(.ability, .ancestry, .kit, .class) fieldset label {
