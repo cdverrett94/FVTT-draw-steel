@@ -6,7 +6,7 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             icon: 'fas fa-suitcase',
             positioned: true,
         },
-        classes: ['mcdmrpg', 'sheet', 'item'],
+        classes: ['mcdmrpg', 'sheet', 'item', 'system'],
         form: {
             closeOnSubmit: false,
             submitOnChange: true,

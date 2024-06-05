@@ -18,7 +18,7 @@ export class SkillConfig extends HandlebarsApplicationMixin(ApplicationV2) {
             title: 'Configure Skills',
         },
         tag: 'form',
-        classes: ['mcdmrpg', 'sheet', 'skill-config'],
+        classes: ['mcdmrpg', 'sheet', 'skill-config', 'system'],
         position: {
             width: 600,
             height: 'auto',

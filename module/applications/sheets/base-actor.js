@@ -22,7 +22,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             positioned: true,
             resizable: true,
         },
-        classes: ['mcdmrpg', 'sheet', 'actor'],
+        classes: ['mcdmrpg', 'sheet', 'actor', 'system'],
         form: {
             closeOnSubmit: false,
             submitOnChange: true,
