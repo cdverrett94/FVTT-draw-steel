@@ -31,8 +31,3 @@
     --color-text-selection-bg: white;
     --color-text-selection: black;
 }
-
-::selection {
-    --color-text-selection-bg: #82817d;
-    background: var(--color-text-selection-bg) !important;
-}

@@ -38,13 +38,6 @@
     margin-bottom: 10px;
 }
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-delete {
-    text-align: center;
-    cursor: pointer;
-}
-.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-delete:hover {
-    color: var(--delete-color);
-}
 .sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-predicate {
     grid-column: 1 / -1;
 }
