@@ -5,6 +5,7 @@ export class AbilityMessageData extends ChatMessageData {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            isResistance: new fields.BooleanField(),
             targets: new fields.ObjectField({
                 uuid: new fields.DocumentUUIDField(),
                 token: new fields.DocumentUUIDField(),

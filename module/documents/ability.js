@@ -1,3 +1,4 @@
+import { TIER_TEXT } from '../constants/power-tier.js';
 import { AbilityRollDialog } from '../rolls/_index.js';
 import { Predicate } from '../rules/predicate.js';
 import { BaseItem } from './base-item.js';
@@ -109,30 +110,28 @@ export class AbilityItem extends BaseItem {
         return kitDamage;
     }
 
-    convertTierNumberToWord(tier) {
-        if (tier === 1) tier = 'one';
-        else if (tier === 2) tier = 'two';
-        else if (tier === 3) tier = 'three';
-        else if (tier === 4) tier = 'four';
-
-        return tier;
-    }
-
     getTierEffect(tier) {
-        tier = this.convertTierNumberToWord(tier);
-        return this.system.power.tiers[tier];
+        return this.system.power.tiers[TIER_TEXT[tier]];
     }
 
     async toChat() {
+        const templateData = {
+            ability: this,
+            actor: this.parent,
+        };
+
+        const systemData = {
+            origin: {
+                item: this.uuid,
+                actor: this.parent.uuid,
+            },
+            isResistance: this.system.power.isResistance,
+        };
+
         await ChatMessage.create({
             type: 'ability',
             user: game.user.id,
-            system: {
-                origin: {
-                    item: this.uuid,
-                    actor: this.parent.uuid,
-                },
-            },
+            system: systemData,
             content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-message.hbs', {
                 ability: this,
                 actor: this.parent,

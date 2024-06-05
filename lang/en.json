@@ -425,6 +425,11 @@
                                 "other": {
                                     "label": "Other Effect",
                                     "description": "Description"
+                                },
+                                "misc": {
+                                    "ending": {
+                                        "label": "Resistance Ends"
+                                    }
                                 }
                             }
                         }
@@ -642,6 +647,10 @@
             },
             "characteristic": {
                 "label": "{characteristic} Roll"
+            },
+            "resistance": {
+                "label": "Resistance",
+                "rollButton": "Roll Resistance"
             }
         },
         "sheets": {

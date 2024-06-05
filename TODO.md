@@ -14,4 +14,3 @@
 -   Chat Messages
     -   localize
 -   Rolls
-    -   Resistance roll

@@ -47,6 +47,9 @@ class TierField {
                 type: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.other.label'),
                 description: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.other.description'),
             },
+            misc: {
+                ending: game.i18n.localize('system.items.ability.FIELDS.power.tiers.types.misc.ending.label'),
+            },
         };
 
         return new fields.ArrayField(
@@ -69,6 +72,9 @@ class TierField {
                                 label: tierTypeLocalization.damage.dType,
                                 initial: 'untyped',
                             }),
+                            ending: new fields.StringField({
+                                label: tierTypeLocalization.misc.ending,
+                            }),
                         },
                         {
                             label: tierTypeLocalization.damage.type,
@@ -85,6 +91,9 @@ class TierField {
                             distance: new fields.NumberField({
                                 label: tierTypeLocalization.knockback.distance,
                             }),
+                            ending: new fields.StringField({
+                                label: tierTypeLocalization.misc.ending,
+                            }),
                         },
                         {
                             label: tierTypeLocalization.knockback.type,
@@ -100,6 +109,9 @@ class TierField {
                             }),
                             description: new fields.StringField({
                                 label: tierTypeLocalization.other.description,
+                            }),
+                            ending: new fields.StringField({
+                                label: tierTypeLocalization.misc.ending,
                             }),
                         },
                         {
