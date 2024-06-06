@@ -96,7 +96,7 @@ class Knockback {
             polygon = new PIXI.Polygon(canvas.grid.getCircle({ x, y }, distance));
         } else {
             // Euclidean circle
-            return new PIXI.Circle(x, y, distance * canvas.dimensions.distancePixels);
+            polygon = new PIXI.Circle(x, y, distance * canvas.dimensions.distancePixels);
         }
         graphics.drawPolygon(polygon);
         graphics.endFill();
