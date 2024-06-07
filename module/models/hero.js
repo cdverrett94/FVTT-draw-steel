@@ -43,6 +43,8 @@ export class HeroData extends BaseActorData {
                     }),
                     current: new fields.NumberField({
                         label: 'system.actors.hero.FIELDS.currentResources.current.label',
+                        integer: true,
+                        min: 0,
                     }),
                 }),
                 { initial: [] }
@@ -56,6 +58,7 @@ export class HeroData extends BaseActorData {
         this.speed = this.calculateSpeed();
         this.size = this.calculateSize();
         this.resources = this.calculateResources();
+        this.calculateResourcesMax();
         this.reach = this.calculateReach();
     }
 
@@ -82,24 +85,29 @@ export class HeroData extends BaseActorData {
     }
 
     calculateResources() {
-        let actor = this.parent;
         const resources = {};
 
         this.currentResources.forEach((currentResource) => {
+            resources[currentResource.name.slugify()] = {
+                name: currentResource.name,
+                current: currentResource.current,
+            };
+        });
+
+        return resources;
+    }
+
+    calculateResourcesMax() {
+        for (const resource in this.resources) {
             let max;
-            let classResource = actor.class.system.resources.find((resource) => resource.name === currentResource.name);
+            let actor = this.parent;
+            let classResource = actor.class.system.resources.find((classResource) => classResource.name === this.resources[resource].name);
 
             max = classResource?.max;
             if (max) {
                 max = Roll.create(max, actor.getRollData())._evaluateSync().total;
+                this.resources[resource].max = max;
             }
-
-            resources[currentResource.name.slugify()] = {
-                name: currentResource.name,
-                current: currentResource.current,
-                max,
-            };
-        });
-        return resources;
+        }
     }
 }
