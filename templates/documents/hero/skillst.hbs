@@ -1,0 +1,7 @@
+<div class='tab skills-tab {{ifThen (eq activeTabs.main "skills") "active" ""}}' data-group='main' data-tab='skills'>
+    {{#if isEditable}}
+        {{> 'systems/mcdmrpg/templates/documents/hero/skills-edit.hbs'}}
+    {{else}}
+        {{> 'systems/mcdmrpg/templates/documents/hero/skills-view.hbs'}}
+    {{/if}}
+</div>

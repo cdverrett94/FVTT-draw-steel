@@ -8,6 +8,11 @@ export async function registerTemplates() {
         'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs',
         'systems/mcdmrpg/templates/combat/partials/combatant.hbs',
 
+        // Heroes
+        'systems/mcdmrpg/templates/documents/hero/tabs.hbs',
+        'systems/mcdmrpg/templates/documents/hero/skills-view.hbs',
+        'systems/mcdmrpg/templates/documents/hero/skills-edit.hbs',
+
         // Monsters
         'systems/mcdmrpg/templates/documents/monster/header.hbs',
         'systems/mcdmrpg/templates/documents/monster/skills.hbs',

@@ -1,0 +1,28 @@
+<div class='skills view'>
+    {{#each actorSkills as |skills|}}
+        {{#with @key as |category|}}
+            <div class='category category-{{category}}'>
+                <div class='header'>{{localize (concat 'system.skills.' category '.label')}}</div>
+                {{#each skills as |skill|}}
+                    <div class='skill' data-action='rollSkill' data-skill='{{@key}}' data-category='{{category}}'>
+                        <div class='skill-name'>
+                            {{#if skill.isCustom}}
+                                {{skill.label}}
+                            {{else}}
+                                {{localize (concat 'system.skills.' category '.' @key '.label')}}
+                            {{/if}}
+                        </div>
+                        <div class='skill-proficiency'>
+                            {{#if skill.proficient}} +1{{/if}}
+                            <span class='roll-icons'>
+                                <i class='fa-solid fa-dice-d10 fa-lg'></i>
+                                <i class='fa-solid fa-dice-d10'></i>
+                            </span>
+                        </div>
+
+                    </div>
+                {{/each}}
+            </div>
+        {{/with}}
+    {{/each}}
+</div>

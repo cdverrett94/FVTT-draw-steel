@@ -1,4 +1,8 @@
 <div class="header">
+    <div class="portrait">
+            <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-action="editPortrait" />
+    </div>
+
     <div class='character-info'>
         <div class="name">{{formInput actor.schema.fields.name value=actor.name localize=true}}</div>
         <div class="level">
@@ -11,5 +15,5 @@
         </div>
     </div>
 
-    {{> 'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs'}}
+    {{> 'systems/mcdmrpg/templates/documents/hero/tabs.hbs'}}
 </div>

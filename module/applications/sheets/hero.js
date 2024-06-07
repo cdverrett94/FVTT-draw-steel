@@ -9,6 +9,8 @@ export class HeroSheet extends BaseActorSheet {
         },
         actions: {
             rollSkill: this.#rollSkill,
+            addSkill: this.#addSkill,
+            deleteSkill: this.#deleteSkill,
             openACKSheet: this.#openACKSheet,
             editEffect: this.#editEffect,
             deleteEffect: this.#deleteEffect,
@@ -35,14 +37,19 @@ export class HeroSheet extends BaseActorSheet {
                 template: 'systems/mcdmrpg/templates/documents/hero/skills.hbs',
                 scrollable: ['.skill-list'],
             },
-            tabs: {
-                id: 'tabs',
-                template: 'systems/mcdmrpg/templates/documents/partials/actor-tabs.hbs',
+            details: {
+                id: 'details',
+                template: 'systems/mcdmrpg/templates/documents/hero/details.hbs',
             },
             abilities: {
                 id: 'abilities',
                 template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
                 scrollable: ['.abilities-list'],
+            },
+            skillst: {
+                id: 'skillst',
+                template: 'systems/mcdmrpg/templates/documents/hero/skillst.hbs',
+                scrollable: ['.skills-tab', '.skills'],
             },
             notes: {
                 id: 'notes',
@@ -59,6 +66,20 @@ export class HeroSheet extends BaseActorSheet {
     static #rollSkill(event, target) {
         let { skill, category } = target.dataset;
         this.actor.rollSkillTest({ skill, category });
+    }
+
+    static async #addSkill() {
+        await this.actor.addCustomSkill();
+        await this.render({ parts: ['skillst'] });
+        this.setPosition({ height: 'auto' });
+    }
+
+    static async #deleteSkill(event, target) {
+        const index = target.dataset.index;
+
+        await this.actor.deleteCustomSkill({ index });
+        await this.render({ parts: ['skillst'] });
+        this.setPosition({ height: 'auto' });
     }
 
     static #openACKSheet(event, target) {

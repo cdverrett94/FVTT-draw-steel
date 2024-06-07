@@ -697,16 +697,22 @@
                     "width": "Width"
                 },
                 "skills": {
+                    "add": "Add Custom Skill",
                     "delete": "Delete Skill",
                     "edit": "Edit Skills",
-                    "proficient": "Proficient"
+                    "category": "Category",
+                    "proficient": "Proficient",
+                    "display": "Display",
+                    "noCustomSkills": "No Custom Skills Added"
                 },
                 "speed": "Speed",
                 "tabs": {
                     "abilities": "Abilities",
                     "effects": "Effects",
                     "negotiation": "Negotiation",
-                    "notes": "Notes"
+                    "notes": "Notes",
+                    "details": "Details",
+                    "skills": "Skills"
                 },
                 "tn": "TN",
                 "victories": "Victories"

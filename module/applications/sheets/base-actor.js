@@ -1,5 +1,4 @@
-import { ABILITIES, CONDITIONS, DAMAGE, SKILLS } from '../../constants/_index.js';
-import { SkillConfig } from '../_index.js';
+import { ABILITIES, CHARACTERISTICS, CONDITIONS, DAMAGE, SKILLS } from '../../constants/_index.js';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -10,6 +9,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             time: null,
             type: null,
         };
+        this.mode = 'view';
     }
 
     tabGroups = {
@@ -29,7 +29,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         },
         actions: {
             rollCharacteristic: this.#rollCharacteristic,
-            editSkills: this.#editSkills,
             addAbility: this.#addAbilty,
             rollAbility: this.#rollAbility,
             editAbility: this.#editAbility,
@@ -37,7 +36,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             postAbility: this.#postAbility,
             filterAbilities: this.#filterAbilities,
             toggleCondition: this.#toggleCondition,
-            configureToken: this.#configureToken,
+            toggleMode: this.#toggleMode,
         },
     };
 
@@ -64,7 +63,10 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
                 damages: DAMAGE.TYPES,
                 abilities: ABILITIES,
                 conditions: CONDITIONS,
+                skills: SKILLS,
+                characteristics: CHARACTERISTICS,
             },
+            isEditable: this.mode === 'edit' && this.actor.canUserModify(game.user, 'update'),
         };
 
         for (const [group, abilities] of Object.entries(context.actor.abilities)) {
@@ -111,10 +113,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     static #rollCharacteristic(event, target) {
         const characteristic = target.dataset.characteristic;
         this.actor.rollCharacteristic({ characteristic });
-    }
-    static async #editSkills(event, target) {
-        new SkillConfig({ actor: this.actor }).render(true);
-        this.minimize();
     }
 
     static async #addAbilty(event, target) {
@@ -168,16 +166,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         this.actor.toggleStatusEffect(conditionId);
     }
 
-    static #configureToken(event, target) {
-        event.preventDefault();
-        const renderOptions = {
-            left: Math.max(this.position.left - 560 - 10, 10),
-            top: this.position.top,
-        };
-        if (this.actor.isToken) return this.token.sheet.render(true, renderOptions);
-        else new CONFIG.Token.prototypeSheetClass(this.actor.prototypeToken, renderOptions).render(true);
-    }
-
     async #onDrop(event) {
         if (!this.actor.isOwner) return false;
         const data = TextEditor.getDragEventData(event);
@@ -227,5 +215,10 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         if (!this.actor.isOwner || !effect) return false;
         if (effect.target === this.actor) return false;
         return ActiveEffect.create(effect.toObject(), { parent: this.actor });
+    }
+
+    static #toggleMode(event, target) {
+        this.mode = this.mode === 'view' ? 'edit' : 'view';
+        this.render(true);
     }
 }

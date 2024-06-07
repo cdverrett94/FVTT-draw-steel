@@ -1,21 +1,5 @@
 <div class='sidebar'>
-    <div class='portrait'><img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-edit='img' /></div>
-
-    <div class='actor-ack'>
-        <div class='ancestry' data-action='openACKSheet' data-type='ancestry'>
-            <div class='label'>{{localize 'system.items.ancestry.label'}}</div>
-            <div class='value'>{{actor.ancestry.name}}</div>
-        </div>
-        <div class='kit' data-action='openACKSheet' data-type='kit'>
-            <div class='label'>{{localize 'system.items.kit.label'}}</div>
-            <div class='value'>{{actor.kit.name}}</div>
-        </div>
-        <div class='class' data-action='openACKSheet' data-type='class'>
-            <div class='label'>{{localize 'system.items.class.label'}}</div>
-            <div class='value'>{{actor.class.name}}</div>
-        </div>
-    </div>
-
+    <button data-action='toggleMode'>Change Mode {{ifThen isEditable 'edit' 'view'}}</button>
     <div class='stamina'>
         <div class='mcdmrpg-header'>{{fields.stamina.label}}</div>
         <div class='stamina-values'>
@@ -35,28 +19,18 @@
         </div>
     </div>
 
-    <div class='size'>
-        <div class='mcdmrpg-header'>{{actor.ancestry.system.schema.fields.size.label}}</div>
-        <div class='size-values'>
-            <div class='size'>
-                <div class='label'>{{actor.ancestry.system.schema.fields.size.label}}</div>
-                <div class='value'>{{actor.system.size.width}} x {{actor.system.size.length}} x {{actor.system.size.height}}</div>
-            </div>
-            <div class='weight'>
-                <div class='label'>{{actor.ancestry.system.schema.fields.size.fields.weight.label}}</div>
-                <div class='value'>{{actor.system.size.weight}}</div></div>
-            <div class='speed'>
-                <div class='label'>{{actor.ancestry.system.schema.fields.speed.label}}</div>
-                <div class='value'>{{actor.system.speed}}</div>
-            </div>
-            <div class='reach'>
-                <div class='label'>{{actor.ancestry.system.schema.fields.reach.label}}</div>
-                <div class='value'>{{actor.system.reach}}</div>
-            </div>
-            <div class='grapple-tn'>
-                <div class='label'>{{localize 'system.sheets.actor.grappleTn'}}</div>
-                <div class='value'>{{actor.system.grappleTN}}</div>
-            </div>
+    <div class='actor-ack'>
+        <div class='ancestry' data-action='openACKSheet' data-type='ancestry'>
+            <div class='label'>{{localize 'system.items.ancestry.label'}}</div>
+            <div class='value'>{{actor.ancestry.name}}</div>
+        </div>
+        <div class='kit' data-action='openACKSheet' data-type='kit'>
+            <div class='label'>{{localize 'system.items.kit.label'}}</div>
+            <div class='value'>{{actor.kit.name}}</div>
+        </div>
+        <div class='class' data-action='openACKSheet' data-type='class'>
+            <div class='label'>{{localize 'system.items.class.label'}}</div>
+            <div class='value'>{{actor.class.name}}</div>
         </div>
     </div>
 
@@ -107,6 +81,8 @@
                             @root.fields.currentResources.element.fields.current
                             name=(concat 'system.currentResources.' @index '.current')
                             value=resource.current
+                            max=resource.max
+                            step=1
                         }}
                     </div>
                 </div>

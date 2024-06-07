@@ -1,4 +1,4 @@
-<div class='{{actor.type}}-abilities actor-abilities tab abilities-tab {{ifThen (or (eq activeTabs.main "abilities") (eq activeTabs.main null)) "active" ""}}' data-group='main' data-tab='abilities'>
+<div class='{{actor.type}}-abilities actor-abilities tab abilities-tab {{ifThen (eq activeTabs.main "abilities") "active" ""}}' data-group='main' data-tab='abilities'>
     <div class='mcdmrpg-header'>
         {{localize 'system.items.ability.label.plural'}}
         <span class='add-ability right-button' data-action='addAbility'>

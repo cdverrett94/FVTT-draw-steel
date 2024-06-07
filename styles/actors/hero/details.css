@@ -1,0 +1,33 @@
+.sheet.actor.hero.system .details-tab.active {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 5px;
+
+    .characteristics {
+        grid-template-rows: repeat(5, 75px);
+        grid-template-columns: 1fr;
+
+        .value {
+            padding: 5px;
+        }
+        &.view .value {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    }
+
+    .right-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+
+        .creation,
+        .size-and-speed {
+            & > div:not(.mcdmrpg-header) {
+                display: grid;
+                grid-template-columns: 70px 1fr;
+            }
+        }
+    }
+}
