@@ -27,7 +27,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static additionalOptions = {
         window: {
-            icon: 'fa-solid fa-dice-d6',
+            icon: 'fa-solid fa-dice-d10',
             title: 'Power Roll',
         },
 
