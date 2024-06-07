@@ -37,6 +37,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             filterAbilities: this.#filterAbilities,
             toggleCondition: this.#toggleCondition,
             toggleMode: this.#toggleMode,
+            editPortrait: this.#editPortait,
         },
     };
 
@@ -220,5 +221,20 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     static #toggleMode(event, target) {
         this.mode = this.mode === 'view' ? 'edit' : 'view';
         this.render(true);
+    }
+
+    static #editPortait(event, target) {
+        console.log('hi');
+        const current = foundry.utils.getProperty(this.actor, 'img');
+        const fp = new FilePicker({
+            current,
+            type: 'image',
+            callback: (path) => {
+                this.actor.update({ img: path });
+            },
+            top: this.position.top + 40,
+            left: this.position.left + 10,
+        });
+        return fp.browse();
     }
 }
