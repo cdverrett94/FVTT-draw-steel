@@ -34,10 +34,11 @@ async function addButtonsToTargets(document, html) {
                 text = game.i18n.format(localizationPath, { amount: dataset.damageAmount, type: damageTypeText });
                 registerListeners = registerDamageTargetListeners;
             } else if (effect.type === 'knockback') {
-                const localizationPath = disabled ? 'system.terms.knockback.applied' : 'system.terms.knockback.label';
-
-                text = `${game.i18n.localize(localizationPath)} ${dataset.knockbackDistance}`;
                 dataset.knockbackDistance = effect.distance;
+
+                const localizationPath = disabled ? 'system.terms.knockback.applied' : 'system.terms.knockback.label';
+                text = `${game.i18n.localize(localizationPath)} ${dataset.knockbackDistance}`;
+
                 registerListeners = registerKnockbackTargetListeners;
             }
 
