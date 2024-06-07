@@ -64,7 +64,7 @@ function createRollLink({ enrichType, label, data, postToChat = false } = {}) {
     rollLink.classList.add('roll-link');
     rollLink.classList.add(`roll-${enrichType}`);
     _addDataset(rollLink, data);
-    rollLink.innerHTML = `<span class='roll-icons'><i class='fa-solid fa-dice-d6 fa-lg'></i><i class='fa-solid fa-dice-d6'></i></span> ${label}`;
+    rollLink.innerHTML = `<span class='roll-icons'><i class='fa-solid fa-dice-d10 fa-lg'></i><i class='fa-solid fa-dice-d10'></i></span> ${label}`;
     span.appendChild(rollLink);
 
     if (postToChat) {
