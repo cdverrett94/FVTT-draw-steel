@@ -22,8 +22,6 @@ function resistanceRollListeners(element, document, index) {
         const ability = await fromUuid(document.system.origin.item);
         const characteristic = ability?.system.power.characteristic;
 
-        console.log(rollingActor, originActor, ability, characteristic);
-
         new ResistanceRollDialog({
             actor: rollingActor,
             origin: originActor,
