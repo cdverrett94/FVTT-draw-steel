@@ -8,7 +8,9 @@ import {
     registerDocumentClasses,
     registerDocumentSheets,
     registerRolls,
+    registerSettings,
     registerStatusEffects,
+    registerSystemConstants,
     registerTemplates,
     setCSSVariables,
 } from './module/hooks/_index.js';
@@ -16,6 +18,9 @@ import { createResistanceRollButton } from './module/hooks/renderChatMessage/rol
 
 Hooks.on('init', () => {
     CONFIG.ActiveEffect.legacyTransferral = false;
+
+    registerSettings();
+    registerSystemConstants();
 
     //Register System Data Models
     registerDataModels();
@@ -59,11 +64,6 @@ Hooks.on('init', () => {
 });
 
 Hooks.on('ready', async () => {
-    game.mcdmrpg = {
-        actions: {
-            knockback: Knockback.do,
-        },
-    };
     // game.actors.contents.find((actor) => actor.type === 'hero').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
     Knockback.registerGMSocket();

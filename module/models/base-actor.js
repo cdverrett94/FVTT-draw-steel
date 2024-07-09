@@ -1,4 +1,4 @@
-import { CHARACTERISTICS, DAMAGE, SKILLS } from '../constants/_index.js';
+import { CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
 import { getDataModelChoices } from '../helpers.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
@@ -22,9 +22,9 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
         // Skills
         const skills = {};
-        for (const skillCategory in SKILLS) {
+        for (const skillCategory in game.mcdmrpg.skills) {
             if (skillCategory === 'label') continue;
-            const category = SKILLS[skillCategory];
+            const category = game.mcdmrpg.skills[skillCategory];
             const subskills = {};
             for (const skill in category) {
                 if (skill === 'label') continue;
@@ -33,7 +33,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: SKILLS[skillCategory][skill].default,
+                        initial: game.mcdmrpg.skills[skillCategory][skill].default,
                         choices: getDataModelChoices(CHARACTERISTICS),
                     }),
                     display: new fields.BooleanField({
@@ -44,25 +44,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
             skills[skillCategory] = new fields.SchemaField(subskills);
         }
-        skills.customSkills = new fields.ArrayField(
-            new fields.SchemaField({
-                name: new fields.StringField(),
-                proficient: new fields.BooleanField({
-                    initial: false,
-                }),
-                characteristic: new fields.StringField({
-                    initial: 'reason',
-                    choices: getDataModelChoices(CHARACTERISTICS),
-                }),
-                category: new fields.StringField({
-                    initial: 'crafting',
-                    choices: getDataModelChoices(SKILLS),
-                }),
-                display: new fields.BooleanField({
-                    initial: false,
-                }),
-            })
-        );
 
         schema.skills = new fields.SchemaField(skills);
 
@@ -107,20 +88,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
     prepareBaseData() {
         for (const [characteristic, score] of Object.entries(this.characteristics)) {
             this[characteristic] = score;
-        }
-
-        for (const customSkill in this.skills.customSkills) {
-            const skill = this.skills.customSkills[customSkill];
-
-            if (!this.skills[skill.category][skill.name.slugify()]) {
-                this.skills[skill.category][skill.name.slugify()] = {
-                    characteristic: skill.characteristic,
-                    proficient: skill.proficient,
-                    label: skill.name,
-                    isCustom: true,
-                    display: skill.display,
-                };
-            }
         }
 
         this.stamina.healing = Math.floor(this.stamina.max / 3);

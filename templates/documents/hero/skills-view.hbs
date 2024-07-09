@@ -6,11 +6,7 @@
                 {{#each skills as |skill|}}
                     <div class='skill' data-action='rollSkill' data-skill='{{@key}}' data-category='{{category}}'>
                         <div class='skill-name'>
-                            {{#if skill.isCustom}}
-                                {{skill.label}}
-                            {{else}}
-                                {{localize (concat 'system.skills.' category '.' @key '.label')}}
-                            {{/if}}
+                            {{localize (getSkillLabelPath category @key)}}
                         </div>
                         <div class='skill-proficiency'>
                             {{#if skill.proficient}} +1{{/if}}

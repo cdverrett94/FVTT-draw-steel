@@ -1,4 +1,3 @@
-import { capitalize } from '../../helpers.js';
 import { PowerRollDialog, TestRoll } from '../_index.js';
 
 export class TestRollDialog extends PowerRollDialog {
@@ -7,23 +6,15 @@ export class TestRollDialog extends PowerRollDialog {
         this.context.type = 'test';
     }
     get title() {
-        let category;
-        const foundCategory = Object.entries(this.context.actor.system.skills).find((category) => this.context.skill in category[1]);
-        if (foundCategory) category = foundCategory[0];
+        const skillLabelPath = Handlebars.helpers.getSkillLabelPath(this.context.category, this.context.skill);
+        const localizedSkill = game.i18n.localize(skillLabelPath);
+        const localizedCharacteristic = game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`);
 
-        const foundSkill = this.context.actor.system.skills[category]?.[this.context.skill];
+        const title = game.i18n.format('system.rolls.test.title', {
+            skill: localizedSkill,
+            characteristic: localizedCharacteristic,
+        });
 
-        let title = '';
-        if (foundSkill) {
-            const localizedSkill = foundSkill.isCustom ? foundSkill.label : game.i18n.localize(`system.skills.${category}.${this.context.skill}.label`);
-            const localizedCharacteristic = game.i18n.localize(`system.characteristics.${this.context.characteristic}.label`);
-            title = game.i18n.format('system.rolls.test.title', {
-                skill: localizedSkill,
-                characteristic: localizedCharacteristic,
-            });
-        } else {
-            title = capitalize(skill);
-        }
         return title;
     }
 

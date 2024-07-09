@@ -4,39 +4,22 @@
             <div class='category category-{{category}}'>
                 <div class='header'>
                     {{localize (concat 'system.skills.' category '.label')}}
-                    {{#if (eq category 'customSkills')}}
-                        <span class='right-button add-skill' data-action='addSkill' data-tooltip='system.sheets.actor.skills.add'><i
-                                class='fa-solid fa-plus'
-                            ></i></span>
-                    {{/if}}
                 </div>
                 <div class='skill labels'>
-                    {{#if (eq category 'customSkills')}}{{localize 'system.sheets.actor.skills.category'}}{{/if}}
                     <div class='skill-characteristic'>{{localize 'system.characteristics.label'}}</div>
                     <div class='skill-name'>{{localize 'system.skills.label.singular'}}</div>
                     <div class='skill-proficiency'>{{localize 'system.sheets.actor.skills.proficient'}}</div>
                     <div>{{localize 'system.sheets.actor.skills.display'}}</div>
                 </div>
                 {{#each skills as |skill|}}
-                    <div class='skill'>
-                        {{#if (eq category 'customSkills')}}
-                            <div class='skill-category'>
-                                <select name='system.skills.{{category}}.{{@key}}.category'>
-                                    {{selectOptions @root.constants.skills selected=skill.category labelAttr='label' localize=true}}
-                                </select>
-                            </div>
-                        {{/if}}
+                    <div>
                         <div class='skill-characteristic'>
                             <select name='system.skills.{{category}}.{{@key}}.characteristic'>
                                 {{selectOptions @root.constants.characteristics selected=skill.characteristic labelAttr='abbreviation' localize=true}}
                             </select>
                         </div>
                         <div class='skill-name'>
-                            {{#if (eq category 'customSkills')}}
-                                <input type='text' name='system.skills.customSkills.{{@key}}.name' value='{{skill.name}}' />
-                            {{else}}
-                                {{localize (concat 'system.skills.' category '.' @key '.label')}}
-                            {{/if}}
+                            {{localize (getSkillLabelPath category @key)}}
                         </div>
                         <div class='skill-proficiency'>
                             <div class='skill-proficiency'>
@@ -46,25 +29,8 @@
                         <div class='skill-display'>
                             <input type='checkbox' name='system.skills.{{category}}.{{@key}}.display' {{checked skill.display}} />
                         </div>
-                        {{#if (eq category 'customSkills')}}
-                            <div
-                                class='skill-delete delete-button'
-                                data-action='deleteSkill'
-                                data-index='{{@index}}'
-                                data-tooltip='system.sheets.actor.skills.delete'
-                            >
-                                <i class='fa-solid fa-trash-can'></i>
-                            </div>
-                        {{/if}}
                     </div>
-
                 {{/each}}
-                {{#if (eq category 'customSkills')}}
-                    {{#unless skills}}
-                        <div>{{localize 'system.sheets.actor.skills.noCustomSkills'}}</div>
-
-                    {{/unless}}
-                {{/if}}
             </div>
         {{/with}}
     {{/each}}

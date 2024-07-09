@@ -1,4 +1,5 @@
 // Configs
+export { CustomSkillsSettings } from './configs/custom-skill-config.js';
 export { FrightenedConfig } from './configs/frightened-config.js';
 export { OngoingDamageConfig } from './configs/ongoing-damage-config.js';
 export { TauntedConfig } from './configs/taunted-config.js';

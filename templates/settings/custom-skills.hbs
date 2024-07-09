@@ -1,0 +1,39 @@
+<div class='category category-customSkills'>
+    <div class='header'>
+        {{localize (concat 'system.skills.customSkills.label')}}
+        <span class='right-button add-skill' data-action='addSkill' data-tooltip='system.sheets.actor.skills.add'><i class='fa-solid fa-plus'></i></span>
+    </div>
+    <div class='skill labels'>
+        <div class='skill-category'>{{localize 'system.sheets.actor.skills.category'}}</div>
+        <div class='skill-characteristic'>{{localize 'system.characteristics.label'}}</div>
+        <div class='skill-name'>{{localize 'system.skills.label.singular'}}</div>
+        <div class='skill-delete'></div>
+    </div>
+    <div class='skills'>
+        {{#each customSkills as |skill|}}
+            <div class='skill' data-index='{{@index}}'>
+                <div class='skill-category'>
+                    <select name='customSkills.{{@index}}.category'>
+                        {{selectOptions @root.constants.skills selected=skill.category labelAttr='label' localize=true}}
+                    </select>
+                </div>
+                <div class='skill-characteristic'>
+                    <select name='customSkills.{{@index}}.characteristic'>
+                        {{selectOptions @root.constants.characteristics selected=skill.characteristic labelAttr='abbreviation' localize=true}}
+                    </select>
+                </div>
+                <div class='skill-name'>
+                    <input type='text' name='customSkills.{{@index}}.name' value='{{skill.name}}' />
+                </div>
+                <div class='skill-delete delete-button' data-action='deleteSkill' data-index='{{@index}}' data-tooltip='system.sheets.actor.skills.delete'>
+                    <i class='fa-solid fa-trash-can'></i>
+                </div>
+            </div>
+
+        {{/each}}
+        {{#unless customSkills}} No Custom Skills Configured{{/unless}}
+    </div>
+    <div class='save-button'>
+        <button type='submit'>Save Skills</button>
+    </div>
+</div>

@@ -17,4 +17,12 @@ export function registerCustomHandlebarHelpers() {
             return accumulator;
         }, 0);
     });
+
+    Handlebars.registerHelper('isNumber', function (value) {
+        return Number.isNumeric(value);
+    });
+
+    Handlebars.registerHelper('getSkillLabelPath', function (category, skill) {
+        return game.mcdmrpg.skills[category][skill].label;
+    });
 }

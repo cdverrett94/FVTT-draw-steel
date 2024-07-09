@@ -1,36 +1,7 @@
-<div class='skills'>
-    <div class='mcdmrpg-header'>
-        {{localize 'system.skills.label.plural'}}
-        <span class='edit-skills right-button' data-action='editSkills'>
-            <i class='fa-regular fa-pencil' data-tooltip='{{localize "system.sheets.actor.skills.edit"}}' data-tooltip-direction='UP'></i>
-        </span>
-    </div>
-
-    <div class='skill-list'>
-        {{#each actorSkills as |skills|}}
-            <div class='skill-category category-{{@key}}'>
-                <div class='category-name'>{{localize (concat 'system.skills.' @key '.label')}}</div>
-                {{#with @key as |category|}}
-                    {{#each skills as |skill|}}
-                        <div class='skill' data-action='rollSkill' data-skill='{{@key}}' data-category='{{category}}'>
-                            <div class='skill-name'>
-                                {{#if skill.isCustom}}
-                                    {{skill.label}}
-                                {{else}}
-                                    {{localize (concat 'system.skills.' category '.' @key '.label')}}
-                                {{/if}}
-                            </div>
-                            <div class='skill-proficiency'>
-                                {{#if skill.proficient}} +1{{/if}}
-                                <span class='roll-icons'>
-                                    <i class='fa-solid fa-dice-d10 fa-lg'></i>
-                                    <i class='fa-solid fa-dice-d10'></i>
-                                </span>
-                            </div>
-                        </div>
-                    {{/each}}
-                {{/with}}
-            </div>
-        {{/each}}
-    </div>
+<div class='tab skills-tab {{ifThen (eq activeTabs.main "skills") "active" ""}}' data-group='main' data-tab='skills'>
+    {{#if isEditable}}
+        {{> 'systems/mcdmrpg/templates/documents/hero/skills-edit.hbs'}}
+    {{else}}
+        {{> 'systems/mcdmrpg/templates/documents/hero/skills-view.hbs'}}
+    {{/if}}
 </div>
