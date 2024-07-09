@@ -44,34 +44,6 @@ export class BaseActor extends Actor {
         return abilities;
     }
 
-    // Add Custom Skill
-    async addCustomSkill({ name = 'New Skill', characteristic = 'might', proficient = true, category = 'crafting' } = {}) {
-        if (!(characteristic in CHARACTERISTICS)) characteristic = 'might';
-        const skillArray = this.system.skills.customSkills;
-        skillArray.push({
-            name,
-            characteristic,
-            proficient,
-            category,
-        });
-
-        return await this.update({ 'system.skills.customSkills': skillArray });
-    }
-
-    // Delete craft/knowledge subskill
-    async deleteCustomSkill({ name, index } = {}) {
-        const skillArray = this.system.skills.customSkills;
-        if (!skillArray) return false;
-        if (!index) {
-            if (!name) return ui.notifications.error('A custom skill name or index must be provided.');
-            index = skillArray.findIndex((s) => s.name === name);
-            if (index === -1) return ui.notifications.error(`No custom skill found with that name.`);
-        }
-
-        skillArray.splice(index, 1);
-        return await this.update({ 'system.skills.customSkills': skillArray });
-    }
-
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         if (['ongoingdamage', 'taunted', 'frightened'].includes(statusId)) active = true;
         else if (statusId === 'prone') {
