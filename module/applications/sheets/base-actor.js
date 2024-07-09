@@ -1,19 +1,12 @@
-import { ABILITIES, CHARACTERISTICS, CONDITIONS, DAMAGE, SKILLS } from '../../constants/_index.js';
+import { ABILITIES, CHARACTERISTICS, CONDITIONS, DAMAGE } from '../../constants/_index.js';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
-    constructor(...args) {
-        super(...args);
-        this.filters = {
-            time: null,
-            type: null,
-        };
-        this.mode = 'view';
-    }
+    mode = 'view';
 
     tabGroups = {
-        main: null,
+        main: this.actor.type === 'hero' ? 'details' : 'abilities',
     };
 
     static additionalOptions = {
@@ -34,7 +27,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             editAbility: this.#editAbility,
             deleteAbility: this.#deleteAbility,
             postAbility: this.#postAbility,
-            filterAbilities: this.#filterAbilities,
             toggleCondition: this.#toggleCondition,
             toggleMode: this.#toggleMode,
             editPortrait: this.#editPortait,
@@ -43,7 +35,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
     async _prepareContext(options) {
         const skills = {};
-        Object.keys(SKILLS).forEach((category) => {
+        Object.keys(game.mcdmrpg.skills).forEach((category) => {
             if (category === 'customSkills') return false;
             for (const skill in this.actor.system.skills[category]) {
                 if (this.actor.system.skills[category][skill].proficient || this.actor.system.skills[category][skill].display) {
@@ -58,13 +50,12 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             actorSkills: skills,
             source: this.actor.toObject(),
             fields: this.actor.system.schema.fields,
-            filters: this.filters,
             activeTabs: this.tabGroups,
             constants: {
                 damages: DAMAGE.TYPES,
                 abilities: ABILITIES,
                 conditions: CONDITIONS,
-                skills: SKILLS,
+                skills: game.mcdmrpg.skills,
                 characteristics: CHARACTERISTICS,
             },
             isEditable: this.mode === 'edit' && this.actor.canUserModify(game.user, 'update'),
@@ -83,11 +74,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
                     two: await TextEditor.enrichHTML(ability.system.power.tiers.two, enrichContext),
                     three: await TextEditor.enrichHTML(ability.system.power.tiers.three, enrichContext),
                 };
-                let isCurrentTypeFilter = ability.system.type === this.filters.type;
-                let isCurrentTimeFilter = ability.system.time === this.filters.time;
-                let noFilters = !this.filters.type && !this.filters.time;
-                if (isCurrentTypeFilter || isCurrentTimeFilter || noFilters) ability.show = true;
-                else ability.show = false;
             }
         }
 
@@ -109,6 +95,14 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             },
         });
         dd.bind(this.element);
+
+        let search = new SearchFilter({
+            inputSelector: 'input.ability-filter-input',
+            contentSelector: '.abilities-list',
+            callback: this.#filterAbilities,
+        });
+
+        search.bind(this.element.querySelector('.actor-abilities'));
     }
 
     static #rollCharacteristic(event, target) {
@@ -144,22 +138,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         const abilityItem = this.actor.items.find((item) => item._id === abilityId);
 
         this.actor.deleteEmbeddedDocuments('Item', [abilityItem._id]);
-    }
-    static async #filterAbilities(event, target) {
-        const { filter, selection } = target.dataset;
-        if (selection === 'clear') {
-            this.filters = {
-                type: null,
-                time: null,
-            };
-        } else {
-            const secondaryFilter = filter === 'type' ? 'time' : 'type';
-            this.filters[filter] = selection === 'clear' ? null : selection;
-            this.filters[secondaryFilter] = null;
-        }
-
-        await this.render({ parts: ['abilities'] });
-        this.setPosition({ height: 'auto' });
     }
 
     static #toggleCondition(event, target) {
@@ -224,7 +202,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     }
 
     static #editPortait(event, target) {
-        console.log('hi');
         const current = foundry.utils.getProperty(this.actor, 'img');
         const fp = new FilePicker({
             current,
@@ -236,5 +213,30 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             left: this.position.left + 10,
         });
         return fp.browse();
+    }
+
+    #filterAbilities(event, searchTerm, regexp, html) {
+        const abilities = html.querySelectorAll('.ability');
+        if (abilities.length === 0) return;
+
+        const filteredAbilities = [];
+
+        abilities.forEach((ability) => {
+            const abilityName = ability.querySelector('.ability-name');
+            const abilityType = ability.querySelector('.ability-group-label');
+            const abilityKeywords = ability.querySelector('.ability-keywords');
+            const abilityTime = ability.querySelector('.ability-time');
+            const matchesName = abilityName?.innerText.match(regexp);
+            const matchesType = abilityType?.innerText.match(regexp);
+            const matchesKeyWords = abilityKeywords?.innerText.match(regexp);
+            const matchesTime = abilityTime?.innerText.match(regexp);
+
+            if (matchesName || matchesType || matchesKeyWords || matchesTime) filteredAbilities.push(ability.dataset.abilityId);
+        });
+
+        abilities.forEach((ability) => {
+            if (!filteredAbilities.includes(ability.dataset.abilityId)) ability.classList.add('hidden');
+            else ability.classList.remove('hidden');
+        });
     }
 }

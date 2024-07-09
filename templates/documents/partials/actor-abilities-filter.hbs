@@ -1,33 +1,3 @@
 <div class='ability-filters'>
-    <div>{{localize 'system.sheets.actor.abilities.filters.type'}}</div>
-    <div class='ability-type-filters'>
-        {{#each actor.allowedAbilityTypes as |abilityType|}}
-            <div
-                class='ability-filter ability-type-filter{{ifThen (eq @key @root.filters.type) " active-filter" ""}}'
-                data-action='filterAbilities'
-                data-filter='type'
-                data-selection='{{@key}}'
-                data-ability-type='{{@key}}'
-            >
-                {{localize abilityType.label}}
-            </div>
-        {{/each}}
-    </div>
-    <div>{{localize 'system.sheets.actor.abilities.filters.time'}}</div>
-    <div class='ability-time-filters'>
-        {{#each constants.abilities.TIMES as |abilityTime|}}
-            <div
-                class='ability-filter ability-time-filter{{ifThen (eq @key @root.filters.time) " active-filter" ""}}'
-                data-action='filterAbilities'
-                data-filter='time'
-                data-selection='{{@key}}'
-                data-ability-time='{{@key}}'
-            >
-                {{localize abilityTime.label}}
-            </div>
-        {{/each}}
-    </div>
-    <div class='ability-filter clear-filters' data-action='filterAbilities' data-selection='clear'>
-        {{localize 'system.sheets.actor.abilities.filters.clear'}}
-    </div>
+    <input type='text' class='ability-filter-input' placeholder='{{localize "system.sheets.actor.abilities.filter"}}' />
 </div>

@@ -659,11 +659,7 @@
                     "add": "Add New Ability",
                     "delete": "Delete Ability",
                     "edit": "Edit Abilty",
-                    "filters": {
-                        "clear": "Clear Filters",
-                        "time": "Ability Time Filter",
-                        "type": "Ability Type Filter"
-                    }
+                    "filter": "Filter Abilities"
                 },
                 "bonusDamage": "Bonus Damage",
                 "bonusTN": "Bonus TN",
@@ -1035,5 +1031,8 @@
             "class": "Class",
             "kit": "Kit"
         }
+    },
+    "USER": {
+        "GM": "Director"
     }
 }
