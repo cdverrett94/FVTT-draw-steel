@@ -1,5 +1,6 @@
 @import url('sidebar.css');
 @import url('header.css');
+@import url('details.css');
 @import url('skills.css');
 
 /* Define Sheet Layout Via Grid */
@@ -59,4 +60,13 @@
 }
 .sheet.actor.hero .tabbed-content .sheet-tabs a.active {
     border-bottom: 2px solid black;
+}
+
+/* test skills */
+.sheet.actor.hero .window-content > .skills {
+    display: none;
+}
+
+.sheet.actor.hero .tab {
+    grid-column-start: 2;
 }

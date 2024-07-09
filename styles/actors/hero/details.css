@@ -1,6 +1,6 @@
 .sheet.actor.hero.system .details-tab.active {
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 100px 1fr;
     grid-auto-rows: min-content;
     grid-gap: 5px;
 

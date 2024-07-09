@@ -1,9 +1,9 @@
 .message .message-content .actor {
     display: grid;
-    grid-template-columns: 50px auto;
+    grid-template-columns: 35px auto;
     align-items: center;
     grid-gap: var(--grid-gap);
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .message .message-content .actor img {

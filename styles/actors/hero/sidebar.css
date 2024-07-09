@@ -1,10 +1,6 @@
-.sheet.actor.hero .sidebar > div,
-.sheet.actor.hero .sidebar .resources .resource {
+.sheet.actor.hero .sidebar > div:not(:last-child),
+.sheet.actor.hero .sidebar .resources .resource:not(:last-child) {
     margin-bottom: 5px;
-}
-
-.sheet.actor.hero .sidebar .portrait img {
-    width: 100%;
 }
 
 .sheet.actor.hero .sidebar .stamina .stamina-values,
@@ -17,17 +13,13 @@
 
 .sheet.actor.hero .sidebar .stamina .stamina-values .current input,
 .sheet.actor.hero .sidebar .recoveries .recoveries-values .current input,
-.sheet.actor.hero .sidebar .resources .resource .resource-current input {
+.sheet.actor.hero .sidebar .resources .resource .resource-current input,
+.sheet.actor.hero .sidebar .victories input {
     height: 100%;
     font-size: 2rem;
 }
 
-.sheet.actor.hero .sidebar .stamina .stamina-values input,
-.sheet.actor.hero .sidebar .stamina .stamina-values .other-stamina > div div,
-.sheet.actor.hero .sidebar .recoveries .recoveries-values input,
-.sheet.actor.hero .sidebar .recoveries .recoveries-values .other-recoveries > div div,
-.sheet.actor.hero .sidebar .resources .resource .resource-current input,
-.sheet.actor.hero .sidebar .resources .resource .resource-max {
+.sheet.actor.hero .sidebar {
     text-align: center;
 }
 
@@ -46,11 +38,6 @@
     display: grid;
     grid-template-columns: 70px 1fr;
     grid-gap: 5px;
-}
-
-.sheet.actor.hero .sidebar .actor-ack > div .label,
-.sheet.actor.hero .sidebar .size-values > div .label {
-    text-align: right;
 }
 
 .sheet.actor.hero .sidebar .actor-ack > div {

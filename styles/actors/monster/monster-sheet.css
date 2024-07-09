@@ -167,4 +167,5 @@
 
 .sheet.actor.monster .tab {
     grid-row: 5 / 11;
+    max-height: 550px;
 }
