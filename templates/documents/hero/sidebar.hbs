@@ -56,7 +56,7 @@
             </span>
         </div>
         {{#each actor.system.resources as |resource|}}
-            <div class='resource{{ifThen resource.max " has-max" ""}}'>
+            <div class='resource{{ifThen (isNumber resource.max) " has-max" ""}}'>
                 <div class='resource-current'>
                     <div class='resource-title label'>
                         <input style='display: none' name='system.currentResources.{{@index}}.name' value='{{resource.name}}' />{{resource.name}}
@@ -71,7 +71,7 @@
                         }}
                     </div>
                 </div>
-                {{#if resource.max}}
+                {{#if (isNumber resource.max)}}
                     <div class='resource-max'>
                         <div class='resource-title label'>Max{{localize @root.actor.class.system.schema.fields.resources.element.fields.max.label}}</div>
                         <div class='resource-value value'>{{resource.max}}</div>

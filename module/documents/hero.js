@@ -70,6 +70,23 @@ export class HeroActor extends BaseActor {
         this.update({ 'system.currentResources': updateData });
     }
 
+    async _preUpdate(changed, options, user) {
+        // Cap resource values to max
+        if (changed.system && 'currentResources' in changed.system) {
+            changed.system.currentResources = changed.system.currentResources.map((resourceObject) => {
+                let { name, current } = resourceObject;
+                const slug = name.slugify();
+                const max = this.system.resources[slug]?.max ?? Infinity;
+
+                resourceObject.current = Math.clamp(current, 0, max);
+
+                return resourceObject;
+            });
+        }
+
+        await super._preUpdate(changed, options, user);
+    }
+
     rollOptions(prefix = 'actor') {
         const rollOptions = super.rollOptions(prefix);
 
