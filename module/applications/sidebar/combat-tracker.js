@@ -45,7 +45,7 @@ export class MCDMCombatTracker extends CombatTracker {
                     },
                 };
 
-                const roll = await new Roll('1d6').evaluate();
+                const roll = await new Roll('1d10').evaluate();
                 updateData.system.initiative[side] = roll.total;
                 await this.viewed.update(updateData);
                 roll.toMessage({
