@@ -1,4 +1,4 @@
-<div class='tab details-tab {{ifThen (or (eq activeTabs.main "details") (eq activeTabs.main null)) "active" ""}}' data-group='main' data-tab='details'>
+<div class='tab details-tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
     <div class='characteristics {{ifThen isEditable "edit" "view"}}'>
         {{#each fields.characteristics as |characteristic|}}
             <div class='characteristic'>
