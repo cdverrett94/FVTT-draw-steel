@@ -4,8 +4,8 @@ export class HeroSheet extends BaseActorSheet {
     static additionalOptions = {
         classes: ['hero'],
         position: {
-            width: 1202,
-            height: 1100,
+            width: 945,
+            height: 735,
         },
         actions: {
             rollSkill: this.#rollSkill,
@@ -32,11 +32,6 @@ export class HeroSheet extends BaseActorSheet {
                 id: 'sidebar',
                 template: 'systems/mcdmrpg/templates/documents/hero/sidebar.hbs',
             },
-            skills: {
-                id: 'skill',
-                template: 'systems/mcdmrpg/templates/documents/hero/skills.hbs',
-                scrollable: ['.skill-list'],
-            },
             details: {
                 id: 'details',
                 template: 'systems/mcdmrpg/templates/documents/hero/details.hbs',
@@ -46,9 +41,9 @@ export class HeroSheet extends BaseActorSheet {
                 template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
                 scrollable: ['.abilities-list'],
             },
-            skillst: {
-                id: 'skillst',
-                template: 'systems/mcdmrpg/templates/documents/hero/skillst.hbs',
+            skills: {
+                id: 'skills',
+                template: 'systems/mcdmrpg/templates/documents/hero/skills.hbs',
                 scrollable: ['.skills-tab', '.skills'],
             },
             notes: {
@@ -62,6 +57,20 @@ export class HeroSheet extends BaseActorSheet {
         },
         { inplace: false }
     );
+
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+
+        context.enriched ??= {};
+
+        const enrichContext = {
+            async: true,
+            actor: this.actor,
+        };
+        context.enriched.notes = await TextEditor.enrichHTML(context.source.system.notes, enrichContext);
+
+        return context;
+    }
 
     static #rollSkill(event, target) {
         let { skill, category } = target.dataset;

@@ -1,3 +1,7 @@
 <div class='tab {{ifThen (eq activeTabs.main "notes") "active" ""}}' data-group='main' data-tab='notes'>
-    NOTES
+    {{#if isEditable}}
+        {{formField fields.notes value=source.system.notes target='system.notes' toggled=false}}
+    {{else}}
+        {{{enriched.notes}}}
+    {{/if}}
 </div>
