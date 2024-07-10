@@ -1,0 +1,14 @@
+<div class='characteristics {{ifThen isEditable "edit" "view"}}'>
+    {{#each fields.characteristics as |characteristic|}}
+        <div class='characteristic'>
+            <div class='label' data-action='rollCharacteristic' data-characteristic='{{characteristic.name}}'>{{localize characteristic.label}}</div>
+            <div class='value'>
+                {{#if @root.isEditable}}
+                    {{formInput characteristic value=(lookup @root.actor.system.characteristics characteristic.name)}}
+                {{else}}
+                    {{lookup @root.source.system.characteristics characteristic.name}}
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>

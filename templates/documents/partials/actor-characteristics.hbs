@@ -1,8 +1,0 @@
-<div class='characteristics'>
-    {{#each fields.characteristics as |characteristic|}}
-        <div class='characteristic'>
-            <div class='label' data-action='rollCharacteristic' data-characteristic='{{characteristic.name}}'>{{localize characteristic.label}}</div>
-            <div class='value'>{{formInput characteristic value=(lookup @root.actor.system.characteristics characteristic.name)}}</div>
-        </div>
-    {{/each}}
-</div>

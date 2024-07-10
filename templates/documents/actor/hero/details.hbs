@@ -1,19 +1,6 @@
 <div class='tab details-tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
-    <div class='characteristics {{ifThen isEditable "edit" "view"}}'>
-        {{#each fields.characteristics as |characteristic|}}
-            <div class='characteristic'>
-                <div class='label' data-action='rollCharacteristic' data-characteristic='{{characteristic.name}}'>{{localize characteristic.label}}</div>
-                <div class='value'>
-                    {{#if @root.isEditable}}
-                        {{formInput characteristic value=(lookup @root.actor.system.characteristics characteristic.name)}}
-                    {{else}}
-                        {{lookup @root.source.system.characteristics characteristic.name}}
-                    {{/if}}
-                </div>
-            </div>
-        {{/each}}
-    </div>
-    <div class='right-details'>
+    {{> 'systems/mcdmrpg/templates/documents/actor/partials/characteristics.hbs'}}
+    <div class='main-details'>
         <div class='creation'>
             <div class='mcdmrpg-header'>Creation Details</div>
             <div class='class' data-action='openACKSheet' data-type='class'>

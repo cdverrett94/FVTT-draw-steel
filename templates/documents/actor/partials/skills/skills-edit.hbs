@@ -12,7 +12,7 @@
                     <div>{{localize 'system.sheets.actor.skills.display'}}</div>
                 </div>
                 {{#each skills as |skill|}}
-                    <div>
+                    <div class='skill'>
                         <div class='skill-characteristic'>
                             <select name='system.skills.{{category}}.{{@key}}.characteristic'>
                                 {{selectOptions @root.constants.characteristics selected=skill.characteristic labelAttr='abbreviation' localize=true}}

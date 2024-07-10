@@ -5,7 +5,7 @@ export class MonsterSheet extends BaseActorSheet {
     static additionalOptions = {
         classes: ['monster'],
         position: {
-            width: 950,
+            width: 800,
             height: 'auto',
         },
         actions: {},
@@ -20,36 +20,37 @@ export class MonsterSheet extends BaseActorSheet {
         {
             header: {
                 id: 'header',
-                template: 'systems/mcdmrpg/templates/documents/monster/header.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/monster/header.hbs',
             },
             characteristics: {
                 id: 'characteristics',
-                template: 'systems/mcdmrpg/templates/documents/partials/actor-characteristics.hbs',
-            },
-            skills: {
-                id: 'skills',
-                template: 'systems/mcdmrpg/templates/documents/monster/skills.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/characteristics.hbs',
             },
             tabs: {
                 id: 'tabs',
-                template: 'systems/mcdmrpg/templates/documents/partials/actor-tabs.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/tabs.hbs',
             },
             abilities: {
                 id: 'abilities',
-                template: 'systems/mcdmrpg/templates/documents/partials/actor-abilities-container.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/abilities/abilities-container.hbs',
                 scrollable: ['.abilities-list'],
+            },
+            skills: {
+                id: 'skills',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/skills/skills.hbs',
+                scrollable: ['.skills-tab', '.skills'],
             },
             notes: {
                 id: 'notes',
-                template: 'systems/mcdmrpg/templates/documents/hero/notes.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/notes.hbs',
             },
             effects: {
                 id: 'effects',
-                template: 'systems/mcdmrpg/templates/documents/hero/effects.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/effects.hbs',
             },
             negotiation: {
                 id: 'negotiation',
-                template: 'systems/mcdmrpg/templates/documents/monster/negotiation.hbs',
+                template: 'systems/mcdmrpg/templates/documents/actor/monster/negotiation.hbs',
             },
         },
         { inplace: false }

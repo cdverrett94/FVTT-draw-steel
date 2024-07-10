@@ -1,7 +1,8 @@
 <div class='header'>
+    <button data-action='toggleMode'>Change Mode - Current Mode: {{ifThen isEditable 'Edit' 'View'}}</button>
     <div class='actor-basics'>
         <div class='portrait left'>
-            <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-edit='img' />
+            <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-action='editPortrait' />
         </div>
         <div class='right'>
             <div class='name'>{{formInput actor.schema.fields.name value=actor.name}}</div>
