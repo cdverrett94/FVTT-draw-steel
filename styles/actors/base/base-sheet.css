@@ -1,7 +1,4 @@
 @import url('effects.css');
 @import url('abilities.css');
-@import url('chraracteristics.css');
-
-.sheet.actor .edit-skills {
-    cursor: pointer;
-}
+@import url('characteristics.css');
+@import url('skills.css');
