@@ -1,6 +1,6 @@
-import { TIER_TEXT } from '../constants/power-tier.js';
-import { AbilityRollDialog } from '../rolls/_index.js';
-import { Predicate } from '../rules/predicate.js';
+import { TIER_TEXT } from '../../constants/power-tier.js';
+import { AbilityRollDialog } from '../../rolls/_index.js';
+import { Predicate } from '../../rules/predicate.js';
 import { BaseItem } from './base-item.js';
 
 export class AbilityItem extends BaseItem {

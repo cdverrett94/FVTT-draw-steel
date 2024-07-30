@@ -1,4 +1,4 @@
-import { BaseActorData } from './base-actor.js';
+import { BaseActorData } from '../_index.js';
 
 export class HeroData extends BaseActorData {
     static LOCALIZATION_PREFIXES = ['system.actors.base', 'system.actors.hero'];
@@ -49,6 +49,11 @@ export class HeroData extends BaseActorData {
                 }),
                 { initial: [] }
             ),
+            hope: new fields.NumberField({
+                initial: 0,
+                integer: true,
+                min: 0,
+            }),
         };
     }
 

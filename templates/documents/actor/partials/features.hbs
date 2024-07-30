@@ -1,0 +1,8 @@
+<div class='tab features-tab {{ifThen (eq activeTabs.main "features") "active" ""}}' data-group='main' data-tab='features'>
+    {{#each actor.features as |feature|}}
+        <div class='feature'>
+            {{feature.name}}
+            {{{feature.system.description}}}
+        </div>
+    {{/each}}
+</div>

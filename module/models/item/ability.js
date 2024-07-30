@@ -1,5 +1,5 @@
-import { ABILITIES, CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
-import { getDataModelChoices } from '../helpers.js';
+import { ABILITIES, CHARACTERISTICS, DAMAGE } from '../../constants/_index.js';
+import { getDataModelChoices } from '../../helpers.js';
 import { BaseItemData } from './base-item.js';
 
 class KeywordField extends foundry.data.fields.ArrayField {

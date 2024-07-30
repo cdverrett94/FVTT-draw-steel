@@ -65,7 +65,10 @@
             "ability": {},
             "ancestry": {},
             "class": {},
-            "kit": {}
+            "kit": {},
+            "feature": {},
+            "culture": {},
+            "career": {}
         },
         "Combat": {
             "mcdmrpg": {}

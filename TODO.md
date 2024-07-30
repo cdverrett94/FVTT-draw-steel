@@ -14,3 +14,23 @@
 -   Chat Messages
     -   localize
 -   Rolls
+-   Ongoing Damage Automation at end of turn
+-   Hope Tokens
+    -   Add to hero sheet and add recovery functionality
+-   Respite
+    -   Move Victories to XP and make Victories 0
+    -   Regain recoveries
+    -   Regain stamina
+    -
+-   Classes
+    -   Add recovery amount
+-   Character creation
+    -   ancestry - complete
+    -   culture - complete
+    -   career - complete
+    -   class
+    -   kit
+    -   free strikes
+    -   complication
+-   ability
+    -   add description

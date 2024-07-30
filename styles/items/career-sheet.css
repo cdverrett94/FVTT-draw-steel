@@ -1,0 +1,55 @@
+.sheet.item.career .skills {
+    display: grid;
+    overflow-y: auto;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+
+    .category {
+        background-color: var(--alternating-bg-color);
+        padding: 5px;
+        border-radius: 5px;
+
+        .header {
+            font-weight: bold;
+            font-size: 1rem;
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+            padding: 5px;
+            z-index: 1;
+            height: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .skill {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: 1fr 45px 45px;
+
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+
+            .skill-choice,
+            .skill-grant {
+                align-self: center;
+                justify-self: center;
+            }
+
+            .labels {
+                font-weight: bold;
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+.sheet.item.career .incidents .incident {
+    display: grid;
+    grid-template-columns: 25px 1fr 25px;
+}
+
+.sheet.item.career .details-tab {
+    max-height: 750px;
+    overflow-y: scroll;
+}

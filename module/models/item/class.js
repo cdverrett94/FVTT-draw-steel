@@ -10,13 +10,14 @@ export class ClassData extends BaseItemData {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             resources: new fields.ArrayField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
                     max: new fields.StringField(),
                 })
             ),
-            description: new fields.HTMLField(),
+
             victoryBenefits: new fields.HTMLField(),
             resourceGain: new fields.HTMLField(),
         };

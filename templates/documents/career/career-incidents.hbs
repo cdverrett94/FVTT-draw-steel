@@ -1,0 +1,19 @@
+<fieldset>
+    <legend>Incidents</legend>
+
+    <div class='incidents'>
+        {{log @root.fields.incidents.element}}
+        <span data-action='addIncident'>Add incident</span>
+        {{#each source.system.incidents}}
+            <div class='incident'>
+                <div class='counter'>{{add @index 1}}</div>
+                <div class='description'>
+                    {{formField @root.fields.incidents.element name='system.incidents' value=(lookup @root.source.system.incidents @index)}}
+                </div>
+                <div class='delete delete-button' data-action='removeIncident' data-incident-index='{{@index}}'><i class='fa-solid fa-trash-can'></i></div>
+            </div>
+        {{/each}}
+
+        {{#unless source.system.incidents}}<div>No incidents</div>{{/unless}}
+    </div>
+</fieldset>

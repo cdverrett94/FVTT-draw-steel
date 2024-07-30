@@ -190,28 +190,34 @@
         "characteristics": {
             "agility": {
                 "abbreviation": "AGL",
-                "label": "Agility"
+                "label": "Agility",
+                "description": "Agility (AGL) represents coordination and nimbleness. A creature's ability to backflip out of danger, shoot a crossbow, dodge an explosion, or pluck keys from a guard's belt is determined by Agility."
             },
             "highest": {
                 "abbreviation": "Highest",
-                "label": "Highest"
+                "label": "Highest",
+                "description": ""
             },
             "intuition": {
                 "abbreviation": "INU",
-                "label": "Intuition"
+                "label": "Intuition",
+                "description": "Intuition (INU) represents instincts and experience. A creature's ability to hear the approach of a distant rider, figure out the tell of a bluffing gambler, calm a rearing horse, or track a monster across the tundra is determined by Intuition."
             },
             "label": "Characteristic",
             "might": {
                 "abbreviation": "MGT",
-                "label": "Might"
+                "label": "Might",
+                "description": "Might (MGT) represents strength and brawn. A creature's ability to break down doors, swing an axe, stand up during an earthquake, or hurl an ally across a chasm is determined by Might."
             },
             "presence": {
                 "abbreviation": "PRS",
-                "label": "Presence"
+                "label": "Presence",
+                "description": "Presence (PRS) represents force of personality. A creature's ability to lie to a judge, convince a crowd to join a revolution, impress a queen at a royal banquet, or cast a magic spell by singing a song is determined by Presence."
             },
             "reason": {
                 "abbreviation": "REA",
-                "label": "Reason"
+                "label": "Reason",
+                "description": "Reason (REA) represents a logical mind and education. A creature's ability to solve a puzzle that unlocks a door, recall lore about necromancy, decipher a coded message, or blast a foe with psionic power is determined by Reason."
             }
         },
         "chat": {
@@ -448,6 +454,9 @@
                     }
                 },
                 "keywords": {
+                    "area": {
+                        "label": "Area"
+                    },
                     "attack": {
                         "label": "Attack"
                     },
@@ -463,6 +472,9 @@
                     },
                     "psionic": {
                         "label": "Psionic"
+                    },
+                    "ranged": {
+                        "label": "Ranged"
                     },
                     "weapon": {
                         "label": "Weapon"
@@ -623,6 +635,50 @@
                     }
                 },
                 "label": "Kit"
+            },
+            "feature": {
+                "FIELDS": {
+                    "description": "Description",
+                    "grantedFeatures": "Feature Benefits"
+                },
+                "label": {
+                    "plural": "Features",
+                    "singular": "Feature"
+                }
+            },
+            "culture": {
+                "FIELDS": {
+                    "category": {
+                        "label": "Category"
+                    }
+                },
+                "categories": {
+                    "environment": {
+                        "label": "Environment"
+                    },
+                    "organization": {
+                        "label": "Organization"
+                    },
+                    "upbringing": {
+                        "label": "Upbringing"
+                    }
+                }
+            },
+            "career": {
+                "FIELDS": {
+                    "languages": {
+                        "label": "Number of Languages"
+                    },
+                    "projectPoints": {
+                        "label": "Number of Project Points"
+                    },
+                    "renown": {
+                        "label": "Starting Renown"
+                    },
+                    "title": {
+                        "label": "Career Title"
+                    }
+                }
             }
         },
         "rolls": {
@@ -720,6 +776,22 @@
                 },
                 "ancestry": {
                     "speedAndReach": "Speed & Reach"
+                },
+                "feature": {
+                    "deleteBenefit": "Delete Benefit"
+                },
+                "culture": {
+                    "skills": {
+                        "label": "Skills Choice",
+                        "choose": "Choice"
+                    }
+                },
+                "career": {
+                    "skills": {
+                        "label": "Skills Choice",
+                        "choose": "Choice",
+                        "grant": "Grant"
+                    }
                 }
             }
         },
@@ -846,9 +918,9 @@
                     "use": "system.skills.interpersonal.gamble.use",
                     "default": "presence"
                 },
-                "handle": {
-                    "label": "Handle",
-                    "use": "system.skills.interpersonal.handle.use",
+                "handleAnimals": {
+                    "label": "Handle Animals",
+                    "use": "system.skills.interpersonal.handleAnimals.use",
                     "default": "presence"
                 },
                 "interrogate": {
@@ -876,14 +948,19 @@
                     "use": "system.skills.interpersonal.music.use",
                     "default": "presence"
                 },
+                "perform": {
+                    "label": "Perform",
+                    "use": "system.skills.interpersonal.perform.use",
+                    "default": "presence"
+                },
                 "persuade": {
                     "label": "Persuade",
                     "use": "system.skills.interpersonal.persuade.use",
                     "default": "presence"
                 },
-                "read": {
+                "readPerson": {
                     "label": "Read",
-                    "use": "system.skills.interpersonal.read.use",
+                    "use": "system.skills.interpersonal.readPerson.use",
                     "default": "presence"
                 }
             },
@@ -1029,7 +1106,10 @@
             "ability": "Ability",
             "ancestry": "Ancestry",
             "class": "Class",
-            "kit": "Kit"
+            "kit": "Kit",
+            "feature": "Feature",
+            "culture": "Culture",
+            "career": "Career"
         }
     },
     "USER": {

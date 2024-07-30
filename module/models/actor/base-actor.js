@@ -1,5 +1,5 @@
-import { CHARACTERISTICS, DAMAGE } from '../constants/_index.js';
-import { getDataModelChoices } from '../helpers.js';
+import { CHARACTERISTICS, DAMAGE } from '../../constants/_index.js';
+import { getDataModelChoices } from '../../helpers.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
     static defineSchema() {
@@ -13,7 +13,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 required: true,
                 initial: 0,
                 min: -5,
-                max: 10,
+                max: 5,
                 integer: true,
                 nullable: false,
             });
@@ -37,7 +37,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                         choices: getDataModelChoices(CHARACTERISTICS),
                     }),
                     display: new fields.BooleanField({
-                        initial: false,
+                        initial: true,
                     }),
                 });
             }

@@ -12,5 +12,8 @@ export { MonsterSheet } from './sheets/monster.js';
 // Item Sheets
 export { AbilitySheet } from './sheets/ability.js';
 export { AncestrySheet } from './sheets/ancestry.js';
+export { CareerSheet } from './sheets/career.js';
 export { ClassSheet } from './sheets/class.js';
+export { CultureSheet } from './sheets/culture.js';
+export { FeatureSheet } from './sheets/feature.js';
 export { KitSheet } from './sheets/kit.js';

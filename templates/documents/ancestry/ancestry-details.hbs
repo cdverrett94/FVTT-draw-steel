@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class='speed-and-reach tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
     <legend>{{localize 'system.sheets.items.ancestry.speedAndReach'}}</legend>
     {{formField fields.reach value=source.system.reach localize=true classes='ancestry-reach'}}
     {{formField fields.speed value=source.system.speed localize=true classes='ancestry-speed'}}

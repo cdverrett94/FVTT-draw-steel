@@ -1,10 +1,13 @@
-import { AbilityItem, AncestryItem, BaseItem, ClassItem, KitItem } from './_index.js';
+import { AbilityItem, AncestryItem, BaseItem, CareerItem, ClassItem, CultureItem, FeatureItem, KitItem } from './_index.js';
 
 const itemTypes = {
     ability: AbilityItem,
     kit: KitItem,
     class: ClassItem,
     ancestry: AncestryItem,
+    feature: FeatureItem,
+    culture: CultureItem,
+    career: CareerItem,
 };
 
 export const ItemProxy = new Proxy(BaseItem, {

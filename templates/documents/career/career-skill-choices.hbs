@@ -1,0 +1,42 @@
+<fieldset>
+    <legend>{{localize 'system.sheets.items.culture.skills.label'}}</legend>
+    <div class='skills'>
+        {{#each constants.skills as |skills|}}
+            {{#with @key as |category|}}
+                <div class='category category-{{category}}'>
+                    <div class='header'>
+                        {{localize (concat 'system.skills.' category '.label')}}
+                    </div>
+                    <div class='skill labels'>
+                        <div class='skill-name'>{{localize 'system.skills.label.singular'}}</div>
+                        <div class='skill-choice'>{{localize 'system.sheets.items.career.skills.grant'}}</div>
+                        <div class='skill-grant'>{{localize 'system.sheets.items.career.skills.choose'}}</div>
+                    </div>
+                    {{#each skills as |skill|}}
+                        {{#unless (eq @key 'label')}}
+                            <div class='skill'>
+                                <div class='skill-name'>
+                                    {{localize (getSkillLabelPath category @key)}}
+                                </div>
+                                <div class='skill-grant'>
+                                    <input
+                                        type='checkbox'
+                                        name='skills.{{category}}.{{@key}}.grant'
+                                        {{checked (includes (lookup @root.source.system.skillGrants category) @key)}}
+                                    />
+                                </div>
+                                <div class='skill-choice'>
+                                    <input
+                                        type='checkbox'
+                                        name='skills.{{category}}.{{@key}}.choice'
+                                        {{checked (includes (lookup @root.source.system.skillChoices category) @key)}}
+                                    />
+                                </div>
+                            </div>
+                        {{/unless}}
+                    {{/each}}
+                </div>
+            {{/with}}
+        {{/each}}
+    </div>
+</fieldset>

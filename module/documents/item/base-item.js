@@ -1,5 +1,5 @@
-import { Predicate } from '../rules/predicate.js';
-import { MCDMActiveEffect } from './active-effects.js';
+import { Predicate } from '../../rules/predicate.js';
+import { MCDMActiveEffect } from '../active-effects.js';
 
 export class BaseItem extends Item {
     overrides = this.overrides ?? {};
@@ -106,5 +106,19 @@ export class BaseItem extends Item {
         for (const effect of this.effects) {
             if (!effect.transfer) yield effect;
         }
+    }
+
+    _onCreate(data, options, userId) {
+        super._onCreate(data, options, userId);
+
+        if (!this.isOwned || this.system.grantedFeatures.length === 0) return;
+
+        const createData = [];
+        for (let index = 0; index < this.system.grantedFeatures.length; index++) {
+            const item = fromUuidSync(this.system.grantedFeatures[index]);
+            createData.push(item.toObject());
+        }
+
+        Item.implementation.create(createData, { parent: this.parent });
     }
 }

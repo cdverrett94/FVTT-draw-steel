@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class='size tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
     <legend>{{fields.size.label}}</legend>
     {{formField fields.size.fields.width value=source.system.size.width localize=true classes='ancestry-width'}}
     {{formField fields.size.fields.length value=source.system.size.length localize=true classes='ancestry-length'}}

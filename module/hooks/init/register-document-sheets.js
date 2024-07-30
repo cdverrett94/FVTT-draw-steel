@@ -1,4 +1,14 @@
-import { AbilitySheet, AncestrySheet, ClassSheet, HeroSheet, KitSheet, MonsterSheet } from '../../applications/_index.js';
+import {
+    AbilitySheet,
+    AncestrySheet,
+    CareerSheet,
+    ClassSheet,
+    CultureSheet,
+    FeatureSheet,
+    HeroSheet,
+    KitSheet,
+    MonsterSheet,
+} from '../../applications/_index.js';
 
 export function registerDocumentSheets() {
     // Register Actor Sheets
@@ -35,5 +45,21 @@ export function registerDocumentSheets() {
         types: ['kit'],
         makeDefault: true,
         label: 'Kit Sheet',
+    });
+
+    Items.registerSheet('mcdmrpg', FeatureSheet, {
+        types: ['feature'],
+        makeDefault: true,
+        label: 'Feature Sheet',
+    });
+    Items.registerSheet('mcdmrpg', CultureSheet, {
+        types: ['culture'],
+        makeDefault: true,
+        label: 'Culture Sheet',
+    });
+    Items.registerSheet('mcdmrpg', CareerSheet, {
+        types: ['career'],
+        makeDefault: true,
+        label: 'Career Sheet',
     });
 }

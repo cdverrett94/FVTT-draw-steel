@@ -1,0 +1,5 @@
+<fieldset class='details tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
+    <legend>Description</legend>
+    {{formField fields.category name='system.category' value=source.system.category}}
+    {{formInput fields.description name='system.description' value=source.system.description}}
+</fieldset>

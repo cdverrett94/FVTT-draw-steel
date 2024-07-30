@@ -38,6 +38,9 @@ export const ABILITIES = {
         },
     },
     KEYWORDS: {
+        area: {
+            label: 'system.items.ability.keywords.area.label',
+        },
         attack: {
             label: 'system.items.ability.keywords.attack.label',
         },
@@ -49,6 +52,9 @@ export const ABILITIES = {
         },
         psionic: {
             label: 'system.items.ability.keywords.psionic.label',
+        },
+        ranged: {
+            label: 'system.items.ability.keywords.ranged.label',
         },
         weapon: {
             label: 'system.items.ability.keywords.weapon.label',

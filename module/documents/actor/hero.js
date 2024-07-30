@@ -13,6 +13,14 @@ export class HeroActor extends BaseActor {
         return this.items.find((item) => item.type === 'kit');
     }
 
+    get culture() {
+        return {
+            environment: this.items.find((item) => item.type === 'culture' && item.system.category === 'environment'),
+            organization: this.items.find((item) => item.type === 'culture' && item.system.category === 'organization'),
+            upbringing: this.items.find((item) => item.type === 'culture' && item.system.category === 'upbringing'),
+        };
+    }
+
     _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
         super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
 

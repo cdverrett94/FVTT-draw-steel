@@ -1,5 +1,7 @@
 @import url('./class-sheet.css');
 @import url('./ability-sheet.css');
+@import url('./culture-sheet.css');
+@import url('./career-sheet.css');
 
 .sheet.item.system:is(.ability, .ancestry, .kit) fieldset > div:not(.editor, .power-tiers) {
     display: grid;

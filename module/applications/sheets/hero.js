@@ -39,6 +39,10 @@ export class HeroSheet extends BaseActorSheet {
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/abilities/abilities-container.hbs',
                 scrollable: ['.abilities-list'],
             },
+            features: {
+                id: 'features',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
+            },
             skills: {
                 id: 'skills',
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/skills/skills.hbs',

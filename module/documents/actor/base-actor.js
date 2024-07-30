@@ -1,8 +1,8 @@
-import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../applications/_index.js';
-import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../constants/_index.js';
-import { toId } from '../helpers.js';
-import { TestRollDialog } from '../rolls/_index.js';
-import { MCDMActiveEffect } from './active-effects.js';
+import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../../applications/_index.js';
+import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../../constants/_index.js';
+import { toId } from '../../helpers.js';
+import { TestRollDialog } from '../../rolls/_index.js';
+import { MCDMActiveEffect } from '../active-effects.js';
 
 export class BaseActor extends Actor {
     prepareBaseData() {
@@ -42,6 +42,10 @@ export class BaseActor extends Actor {
             else abilities['invalid'].push(ability);
         });
         return abilities;
+    }
+
+    get features() {
+        return this.items.filter((item) => item.type === 'feature');
     }
 
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {

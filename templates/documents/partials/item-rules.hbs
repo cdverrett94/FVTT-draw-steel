@@ -1,4 +1,4 @@
-<div class='rules tab' data-group='main' data-tab='rules'>
+<div class='rules tab {{ifThen (eq activeTabs.main "rules") "active" ""}}' data-group='main' data-tab='rules'>
     <div class='add-rule' data-action='addNewRule'>Add New Rule</div>
     {{#each item.system.rules as |rule|}}
         <div class='rule'>

@@ -1,0 +1,34 @@
+<fieldset class='skills-tab tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
+    <legend>{{localize 'system.sheets.items.culture.skills.label'}}</legend>
+    <div class='skills'>
+        {{#each constants.skills as |skills|}}
+            {{#with @key as |category|}}
+                <div class='category category-{{category}}'>
+                    <div class='header'>
+                        {{localize (concat 'system.skills.' category '.label')}}
+                    </div>
+                    <div class='skill labels'>
+                        <div class='skill-name'>{{localize 'system.skills.label.singular'}}</div>
+                        <div class='skill-choice'>{{localize 'system.sheets.items.culture.skills.choose'}}</div>
+                    </div>
+                    {{#each skills as |skill|}}
+                        {{#unless (eq @key 'label')}}
+                            <div class='skill'>
+                                <div class='skill-name'>
+                                    {{localize (getSkillLabelPath category @key)}}
+                                </div>
+                                <div class='skill-choice'>
+                                    <input
+                                        type='checkbox'
+                                        name='skills.{{category}}.{{@key}}'
+                                        {{checked (includes (lookup @root.source.system.skills category) @key)}}
+                                    />
+                                </div>
+                            </div>
+                        {{/unless}}
+                    {{/each}}
+                </div>
+            {{/with}}
+        {{/each}}
+    </div>
+</fieldset>

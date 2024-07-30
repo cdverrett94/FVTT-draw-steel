@@ -6,3 +6,4 @@ export { MONSTER_ROLES } from './monster-roles.js';
 export { NEGOTIATION } from './negotiation.js';
 export { TIERS } from './power-tier.js';
 export { SKILLS } from './skills.js';
+export { XP } from './xp.js';

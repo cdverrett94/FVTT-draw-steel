@@ -1,4 +1,17 @@
-import { AbilityData, AbilityMessageData, AncestryData, ClassData, CombatData, CombatantData, HeroData, KitData, MonsterData } from '../../models/_index.js';
+import {
+    AbilityData,
+    AbilityMessageData,
+    AncestryData,
+    CareerData,
+    ClassData,
+    CombatData,
+    CombatantData,
+    CultureData,
+    FeatureData,
+    HeroData,
+    KitData,
+    MonsterData,
+} from '../../models/_index.js';
 
 export function registerDataModels() {
     // Set System Actor Data Models
@@ -10,6 +23,9 @@ export function registerDataModels() {
     CONFIG.Item.dataModels.ancestry = AncestryData;
     CONFIG.Item.dataModels.class = ClassData;
     CONFIG.Item.dataModels.kit = KitData;
+    CONFIG.Item.dataModels.feature = FeatureData;
+    CONFIG.Item.dataModels.culture = CultureData;
+    CONFIG.Item.dataModels.career = CareerData;
 
     // Set System Combat Data Models
     CONFIG.Combat.dataModels.mcdmrpg = CombatData;

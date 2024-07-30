@@ -1,6 +1,6 @@
-import { MONSTER_ROLES, NEGOTIATION } from '../constants/_index.js';
-import { getDataModelChoices } from '../helpers.js';
-import { BaseActorData } from './base-actor.js';
+import { MONSTER_ROLES, NEGOTIATION } from '../../constants/_index.js';
+import { getDataModelChoices } from '../../helpers.js';
+import { BaseActorData } from '../_index.js';
 
 export class MonsterData extends BaseActorData {
     static LOCALIZATION_PREFIXES = ['system.actors.monsters', 'system.actors.base'];

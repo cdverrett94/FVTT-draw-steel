@@ -117,9 +117,9 @@ export const SKILLS = {
             use: 'system.skills.interpersonal.gamble.use',
             default: 'presence',
         },
-        handle: {
-            label: 'system.skills.interpersonal.handle.label',
-            use: 'system.skills.interpersonal.handle.use',
+        handleAnimals: {
+            label: 'system.skills.interpersonal.handleAnimals.label',
+            use: 'system.skills.interpersonal.handleAnimals.use',
             default: 'presence',
         },
         interrogate: {
@@ -147,14 +147,19 @@ export const SKILLS = {
             use: 'system.skills.interpersonal.music.use',
             default: 'presence',
         },
+        perform: {
+            label: 'system.skills.interpersonal.perform.label',
+            use: 'system.skills.interpersonal.perform.use',
+            default: 'presence',
+        },
         persuade: {
             label: 'system.skills.interpersonal.persuade.label',
             use: 'system.skills.interpersonal.persuade.use',
             default: 'presence',
         },
-        read: {
-            label: 'system.skills.interpersonal.read.label',
-            use: 'system.skills.interpersonal.read.use',
+        readPerson: {
+            label: 'system.skills.interpersonal.readPerson.label',
+            use: 'system.skills.interpersonal.readPerson.use',
             default: 'intuition',
         },
     },
