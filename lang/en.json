@@ -385,8 +385,8 @@
                     },
                     "power": {
                         "label": "Power Roll",
-                        "characteristic": {
-                            "label": "Characteristic"
+                        "characteristics": {
+                            "label": "Characteristics"
                         },
                         "isResistance": {
                             "label": "Is Resistance Roll"
@@ -402,16 +402,6 @@
                             },
                             "three": {
                                 "label": "Tier 3"
-                            },
-                            "four": {
-                                "label": "Tier 4",
-                                "types": {
-                                    "damage": {
-                                        "label": "Damage Effect",
-                                        "amount": "Damage Amount",
-                                        "dType": "Damage Type"
-                                    }
-                                }
                             },
                             "damage": {
                                 "label": "Damage Effect",
@@ -466,6 +456,9 @@
                     "label": {
                         "plural": "Keywords",
                         "singular": "Keyword"
+                    },
+                    "melee": {
+                        "label": "Melee"
                     },
                     "magic": {
                         "label": "Magic"
@@ -595,8 +588,16 @@
                             }
                         }
                     },
-                    "victoryBenefits": {
-                        "label": "Victory Benefits"
+                    "stamina": {
+                        "starting": {
+                            "label": "Starting Stamina at 1st Level"
+                        },
+                        "level": {
+                            "label": "Stamina Gained at 2nd and Higher Levels"
+                        },
+                        "recoveries": {
+                            "label": "Recoveries"
+                        }
                     }
                 },
                 "label": "Class"
@@ -610,19 +611,28 @@
                         "label": "Armor"
                     },
                     "damage": {
-                        "label": "Damage"
+                        "label": "Damage",
+                        "melee": {
+                            "label": "Melee Damage Bonus"
+                        },
+                        "range": {
+                            "label": "Range Damage Bonus"
+                        },
+                        "magic": {
+                            "label": "Magic Damage Bonus"
+                        }
                     },
                     "stamina": {
                         "label": "Stamina"
                     },
-                    "range": {
-                        "label": "Range"
+                    "stability": {
+                        "label": "Stability"
+                    },
+                    "distance": {
+                        "label": "Distance"
                     },
                     "reach": {
                         "label": "Reach"
-                    },
-                    "resistanceTn": {
-                        "label": "Resistance TN"
                     },
                     "speed": {
                         "label": "Speed"
@@ -632,9 +642,86 @@
                     },
                     "weapon": {
                         "label": "Weapon"
+                    },
+                    "implement": {
+                        "label": "Implement"
                     }
                 },
-                "label": "Kit"
+                "label": "Kit",
+                "types": {
+                    "martial": {
+                        "label": "Martial"
+                    },
+                    "caster": {
+                        "label": "Caster"
+                    }
+                },
+                "armor": {
+                    "none": {
+                        "label": "None"
+                    },
+                    "light": {
+                        "label": "Light"
+                    },
+                    "medium": {
+                        "label": "Medium"
+                    },
+                    "heavy": {
+                        "label": "Heavy"
+                    },
+                    "shield": {
+                        "label": "Shield"
+                    }
+                },
+                "weapon": {
+                    "none": {
+                        "label": "None"
+                    },
+                    "bow": {
+                        "label": "Bow"
+                    },
+                    "ensnaring": {
+                        "label": "Ensnaring Weapon"
+                    },
+                    "heavy": {
+                        "label": "Heavy"
+                    },
+                    "light": {
+                        "label": "Light"
+                    },
+                    "medium": {
+                        "label": "Medium"
+                    },
+                    "polearm": {
+                        "label": "Polearm"
+                    },
+                    "unarmed": {
+                        "label": "Unarmed Strike"
+                    },
+                    "whip": {
+                        "label": "Whip"
+                    }
+                },
+                "implement": {
+                    "bone": {
+                        "label": "Bone"
+                    },
+                    "crystal": {
+                        "label": "Crystal"
+                    },
+                    "glass": {
+                        "label": "Glass"
+                    },
+                    "metal": {
+                        "label": "Metal"
+                    },
+                    "stone": {
+                        "label": "Stone"
+                    },
+                    "wood": {
+                        "label": "Wood"
+                    }
+                }
             },
             "feature": {
                 "FIELDS": {
@@ -729,7 +816,8 @@
                     "abbreviation": "SP",
                     "current": "Current Stamina",
                     "label": "Stamina",
-                    "max": "Max Stamina"
+                    "max": "Max Stamina",
+                    "healing": "Recovery Value"
                 },
                 "knockback": "Knockback",
                 "notes": "Notes",
@@ -792,7 +880,17 @@
                         "choose": "Choice",
                         "grant": "Grant"
                     }
-                }
+                },
+                "ability": {
+                    "tabs": {
+                        "power": "Power Roll"
+                    }
+                },
+                "tabs": {
+                    "grantedItems": "Granted Items",
+                    "details": "Details"
+                },
+                "deleteGrantedItem": "Delete Granted Item"
             }
         },
         "skills": {
