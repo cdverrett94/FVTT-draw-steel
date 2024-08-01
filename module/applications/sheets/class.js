@@ -1,3 +1,4 @@
+import { CHARACTERISTICS } from '../../constants/characteristics.js';
 import { BaseItemSheet } from './base-item.js';
 export class ClassSheet extends BaseItemSheet {
     static additionalOptions = {
@@ -31,9 +32,9 @@ export class ClassSheet extends BaseItemSheet {
                 id: 'details',
                 template: 'systems/mcdmrpg/templates/documents/class/class-details.hbs',
             },
-            rules: {
-                id: 'rules',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-rules.hbs',
+            effects: {
+                id: 'effects',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-effects.hbs',
             },
         },
         { inplace: false }
@@ -47,9 +48,10 @@ export class ClassSheet extends BaseItemSheet {
             async: true,
         };
 
+        context.constants.characteristics = CHARACTERISTICS;
+
         context.enriched = {
             description: (await TextEditor.enrichHTML(context.item.system.description, enrichContext)) ?? '',
-            victoryBenefits: (await TextEditor.enrichHTML(context.item.system.victoryBenefits, enrichContext)) ?? '',
             resourceGain: (await TextEditor.enrichHTML(context.item.system.resourceGain, enrichContext)) ?? '',
         };
 

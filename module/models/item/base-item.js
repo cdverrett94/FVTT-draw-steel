@@ -4,18 +4,6 @@ export class BaseItemData extends foundry.abstract.TypeDataModel {
         return {
             description: new fields.HTMLField(),
             grantedFeatures: new fields.ArrayField(new fields.DocumentUUIDField()),
-            rules: new fields.ArrayField(
-                new fields.SchemaField({
-                    affects: new fields.StringField({
-                        choices: { actor: { label: 'DOCUMENT.Actor' }, item: { label: 'DOCUMENT.Item' } },
-                        initial: 'item',
-                    }),
-                    key: new fields.StringField(),
-                    mode: new fields.NumberField(),
-                    value: new fields.StringField(),
-                    predicate: new fields.ArrayField(new fields.AnyField()),
-                })
-            ),
         };
     }
 }

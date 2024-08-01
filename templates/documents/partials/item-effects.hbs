@@ -1,0 +1,14 @@
+<div class='effects tab {{ifThen (eq activeTabs.main "effects") "active" ""}}' data-group='main' data-tab='effects'>
+    <div class='add-effect' data-action='addNewEffect'>Add New Effect</div>
+    {{#each item.effects as |effect|}}
+        <div class='effect' data-effect-id='{{effect.id}}'>
+            <div class='name'>{{effect.name}}</div>
+            <div class='edit-effect edit-button' data-action='editEffect'>
+                <i class='fa-solid fa-pencil' data-tooltip-direction='RIGHT' data-tooltip='Edit Effect'></i>
+            </div>
+            <div class='delete-effect delete-button' data-action='deleteEffect'>
+                <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='Delete Effect'></i>
+            </div>
+        </div>
+    {{/each}}
+</div>
