@@ -33,4 +33,7 @@
     -   free strikes
     -   complication
 -   ability
-    -   add description
+    -   add description'
+-   stability
+-   multiple power roll characteristics - just need to be able to change the char on roll
+-   add items tab for hero
