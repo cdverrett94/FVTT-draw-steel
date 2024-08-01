@@ -9,7 +9,7 @@
             <div class='other-stamina'>
                 <div class='max'>
                     <div class='label'>{{fields.stamina.fields.max.label}} </div>
-                    <div class='value'>{{formInput fields.stamina.fields.max value=actor.system.stamina.max}}</div>
+                    <div class='value'>{{actor.system.stamina.max}}</div>
                 </div>
                 <div class='winded'>
                     <div>{{localize 'system.conditions.winded.label'}}</div>
@@ -17,16 +17,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class='victories'>
-        <div class='mcdmrpg-header'>
-            {{fields.victories.label}}
-            <span class='resources-info right-button' data-tooltip='{{actor.class.system.victoryBenefits}}' data-tooltip-direction='UP'>
-                <i class='fa-solid fa-question'></i>
-            </span>
-        </div>
-        {{formInput fields.victories value=actor.system.victories}}
     </div>
 
     <div class='recoveries'>
@@ -38,14 +28,21 @@
             <div class='other-recoveries'>
                 <div class='max'>
                     <div class='label'>{{localize fields.recoveries.fields.max.label}} </div>
-                    <div class='value'>{{formInput fields.recoveries.fields.max value=actor.system.recoveries.max}}</div>
+                    <div class='value'>{{actor.system.recoveries.max}}</div>
                 </div>
                 <div class='healing'>
-                    <div class='label'>{{localize 'system.conditions.winded.label'}}</div>
+                    <div class='label'>{{localize 'system.sheets.actor.stamina.healing'}}</div>
                     <div class='value'>{{actor.system.stamina.healing}}</div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class='victories'>
+        <div class='mcdmrpg-header'>
+            {{fields.victories.label}}
+        </div>
+        {{formInput fields.victories value=actor.system.victories}}
     </div>
 
     <div class='resources'>

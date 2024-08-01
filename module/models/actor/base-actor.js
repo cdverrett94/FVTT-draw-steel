@@ -90,9 +90,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             this[characteristic] = score;
         }
 
-        this.stamina.healing = Math.floor(this.stamina.max / 3);
-        this.stamina.winded = Math.floor(this.stamina.max / 2);
-
         this.grappleTN = 7 + this.characteristics.might;
 
         // Setting values for Active Effects to target
@@ -112,5 +109,10 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
         }
         this.taunted = [];
         this.frightened = [];
+    }
+
+    prepareDerivedData() {
+        this.stamina.healing = Math.floor(this.stamina.max / 3);
+        this.stamina.winded = Math.floor(this.stamina.max / 2);
     }
 }

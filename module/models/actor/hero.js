@@ -60,6 +60,8 @@ export class HeroData extends BaseActorData {
     prepareBaseData() {
         super.prepareBaseData();
 
+        this.stamina.max = this.calculateMaxStamina();
+        this.recoveries.max = this.calculateMaxRecoveries();
         this.speed = this.calculateSpeed();
         this.size = this.calculateSize();
         this.resources = this.calculateResources();
@@ -114,5 +116,17 @@ export class HeroData extends BaseActorData {
                 this.resources[resource].max = max;
             }
         }
+    }
+
+    calculateMaxStamina() {
+        const startingClassStamina = this.parent?.class?.system.stamina.starting ?? 0;
+        const leveledClassStamina = (this.level - 1) * (this.parent?.class?.system.stamina.level ?? 0);
+
+        return startingClassStamina + leveledClassStamina;
+    }
+
+    calculateMaxRecoveries() {
+        const classRecoveries = this.parent?.class?.system.stamina.recoveries ?? 0;
+        return classRecoveries;
     }
 }
