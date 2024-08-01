@@ -1,5 +1,53 @@
-<div class='class-details'>
+<div class='class-details tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
     <div class='class-left-column'>
+        <div class='class-details'>
+            <fieldset>
+                <legend>{{localize 'system.sheets.items.tabs.details'}}</legend>
+                <div class='starting-characteristics'>
+                    Starting characteristics
+                    {{#each source.system.characteristics.starting as |startingCharacteristic|}}
+                        <div class='starting-characteristic'>
+                            {{formInput
+                                @root.fields.characteristics.fields.starting.element.fields.characteristic
+                                name=(concat 'system.characteristics.starting.' @index '.characteristic')
+                                value=startingCharacteristic.characteristic
+                            }}
+                            {{formInput
+                                @root.fields.characteristics.fields.starting.element.fields.value
+                                name=(concat 'system.characteristics.starting.' @index '.value')
+                                value=startingCharacteristic.value
+                            }}
+                        </div>
+
+                    {{/each}}
+                </div>
+                <div class='characteristic-choices'>
+                    Characteristic Arrays
+                    {{#each source.system.characteristics.arrays as |array|}}
+                        <div class='array'>
+                            {{#with @index as |topIndex|}}
+                                {{#each array.array as |number|}}
+                                    {{formInput
+                                        @root.fields.characteristics.fields.arrays.element.fields.array.element
+                                        name=(concat 'system.characteristics.arrays.' @topIndex '.array.' @index)
+                                        value=number
+                                    }}
+                                    {{!-- {{formInput @root.fields.characteristics.fields.arrays.element.fields.}} --}}
+                                {{/each}}
+                            {{/with}}
+                        </div>
+                    {{/each}}
+                </div>
+                <div class='stamina'>
+                    {{formField fields.stamina.fields.starting name='system.stamina.starting' value=source.system.stamina.starting}}
+                    {{formField fields.stamina.fields.level name='system.stamina.level' value=source.system.stamina.level}}
+                    {{formField fields.stamina.fields.recoveries name='system.stamina.recoveries' value=source.system.stamina.recoveries}}
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class='class-right-column'>
+
         <div class='class-description'>
             <fieldset>
                 <legend>{{localize 'system.items.class.FIELDS.description.label'}}</legend>
@@ -12,23 +60,6 @@
                     localize=true
                     toggled=true
                     enriched=enriched.description
-                }}
-            </fieldset>
-        </div>
-    </div>
-    <div class='class-right-column'>
-        <div class='class-victory-benefits'>
-            <fieldset>
-                <legend>{{localize 'system.items.class.FIELDS.victoryBenefits.label'}}</legend>
-
-                {{formInput
-                    fields.victoryBenefits
-                    value=source.system.victoryBenefits
-                    classes='class-victory-benefits'
-                    target='system.victoryBenefits'
-                    localize=true
-                    toggled=true
-                    enriched=enriched.victoryBenefits
                 }}
             </fieldset>
         </div>
