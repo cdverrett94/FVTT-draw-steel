@@ -1,0 +1,17 @@
+<fieldset class='granted-items tab {{ifThen (eq activeTabs.main "grantedItems") "active" ""}}' data-group='main' data-tab='grantedItems'>
+    <legend>Benefits</legend>
+    {{#each grantedItems as |grantedFeature|}}
+        <div class='granted-item'>
+            <div class='name' data-tooltip='{{grantedFeature.system.description}}'>
+                {{grantedFeature.name}}
+            </div>
+            <div class='delete-granted-item delete-button' data-action='deleteGrantedItem' data-granted-item-index='{{@index}}'>
+                <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='{{localize "system.sheets.items.deleteGrantedItem"}}'></i>
+            </div>
+        </div>
+    {{/each}}
+    <br /><br />
+    <div class='item-drop'>
+        Drop Features HERE
+    </div>
+</fieldset>
