@@ -1,4 +1,4 @@
-.sheet.actor.hero .tab.skills-tab.active {
+.sheet.actor.hero .tab.skills-tab {
     display: flex;
     flex-direction: column;
 }

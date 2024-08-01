@@ -36,11 +36,6 @@
     grid-row: 3 / 11;
 }
 
-/* .sheet.actor.hero .tab:not(.active) {
-    display: none;
-} */
-/*     */
-
 .sheet.actor.hero .sidebar > div,
 .sheet.actor.hero .main-content > div {
     margin-bottom: 10px;

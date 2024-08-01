@@ -1,11 +1,8 @@
 import { ABILITIES } from '../../constants/abilities.js';
+import { CHARACTERISTICS } from '../../constants/characteristics.js';
 import { BaseItemSheet } from './base-item.js';
 
 export class AbilitySheet extends BaseItemSheet {
-    constructor(options) {
-        super(options);
-        this.constructor.PARTS.tabs.template = 'systems/mcdmrpg/templates/documents/ability/ability-tabs.hbs';
-    }
     static additionalOptions = {
         classes: ['ability'],
         position: {
@@ -23,7 +20,6 @@ export class AbilitySheet extends BaseItemSheet {
         one: 'hidden',
         two: 'hidden',
         three: 'hidden',
-        four: 'hidden',
     };
 
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilitySheet.additionalOptions, { inplace: false });
@@ -50,11 +46,18 @@ export class AbilitySheet extends BaseItemSheet {
             },
             rules: {
                 id: 'rules',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-rules.hbs',
+                template: 'systems/mcdmrpg/templates/documents/partials/item-effects.hbs',
             },
         },
         { inplace: false }
     );
+
+    mainTabs = foundry.utils.mergeObject(this.mainTabs, {
+        power: {
+            label: 'system.sheets.items.ability.tabs.power',
+            priority: 2,
+        },
+    });
 
     async _prepareContext(options) {
         const context = foundry.utils.mergeObject(
@@ -63,6 +66,7 @@ export class AbilitySheet extends BaseItemSheet {
                 constants: {
                     keywords: ABILITIES.KEYWORDS,
                     tierVisibility: this.tierVisibility,
+                    characteristics: CHARACTERISTICS,
                 },
             },
             { inplace: false }

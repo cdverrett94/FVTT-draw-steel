@@ -12,10 +12,11 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             submitOnChange: true,
         },
         actions: {
-            addNewRule: this.addNewRule,
-            deleteRule: this.deleteRule,
+            addNewEffect: this.addNewEffect,
+            editEffect: this.editEffect,
+            deleteEffect: this.deleteEffect,
             editImage: this.#editImage,
-            deleteGrantedFeature: this.#deleteGrantedFeature,
+            deleteGrantedItem: this.#deleteGrantedItem,
         },
     };
 
@@ -24,6 +25,20 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     };
     defaultTabs = {
         main: 'details',
+    };
+    mainTabs = {
+        details: {
+            label: 'system.sheets.items.tabs.details',
+            priority: 1,
+        },
+        effects: {
+            label: 'system.general.effect.plural',
+            priority: 100,
+        },
+        grantedItems: {
+            label: 'system.sheets.items.tabs.grantedItems',
+            priority: 99,
+        },
     };
 
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, BaseItemSheet.additionalOptions, { inplace: false });
@@ -37,13 +52,13 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             id: 'tabs',
             template: 'systems/mcdmrpg/templates/documents/partials/item-tabs.hbs',
         },
-        grantedFeatures: {
-            id: 'granted-features',
-            template: 'systems/mcdmrpg/templates/documents/partials/item-granted-features.hbs',
+        grantedItems: {
+            id: 'granted-items',
+            template: 'systems/mcdmrpg/templates/documents/partials/item-granted-items.hbs',
         },
-        rules: {
-            id: 'rules',
-            template: 'systems/mcdmrpg/templates/documents/partials/item-rules.hbs',
+        effects: {
+            id: 'effects',
+            template: 'systems/mcdmrpg/templates/documents/partials/item-effects.hbs',
         },
     };
 
@@ -53,6 +68,7 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             source: this.item.toObject(),
             fields: this.item.system.schema.fields,
             activeTabs: this.tabGroups,
+            mainTabs: this.sortedTabs,
             constants: {
                 activeEffectModes: Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((obj, e) => {
                     obj[e[1]] = game.i18n.localize(`EFFECT.MODE_${e[0]}`);
@@ -70,6 +86,13 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         return context;
     }
 
+    get sortedTabs() {
+        const objectArray = Object.entries(this.mainTabs);
+        objectArray.sort((a, b) => a[1].priority - b[1].priority);
+
+        return Object.fromEntries(objectArray);
+    }
+
     _onRender(context, options) {
         for (const [group, tab] of Object.entries(this.tabGroups)) {
             if (tab === null) this.changeTab(this.defaultTabs[group], group, { force: true });
@@ -77,7 +100,7 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         }
 
         const dd = new DragDrop({
-            dropSelector: '.granted-features',
+            dropSelector: '.granted-items',
             callbacks: {
                 drop: this.#onDrop.bind(this),
             },
@@ -101,38 +124,22 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         }
     }
 
-    _prepareSubmitData(event, form, formData) {
-        formData = super._prepareSubmitData(event, form, formData);
-
-        if (formData.system?.rules) {
-            Object.entries(formData.system?.rules).forEach((rule) => {
-                const [index, ruleData] = rule;
-                formData.system.rules[index].predicate = JSON.parse(ruleData.predicate);
-            });
-        }
-
-        return formData;
-    }
-
     //#region Rule Management methods
-    static async addNewRule() {
-        const updateData = foundry.utils.duplicate(this.item.system.rules);
-        updateData.push({
-            key: '',
-            mode: 2,
-            value: '',
-            predicate: [],
-        });
-        await this.item.update({ system: { rules: updateData } });
+    static async addNewEffect() {
+        const created = await ActiveEffect.create({ name: 'New Active Effect' }, { parent: this.item });
+        created.sheet.render(true);
     }
 
-    static async deleteRule(event, target) {
-        const ruleIndex = target.dataset.ruleIndex;
-        const rules = foundry.utils.duplicate(this.item.system.rules);
+    static async editEffect(event, target) {
+        const { effectId } = target.closest('.effect').dataset;
+        const effect = this.item.effects.find((effect) => effect.id === effectId);
 
-        rules.splice(ruleIndex, 1);
+        await effect.sheet.render(true);
+    }
 
-        this.item.update({ system: { rules } });
+    static async deleteEffect(event, target) {
+        const { effectId } = target.closest('.effect').dataset;
+        this.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
     //#endregion
 
@@ -187,16 +194,18 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     }
     //#endregion
 
-    static async #deleteGrantedFeature(event, target) {
-        let index = Number(target.dataset.grantedFeaturesIndex);
-        if (typeof index !== 'number') return;
+    //#region Granted Item methods
+    static async #deleteGrantedItem(event, target) {
+        let index = Number(target.dataset.grantedItemIndex);
+        if (typeof index !== 'number' || Number.isNaN(index)) return;
 
-        let grantedFeatures = this.item.system.grantedFeatures;
-        grantedFeatures.splice(index, 1);
-        await this.item.update({ 'system.grantedFeatures': grantedFeatures });
+        let grantedItems = this.item.system.grantedItems;
+        grantedItems.splice(index, 1);
+        await this.item.update({ 'system.grantedItems': grantedItems });
 
         this.setPosition({ height: 'auto' });
     }
+    //#endregion
 
     static #editImage(event, target) {
         const current = foundry.utils.getProperty(this.item, 'img');

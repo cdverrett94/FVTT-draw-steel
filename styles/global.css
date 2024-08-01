@@ -71,3 +71,7 @@ span.roll-icons i {
         color: var(--delete-color);
     }
 }
+
+.application .tab[data-tab]:not(.active) {
+    display: none !important;
+}
