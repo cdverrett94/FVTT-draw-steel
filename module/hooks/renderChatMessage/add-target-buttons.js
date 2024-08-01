@@ -12,7 +12,6 @@ async function addButtonsToTargets(document, html) {
         if (targetTier === 1) targetTier = 'one';
         else if (targetTier === 2) targetTier = 'two';
         else if (targetTier === 3) targetTier = 'three';
-        else if (targetTier === 4) targetTier = 'four';
 
         document.system.targets[targetId].appliedEffects?.forEach((effect, index) => {
             const isActionableType = ['damage', 'knockback'].includes(effect.type);
