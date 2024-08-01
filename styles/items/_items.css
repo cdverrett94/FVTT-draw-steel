@@ -2,6 +2,7 @@
 @import url('./ability-sheet.css');
 @import url('./culture-sheet.css');
 @import url('./career-sheet.css');
+@import url('./kit-sheet.css');
 
 .sheet.item.system:is(.ability, .ancestry, .kit) fieldset > div:not(.editor, .power-tiers) {
     display: grid;
