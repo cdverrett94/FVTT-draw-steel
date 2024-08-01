@@ -44,3 +44,17 @@
     grid-template-rows: 1fr 1fr;
     grid-gap: var(--grid-gap);
 }
+
+.sheet.item.class .class-details .starting-characteristic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    margin-bottom: 5px;
+}
+
+.sheet.item.class .class-details .characteristic-choices .array {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    margin-bottom: 5px;
+}
