@@ -140,9 +140,11 @@ export class AbilityData extends BaseItemData {
             ...super.defineSchema(),
             cost: new fields.StringField(),
             power: new fields.SchemaField({
-                characteristic: new fields.StringField({
-                    choices: getDataModelChoices(CHARACTERISTICS),
-                }),
+                characteristics: new fields.ArrayField(
+                    new fields.StringField({
+                        choices: getDataModelChoices(CHARACTERISTICS),
+                    })
+                ),
                 isResistance: new fields.BooleanField({
                     initial: false,
                 }),
@@ -150,7 +152,6 @@ export class AbilityData extends BaseItemData {
                     one: new TierField(),
                     two: new TierField(),
                     three: new TierField(),
-                    four: new TierField(),
                 }),
             }),
             distance: new fields.StringField(),
@@ -171,36 +172,4 @@ export class AbilityData extends BaseItemData {
             }),
         };
     }
-}
-
-function hi() {
-    let ability = game.items.contents.find((item) => item.type === 'ability');
-    ability.update({
-        system: {
-            power: {
-                tiers: {
-                    four: [
-                        {
-                            type: 'damage',
-                            amount: 5,
-                            dType: 'fire',
-                        },
-                        {
-                            type: 'knockback',
-                            distance: 10,
-                        },
-                        {
-                            type: 'knockback',
-                            distance: 5,
-                        },
-                        {
-                            type: 'damage',
-                            amount: 5,
-                            dType: 'holy',
-                        },
-                    ],
-                },
-            },
-        },
-    });
 }
