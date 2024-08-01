@@ -1,6 +1,9 @@
 .sheet.item.ability .keywords multi-checkbox {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.sheet.item.ability multi-checkbox.power-characteristics {
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .sheet.item.ability .keywords .ability-value input:nth-child(1) {

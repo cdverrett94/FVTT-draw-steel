@@ -3,26 +3,27 @@
     {{formField fields.type value=source.system.type classes='abilty-type' localize=true labelAttr='label'}}
 
     {{! Hide time for passive types }}
-    {{#unless (eq type 'passive')}}
+    {{#unless (eq system.source.system.type 'passive')}}
         {{formField fields.time value=source.system.time classes='abilty-time' localize=true labelAttr='label'}}
     {{/unless}}
     {{! Show Cost for heroic types }}
-    {{#if (eq type 'heroic')}}
+    {{#if (eq source.system.type 'heroic')}}
         {{formField fields.cost value=source.system.cost classes='abilty-cost' localize=true}}
     {{/if}}
 
     {{! Show Trigger for trigger types }}
-    {{#if (eq type 'triggered')}}
+    {{log source.system.type}}
+    {{#if (eq source.system.type 'triggered')}}
         {{formField fields.trigger value=source.system.trigger classes='abilty-trigger' localize=true}}
     {{/if}}
 
     {{! Hide distance for passive and trigger types }}
-    {{#unless (or (eq type 'passive') (eq type 'triggered'))}}
+    {{#unless (eq source.system.type 'passive')}}
         {{formField fields.distance value=source.system.distance classes='abilty-distance' localize=true}}
     {{/unless}}
 
     {{! Hide targets for passive and triggered types }}
-    {{#unless (or (eq type 'passive') (eq type 'triggered'))}}
+    {{#unless (eq source.system.type 'passive')}}
         {{formField fields.target value=source.system.target classes='abilty-target' localize=true}}
     {{/unless}}
 </fieldset>

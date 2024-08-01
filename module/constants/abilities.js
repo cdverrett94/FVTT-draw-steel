@@ -47,6 +47,9 @@ export const ABILITIES = {
         kit: {
             label: 'system.items.ability.keywords.kit.label',
         },
+        melee: {
+            label: 'system.items.ability.keywords.melee.label',
+        },
         magic: {
             label: 'system.items.ability.keywords.magic.label',
         },
