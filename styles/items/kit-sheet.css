@@ -1,0 +1,4 @@
+.sheet.item.kit .kit-damage-bonus .value {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

@@ -1,13 +1,89 @@
-<fieldset>
-    <legend>Properties</legend>
-    {{formField fields.type value=source.system.type classes='kit-type'}}
-    {{formField fields.armor value=source.system.armor classes='kit-armor'}}
-    {{formField fields.weapon value=source.system.weapon classes='kit-waepon'}}
-    {{formField fields.area value=source.system.area classes='kit-area'}}
-    {{formField fields.stamina value=source.system.stamina classes='kit-stamina'}}
-    {{formField fields.damage value=source.system.damage classes='kit-damage'}}
-    {{formField fields.reach value=source.system.reach classes='kit-reach'}}
-    {{formField fields.speed value=source.system.speed classes='kit-speed'}}
-    {{formField fields.range value=source.system.range classes='kit-range'}}
-    {{formField fields.resistanceTN value=source.system.resistanceTN classes='kit-resistanceTN'}}
-</fieldset>
+<div class='details-tab tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
+    <fieldset>
+        <legend>Type</legend>
+        {{formInput fields.type value=source.system.type classes='kit-type'}}
+    </fieldset>
+
+    <fieldset>
+        <legend>Equipment</legend>
+        Armor
+        <multi-checkbox name='system.armor'>
+            {{selectOptions constants.kits.ARMOR selected=source.system.armor localize=true}}
+        </multi-checkbox>
+
+        {{#if (eq source.system.type 'martial')}}
+            Weapon
+            <multi-checkbox name='system.weapon'>
+                {{selectOptions constants.kits.WEAPON selected=source.system.weapon localize=true}}
+            </multi-checkbox>
+
+        {{else if (eq source.system.type 'caster')}}
+            Implement
+            <multi-checkbox name='system.implement'>
+                {{selectOptions constants.kits.IMPLEMENT selected=source.system.implement localize=true}}
+            </multi-checkbox>
+        {{/if}}
+    </fieldset>
+    <fieldset>
+        <legend>Bonuses</legend>
+
+        {{formField fields.stamina value=source.system.stamina classes='kit-stamina'}}
+        {{formField fields.speed value=source.system.speed classes='kit-speed'}}
+        {{formField fields.stability value=source.system.stability classes='kit-stability'}}
+        {{formField fields.distance value=source.system.distance classes='kit-distance'}}
+
+        {{#if (eq source.system.type 'martial')}}
+
+            {{formField fields.reach value=source.system.reach classes='kit-reach'}}
+            {{! MARTIAL }}
+            <div class='kit-damage-melee kit-damage-bonus'>
+                <label class='label'>Melee Damage Bonus</label>
+                <div class='value'>
+                    {{#each source.system.damage.melee as |bonus|}}
+                        {{formField
+                            @root.fields.damage.fields.melee.element
+                            name=(concat 'system.damage.melee.' @index)
+                            value=bonus
+                            classes='kit-damage-melee'
+                        }}
+                    {{/each}}
+                </div>
+            </div>
+            <div class='kit-damage-range kit-damage-bonus'>
+                <label class='label'>Range Damage Bonus</label>
+                <div class='value'>
+                    {{#each source.system.damage.range as |bonus|}}
+                        {{formField
+                            @root.fields.damage.fields.range.element
+                            name=(concat 'system.damage.melee.' @index)
+                            value=bonus
+                            classes='kit-damage-range'
+                        }}
+                    {{/each}}
+                </div>
+            </div>
+
+        {{else if (eq source.system.type 'caster')}}
+            {{! CASTER }}
+            {{formField fields.area value=source.system.area classes='kit-area'}}
+            <div class='kit-damage-magic kit-damage-bonus'>
+                <label class='label'>Magic Damage Bonus</label>
+                <div class='value'>
+                    {{#each source.system.damage.magic as |bonus|}}
+                        {{formField
+                            @root.fields.damage.fields.magic.element
+                            name=(concat 'system.damage.magic.' @index)
+                            value=bonus
+                            classes='kit-damage-magic'
+                        }}
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+    </fieldset>
+    <fieldset>
+        <legend>Description</legend>
+        {{formInput fields.description value=source.system.description}}
+    </fieldset>
+</div>
