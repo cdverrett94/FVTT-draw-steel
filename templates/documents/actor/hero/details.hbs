@@ -3,30 +3,37 @@
     <div class='main-details'>
         <div class='creation'>
             <div class='mcdmrpg-header'>Creation Details</div>
-            <div class='class' data-action='openACKSheet' data-type='class'>
-                <div class='label'>Class</div>
-                <div class='value'>{{actor.class.name}}</div>
-            </div>
             <div class='ancestry' data-action='openACKSheet' data-type='ancestry'>
                 <div class='label'>Ancestry</div>
                 <div class='value'>{{actor.ancestry.name}}</div>
             </div>
+            <div class='culture'>
+                <div class='label'>Culture</div>
+                <div class='value'>
+                    <div class="environment">Environment - {{actor.culture.environment.name}}</div>
+                    <div class="organization">Organization - {{actor.culture.organization.name}}</div>
+                    <div class="upbringing">Upbringing - {{actor.culture.upbringing.name}}</div>
+                </div>
+            </div>
+            <div class='class' data-action='openACKSheet' data-type='class'>
+                <div class='label'>Class</div>
+                <div class='value'>{{actor.class.name}}</div>
+            </div>
+            <div class='career'>
+                <div class='label'>Career</div>
+                <div class='value'>{{actor.career.name}}</div>
+            </div>
+            
             <div class='kit' data-action='openACKSheet' data-type='kit'>
                 <div class='label'>Kit</div>
                 <div class='value'>{{actor.kit.name}}</div>
             </div>
-            <div class='culture'>
-                <div class='label'>Culture</div>
-                <div class='value'>{{actor.culture.name}} TEST AND REMOVE</div>
-            </div>
+            
             <div class='event'>
                 <div class='label'>Inspiring Event</div>
                 <div class='value'>{{actor.event.name}}</div>
             </div>
-            <div class='career'>
-                <div class='label'>Career</div>
-                <div class='value'>{{actor.career.name}} TEST AND REMOVE</div>
-            </div>
+            
         </div>
         <div class='size-and-speed'>
             <div class='mcdmrpg-header'>SIZE & SPEED</div>

@@ -5,6 +5,10 @@ export class HeroActor extends BaseActor {
         return this.items.find((item) => item.type === 'ancestry');
     }
 
+    get career() {
+        return this.items.find((item) => item.type === 'career');
+    }
+
     get class() {
         return this.items.find((item) => item.type === 'class');
     }
