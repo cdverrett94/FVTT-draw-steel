@@ -4,6 +4,88 @@ import { Predicate } from '../../rules/predicate.js';
 import { BaseItem } from './base-item.js';
 
 export class AbilityItem extends BaseItem {
+    // getter for ability distance that also applies kit upgrades
+    get distance() {
+        let distance = this.system.distance;
+        if (!this.isOwned || !this.parent?.kit) return distance;
+
+        const kit = this.parent.kit;
+        if (kit.system.distance === 0) return distance;
+
+        const keywords = this.system.keywords;
+        if (!keywords.includes('ranged')) return distance;
+
+        const isWeaponRanged = kit.system.type === 'martial' && ['weapon'].every((keyword) => keywords.includes(keyword));
+        const isMagicRanged = kit.system.type === 'caster' && ['magic'].every((keyword) => keywords.includes(keyword));
+
+        if (isWeaponRanged) {
+            const regexp = new RegExp(/Ranged (?<baseDistance>\d+)/gim);
+            const match = regexp.exec(this.system.distance);
+            if (!match) return distance;
+
+            const { baseDistance } = match.groups;
+            const calculatedDistance = baseDistance + Number(kit.system.distance);
+
+            distance = distance.replace(regexp, `Ranged ${calculatedDistance}`);
+        } else if (isMagicRanged) {
+            if (keywords.includes('area')) {
+                const regexp = new RegExp(/(?<shape>.+) (?<baseArea>\d+) within (?<baseDistance>\d+)/gim);
+                const match = regexp.exec(this.system.distance);
+                if (!match) return distance;
+
+                const { baseDistance, baseArea, shape } = match.groups;
+                const calculatedDistance = Number(baseDistance) + Number(kit.system.distance);
+                const calculatedArea = Number(baseArea) + Number(kit.system.area ?? 0);
+
+                distance = distance.replace(regexp, `${shape} ${calculatedArea} within ${calculatedDistance}`);
+            } else {
+                const regexp = new RegExp(/Ranged (?<baseDistance>\d+)/gim);
+                const match = regexp.exec(this.system.distance);
+                if (!match) return distance;
+
+                const { baseDistance } = match.groups;
+                const calculatedDistance = Number(baseDistance) + Number(kit.system.distance);
+
+                distance = distance.replace(regexp, `Ranged ${calculatedDistance}`);
+            }
+        }
+
+        return distance;
+    }
+
+    // getter for ability power roll that also applies kit damage
+    get power() {
+        const power = foundry.utils.duplicate(this.system.power);
+        if (!this.doesDamage || !this.isOwned) return power;
+
+        const kitDamageBonus = this.kitDamageBonus;
+
+        for (const tier in power.tiers) {
+            let tierIndex = 0;
+            switch (tier) {
+                case 'one':
+                    tierIndex = 0;
+                    break;
+                case 'two':
+                    tierIndex = 1;
+                    break;
+                case 'three':
+                    tierIndex = 2;
+                    break;
+                default:
+                    tierIndex = 0;
+                    break;
+            }
+
+            const damageIndex = power.tiers[tier].findIndex((effect) => effect.type === 'damage');
+            if (damageIndex === -1) continue;
+
+            power.tiers[tier][damageIndex].amount = power.tiers[tier][damageIndex].amount + kitDamageBonus[tierIndex];
+        }
+
+        return power;
+    }
+
     rollOptions(prefix = 'ability') {
         const rollOptions = super.rollOptions(prefix);
 
@@ -26,7 +108,7 @@ export class AbilityItem extends BaseItem {
             actor: this.parent,
             ability: this,
             title: this.name,
-            characteristic: this.system.power.characteristic,
+            characteristic: this.power.characteristic,
             targets: game.user.targets.reduce((targets, target) => {
                 const targetActor = target.actor;
                 const targetRollOptions = [...target.actor.rollOptions('target')];
@@ -55,10 +137,21 @@ export class AbilityItem extends BaseItem {
     }
 
     get isRollable() {
-        if (this.system.power.isResistance) return false;
+        if (this.power.isResistance) return false;
 
-        if (this.system.power.tiers.one.length || this.system.power.tiers.two.length || this.system.power.tiers.three.length) return true;
+        if (this.power.tiers.one.length || this.power.tiers.two.length || this.power.tiers.three.length) return true;
         else return false;
+    }
+
+    get doesDamage() {
+        const power = this.system.power;
+        let doesDamage = false;
+        for (const tier in power.tiers) {
+            doesDamage = power.tiers[tier].some((effect) => effect.type === 'damage');
+            if (doesDamage) break;
+        }
+
+        return doesDamage;
     }
 
     #getOwnerModifiers() {
@@ -111,7 +204,7 @@ export class AbilityItem extends BaseItem {
     }
 
     getTierEffect(tier) {
-        return this.system.power.tiers[TIER_TEXT[tier]];
+        return this.power.tiers[TIER_TEXT[tier]];
     }
 
     async toChat() {
@@ -125,7 +218,7 @@ export class AbilityItem extends BaseItem {
                 item: this.uuid,
                 actor: this.parent.uuid,
             },
-            isResistance: this.system.power.isResistance,
+            isResistance: this.power.isResistance,
         };
 
         await ChatMessage.create({
@@ -139,29 +232,31 @@ export class AbilityItem extends BaseItem {
         });
     }
 
+    // getter for the parsed tier text to be used in html templates
     get tierText() {
         return {
             one: this.parseTierText('one'),
             two: this.parseTierText('two'),
             three: this.parseTierText('three'),
-            four: this.parseTierText('four'),
         };
     }
 
+    // convert power roll tier object to string
     parseTierText(tier) {
-        const tierEffects = this.system.power.tiers[tier];
+        const tierEffects = this.power.tiers[tier];
         const effectsText = [];
 
-        tierEffects.forEach((effect) => {
-            if (effect.type === 'damage') effectsText.push(this.parseDamageEffect(effect));
+        tierEffects.forEach((effect, index) => {
+            if (effect.type === 'damage') effectsText.push(this.parseDamageEffect(effect, index, tier));
             else if (effect.type === 'knockback') effectsText.push(this.parseKnockbackEffect(effect));
             else if (effect.type === 'other') effectsText.push(effect.description);
         });
 
-        return effectsText.join(', ');
+        return effectsText.join('; ');
     }
 
-    parseDamageEffect(effect) {
+    // parse tier damage effect into string
+    parseDamageEffect(effect, index) {
         let damageTypeText = '';
         effect.type ??= 'untyped';
         if (effect.dType !== 'untyped') damageTypeText = ' ' + game.i18n.localize(`system.damage.types.${effect.dType}.label`);
@@ -171,9 +266,29 @@ export class AbilityItem extends BaseItem {
         });
     }
 
+    //parse tier knockback effect into string
     parseKnockbackEffect(effect) {
         return game.i18n.format('system.terms.knockback.linkLabel', {
             distance: effect.distance ?? 0,
         });
+    }
+
+    // get the appropriate kit damage bonus based on the kit type and ability keywords
+    get kitDamageBonus() {
+        if (!this.isOwned || !this.parent?.kit) return [0, 0, 0];
+        let bonusType = null;
+
+        if (this.keywordsIncludes(['weapon', 'melee'])) bonusType = 'melee';
+        else if (this.keywordsIncludes(['weapon', 'ranged'])) bonusType = 'ranged';
+        else if (this.keywordsIncludes(['magic'])) bonusType = 'magic';
+        if (bonusType === null) return [0, 0, 0];
+
+        const kit = this.parent.kit;
+        return kit.system.damage[bonusType].some((bonus) => bonus != 0) ? kit.system.damage[bonusType] : [0, 0, 0];
+    }
+
+    keywordsIncludes(array) {
+        const keywords = this.system.keywords;
+        return array.every((keyword) => keywords.includes(keyword));
     }
 }

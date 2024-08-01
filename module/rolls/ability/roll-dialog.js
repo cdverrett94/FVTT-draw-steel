@@ -72,7 +72,7 @@ export class AbilityRollDialog extends PowerRollDialog {
             chatSystemData.targets[`${targets[target].actor.id}`] = {
                 uuid: targets[target].actor.uuid,
                 token: targets[target].token.uuid,
-                appliedEffects: foundry.utils.duplicate(this.context.ability.system.power.tiers[TIER_TEXT[roll.tier]]).map((effect) => {
+                appliedEffects: foundry.utils.duplicate(this.context.ability.power.tiers[TIER_TEXT[roll.tier]]).map((effect) => {
                     effect.applied = effect.type === 'damage' || effect.type === 'knockback' ? false : true;
                     return effect;
                 }),

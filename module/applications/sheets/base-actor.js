@@ -70,9 +70,9 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
                 };
                 context.actor.abilities[group][index].system.enrichedEffect = await TextEditor.enrichHTML(ability.system.effect, enrichContext);
                 context.actor.abilities[group][index].system.power.enrichedTiers = {
-                    one: await TextEditor.enrichHTML(ability.system.power.tiers.one, enrichContext),
-                    two: await TextEditor.enrichHTML(ability.system.power.tiers.two, enrichContext),
-                    three: await TextEditor.enrichHTML(ability.system.power.tiers.three, enrichContext),
+                    one: await TextEditor.enrichHTML(ability.power.tiers.one, enrichContext),
+                    two: await TextEditor.enrichHTML(ability.power.tiers.two, enrichContext),
+                    three: await TextEditor.enrichHTML(ability.power.tiers.three, enrichContext),
                 };
             }
         }

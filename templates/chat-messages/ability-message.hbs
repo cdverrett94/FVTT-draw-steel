@@ -15,19 +15,19 @@
             <div class='value'>{{ability.system.trigger}}</div>
         </div>
     {{/if}}
-    {{#if ability.system.power.tiers.one}}
+    {{#if ability.power.tiers.one}}
         <div class='tier-one property ability-tiers'>
             <div class='label'>- 11</div>
             <div class='value'>{{ability.tierText.one}}</div>
         </div>
     {{/if}}
-    {{#if ability.system.power.tiers.two}}
+    {{#if ability.power.tiers.two}}
         <div class='tier-two property ability-tiers'>
             <div class='label'>12 - 6</div>
             <div class='value'>{{ability.tierText.two}}</div>
         </div>
     {{/if}}
-    {{#if ability.system.power.tiers.three}}
+    {{#if ability.power.tiers.three}}
         <div class='tier-three property ability-tiers'>
             <div class='label'>17 +</div>
             <div class='value'>{{ability.tierText.three}}</div>
@@ -60,10 +60,10 @@
             {{localize (concat 'system.items.ability.times.' ability.system.time '.label')}}
         </div>
     {{/if}}
-    {{#if ability.system.distance}}
+    {{#if ability.distance}}
         <div class='distance'>
             <i class='fa-solid fa-ruler'></i>
-            {{ability.system.distance}}
+            {{ability.distance}}
         </div>
     {{/if}}
     {{#if ability.system.target}}
