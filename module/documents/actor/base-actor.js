@@ -1,4 +1,4 @@
-import { FrightenedConfig, OngoingDamageConfig, TauntedConfig } from '../../applications/_index.js';
+import { FrightenedConfig, TauntedConfig } from '../../applications/_index.js';
 import { ABILITIES, CHARACTERISTICS, CONDITIONS } from '../../constants/_index.js';
 import { toId } from '../../helpers.js';
 import { TestRollDialog } from '../../rolls/_index.js';
@@ -49,7 +49,7 @@ export class BaseActor extends Actor {
     }
 
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
-        if (['ongoingdamage', 'taunted', 'frightened'].includes(statusId)) active = true;
+        if (['taunted', 'frightened'].includes(statusId)) active = true;
         else if (statusId === 'prone') {
             const unconscious = this.effects.get(toId('unconscious'));
             if (unconscious) {
@@ -67,9 +67,7 @@ export class BaseActor extends Actor {
         if (returnedEffect === true) effect = this.effects.get(toId(statusId));
 
         let config;
-        if (statusId === 'ongoingdamage') {
-            config = new OngoingDamageConfig({ effect });
-        } else if (statusId === 'taunted') {
+        if (statusId === 'taunted') {
             config = new TauntedConfig({ effect });
         } else if (statusId === 'frightened') {
             config = new FrightenedConfig({ effect });
@@ -210,11 +208,7 @@ export class BaseActor extends Actor {
             if (!actorCondition) return;
 
             rollOptions.push(`${prefix}:condition:${key}`);
-            if (key === 'ongoingdamage') {
-                Object.keys(DAMAGE.TYPES).forEach((type) => {
-                    if (this.ongoingDamage[type] > 0) rollOptions.push(`${prefix}:condition:${key}:${this.ongoingDamage[type]}`);
-                });
-            } else if (key === 'taunted' || key === 'frightened') {
+            if (key === 'taunted' || key === 'frightened') {
                 actorCondition.changes.forEach((change) => {
                     if (change.value) rollOptions.push(`${prefix}:condition:${key}:${change.value}`);
                 });
