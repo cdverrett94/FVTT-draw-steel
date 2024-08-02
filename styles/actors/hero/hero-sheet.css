@@ -2,6 +2,7 @@
 @import url('header.css');
 @import url('details.css');
 @import url('skills.css');
+@import url('items.css');
 
 /* Define Sheet Layout Via Grid */
 .sheet.actor.hero .window-content {

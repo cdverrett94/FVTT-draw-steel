@@ -1,0 +1,15 @@
+.sheet.system.hero .items-tab {
+    .item {
+        display: grid;
+        grid-template-columns: 1fr 100px 50px 50px;
+        padding: 5px 0px 5px 5px;
+
+        &:nth-child(even) {
+            background-color: var(--alternating-bg-color);
+        }
+
+        div:not(.name) {
+            justify-self: center;
+        }
+    }
+}

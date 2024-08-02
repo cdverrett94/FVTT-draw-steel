@@ -1,0 +1,22 @@
+<div class='tab items-tab {{ifThen (eq activeTabs.main "items") "active" ""}}' data-group='main' data-tab='items'>
+    <div class='items'>
+        <div class='item'>
+            <div class='name'>Name</div>
+            <div class='type'>Type</div>
+            <div class='edit-item edit-button'> </div>
+            <div class='delete-item delete-button'> </div>
+        </div>
+        {{#each actor.items as |item|}}
+            <div class='item'>
+                <div class='name'>{{item.name}}</div>
+                <div class='type'>{{localize (concat 'TYPES.Item.' item.type)}}</div>
+                <div class='edit-item edit-button' data-action='editItem' data-item-id='{{item.id}}'>
+                    <i class='fa-solid fa-pencil' data-tooltip-direction='RIGHT' data-tooltip='Edit Item'></i>
+                </div>
+                <div class='delete-item delete-button' data-action='deleteItem' data-item-id='{{item.id}}'>
+                    <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='Delete Item'></i>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

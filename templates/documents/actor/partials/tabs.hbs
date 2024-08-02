@@ -10,6 +10,11 @@
     <a class='nav-tab {{ifThen (eq activeTabs.main "features") "active" ""}}' data-action='tab' data-group='main' data-tab='features'>
         {{localize 'system.items.feature.label.plural'}}
     </a>
+    {{#if (eq actor.type 'hero')}}
+        <a class='nav-tab {{ifThen (eq activeTabs.main "items") "active" ""}}' data-action='tab' data-group='main' data-tab='items'>
+            {{localize 'system.sheets.actor.tabs.items'}}
+        </a>
+    {{/if}}
     <a class='nav-tab {{ifThen (eq activeTabs.main "skills") "active" ""}}' data-action='tab' data-group='main' data-tab='skills'>
         {{localize 'system.sheets.actor.tabs.skills'}}
     </a>

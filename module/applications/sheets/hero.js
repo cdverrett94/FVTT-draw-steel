@@ -12,6 +12,8 @@ export class HeroSheet extends BaseActorSheet {
             openACKSheet: this.#openACKSheet,
             editEffect: this.#editEffect,
             deleteEffect: this.#deleteEffect,
+            editItem: this.#editItem,
+            deleteItem: this.#deleteItem,
         },
     };
 
@@ -42,6 +44,10 @@ export class HeroSheet extends BaseActorSheet {
             features: {
                 id: 'features',
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
+            },
+            items: {
+                id: 'items',
+                template: 'systems/mcdmrpg/templates/documents/actor/hero/items.hbs',
             },
             skills: {
                 id: 'skills',
@@ -92,5 +98,16 @@ export class HeroSheet extends BaseActorSheet {
     static async #deleteEffect(event, target) {
         let effect = await fromUuid(element.dataset.effectId);
         await this.actor.deleteEmbeddedDocuments('ActiveEffect', [effect.id]);
+    }
+
+    static async #editItem(event, target) {
+        const { itemId } = target.dataset;
+        const item = this.actor.items.find((item) => item.id === itemId);
+        await item.sheet.render(true);
+    }
+
+    static async #deleteItem(event, target) {
+        const { itemId } = target.dataset;
+        await this.actor.deleteEmbeddedDocuments('Item', [itemId]);
     }
 }
