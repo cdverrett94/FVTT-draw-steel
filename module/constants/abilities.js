@@ -53,71 +53,82 @@ export const ABILITIES = {
         magic: {
             label: 'system.items.ability.keywords.magic.label',
         },
+        persistent: {
+            label: 'system.items.ability.keywords.persistent.label',
+        },
         psionic: {
             label: 'system.items.ability.keywords.psionic.label',
         },
         ranged: {
             label: 'system.items.ability.keywords.ranged.label',
         },
+        void: {
+            label: 'system.items.ability.keywords.void.label',
+        },
         weapon: {
             label: 'system.items.ability.keywords.weapon.label',
         },
     },
-    TIMES: {
+    TYPES: {
         'action': {
-            label: 'system.items.ability.times.action.label',
+            label: 'system.items.ability.types.action.label',
         },
         'maneuver': {
-            label: 'system.items.ability.times.maneuver.label',
+            label: 'system.items.ability.types.maneuver.label',
         },
         'free-maneuver': {
-            label: 'system.items.ability.times.free-maneuver.label',
+            label: 'system.items.ability.types.free-maneuver.label',
         },
         'triggered': {
-            label: 'system.items.ability.times.triggered.label',
+            label: 'system.items.ability.types.triggered.label',
         },
         'free-triggered': {
-            label: 'system.items.ability.times.free-triggered.label',
+            label: 'system.items.ability.types.free-triggered.label',
         },
     },
-    TYPES: {
+    CATEGORIES: {
         passive: {
-            label: 'system.items.ability.types.passive.label',
+            label: 'system.items.ability.categories.passive.label',
             appliesTo: ['monster'],
             color: '#949494',
         },
         action: {
-            label: 'system.items.ability.types.action.label',
+            label: 'system.items.ability.categories.action.label',
             appliesTo: ['monster', 'hero'],
             color: '#463529',
         },
         basic: {
-            label: 'system.items.ability.types.basic.label',
+            label: 'system.items.ability.categories.basic.label',
+            appliesTo: ['monster', 'hero'],
+            color: '#ff0000',
+        },
+        free: {
+            label: 'system.items.ability.categories.free.label',
             appliesTo: ['monster', 'hero'],
             color: '#ff0000',
         },
         maneuver: {
-            label: 'system.items.ability.types.maneuver.label',
+            label: 'system.items.ability.categories.maneuver.label',
             appliesTo: ['monster', 'hero'],
             color: '#0000ff',
         },
         triggered: {
-            label: 'system.items.ability.types.triggered.label',
+            label: 'system.items.ability.categories.triggered.label',
             appliesTo: ['monster', 'hero'],
             color: '#098200',
         },
         signature: {
-            label: 'system.items.ability.types.signature.label',
+            label: 'system.items.ability.categories.signature.label',
             appliesTo: ['hero'],
             color: '#ff9500',
         },
         heroic: {
-            label: 'system.items.ability.types.heroic.label',
+            label: 'system.items.ability.categories.heroic.label',
             appliesTo: ['hero'],
             color: '#ffea00',
         },
         villain: {
-            label: 'system.items.ability.types.villain.label',
+            label: 'system.items.ability.categories.villain.label',
             appliesTo: ['monster'],
             color: '#8500ba',
         },

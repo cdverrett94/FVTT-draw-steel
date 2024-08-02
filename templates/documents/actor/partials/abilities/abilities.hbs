@@ -3,7 +3,7 @@
         {{#with @key as |group|}}
             {{#each abilityGroup as |ability|}}
                 <div class='ability {{group}}-ability' data-ability-group='{{group}}' data-ability-id='{{ability._id}}'>
-                    <div class='ability-group-label'>{{localize (concat 'system.items.ability.types.' group '.label')}}</div>
+                    <div class='ability-group-label'>{{localize (concat 'system.items.ability.categories.' group '.label')}}</div>
                     <div class='ability-header'>
                         <div class='ability-name' data-tooltip='{{ability.name}}' data-tooltip-direction='UP'>{{ability.name}}</div>
                         <div class='ability-cost'>{{ability.system.cost}}</div>
@@ -40,10 +40,10 @@
                             <div class='value'>{{ability.system.trigger}}</div>
                         </div>
                     {{/if}}
-                    {{#if ability.system.time}}
+                    {{#if ability.system.type}}
                         <div class='property ability-time'>
-                            <div class='label'>{{localize 'system.items.ability.FIELDS.time.label'}}</div>
-                            <div class='value'>{{localize (concat 'system.items.ability.times.' ability.system.time '.label')}}</div>
+                            <div class='label'>{{localize 'system.items.ability.FIELDS.type.label'}}</div>
+                            <div class='value'>{{localize (concat 'system.items.ability.types.' ability.system.type '.label')}}</div>
                         </div>
                     {{/if}}
                     {{#if ability.system.distance}}

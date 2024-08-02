@@ -1,29 +1,29 @@
 <fieldset class='properties tab' data-group='main' data-tab='details'>
     <legend>Properties</legend>
-    {{formField fields.type value=source.system.type classes='abilty-type' localize=true labelAttr='label'}}
+
+    {{formField fields.category value=source.system.category classes='abilty-category' localize=true labelAttr='label'}}
 
     {{! Hide time for passive types }}
-    {{#unless (eq system.source.system.type 'passive')}}
-        {{formField fields.time value=source.system.time classes='abilty-time' localize=true labelAttr='label'}}
+    {{#unless (eq system.source.system.category 'passive')}}
+        {{formField fields.type value=source.system.type classes='abilty-type' localize=true labelAttr='label'}}
     {{/unless}}
     {{! Show Cost for heroic types }}
-    {{#if (eq source.system.type 'heroic')}}
+    {{#if (eq source.system.category 'heroic')}}
         {{formField fields.cost value=source.system.cost classes='abilty-cost' localize=true}}
     {{/if}}
 
     {{! Show Trigger for trigger types }}
-    {{log source.system.type}}
-    {{#if (eq source.system.type 'triggered')}}
+    {{#if (eq source.system.category 'triggered')}}
         {{formField fields.trigger value=source.system.trigger classes='abilty-trigger' localize=true}}
     {{/if}}
 
     {{! Hide distance for passive and trigger types }}
-    {{#unless (eq source.system.type 'passive')}}
+    {{#unless (eq source.system.category 'passive')}}
         {{formField fields.distance value=source.system.distance classes='abilty-distance' localize=true}}
     {{/unless}}
 
     {{! Hide targets for passive and triggered types }}
-    {{#unless (eq source.system.type 'passive')}}
+    {{#unless (eq source.system.category 'passive')}}
         {{formField fields.target value=source.system.target classes='abilty-target' localize=true}}
     {{/unless}}
 </fieldset>

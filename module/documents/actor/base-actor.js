@@ -23,22 +23,22 @@ export class BaseActor extends Actor {
         }
     }
 
-    get allowedAbilityTypes() {
-        const allowedAbilityTypes = {};
-        for (const [key, value] of Object.entries(ABILITIES.TYPES)) {
-            if (value.appliesTo.includes(this.type)) allowedAbilityTypes[key] = value;
+    get allowedAbilityCategories() {
+        const allowedAbilityCategories = {};
+        for (const [key, value] of Object.entries(ABILITIES.CATEGORIES)) {
+            if (value.appliesTo.includes(this.type)) allowedAbilityCategories[key] = value;
         }
-        return allowedAbilityTypes;
+        return allowedAbilityCategories;
     }
 
     get abilities() {
         let allAbilities = this.items.filter((item) => item.type === 'ability');
         const abilities = {};
-        Object.keys(this.allowedAbilityTypes).forEach((type) => (abilities[type] = []));
+        Object.keys(this.allowedAbilityCategories).forEach((category) => (abilities[category] = []));
         abilities.invalid = [];
 
         allAbilities.forEach((ability) => {
-            if (ability.system.type in this.allowedAbilityTypes) abilities[ability.system.type].push(ability);
+            if (ability.system.category in this.allowedAbilityCategories) abilities[ability.system.category].push(ability);
             else abilities['invalid'].push(ability);
         });
         return abilities;

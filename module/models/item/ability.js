@@ -163,12 +163,12 @@ export class AbilityData extends BaseItemData {
                 })
             ),
             target: new fields.StringField(),
-            time: new fields.StringField({
-                choices: getDataModelChoices(ABILITIES.TIMES),
-            }),
             trigger: new fields.StringField(),
             type: new fields.StringField({
                 choices: getDataModelChoices(ABILITIES.TYPES),
+            }),
+            category: new fields.StringField({
+                choices: getDataModelChoices(ABILITIES.CATEGORIES),
             }),
         };
     }
