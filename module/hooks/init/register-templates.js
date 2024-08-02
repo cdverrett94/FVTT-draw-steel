@@ -15,6 +15,7 @@ export async function registerTemplates() {
         'systems/mcdmrpg/templates/documents/actor/partials/tabs.hbs',
         'systems/mcdmrpg/templates/documents/actor/partials/skills/skills-view.hbs',
         'systems/mcdmrpg/templates/documents/actor/partials/skills/skills-edit.hbs',
+        'systems/mcdmrpg/templates/documents/actor/hero/sub-items.hbs',
 
         // Monsters
         'systems/mcdmrpg/templates/documents/actor/monster/header.hbs',

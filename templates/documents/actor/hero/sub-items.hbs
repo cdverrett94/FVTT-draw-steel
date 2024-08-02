@@ -1,0 +1,13 @@
+{{#each items as |item|}}
+    <div class='item' style="padding-left: {{../padding}}px">
+        <div class='name'>{{item.name}}</div>
+        <div class='type'>{{localize (concat 'TYPES.Item.' item.type)}}</div>
+        <div class='edit-item edit-button' data-action='editItem' data-item-id='{{item.id}}'>
+            <i class='fa-solid fa-pencil' data-tooltip-direction='RIGHT' data-tooltip='Edit Item'></i>
+        </div>
+        <div></div>
+    </div>
+    {{#if item.grants}}
+        {{> 'systems/mcdmrpg/templates/documents/actor/hero/sub-items.hbs' items=item.grants padding=(add ../padding 20)}}
+    {{/if}}
+{{/each}}

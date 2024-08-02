@@ -1,17 +1,23 @@
 <fieldset class='granted-items tab {{ifThen (eq activeTabs.main "grantedItems") "active" ""}}' data-group='main' data-tab='grantedItems'>
     <legend>Granted Items</legend>
-    {{#each grantedItems as |grantedFeature|}}
-        <div class='granted-item'>
-            <div class='name' data-tooltip='{{grantedFeature.system.description}}'>
-                {{grantedFeature.name}}
+    <div class='items'>
+        {{#each grantedItems as |grantedFeature|}}
+            <div class='granted-item'>
+                <div class='name' data-tooltip='{{grantedFeature.system.description}}'>
+                    {{grantedFeature.name}}
+                </div>
+                <div class='delete-granted-item delete-button' data-action='deleteGrantedItem' data-granted-item-index='{{@index}}'>
+                    <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='{{localize "system.sheets.items.deleteGrantedItem"}}'></i>
+                </div>
             </div>
-            <div class='delete-granted-item delete-button' data-action='deleteGrantedItem' data-granted-item-index='{{@index}}'>
-                <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='{{localize "system.sheets.items.deleteGrantedItem"}}'></i>
-            </div>
+        {{/each}}
+        <br /><br />
+        <div class='item-drop'>
+            Drop Features HERE
         </div>
-    {{/each}}
-    <br /><br />
-    <div class='item-drop'>
-        Drop Features HERE
+    </div>
+
+    <div class='granted-from'>
+        {{formField fields.grantedFrom value=source.system.grantedFrom}}
     </div>
 </fieldset>

@@ -6,7 +6,7 @@
             <div class='edit-item edit-button'> </div>
             <div class='delete-item delete-button'> </div>
         </div>
-        {{#each actor.items as |item|}}
+        {{#each actor.itemTree as |item|}}
             <div class='item'>
                 <div class='name'>{{item.name}}</div>
                 <div class='type'>{{localize (concat 'TYPES.Item.' item.type)}}</div>
@@ -17,6 +17,9 @@
                     <i class='fa-solid fa-trash' data-tooltip-direction='RIGHT' data-tooltip='Delete Item'></i>
                 </div>
             </div>
+            {{#if item.grants}}
+                    {{> 'systems/mcdmrpg/templates/documents/actor/hero/sub-items.hbs' items=item.grants padding=(add 20 0)}}
+                {{/if}}
         {{/each}}
     </div>
 </div>

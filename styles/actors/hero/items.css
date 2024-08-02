@@ -1,4 +1,7 @@
 .sheet.system.hero .items-tab {
+    .items {
+        overflow-y: scroll;
+    }
     .item {
         display: grid;
         grid-template-columns: 1fr 100px 50px 50px;
@@ -10,6 +13,12 @@
 
         div:not(.name) {
             justify-self: center;
+        }
+
+        div.sub-items {
+            grid-column: 1 / 5;
+            width: 100%;
+            padding: 5px 0px 5px 10px;
         }
     }
 }
