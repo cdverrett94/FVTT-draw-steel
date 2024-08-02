@@ -47,8 +47,6 @@ export class CareerSheet extends BaseItemSheet {
         let index = Number(target.dataset.incidentIndex);
         if (typeof index !== 'number') return;
 
-        console.log('remove incident');
-
         let incidents = this.item.system.incidents;
         incidents.splice(index, 1);
 
