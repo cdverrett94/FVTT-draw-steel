@@ -11,11 +11,11 @@ export class BaseItem extends Item {
     _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
 
-        if (!this.isOwned || this.system.grantedFeatures.length === 0) return;
+        if (!this.isOwned || this.system.grantedItems.length === 0) return;
 
         const createData = [];
-        for (let index = 0; index < this.system.grantedFeatures.length; index++) {
-            const item = fromUuidSync(this.system.grantedFeatures[index]);
+        for (let index = 0; index < this.system.grantedItems.length; index++) {
+            const item = fromUuidSync(this.system.grantedItems[index]);
             createData.push(item.toObject());
         }
 

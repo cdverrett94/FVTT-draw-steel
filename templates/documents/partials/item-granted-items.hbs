@@ -1,5 +1,5 @@
 <fieldset class='granted-items tab {{ifThen (eq activeTabs.main "grantedItems") "active" ""}}' data-group='main' data-tab='grantedItems'>
-    <legend>Benefits</legend>
+    <legend>Granted Items</legend>
     {{#each grantedItems as |grantedFeature|}}
         <div class='granted-item'>
             <div class='name' data-tooltip='{{grantedFeature.system.description}}'>

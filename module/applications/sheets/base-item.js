@@ -77,10 +77,10 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             },
         };
 
-        context.grantedFeatures = [];
-        for (let index = 0; index < this.item.system.grantedFeatures.length; index++) {
-            const grantedFeature = await fromUuid(this.item.system.grantedFeatures[index]);
-            context.grantedFeatures.push(grantedFeature);
+        context.grantedItems = [];
+        for (let index = 0; index < this.item.system.grantedItems.length; index++) {
+            const grantedFeature = await fromUuid(this.item.system.grantedItems[index]);
+            context.grantedItems.push(grantedFeature);
         }
 
         return context;
@@ -187,10 +187,10 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     async onDropItemCreate(itemData, event) {
         itemData = itemData instanceof Array ? itemData : [itemData];
 
-        const currentItems = this.item.system.grantedFeatures ?? [];
+        const currentItems = this.item.system.grantedItems ?? [];
         const newItems = [...currentItems, ...itemData];
 
-        return await this.item.update({ 'system.grantedFeatures': newItems });
+        return await this.item.update({ 'system.grantedItems': newItems });
     }
     //#endregion
 
