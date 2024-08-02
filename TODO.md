@@ -21,9 +21,6 @@
     -   Move Victories to XP and make Victories 0
     -   Regain recoveries
     -   Regain stamina
-    -
--   Classes
-    -   Add recovery amount
 -   Character creation
     -   ancestry - complete
     -   culture - complete
@@ -34,6 +31,4 @@
     -   complication
 -   ability
     -   add description'
--   stability
 -   multiple power roll characteristics - just need to be able to change the char on roll
--   add items tab for hero

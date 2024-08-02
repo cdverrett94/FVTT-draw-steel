@@ -430,10 +430,6 @@
                             }
                         }
                     },
-                    "time": {
-                        "hint": "",
-                        "label": "Time"
-                    },
                     "trigger": {
                         "hint": "",
                         "label": "Trigger"
@@ -441,6 +437,10 @@
                     "type": {
                         "hint": "",
                         "label": "Type"
+                    },
+                    "category": {
+                        "hint": "",
+                        "label": "Category"
                     }
                 },
                 "keywords": {
@@ -463,11 +463,17 @@
                     "magic": {
                         "label": "Magic"
                     },
+                    "persistent": {
+                        "label": "Persistent"
+                    },
                     "psionic": {
                         "label": "Psionic"
                     },
                     "ranged": {
                         "label": "Ranged"
+                    },
+                    "void": {
+                        "label": "Void"
                     },
                     "weapon": {
                         "label": "Weapon"
@@ -477,7 +483,7 @@
                     "plural": "Abilities",
                     "singular": "Ability"
                 },
-                "times": {
+                "types": {
                     "action": {
                         "label": "Action"
                     },
@@ -495,17 +501,20 @@
                         "label": "Triggered"
                     }
                 },
-                "types": {
+                "categories": {
                     "action": {
                         "label": "Action"
                     },
                     "basic": {
                         "label": "Basic Attack"
                     },
+                    "free": {
+                        "label": "Free Strike"
+                    },
                     "heroic": {
                         "label": "Heroic Abilitiy"
                     },
-                    "label": "Type",
+                    "label": "Category",
                     "maneuver": {
                         "label": "Manuever"
                     },
@@ -535,19 +544,10 @@
                         "label": "Reach"
                     },
                     "size": {
-                        "height": {
-                            "label": "Height"
-                        },
-                        "label": "Size",
-                        "length": {
-                            "label": "Length"
-                        },
-                        "weight": {
-                            "label": "Weight"
-                        },
-                        "width": {
-                            "label": "Width"
-                        }
+                        "label": "Size"
+                    },
+                    "weight": {
+                        "label": "Weight"
                     },
                     "speed": {
                         "label": "Speed"
@@ -726,7 +726,7 @@
             "feature": {
                 "FIELDS": {
                     "description": "Description",
-                    "grantedFeatures": "Feature Benefits"
+                    "grantedItems": "Granted Items"
                 },
                 "label": {
                     "plural": "Features",
@@ -830,11 +830,8 @@
                 },
                 "resources": "Resources",
                 "size": {
-                    "height": "Height",
                     "label": "Size",
-                    "length": "Length",
-                    "weight": "Weight",
-                    "width": "Width"
+                    "weight": "Weight"
                 },
                 "skills": {
                     "add": "Add Custom Skill",
@@ -846,13 +843,15 @@
                     "noCustomSkills": "No Custom Skills Added"
                 },
                 "speed": "Speed",
+                "stability": "Stability",
                 "tabs": {
                     "abilities": "Abilities",
                     "effects": "Effects",
                     "negotiation": "Negotiation",
                     "notes": "Notes",
                     "details": "Details",
-                    "skills": "Skills"
+                    "skills": "Skills",
+                    "items": "Items"
                 },
                 "tn": "TN",
                 "victories": "Victories"

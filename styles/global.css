@@ -63,11 +63,12 @@ span.roll-icons i {
     background: transparent;
 }
 
-.sheet.system .delete-button {
+.sheet.system .delete-button,
+.sheet.system .edit-button {
     text-align: center;
     cursor: pointer;
 
-    &:hover {
+    &.delete-button:hover {
         color: var(--delete-color);
     }
 }
