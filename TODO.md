@@ -14,7 +14,6 @@
 -   Chat Messages
     -   localize
 -   Rolls
--   Ongoing Damage Automation at end of turn
 -   Hope Tokens
     -   Add to hero sheet and add recovery functionality
 -   Respite
@@ -32,3 +31,7 @@
 -   ability
     -   add description'
 -   multiple power roll characteristics - just need to be able to change the char on roll
+-   add Power Roll + Char above power roll tiers
+-   add grabbed target
+-   character creator
+-   immunity and weakness

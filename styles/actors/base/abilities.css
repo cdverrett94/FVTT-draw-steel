@@ -93,6 +93,9 @@
 .sheet.actor div.actor-abilities .ability.basic-ability .ability-header {
     background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--basic-ability-color) 100%);
 }
+.sheet.actor div.actor-abilities .ability.free-ability .ability-header {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--free-ability-color) 100%);
+}
 
 .sheet.actor div.actor-abilities .ability.maneuver-ability .ability-header {
     background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, var(--maneuver-ability-color) 100%);

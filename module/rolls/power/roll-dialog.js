@@ -8,7 +8,7 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.context = {};
         Object.assign(this.context, options);
 
-        this.context.characteristic ??= 'might';
+        this.context.characteristics ??= ['might'];
         this.context.general ??= {};
         this.context.general.edges ??= 0;
         this.context.general.banes ??= 0;

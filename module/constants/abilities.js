@@ -44,14 +44,11 @@ export const ABILITIES = {
         attack: {
             label: 'system.items.ability.keywords.attack.label',
         },
-        kit: {
-            label: 'system.items.ability.keywords.kit.label',
+        magic: {
+            label: 'system.items.ability.keywords.magic.label',
         },
         melee: {
             label: 'system.items.ability.keywords.melee.label',
-        },
-        magic: {
-            label: 'system.items.ability.keywords.magic.label',
         },
         persistent: {
             label: 'system.items.ability.keywords.persistent.label',
@@ -61,6 +58,9 @@ export const ABILITIES = {
         },
         ranged: {
             label: 'system.items.ability.keywords.ranged.label',
+        },
+        resistance: {
+            label: 'system.items.ability.keywords.resistance.label',
         },
         void: {
             label: 'system.items.ability.keywords.void.label',
