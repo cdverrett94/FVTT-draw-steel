@@ -255,10 +255,6 @@
                 "description": "While you are grappled, your speed is 0 and the speed of the creature grappling you is halved. When a creature grappling you moves, they can bring you with them. If a creature has you grappled by physical means, you move with that creature if they are force moved, and they move with you if you are force moved. See Break Grappled in Maneuvers for more information on ending this condition.\nIf a creature is grappling you with magic or by some other nonphysical means, the condition ends if they don’t have line of effect to you. If you teleport while grappled, the condition ends.\nUnless otherwise noted, a creature can grapple only one other creature at a time."
             },
             "label": "Conditions",
-            "ongoing-damage": {
-                "label": "Ongoing Damage",
-                "description": "This condition appears in the rules as “ongoing X,” indicating that while under the effect of the condition, you take X damage at the start of every round. You can suffer multiple instances of this condition at the same time and take damage from each instance when you do. You can suffer multiple instances of this condition from the same effect."
-            },
             "prone": {
                 "label": "Prone",
                 "description": "While you are prone, attacks you make suffer 1 bane, and melee attacks made against you gain 1 boon. Enemies can move through your space without needing to make an Acrobatics test. You must crawl to move along the ground, which costs you 1 extra square of movement for every square you crawl.\nYou can stand up from prone by spending 2 squares of movement when you use a maneuver, an action, or an ability that allows you to move."

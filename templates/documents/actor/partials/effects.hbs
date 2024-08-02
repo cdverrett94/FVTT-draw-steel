@@ -5,7 +5,7 @@
             <div class='condition' data-tooltip='{{localize condition.description}}'>
                 <div>{{localize condition.name}}</div>
                 <div class='toggle-condition' data-condition-id='{{condition.id}}'>
-                    {{#if (or (eq condition.id 'ongoingdamage') (eq condition.id 'taunted') (eq condition.id 'frightened'))}}
+                    {{#if (or (eq condition.id 'taunted') (eq condition.id 'frightened'))}}
                         <i
                             class='fa-regular fa-pencil'
                             data-action='toggleCondition'
@@ -14,25 +14,12 @@
                         >
                         </i>
                     {{else}}
-
                         <i
                             class='fa-solid fa-toggle-{{ifThen (includes @root.actor.effects condition._id) "on" "off"}}'
                             data-tooltip='{{localize "system.sheets.actor.conditions.toggle" condition=(localize condition.name)}}'
                             data-action='toggleCondition'
                             data-condition-id='{{condition.id}}'
                         ></i>
-                    {{/if}}
-                </div>
-                <div class='condition-values'>
-                    {{#if (eq condition.id 'ongoingdamage')}}
-                        {{#each @root.actor.system.ongoingDamage as |value|}}
-                            {{#unless (eq value 0)}}
-                                <div style='color: var(--{{@key}}-damage-color)' class='damage-{{@key}}'>
-                                    {{{lookup (lookup @root.constants.damages @key) 'icon'}}}
-                                    {{value}}
-                                </div>
-                            {{/unless}}
-                        {{/each}}
                     {{/if}}
                 </div>
             </div>

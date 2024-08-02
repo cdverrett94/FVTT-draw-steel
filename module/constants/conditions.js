@@ -8,6 +8,14 @@ const CONDITIONS = {
         name: 'system.conditions.dead',
         statuses: ['dead'],
     },
+    bleeding: {
+        img: 'icons/svg/blood.svg',
+        id: 'bleeding',
+        _id: toId('bleeding'),
+        name: 'system.conditions.bleeding.label',
+        description: 'system.conditions.bleeding.description',
+        statuses: ['bleeding'],
+    },
     dazed: {
         img: 'icons/svg/daze.svg',
         id: 'dazed',
@@ -36,7 +44,7 @@ const CONDITIONS = {
             },
         },
     },
-    grappled: {
+    grabbed: {
         img: 'icons/svg/net.svg',
         id: 'grappled',
         _id: toId('grappled'),
@@ -50,26 +58,6 @@ const CONDITIONS = {
                 mode: 5,
             },
         ],
-    },
-    ongoingdamage: {
-        img: 'icons/svg/fire.svg',
-        id: 'ongoingdamage',
-        _id: toId('ongoingdamage'),
-        name: 'system.conditions.ongoing-damage.label',
-        description: 'system.conditions.ongoing-damage.description',
-        statuses: ['ongoingdamage'],
-        changes: [
-            {
-                key: 'system.ongoingDamage.untyped',
-                value: '0',
-                mode: 2,
-            },
-        ],
-        flags: {
-            mcdmrpg: {
-                titles: ['New Ongoing Damage'],
-            },
-        },
     },
     prone: {
         img: 'icons/svg/falling.svg',
