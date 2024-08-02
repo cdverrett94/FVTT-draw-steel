@@ -45,7 +45,52 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             skills[skillCategory] = new fields.SchemaField(subskills);
         }
 
+        const weaknesses = {};
+        const immunities = {};
+        for (const damageType in DAMAGE.TYPES) {
+            weaknesses[damageType] = new fields.NumberField({
+                min: 0,
+                initial: 0,
+            });
+            immunities[damageType] = new fields.NumberField({
+                min: 0,
+                initial: 0,
+            });
+        }
+        const iwKeywords = ['magic', 'psionic', 'weapon'];
+        for (const keyword of iwKeywords) {
+            weaknesses[keyword] = new fields.NumberField({
+                min: 0,
+                initial: 0,
+            });
+            immunities[keyword] = new fields.NumberField({
+                min: 0,
+                initial: 0,
+            });
+        }
+        weaknesses.forced = new fields.NumberField({
+            min: 0,
+            initial: 0,
+        });
+        immunities.forced = new fields.NumberField({
+            min: 0,
+            initial: 0,
+        });
+        weaknesses.all = new fields.NumberField({
+            min: 0,
+            initial: 0,
+            nullable: true,
+        });
+        immunities.all = new fields.NumberField({
+            min: 0,
+            initial: 0,
+            nullable: true,
+        });
+
         schema.skills = new fields.SchemaField(skills);
+
+        schema.immunities = new fields.SchemaField(immunities);
+        schema.weaknesses = new fields.SchemaField(weaknesses);
 
         return {
             ...schema,
@@ -114,12 +159,14 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             tests: 0,
             resistance: 0,
         };
-        this.ongoingDamage = {};
-        for (const damageType in DAMAGE.TYPES) {
-            this.ongoingDamage[damageType] = 0;
-        }
         this.taunted = [];
         this.frightened = [];
+        for (const type in this.immunities) {
+            if (this.immunities[type] === null) this.immunities[type] = Infinity;
+        }
+        for (const type in this.weaknesses) {
+            if (this.weaknesses[type] === null) this.weaknesses[type] = Infinity;
+        }
     }
 
     prepareDerivedData() {
