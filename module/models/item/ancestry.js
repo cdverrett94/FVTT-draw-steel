@@ -7,14 +7,26 @@ export class AncestryData extends BaseItemData {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            size: new fields.SchemaField({
-                width: new fields.NumberField({}),
-                length: new fields.NumberField({}),
-                height: new fields.NumberField({}),
-                weight: new fields.NumberField({}),
+            size: new fields.NumberField({
+                min: 0,
+                initial: 0,
+                integer: true,
             }),
-            reach: new fields.NumberField({}),
-            speed: new fields.NumberField({}),
+            weight: new fields.NumberField({
+                min: 0,
+                initial: 0,
+                integer: true,
+            }),
+            reach: new fields.NumberField({
+                min: 0,
+                initial: 0,
+                integer: true,
+            }),
+            speed: new fields.NumberField({
+                min: 0,
+                initial: 0,
+                integer: true,
+            }),
         };
     }
 }

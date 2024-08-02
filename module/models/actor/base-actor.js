@@ -73,8 +73,17 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             speed: new fields.NumberField({
                 label: 'system.sheets.actor.speed',
             }),
+            size: new fields.NumberField({
+                label: 'system.sheets.actor.size',
+            }),
+            weight: new fields.NumberField({
+                label: 'system.sheets.actor.weight',
+            }),
             reach: new fields.NumberField({
                 label: 'system.sheets.actor.reach',
+            }),
+            stability: new fields.NumberField({
+                label: 'system.sheets.actor.stability',
             }),
             combat: new fields.SchemaField({
                 turns: new fields.NumberField({
@@ -97,11 +106,13 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             attacker: 0,
             attacked: 0,
             tests: 0,
+            resistance: 0,
         };
         this.banes = {
             attacker: 0,
             attacked: 0,
             tests: 0,
+            resistance: 0,
         };
         this.ongoingDamage = {};
         for (const damageType in DAMAGE.TYPES) {

@@ -64,6 +64,8 @@ export class HeroData extends BaseActorData {
         this.recoveries.max = this.calculateMaxRecoveries();
         this.speed = this.calculateSpeed();
         this.size = this.calculateSize();
+        this.weight = this.calculateWeight();
+        this.stability = this.calculateStability();
         this.resources = this.calculateResources();
         this.calculateResourcesMax();
         this.reach = this.calculateReach();
@@ -73,15 +75,19 @@ export class HeroData extends BaseActorData {
         let actor = this.parent;
         return Number(actor.ancestry?.system.speed ?? 1) + Number(actor.kit?.system.speed ?? 0);
     }
+    calculateStability() {
+        let actor = this.parent;
+        return 0 + Number(actor.kit?.system.stability ?? 0);
+    }
 
     calculateSize() {
         let actor = this.parent;
-        return {
-            width: actor.ancestry?.system.size.width ?? 1,
-            length: actor.ancestry?.system.size.length ?? 1,
-            height: actor.ancestry?.system.size.height ?? 1,
-            weight: actor.ancestry?.system.size.weight ?? 1,
-        };
+        return actor.ancestry?.system.size ?? 1;
+    }
+
+    calculateWeight() {
+        let actor = this.parent;
+        return actor.ancestry?.system.weight ?? 1;
     }
 
     calculateReach() {
@@ -121,8 +127,9 @@ export class HeroData extends BaseActorData {
     calculateMaxStamina() {
         const startingClassStamina = this.parent?.class?.system.stamina.starting ?? 0;
         const leveledClassStamina = (this.level - 1) * (this.parent?.class?.system.stamina.level ?? 0);
+        const kitStamina = this.parent?.kit?.system.stamina ?? 0;
 
-        return startingClassStamina + leveledClassStamina;
+        return startingClassStamina + leveledClassStamina + kitStamina;
     }
 
     calculateMaxRecoveries() {

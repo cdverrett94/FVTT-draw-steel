@@ -19,40 +19,6 @@ export class MonsterData extends BaseActorData {
                 initial: 0,
                 label: 'system.sheets.actor.bonusTN',
             }),
-            size: new fields.SchemaField({
-                width: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.width',
-                }),
-                length: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.length',
-                }),
-                height: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.height',
-                }),
-                weight: new fields.NumberField({
-                    required: true,
-                    initial: 1,
-                    min: 1,
-                    integer: true,
-                    nullable: false,
-                    label: 'system.sheets.actor.size.weight',
-                }),
-            }),
             negotiation: new fields.SchemaField({
                 interest: new fields.NumberField({
                     initial: 0,

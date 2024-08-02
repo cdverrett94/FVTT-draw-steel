@@ -46,9 +46,7 @@
             <div class='size property'>
                 <div class='label'>{{localize 'system.sheets.actor.size.label'}}</div>
                 <div class='value'>
-                    <div class='width'>{{formInput fields.size.fields.width value=actor.system.size.width}}</div>
-                    <div class='separator'>x</div>
-                    <div class='length'>{{formInput fields.size.fields.length value=actor.system.size.length}}</div>
+                    <div class='size'>{{formInput fields.size value=actor.system.size}}</div>
                 </div>
             </div>
 
@@ -58,8 +56,8 @@
             </div>
 
             <div class='weight property'>
-                <div class='label'>{{localize fields.size.fields.weight.label}}</div>
-                <div class='value'>{{formInput fields.size.fields.weight value=actor.system.size.weight}}</div>
+                <div class='label'>{{localize fields.weight.label}}</div>
+                <div class='value'>{{formInput fields.weight value=actor.system.weight}}</div>
             </div>
 
             <div class='reach property'>
