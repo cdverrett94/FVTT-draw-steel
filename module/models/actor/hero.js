@@ -62,6 +62,7 @@ export class HeroData extends BaseActorData {
 
         this.stamina.max = this.calculateMaxStamina();
         this.recoveries.max = this.calculateMaxRecoveries();
+        this.recoveries.value = Math.floor(this.stamina.max / 3);
         this.speed = this.calculateSpeed();
         this.size = this.calculateSize();
         this.weight = this.calculateWeight();

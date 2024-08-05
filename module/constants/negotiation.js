@@ -1,7 +1,7 @@
 export const NEGOTIATION = {
     MOTIVATIONS: {
         benevolence: {
-            label: 'system.actors.monsters.negotiation.benevolence.label',
+            label: 'system.actors.monster.negotiation.benevolence.label',
             description: `An NPC with the benevolence motivation believes in sharing what they have with others. For NPCs in a negotiation, their
             charity is limited (otherwise they’re likely to just give the heroes what they need). It may only extend to a specific group of
             people. A benevolent pirate captain might share their plunder freely with the rest of their crew, but they’re still
@@ -15,7 +15,7 @@ export const NEGOTIATION = {
             `,
         },
         discovery: {
-            label: 'system.actors.monsters.negotiation.discovery.label',
+            label: 'system.actors.monster.negotiation.discovery.label',
             description: `An NPC with the discovery motivation wants to learn new lore, explore forgotten places, break ground with new
             experiments, or uncover artifacts buried in time. Their curiosity and quest for knowledge might be driven by a specific
             goal, such as seeking the cure for a rare disease or a portal to a specific, far-off world, or it could be that they are a
@@ -27,43 +27,43 @@ export const NEGOTIATION = {
             `,
         },
         freedom: {
-            label: 'system.actors.monsters.negotiation.freedom.label',
+            label: 'system.actors.monster.negotiation.freedom.label',
             description: ``,
         },
         greed: {
-            label: 'system.actors.monsters.negotiation.greed.label',
+            label: 'system.actors.monster.negotiation.greed.label',
             description: ``,
         },
         higherAuthority: {
-            label: 'system.actors.monsters.negotiation.higherAuthority.label',
+            label: 'system.actors.monster.negotiation.higherAuthority.label',
             description: ``,
         },
         justice: {
-            label: 'system.actors.monsters.negotiation.justice.label',
+            label: 'system.actors.monster.negotiation.justice.label',
             description: ``,
         },
         legacy: {
-            label: 'system.actors.monsters.negotiation.legacy.label',
+            label: 'system.actors.monster.negotiation.legacy.label',
             description: ``,
         },
         peace: {
-            label: 'system.actors.monsters.negotiation.peace.label',
+            label: 'system.actors.monster.negotiation.peace.label',
             description: ``,
         },
         power: {
-            label: 'system.actors.monsters.negotiation.power.label',
+            label: 'system.actors.monster.negotiation.power.label',
             description: ``,
         },
         protection: {
-            label: 'system.actors.monsters.negotiation.protection.label',
+            label: 'system.actors.monster.negotiation.protection.label',
             description: ``,
         },
         revelry: {
-            label: 'system.actors.monsters.negotiation.revelry.label',
+            label: 'system.actors.monster.negotiation.revelry.label',
             description: ``,
         },
         vengeance: {
-            label: 'system.actors.monsters.negotiation.vengeance.label',
+            label: 'system.actors.monster.negotiation.vengeance.label',
             description: ``,
         },
     },

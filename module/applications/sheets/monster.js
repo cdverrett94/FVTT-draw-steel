@@ -100,7 +100,7 @@ export class MonsterSheet extends BaseActorSheet {
         div.classList.add('form-group');
 
         let label = document.createElement('label');
-        label.innerText = game.i18n.localize('system.actors.monsters.FIELDS.negotiation.pitfalls.label');
+        label.innerText = game.i18n.localize('system.actors.monster.FIELDS.negotiation.pitfalls.label');
         div.append(label);
 
         let formFields = document.createElement('div');

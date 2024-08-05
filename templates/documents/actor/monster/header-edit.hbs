@@ -1,0 +1,79 @@
+<div>
+    <div class='actor-basics'>
+        <div class='portrait left'>
+            <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-action='editPortrait' />
+        </div>
+        <div class='right'>
+            <div class='name'>{{formInput actor.schema.fields.name value=actor.name}}</div>
+            <div class='role-and-level'>
+                <div class='role'>
+                    <select name='system.role' class='{{actor.system.role}}'>
+                        {{selectOptions monsterRoles selected=actor.system.role labelAttr='label' localize=true}}
+                    </select>
+                </div>
+                <div class='level property'>
+                    <div class='label'>{{localize fields.level.label}}</div>
+                    <div class='value'>{{formInput fields.level value=actor.system.level}}</div>
+                </div>
+                <div class='ev property'>
+                    <div class='label'>{{localize fields.ev.label}}</div>
+                    <div class='value'>{{formInput fields.ev value=actor.system.ev}}</div>
+                </div>
+                <div class='minion property'>
+                    <div class='label'>{{localize fields.minion.label}}</div>
+                    <div class='value'>{{formInput fields.minion value=actor.system.minion}}</div>
+                </div>
+                <div class='captain property'>
+                    <div class='label'>{{localize fields.captain.label}}</div>
+                    <div class='value'>{{formInput fields.captain value=actor.system.captain}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='stamina-size'>
+        <div class='stamina'>
+            <div class='current-stamina'>
+                <div class='label'>{{localize fields.stamina.fields.current.label}}</div>
+                <div class='value'>{{formInput fields.stamina.fields.current value=actor.system.stamina.current}}</div>
+            </div>
+
+            <div class='other-stamina'>
+                <div class='winded'>
+                    <div class='winded-icon'>
+                        <i class='fa-solid fa-face-exhaling fa-lg'></i>
+                    </div>
+                    <div class='winded-value'>{{actor.system.stamina.winded}}</div>
+                </div>
+                <div class='max-stamina'>
+                    <div class='label'>{{localize fields.stamina.fields.max.label}}</div>
+                    <div class='value'>{{formInput fields.stamina.fields.max value=actor.system.stamina.max}}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class='size'>
+            <div class='speed property'>
+                <div class='label'>{{localize fields.speed.label}}</div>
+                <div class='value'>{{formInput fields.speed value=actor.system.speed}}</div>
+            </div>
+            <div class='size property'>
+                <div class='label'>{{localize 'system.sheets.actor.size.label'}}</div>
+                <div class='value'>
+                    <div class='size'>{{formInput fields.size value=actor.system.size}}</div>
+                </div>
+            </div>
+
+            <div class='weight property'>
+                <div class='label'>{{localize fields.weight.label}}</div>
+                <div class='value'>{{formInput fields.weight value=actor.system.weight}}</div>
+            </div>
+
+            <div class='reach property'>
+                <div class='label'>{{localize fields.reach.label}}</div>
+                <div class='value'>{{formInput fields.reach value=actor.system.reach}}</div>
+            </div>
+        </div>
+    </div>
+</div>

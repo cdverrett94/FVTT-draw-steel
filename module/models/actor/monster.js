@@ -3,7 +3,7 @@ import { getDataModelChoices } from '../../helpers.js';
 import { BaseActorData } from '../_index.js';
 
 export class MonsterData extends BaseActorData {
-    static LOCALIZATION_PREFIXES = ['system.actors.monsters', 'system.actors.base'];
+    static LOCALIZATION_PREFIXES = ['system.actors.monster', 'system.actors.base'];
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -39,6 +39,15 @@ export class MonsterData extends BaseActorData {
                 ),
                 pitfalls: new fields.SetField(new fields.StringField()),
             }),
+            ev: new fields.NumberField(),
+            freeStrike: new fields.NumberField(),
+            minion: new fields.BooleanField({
+                initial: false,
+            }),
+            captain: new fields.BooleanField({
+                initial: false,
+            }),
+            type: new fields.StringField(),
         };
     }
 }

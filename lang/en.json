@@ -35,54 +35,58 @@
                         "presence": {
                             "label": "Presence"
                         }
+                    },
+                    "weight": {
+                        "label": "Weight"
                     }
                 }
             },
-            "monsters": {
+            "monster": {
                 "roles": {
                     "ambusher": {
-                        "description": "Ambushers are creatures who hide well - not just before an encounter, but during it. They ultilize surprise and stealth to gain the upper hand.",
+                        "description": "Ambushers are melee warriors who can slip by beefier heroes to get to squishier targets in the back lines.",
                         "label": "Ambusher"
                     },
                     "artillery": {
-                        "description": "Artillery creatures fight best from afar. Whether theywield arrows or magical rays, these creatures always try to keep a distance from their foes.",
+                        "description": "Artillery creatures fight best from afar and have high range on their most powerful abilities.",
                         "label": "Artillery"
                     },
+                    "boss": {
+                        "description": "Boss creatures are powerful commanders who often serve as villains at the climax of adventures. They often aid allies like a leader with much better Stamina and damage output.",
+                        "label": "Boss"
+                    },
                     "brute": {
-                        "description": "Brutes are hardy creatures who have lots of stamina and deal lots of damage. They might not be the most disciplined warriors, but they make up for it with sheer toughness and aggression.",
+                        "description": "Brutes are hardy creatures who have lots of health and deal lots of damage. They have abilities and traits that make them difficult to ignore and hard to get away from and that push enemies around.",
                         "label": "Brute"
                     },
-                    "bystander": {
-                        "description": "Bystanders are victims, captives, onlookers, or other unlucky folks caught in the tide of a battle. They spend most of a combat encounter trying to avoid danger or taking the Defend action rather than attacking. Adding bystanders to a combat encounter adds a complication and an objective for the heroes as they try to defend the innocent while also defeating their foes",
-                        "label": "Bystander"
-                    },
                     "controller": {
-                        "description": "Controllers debuff, move, and obstruct their enemies. They often have crowd-control actions that apply a debilitating effect or target multiple creatures at once.",
+                        "description": "Controllers are creatures who change the battlefield, often with magic or psionics. They reposition foes and change terrain to make it more advantageous for their allies. They tend to be on the squishier side, so they need some protection!",
                         "label": "Controller"
                     },
-                    "leader": {
-                        "description": "A leader is a powerful, action-oriented creature who fights alongside underlings",
-                        "label": "Leader"
+                    "defender": {
+                        "description": "Defenders are tough creatures able to take a lot of damage and force enemies to attack them in lieu of squishier targets. Defenders often act in squads with allies who have lower Stamina, like controllers and hexers.",
+                        "label": "Defender"
                     },
-                    "minion": {
-                        "description": "Minions are weak creatures who find strength in numbers.",
-                        "label": "Minion"
+                    "harrier": {
+                        "description": "Harriers are mobile warriors who use hit-and-run tactics in combat. Their traits allow them to make the most of their position.",
+                        "label": "Harrier"
                     },
-                    "skirmisher": {
-                        "description": "Skirmishers are mobile warriors who use hit-and-run tactics in combat. Their traits allow them to make the most of their position.",
-                        "label": "Skirmisher"
-                    },
-                    "soldier": {
-                        "description": "Soldiers are well-armored creatures who draw the attacks of their foes, freeing allies to move around the battlefield.",
-                        "label": "Soldier"
-                    },
-                    "solo": {
-                        "description": "A solo creature is an action-oriented creature who can take on the player characters on their own.",
-                        "label": "Solo"
+                    "hexer": {
+                        "description": "Hexers specialize in debuffing enemies with conditions and other effects. They also tend to be a little squishier.",
+                        "label": "Hexer"
                     },
                     "support": {
                         "description": "Support creatures aid their allies, providing buffs, healing, movement, or action options.",
                         "label": "Support"
+                    },
+                    "mount": {
+                        "description": "Mounts are mobile creatures made to be ridden in combat. They make their riders even more dangerous. Mounts act at the same time as their riders",
+                        "label": "Mount"
+                    },
+
+                    "solo": {
+                        "description": "A solo creature is an action-oriented creature who can take on the player characters on their own or with just a handful of underlings.",
+                        "label": "Solo"
                     }
                 },
                 "negotiation": {
@@ -149,6 +153,9 @@
                         "pitfalls": {
                             "label": "Pitfalls"
                         }
+                    },
+                    "ev": {
+                        "label": "EV"
                     }
                 }
             },
@@ -523,8 +530,11 @@
                     "triggered": {
                         "label": "Triggered Action"
                     },
-                    "villain": {
-                        "label": "Villain Ability"
+                    "villainAction": {
+                        "label": "Villain Action"
+                    },
+                    "villainPower": {
+                        "label": "Villain Power"
                     },
                     "invalid": {
                         "label": "Invalid Ability Type"
@@ -812,15 +822,14 @@
                     "abbreviation": "SP",
                     "current": "Current Stamina",
                     "label": "Stamina",
-                    "max": "Max Stamina",
-                    "healing": "Recovery Value"
+                    "max": "Max Stamina"
                 },
                 "knockback": "Knockback",
                 "notes": "Notes",
                 "reach": "Reach",
                 "recoveries": {
                     "current": "Current Recoveries",
-                    "healingValue": "Healing Value",
+                    "value": "Recovery Value",
                     "label": "Recoveries",
                     "max": "Max Recoveries"
                 },

@@ -18,7 +18,8 @@ export async function registerTemplates() {
         'systems/mcdmrpg/templates/documents/actor/hero/sub-items.hbs',
 
         // Monsters
-        'systems/mcdmrpg/templates/documents/actor/monster/header.hbs',
+        'systems/mcdmrpg/templates/documents/actor/monster/header-edit.hbs',
+        'systems/mcdmrpg/templates/documents/actor/monster/header-view.hbs',
 
         // Chat Messages
         'systems/mcdmrpg/templates/chat-messages/damage-message.hbs',

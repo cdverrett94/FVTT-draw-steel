@@ -1,3 +1,67 @@
+.sheet.actor.monster {
+    .header {
+        .name-level-role,
+        .type-ev,
+        .stamina-iw {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 5px;
+
+            .level-role,
+            .ev,
+            .iw {
+                justify-self: right;
+            }
+        }
+
+        .name-level-role {
+            color: black;
+            padding: 5px;
+            font-weight: bold;
+
+            &.ambusher-role {
+                background-color: var(--ambusher-role);
+            }
+            &.boss-role {
+                background-color: var(--boss-role);
+            }
+            &.artillery-role {
+                background-color: var(--artillery-role);
+            }
+            &.brute-role {
+                background-color: var(--brute-role);
+            }
+            &.controller-role {
+                background-color: var(--controller-role);
+            }
+            &.defender-role {
+                background-color: var(--defender-role);
+            }
+            &.harrier-role {
+                background-color: var(--harrier-role);
+            }
+            &.hexer-role {
+                background-color: var(--hexer-role);
+            }
+            &.support-role {
+                background-color: var(--support-role);
+            }
+            &.mount-role {
+                background-color: var(--mount-role);
+            }
+            &.solo-role {
+                background-color: var(--solo-role);
+            }
+
+            .level-role {
+                div {
+                    display: inline;
+                }
+            }
+        }
+    }
+}
+
 .sheet.actor.monster .window-content {
     display: grid;
     grid-template-rows: auto auto auto auto repeat(6, 1fr);

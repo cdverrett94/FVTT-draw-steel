@@ -136,6 +136,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 }),
             }),
             notes: new fields.HTMLField(),
+            languages: new fields.ArrayField(new fields.StringField()),
         };
     }
 
@@ -170,7 +171,6 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
     }
 
     prepareDerivedData() {
-        this.stamina.healing = Math.floor(this.stamina.max / 3);
         this.stamina.winded = Math.floor(this.stamina.max / 2);
     }
 }

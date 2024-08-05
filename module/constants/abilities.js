@@ -127,8 +127,13 @@ export const ABILITIES = {
             appliesTo: ['hero'],
             color: '#ffea00',
         },
-        villain: {
-            label: 'system.items.ability.categories.villain.label',
+        villainAction: {
+            label: 'system.items.ability.categories.villainAction.label',
+            appliesTo: ['monster'],
+            color: '#8500ba',
+        },
+        villainPower: {
+            label: 'system.items.ability.categories.villainPower.label',
             appliesTo: ['monster'],
             color: '#8500ba',
         },

@@ -1,0 +1,25 @@
+<div>
+    <div class='name-level-role {{actor.system.role}}-role'>
+        <div class='name'>{{actor.name}}</div>
+        <div class='level-role'>
+            <div class='level'>{{localize fields.level.label}} {{actor.system.level}}</div>
+            <div class='role'>
+                {{localize (concat 'system.actors.monster.roles.' actor.system.role '.label')}}{{#if actor.system.minion}} Minion{{else if
+                    actor.system.captain
+                }} Captain{{/if}}
+            </div>
+        </div>
+    </div>
+    <div class='type-ev'>
+        <div class='type'>{{actor.system.type}}</div>
+        <div class='ev'>{{fields.ev.label}} {{actor.system.ev}}</div>
+    </div>
+    <hr />
+    <div class='stamina-iw'>
+        <div class='stamina'>
+            <div class='label'>{{fields.stamina.label}}</div>
+            <div class='value'>{{formInput fields.stamina.fields.current value=source.system.stamina.current}} / {{actor.system.stamina.max}}</div>
+        </div>
+        <div class='iw'>WEAKNESS/IMMUNITY</div>
+    </div>
+</div>

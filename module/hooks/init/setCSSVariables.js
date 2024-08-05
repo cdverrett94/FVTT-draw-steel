@@ -1,4 +1,4 @@
-import { ABILITIES, DAMAGE } from '../../constants/_index.js';
+import { ABILITIES, DAMAGE, MONSTER_ROLES } from '../../constants/_index.js';
 
 export function setCSSVariables() {
     // Set Ability Type Variables
@@ -9,5 +9,9 @@ export function setCSSVariables() {
 
     for (const type in DAMAGE.TYPES) {
         root.style.setProperty(`--${type}-damage-color`, DAMAGE.TYPES[type].color);
+    }
+
+    for (const role in MONSTER_ROLES) {
+        root.style.setProperty(`--${role}-role`, MONSTER_ROLES[role].color);
     }
 }
