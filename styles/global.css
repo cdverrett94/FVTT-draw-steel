@@ -10,6 +10,7 @@
     -webkit-clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0% 100%);
 }
 
+/* Floating Header Buttons */
 .sheet.system div:has(> .right-button, > .left-button) {
     position: relative;
 
@@ -75,4 +76,12 @@ span.roll-icons i {
 
 .application .tab[data-tab]:not(.active) {
     display: none !important;
+}
+
+/* System Property Value Display */
+.ds-property {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    grid-gap: 5px;
 }

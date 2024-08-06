@@ -17,6 +17,13 @@ export function registerCustomHandlebarHelpers() {
             return accumulator;
         }, 0);
     });
+    Handlebars.registerHelper('multiply', function (...numbers) {
+        return numbers.reduce((accumulator, current) => {
+            if (Number.isNumeric(current)) accumulator *= Number(current);
+
+            return accumulator;
+        }, 1);
+    });
 
     Handlebars.registerHelper('isNumber', function (value) {
         return Number.isNumeric(value);

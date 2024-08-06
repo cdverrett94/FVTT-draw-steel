@@ -22,10 +22,6 @@ export class MonsterSheet extends BaseActorSheet {
                 id: 'header',
                 template: 'systems/mcdmrpg/templates/documents/actor/monster/header.hbs',
             },
-            characteristics: {
-                id: 'characteristics',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/characteristics.hbs',
-            },
             tabs: {
                 id: 'tabs',
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/tabs.hbs',
@@ -81,6 +77,13 @@ export class MonsterSheet extends BaseActorSheet {
         context.widgets = {
             pitfalls: this.createPitfallsField.bind(this),
         };
+
+        if (this.actor.system.isMinion) {
+            context.minions = {
+                current: Math.ceil(this.actor.system.stamina.current / this.actor.system.stamina.max),
+                max: this.actor.system.minions,
+            };
+        }
         return context;
     }
 

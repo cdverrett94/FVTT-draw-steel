@@ -140,14 +140,14 @@ export class AbilityData extends BaseItemData {
             ...super.defineSchema(),
             cost: new fields.StringField(),
             power: new fields.SchemaField({
+                hasRoll: new fields.BooleanField({
+                    initial: true,
+                }),
                 characteristics: new fields.ArrayField(
                     new fields.StringField({
                         choices: getDataModelChoices(CHARACTERISTICS),
                     })
                 ),
-                isResistance: new fields.BooleanField({
-                    initial: false,
-                }),
                 tiers: new fields.SchemaField({
                     one: new TierField(),
                     two: new TierField(),

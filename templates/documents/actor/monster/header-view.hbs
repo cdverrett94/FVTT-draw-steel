@@ -1,25 +1,85 @@
-<div>
+<div class='header-view'>
     <div class='name-level-role {{actor.system.role}}-role'>
-        <div class='name'>{{actor.name}}</div>
-        <div class='level-role'>
-            <div class='level'>{{localize fields.level.label}} {{actor.system.level}}</div>
-            <div class='role'>
-                {{localize (concat 'system.actors.monster.roles.' actor.system.role '.label')}}{{#if actor.system.minion}} Minion{{else if
-                    actor.system.captain
-                }} Captain{{/if}}
+        <div class='portrait'><img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-action='editPortrait' /></div>
+        <div class='header-row'>
+            <div class='name'>{{actor.name}}</div>
+            <div class='level-role'>
+                <div class='level'>{{localize fields.level.label}} {{actor.system.level}}</div>
+                <div class='role'>
+                    {{localize (concat 'system.actors.monster.roles.' actor.system.role '.label')}}
+                    {{#if actor.system.isMinion}} Minion{{else if actor.system.isCaptain}} Captain{{/if}}
+                </div>
             </div>
         </div>
     </div>
-    <div class='type-ev'>
+    <div class='type-ev header-row'>
         <div class='type'>{{actor.system.type}}</div>
         <div class='ev'>{{fields.ev.label}} {{actor.system.ev}}</div>
     </div>
-    <hr />
-    <div class='stamina-iw'>
-        <div class='stamina'>
+    <div class='stamina-iw header-row'>
+        <div class='stamina ds-property'>
             <div class='label'>{{fields.stamina.label}}</div>
-            <div class='value'>{{formInput fields.stamina.fields.current value=source.system.stamina.current}} / {{actor.system.stamina.max}}</div>
+            <div class='value'>
+                {{log source.system.stamina.current}}
+                <div>{{formInput fields.stamina.fields.current value=source.system.stamina.current}}</div>
+                <div>/</div>
+                <div>{{multiply actor.system.stamina.max actor.system.minions}}</div>
+            </div>
         </div>
+        {{#if actor.system.isMinion}}
+            <div class='minion ds-property'>
+                <div class='label'>Minions</div>
+                <div class='value'>{{minions.current}} / {{minions.max}}</div>
+            </div>
+        {{/if}}
         <div class='iw'>WEAKNESS/IMMUNITY</div>
     </div>
+
+    <div class='speed-size-other header-row'>
+        <div class='speed ds-property'>
+            <div class='label'>{{fields.speed.label}}</div>
+            <div class='value'>{{actor.system.speed}}</div>
+        </div>
+        <div class='size-other'>
+            <div class='size ds-property'>
+                <div class='label'>{{fields.size.label}}</div>
+                <div class='value'>{{actor.system.size}}</div>
+            </div>
+            <div class='weight ds-property'>
+                <div class='label'>{{fields.weight.label}}</div>
+                <div class='value'>{{actor.system.weight}}</div>
+            </div>
+            <div class='reach ds-property'>
+                <div class='label'>{{fields.reach.label}}</div>
+                <div class='value'>{{actor.system.reach}}</div>
+            </div>
+            <div class='stability ds-property'>
+                <div class='label'>{{fields.stability.label}}</div>
+                <div class='value'>{{actor.system.stability}}</div>
+            </div>
+        </div>
+    </div>
+    <div class='traits-freestrike header-row'>
+        <div class='traits ds-property'>
+            <div class='label'>{{fields.traits.label}}</div>
+            <div class='value'>{{actor.system.traits}}</div>
+        </div>
+        <div class='freestrike ds-property'>
+            <div class='label'>{{fields.freeStrike.label}}</div>
+            <div class='value'>{{actor.system.freeStrike}}</div>
+        </div>
+    </div>
+    <div class='characteristics'>
+        {{#each fields.characteristics.fields as |characteristic|}}
+            <div class='characteristic ds-property'>
+                <div class='label'>{{characteristic.label}}</div>
+                <div class='value'>
+                    {{#with (lookup @root.actor.system.characteristics characteristic.name) as |value|}}
+                        {{#if (gt value 0)}}+{{/if}}{{value}}
+                    {{/with}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <hr />
 </div>

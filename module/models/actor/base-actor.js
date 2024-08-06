@@ -115,21 +115,11 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                 integer: true,
                 max: 10,
             }),
-            speed: new fields.NumberField({
-                label: 'system.sheets.actor.speed',
-            }),
-            size: new fields.NumberField({
-                label: 'system.sheets.actor.size',
-            }),
-            weight: new fields.NumberField({
-                label: 'system.sheets.actor.weight',
-            }),
-            reach: new fields.NumberField({
-                label: 'system.sheets.actor.reach',
-            }),
-            stability: new fields.NumberField({
-                label: 'system.sheets.actor.stability',
-            }),
+            speed: new fields.NumberField(),
+            size: new fields.NumberField(),
+            weight: new fields.NumberField(),
+            reach: new fields.NumberField(),
+            stability: new fields.NumberField(),
             combat: new fields.SchemaField({
                 turns: new fields.NumberField({
                     initial: 2,

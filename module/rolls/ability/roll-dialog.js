@@ -3,8 +3,8 @@ import { AbilityRoll, PowerRollDialog } from '../_index.js';
 
 export class AbilityRollDialog extends PowerRollDialog {
     constructor(options = {}) {
-        options.characteristics ??= this.context.ability?.characteristics;
         super(options);
+        options.characteristics ??= this.context.ability?.characteristics;
 
         this.context.hasTargets = Object.keys(this.context.targets).length ? true : false;
         this.context.type = 'ability';

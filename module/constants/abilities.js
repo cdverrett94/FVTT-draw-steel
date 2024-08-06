@@ -119,7 +119,7 @@ export const ABILITIES = {
         },
         signature: {
             label: 'system.items.ability.categories.signature.label',
-            appliesTo: ['hero'],
+            appliesTo: ['hero', 'monster'],
             color: '#ff9500',
         },
         heroic: {

@@ -1,79 +1,99 @@
-<div>
-    <div class='actor-basics'>
-        <div class='portrait left'>
+<div class='header-edit'>
+    <div class='portrait-name-level-role header-row'>
+        <div class='portrait'>
             <img src='{{actor.img}}' data-tooltip='{{actor.name}}' data-action='editPortrait' />
         </div>
-        <div class='right'>
-            <div class='name'>{{formInput actor.schema.fields.name value=actor.name}}</div>
-            <div class='role-and-level'>
-                <div class='role'>
+        <div class='name-level-role'>
+            <div class='name header-row'>{{formInput actor.schema.fields.name value=source.name}}</div>
+            <div class='type-level header-row'>
+                <div class='type ds-property'>
+                    <div class='label'>{{localize fields.type.label}}</div>
+                    <div class='value'>{{formInput fields.type value=actor.system.type}}</div>
+                </div>
+                <div class='level ds-property'>
+                    <div class='label'>{{localize fields.level.label}}</div>
+                    <div class='value'>{{formInput fields.level value=actor.system.level}}</div>
+                </div>
+                <div class='ev ds-property'>
+                    <div class='label'>{{localize fields.ev.label}}</div>
+                    <div class='value'>{{formInput fields.ev value=actor.system.ev}}</div>
+                </div>
+            </div>
+            <div class='role header-row'>
+                <div class='main-role'>
                     <select name='system.role' class='{{actor.system.role}}'>
                         {{selectOptions monsterRoles selected=actor.system.role labelAttr='label' localize=true}}
                     </select>
                 </div>
-                <div class='level property'>
-                    <div class='label'>{{localize fields.level.label}}</div>
-                    <div class='value'>{{formInput fields.level value=actor.system.level}}</div>
+                <div class='minion-role ds-property'>
+                    <div class='label'>{{localize fields.isMinion.label}}</div>
+                    <div class='value'>{{formInput fields.isMinion value=actor.system.isMinion}}</div>
                 </div>
-                <div class='ev property'>
-                    <div class='label'>{{localize fields.ev.label}}</div>
-                    <div class='value'>{{formInput fields.ev value=actor.system.ev}}</div>
-                </div>
-                <div class='minion property'>
-                    <div class='label'>{{localize fields.minion.label}}</div>
-                    <div class='value'>{{formInput fields.minion value=actor.system.minion}}</div>
-                </div>
-                <div class='captain property'>
-                    <div class='label'>{{localize fields.captain.label}}</div>
-                    <div class='value'>{{formInput fields.captain value=actor.system.captain}}</div>
+                <div class='captain-role ds-property'>
+                    <div class='label'>{{localize fields.isCaptain.label}}</div>
+                    <div class='value'>{{formInput fields.isCaptain value=actor.system.isCaptain}}</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class='stamina-size'>
-        <div class='stamina'>
-            <div class='current-stamina'>
-                <div class='label'>{{localize fields.stamina.fields.current.label}}</div>
-                <div class='value'>{{formInput fields.stamina.fields.current value=actor.system.stamina.current}}</div>
-            </div>
-
-            <div class='other-stamina'>
-                <div class='winded'>
-                    <div class='winded-icon'>
-                        <i class='fa-solid fa-face-exhaling fa-lg'></i>
-                    </div>
-                    <div class='winded-value'>{{actor.system.stamina.winded}}</div>
-                </div>
-                <div class='max-stamina'>
-                    <div class='label'>{{localize fields.stamina.fields.max.label}}</div>
-                    <div class='value'>{{formInput fields.stamina.fields.max value=actor.system.stamina.max}}</div>
-                </div>
-
-            </div>
+    <div class='stamina-iw header-row'>
+        <div class='stamina ds-property'>
+            <div class='label'>{{localize fields.stamina.fields.max.label}}</div>
+            <div class='value'>{{formInput fields.stamina.fields.max value=source.system.stamina.max}}</div>
         </div>
+        {{#if actor.system.isMinion}}
+            <div class='minions ds-property'>
+                <div class='label'>Max Minions</div>
+                <div class='value'>{{formInput fields.minions value=source.system.minions}}</div>
+            </div>
+        {{/if}}
+        <div class='iw'>IMMUNITIES/WEAKNESSES</div>
+    </div>
 
-        <div class='size'>
-            <div class='speed property'>
-                <div class='label'>{{localize fields.speed.label}}</div>
-                <div class='value'>{{formInput fields.speed value=actor.system.speed}}</div>
-            </div>
-            <div class='size property'>
-                <div class='label'>{{localize 'system.sheets.actor.size.label'}}</div>
-                <div class='value'>
-                    <div class='size'>{{formInput fields.size value=actor.system.size}}</div>
-                </div>
-            </div>
-
-            <div class='weight property'>
-                <div class='label'>{{localize fields.weight.label}}</div>
-                <div class='value'>{{formInput fields.weight value=actor.system.weight}}</div>
-            </div>
-
-            <div class='reach property'>
-                <div class='label'>{{localize fields.reach.label}}</div>
-                <div class='value'>{{formInput fields.reach value=actor.system.reach}}</div>
-            </div>
+    <div class='speed-size-reach-stability header-row'>
+        <div class='speed ds-property'>
+            <div class='label'>{{fields.speed.label}}</div>
+            <div class='value'>{{formInput fields.speed value=source.system.speed}}</div>
         </div>
+        <div class='size ds-property'>
+            <div class='label'>{{fields.size.label}}</div>
+            <div class='value'>{{formInput fields.size value=source.system.size}}</div>
+        </div>
+        <div class='weight ds-property'>
+            <div class='label'>{{fields.weight.label}}</div>
+            <div class='value'>{{formInput fields.weight value=source.system.weight}}</div>
+        </div>
+        <div class='reach ds-property'>
+            <div class='label'>{{fields.reach.label}}</div>
+            <div class='value'>{{formInput fields.reach value=source.system.reach}}</div>
+        </div>
+        <div class='stability ds-property'>
+            <div class='label'>{{fields.stability.label}}</div>
+            <div class='value'>{{formInput fields.stability value=source.system.stability}}</div>
+        </div>
+    </div>
+
+    <div class='traits-freestrike header-row'>
+        <div class='traits ds-property'>
+            <div class='label'>{{fields.traits.label}}</div>
+            <div class='value'>{{formInput fields.traits value=source.system.traits}}</div>
+        </div>
+        <div class='freestrike ds-property'>
+            <div class='label'>{{fields.freeStrike.label}}</div>
+            <div class='value'>{{formInput fields.freeStrike value=source.system.freeStrike}}</div>
+        </div>
+    </div>
+
+    <div class='characteristics'>
+        {{#each fields.characteristics.fields as |characteristic|}}
+            <div class='characteristic ds-property'>
+                <div class='label'>{{characteristic.label}}</div>
+                <div class='value'><input
+                        type='number'
+                        name='system.characteristics.{{characteristic.name}}'
+                        value='{{lookup @root.actor.system.characteristics characteristic.name}}'
+                    /></div>
+            </div>
+        {{/each}}
     </div>
 </div>

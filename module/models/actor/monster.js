@@ -41,13 +41,15 @@ export class MonsterData extends BaseActorData {
             }),
             ev: new fields.NumberField(),
             freeStrike: new fields.NumberField(),
-            minion: new fields.BooleanField({
+            isMinion: new fields.BooleanField({
                 initial: false,
             }),
-            captain: new fields.BooleanField({
+            minions: new fields.NumberField(),
+            isCaptain: new fields.BooleanField({
                 initial: false,
             }),
             type: new fields.StringField(),
+            traits: new fields.StringField(),
         };
     }
 }

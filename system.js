@@ -1,5 +1,5 @@
 import { Knockback } from './module/actions/knockback.js';
-import { MCDMCombatTracker } from './module/applications/sidebar/combat-tracker.js';
+import { MCDMCombatTracker } from './module/applications/sheets/sidebar/combat-tracker.js';
 import {
     addButtonsToTargets,
     registerCustomEnrichers,

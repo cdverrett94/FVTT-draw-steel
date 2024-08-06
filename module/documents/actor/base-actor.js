@@ -140,6 +140,7 @@ export class BaseActor extends Actor {
 
             let newCurrentStamina = changed.system.stamina.current ?? this.system.stamina.current;
             let newMaxStamina = changed.system.stamina.max ?? this.system.stamina.max;
+            if (this.type === 'monster' && this.system.isMinion) newMaxStamina = newMaxStamina * this.system.minions;
             let newWindedValue = Math.floor(newMaxStamina / 2);
 
             const newAppliedStamina = Math.clamp(newCurrentStamina, -newWindedValue, newMaxStamina);

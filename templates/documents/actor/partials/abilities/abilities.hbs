@@ -58,19 +58,20 @@
                             <div class='value'>{{ability.system.target}}</div>
                         </div>
                     {{/if}}
-                    {{#if ability.power.tiers.one}}
+                    {{#if ability.power.hasRoll}}
+                        <div class='power-roll'>
+                            {{ifThen (includes ability.system.keywords 'resistance') 'Resistance' 'Power'}}
+                            Roll +
+                            {{localize (concat 'system.characteristics.' ability.power.characteristic '.label')}}
+                        </div>
                         <div class='tier-one property ability-tiers'>
                             <div class='label'>- 11</div>
                             <div class='value'>{{{ability.tierText.one}}}</div>
                         </div>
-                    {{/if}}
-                    {{#if ability.power.tiers.two}}
                         <div class='tier-two property ability-tiers'>
                             <div class='label'>12 - 16</div>
                             <div class='value'>{{{ability.tierText.two}}}</div>
                         </div>
-                    {{/if}}
-                    {{#if ability.power.tiers.three}}
                         <div class='tier-three property ability-tiers'>
                             <div class='label'>17 +</div>
                             <div class='value'>{{{ability.tierText.three}}}</div>

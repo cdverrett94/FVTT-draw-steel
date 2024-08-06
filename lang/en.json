@@ -38,6 +38,18 @@
                     },
                     "weight": {
                         "label": "Weight"
+                    },
+                    "speed": {
+                        "label": "Speed"
+                    },
+                    "size": {
+                        "label": "Size"
+                    },
+                    "reach": {
+                        "label": "Reach"
+                    },
+                    "stability": {
+                        "label": "Stability"
                     }
                 }
             },
@@ -156,6 +168,21 @@
                     },
                     "ev": {
                         "label": "EV"
+                    },
+                    "freeStrike": {
+                        "label": "Free Strike"
+                    },
+                    "traits": {
+                        "label": "Traits"
+                    },
+                    "isMinion": {
+                        "label": "Is Minion"
+                    },
+                    "isCaptain": {
+                        "label": "Is Captain"
+                    },
+                    "type": {
+                        "label": "Type"
                     }
                 }
             },
@@ -297,6 +324,9 @@
             "winded": {
                 "label": "Winded",
                 "description": "When your Health has been reduced to half your Health maximum or lower, you are bloodied. Although the bloodied condition has no effects on its own, certain ancestry, class, item, and title abilities affect bloodied creatures."
+            },
+            "bleeding": {
+                "label": "Bleeding"
             }
         },
         "damage": {
@@ -431,6 +461,9 @@
                                     }
                                 }
                             }
+                        },
+                        "hasRoll": {
+                            "label": "Has Roll"
                         }
                     },
                     "trigger": {
@@ -474,6 +507,9 @@
                     },
                     "ranged": {
                         "label": "Ranged"
+                    },
+                    "resistance": {
+                        "label": "Resistance"
                     },
                     "void": {
                         "label": "Void"

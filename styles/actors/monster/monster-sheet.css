@@ -1,23 +1,41 @@
 .sheet.actor.monster {
-    .header {
-        .name-level-role,
-        .type-ev,
-        .stamina-iw {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 5px;
+    .header .header-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 5px;
 
-            .level-role,
-            .ev,
-            .iw {
-                justify-self: right;
-            }
+        &:not(:last-child) {
+            margin-bottom: 5px;
         }
 
+        & > :last-child {
+            justify-self: right;
+        }
+    }
+
+    .header .characteristics {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+    }
+    .header .stamina-iw {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .header .header-view {
         .name-level-role {
             color: black;
-            padding: 5px;
             font-weight: bold;
+            height: 50px;
+            grid-template-columns: 50px 1fr;
+            font-size: 1rem;
+            align-items: center;
+            display: grid;
+
+            .portrait,
+            img {
+                border: none;
+                height: 50px;
+            }
 
             &.ambusher-role {
                 background-color: var(--ambusher-role);
@@ -57,10 +75,60 @@
                 div {
                     display: inline;
                 }
+                padding-right: 5px;
             }
+        }
+
+        .stamina .value {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-gap: 10px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .size-other {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            grid-gap: 5px;
+        }
+
+        .characteristics {
+            align-items: center;
+            justify-items: center;
+        }
+    }
+
+    .header .header-edit {
+        div.portrait-name-level-role {
+            grid-template-columns: 100px 1fr;
+            grid-gap: 5px;
+            margin-top: 5px;
+
+            .name-level-role {
+                justify-self: normal;
+            }
+
+            .name {
+                grid-template-columns: 1fr;
+            }
+            .type-level {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .role {
+                display: grid;
+                grid-template-columns: 1fr auto auto;
+                grid-gap: 5px;
+            }
+        }
+
+        div.speed-size-reach-stability {
+            grid-template-columns: repeat(5, auto);
         }
     }
 }
+/*
 
 .sheet.actor.monster .window-content {
     display: grid;
@@ -69,7 +137,7 @@
 }
 
 /* Header */
-/* Header - General Styles */
+/* Header - General Styles 
 .sheet.actor.monster .header .property {
     display: grid;
     grid-template-columns: 50px 1fr;
@@ -91,7 +159,7 @@
     text-align: right;
 }
 
-/* Actor Basics */
+/* Actor Basics
 .sheet.actor.monster .header .actor-basics {
     display: grid;
     grid-template-columns: 100px 1fr;
@@ -108,7 +176,7 @@
     font-size: 2rem;
 }
 
-/* Header Role and Level */
+/* Header Role and Level 
 .sheet.actor.monster .header .role-and-level {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -121,7 +189,7 @@
     text-align: center;
 }
 
-/* Header Health and Size */
+/* Header Health and Size 
 .sheet.actor.monster .header .stamina-size {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -130,7 +198,7 @@
     grid-gap: 5px;
 }
 
-/* Header Health */
+/* Header Health 
 .sheet.actor.monster .header .stamina {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -163,7 +231,7 @@
     font-size: 3rem;
 }
 
-/* Header Size */
+/* Header Size 
 .sheet.actor.monster .header .size {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
@@ -184,7 +252,7 @@
 .sheet.actor.monster .header .size input {
     width: 100%;
 }
-/* Header Size */
+/* Header Size 
 .sheet.actor.monster .header .size .size .value {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -204,18 +272,6 @@
     text-align: center;
 }
 
-/* Header Grapple/Knockback TN */
-
-.sheet.actor.monster .header .size .grapple-tn .label {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    grid-gap: 2px;
-}
-.sheet.actor.monster .header .size .grapple-tn .value {
-    align-self: center;
-}
-
 .sheet.actor.monster .monster-body .monster-skills {
     margin: 5px 0px;
 }
@@ -232,4 +288,4 @@
 .sheet.actor.monster .tab {
     grid-row: 5 / 11;
     max-height: 550px;
-}
+}*/

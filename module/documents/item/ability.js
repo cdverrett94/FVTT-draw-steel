@@ -83,6 +83,14 @@ export class AbilityItem extends BaseItem {
             power.tiers[tier][damageIndex].amount = power.tiers[tier][damageIndex].amount + kitDamageBonus[tierIndex];
         }
 
+        power.characteristic = '';
+        for (const characteristic of power.characteristics) {
+            if (power.characteristic === '') power.characteristic = characteristic;
+
+            const characteristics = this.parent.system.characteristics;
+            if (characteristics[characteristic] > characteristics[power.characteristic]) power.characteristic = characteristic;
+        }
+
         return power;
     }
 

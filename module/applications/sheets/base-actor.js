@@ -14,6 +14,14 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             icon: 'fas fa-user',
             positioned: true,
             resizable: true,
+            controls: [
+                ...super.DEFAULT_OPTIONS.window.controls,
+                {
+                    icon: 'fa-solid fa-pencil',
+                    label: 'Swap Edit/View Mode',
+                    action: 'toggleMode',
+                },
+            ],
         },
         classes: ['mcdmrpg', 'sheet', 'actor', 'system'],
         form: {
