@@ -1,11 +1,20 @@
 .sheet.system.hero .items-tab {
+    height: calc(100%);
+    display: flex;
+    flex-direction: column;
     .items {
-        overflow-y: scroll;
+        overflow-y: auto;
     }
     .item {
         display: grid;
         grid-template-columns: 1fr 100px 50px 50px;
         padding: 5px 0px 5px 5px;
+
+        &.items-header {
+            position: sticky;
+            top: 0;
+            background-color: var(--background);
+        }
 
         &:nth-child(even) {
             background-color: var(--alternating-bg-color);

@@ -1,29 +1,47 @@
 <fieldset class='properties tab' data-group='main' data-tab='details'>
     <legend>Properties</legend>
 
-    {{formField fields.category value=source.system.category classes='abilty-category' localize=true labelAttr='label'}}
+    <div class='ds-property'>
+        <div class='label'>{{fields.category.label}}</div>
+        <div class='value'>{{formInput fields.category value=source.system.category classes='abilty-category' localize=true labelAttr='label'}}</div>
+    </div>
 
     {{! Hide time for passive types }}
     {{#unless (eq system.source.system.category 'passive')}}
-        {{formField fields.type value=source.system.type classes='abilty-type' localize=true labelAttr='label'}}
+        <div class='ds-property'>
+            <div class='label'>{{fields.type.label}}</div>
+            <div class='value'>{{formInput fields.type value=source.system.type classes='abilty-type' localize=true labelAttr='label'}}</div>
+        </div>
     {{/unless}}
     {{! Show Cost for heroic types }}
     {{#if (eq source.system.category 'heroic')}}
-        {{formField fields.cost value=source.system.cost classes='abilty-cost' localize=true}}
+        <div class='ds-property'>
+            <div class='label'>{{fields.cost.label}}</div>
+            <div class='value'>{{formInput fields.cost value=source.system.cost classes='abilty-cost' localize=true labelAttr='label'}}</div>
+        </div>
     {{/if}}
 
     {{! Show Trigger for trigger types }}
     {{#if (eq source.system.category 'triggered')}}
-        {{formField fields.trigger value=source.system.trigger classes='abilty-trigger' localize=true}}
+        <div class='ds-property'>
+            <div class='label'>{{fields.trigger.label}}</div>
+            <div class='value'>{{formInput fields.trigger value=source.system.trigger classes='abilty-trigger' localize=true labelAttr='label'}}</div>
+        </div>
     {{/if}}
 
     {{! Hide distance for passive and trigger types }}
     {{#unless (eq source.system.category 'passive')}}
-        {{formField fields.distance value=source.system.distance classes='abilty-distance' localize=true}}
+        <div class='ds-property'>
+            <div class='label'>{{fields.distance.label}}</div>
+            <div class='value'>{{formInput fields.distance value=source.system.distance classes='abilty-distance' localize=true labelAttr='label'}}</div>
+        </div>
     {{/unless}}
 
     {{! Hide targets for passive and triggered types }}
     {{#unless (eq source.system.category 'passive')}}
-        {{formField fields.target value=source.system.target classes='abilty-target' localize=true}}
+        <div class='ds-property'>
+            <div class='label'>{{fields.target.label}}</div>
+            <div class='value'>{{formInput fields.target value=source.system.target classes='abilty-target' localize=true labelAttr='label'}}</div>
+        </div>
     {{/unless}}
 </fieldset>

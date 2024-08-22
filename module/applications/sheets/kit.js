@@ -4,7 +4,7 @@ export class KitSheet extends BaseItemSheet {
     static additionalOptions = {
         classes: ['kit'],
         position: {
-            width: 500,
+            width: 700,
             height: 'auto',
         },
     };

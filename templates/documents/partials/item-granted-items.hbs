@@ -1,8 +1,8 @@
-<fieldset class='granted-items tab {{ifThen (eq activeTabs.main "grantedItems") "active" ""}}' data-group='main' data-tab='grantedItems'>
+<fieldset class='granted-items-tab tab {{ifThen (eq activeTabs.main "grantedItems") "active" ""}}' data-group='main' data-tab='grantedItems'>
     <legend>Granted Items</legend>
-    <div class='items'>
+    <div class='granted-items'>
         {{#each grantedItems as |grantedFeature|}}
-            <div class='granted-item'>
+            <div class='granted-item ds-card'>
                 <div class='name' data-tooltip='{{grantedFeature.system.description}}'>
                     {{grantedFeature.name}}
                 </div>
@@ -11,13 +11,8 @@
                 </div>
             </div>
         {{/each}}
-        <br /><br />
-        <div class='item-drop'>
-            Drop Features HERE
-        </div>
     </div>
-
-    <div class='granted-from'>
-        {{formField fields.grantedFrom value=source.system.grantedFrom}}
+    <div class='item-drop'>
+        Drop Granted Items Here
     </div>
 </fieldset>

@@ -20,7 +20,7 @@ function resistanceRollListeners(element, document, index) {
         const rollingActor = canvas.tokens.controlled[0].actor;
         const originActor = await fromUuid(document.system.origin.actor);
         const ability = await fromUuid(document.system.origin.item);
-        const characteristic = ability?.system.power.characteristic;
+        const characteristic = ability?.power.characteristic;
 
         new ResistanceRollDialog({
             actor: rollingActor,

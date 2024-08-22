@@ -141,7 +141,7 @@ export class AbilityData extends BaseItemData {
             cost: new fields.StringField(),
             power: new fields.SchemaField({
                 hasRoll: new fields.BooleanField({
-                    initial: true,
+                    initial: false,
                 }),
                 characteristics: new fields.ArrayField(
                     new fields.StringField({

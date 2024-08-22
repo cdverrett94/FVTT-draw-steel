@@ -1,0 +1,15 @@
+<div class='modify-damage'>
+    <div class='ds-property' style='margin-bottom: 5px;'>
+        <div class='label'>Amount</div>
+        <div class='value'><input type='number' name='amount' value='{{amount}}' /></div>
+    </div>
+    <div class='ds-property' style='margin-bottom: 5px;'>
+        <div class='label'>Damage Type</div>
+        <div class='value'>
+            <select name='type' value='{{type}}'>
+                {{selectOptions constants.damage selected=type localize=true}}
+            </select>
+        </div>
+    </div>
+    <div class='submit'><button type='submit'>Apply Damage</button></div>
+</div>

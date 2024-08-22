@@ -810,6 +810,116 @@
                 }
             }
         },
+        "languages": {
+            "filliaric": {
+                "label": "Filliaric"
+            },
+            "protoCtholl": {
+                "label": "Proto-Ctholl"
+            },
+            "anjal": {
+                "label": "Anjal"
+            },
+            "zaliac": {
+                "label": "Zaliac"
+            },
+            "xakalliac": {
+                "label": "Xakalliac"
+            },
+            "firstLanguage": {
+                "label": "The First Language"
+            },
+            "yllyric": {
+                "label": "Yllyric"
+            },
+            "hyrallic": {
+                "label": "Hyrallic"
+            },
+            "khelt": {
+                "label": "Khelt"
+            },
+            "kuric": {
+                "label": "Kuric"
+            },
+            "variac": {
+                "label": "Variac"
+            },
+            "szetch": {
+                "label": "Szetch"
+            },
+            "kethaic": {
+                "label": "Kethaic"
+            },
+            "khamish": {
+                "label": "Khamish"
+            },
+            "urollialic": {
+                "label": "Urollialic"
+            },
+            "kalliak": {
+                "label": "Kalliak"
+            },
+            "zahariax": {
+                "label": "Zahariax"
+            },
+            "voll": {
+                "label": "Voll"
+            },
+            "mindspeech": {
+                "label": "Mindspeech"
+            },
+            "caelian": {
+                "label": "Caelian"
+            },
+            "uvalic": {
+                "label": "Uvalic"
+            },
+            "higaran": {
+                "label": "Higaran"
+            },
+            "oaxuatl": {
+                "label": "Oaxuatl"
+            },
+            "khemharic": {
+                "label": "Khemharic"
+            },
+            "khoursirian": {
+                "label": "Khoursirian"
+            },
+            "phaedran": {
+                "label": "Phaedran"
+            },
+            "riojan": {
+                "label": "Riojan"
+            },
+            "vaniric": {
+                "label": "Vaniric"
+            },
+            "vaslorian": {
+                "label": "Vaslorian"
+            },
+            "kheltivari": {
+                "label": "Kheltivari"
+            },
+            "oldSkyElf": {
+                "label": "Old Sky Elf"
+            },
+            "oldSunElf": {
+                "label": "Old Sun Elf"
+            },
+            "hobgoblin": {
+                "label": "Hobgoblin"
+            },
+            "oldStarElf": {
+                "label": "Old Star Elf"
+            },
+            "steelDwarf": {
+                "label": "Steel Dwarf"
+            },
+            "oldVariac": {
+                "label": "Old Variac"
+            }
+        },
         "rolls": {
             "damage": {
                 "dialog": {
@@ -1097,7 +1207,7 @@
                     "default": "presence"
                 },
                 "readPerson": {
-                    "label": "Read",
+                    "label": "Read Person",
                     "use": "system.skills.interpersonal.readPerson.use",
                     "default": "presence"
                 }

@@ -1,4 +1,4 @@
-<fieldset class='tab tiers' data-group='main' data-tab='power'>
+<fieldset class='tab power-roll tiers' data-group='main' data-tab='power'>
     <legend>{{fields.power.label}}</legend>
     {{formField fields.power.fields.hasRoll value=source.system.power.hasRoll}}
     <div>
@@ -15,28 +15,28 @@
             <div class='power-tier tier-{{field.name}}'>
                 <div class='tier-label'>
                     <span class='left-button' data-action='toggleTierVisibility' data-tier='{{field.name}}'>
-                        {{#if (eq (lookup @root.constants.tierVisibility field.name) 'hidden')}}
-                            <i class='fa-solid fa-chevron-down'></i>
-                        {{else}}
+                        {{#if (lookup @root.constants.tierVisibile field.name)}}
                             <i class='fa-solid fa-chevron-up'></i>
+                        {{else}}
+                            <i class='fa-solid fa-chevron-down'></i>
                         {{/if}}
                     </span>
                     {{field.label}}
                     <span class='add-tier-effect right-button' data-action='addTierEffect' data-tier='{{field.name}}'>+</span>
                 </div>
-                <div class='tier-effects {{ifThen (eq (lookup @root.constants.tierVisibility field.name) "hidden") "hidden" ""}}'>
+                <div class='tier-effects {{ifThen (lookup @root.constants.tierVisibile field.name) "" "hidden"}}'>
                     {{#unless (lookup @root.source.system.power.tiers field.name)}}
-                        <div class='no-effects'>
-                            No Effects At This Tier
-                        </div>{{/unless}}
-
+                        <div class='no-effects'>No Effects At This Tier</div>
+                    {{/unless}}
                     {{#each (lookup @root.source.system.power.tiers field.name) as |effect|}}
-                        <div class='tier-effect'>
-                            <div class='tier-type'>
-                                <label>{{field.element.types.label}}Type</label>
-                                <select name='system.power.tiers.{{field.name}}.{{@index}}.type'>
-                                    {{selectOptions field.element.types localize=true selected=effect.type}}
-                                </select>
+                        <div class='tier-effect ds-card'>
+                            <div class='ds-property tier-type'>
+                                <div class='label'>Type</div>
+                                <div class='value'>
+                                    <select name='system.power.tiers.{{field.name}}.{{@index}}.type'>
+                                        {{selectOptions field.element.types localize=true selected=effect.type}}
+                                    </select>
+                                </div>
                                 <div
                                     class='delete-tier-effect delete-button'
                                     data-action='deleteTierEffect'
@@ -47,50 +47,87 @@
                                 </div>
                             </div>
                             {{#if (eq effect.type 'damage')}}
+                                <div class='ds-property effect-damage-amount'>
+                                    <div class='label'>{{field.element.types.damage.fields.amount.label}}</div>
+                                    <div class='value'>
+                                        {{formInput
+                                            field.element.types.damage.fields.amount
+                                            value=effect.amount
+                                            name=(concat 'system.power.tiers.' field.name '.' @index '.amount')
+                                        }}
+                                    </div>
+                                </div>
+                                <div class='ds-property effect-damage-type'>
+                                    <div class='label'>{{field.element.types.damage.fields.dType.label}}</div>
+                                    <div class='value'>
+                                        {{formInput
+                                            field.element.types.damage.fields.dType
+                                            value=effect.dType
+                                            name=(concat 'system.power.tiers.' field.name '.' @index '.dType')
+                                            localize=true
+                                        }}
+                                    </div>
+                                </div>
 
-                                {{formField
-                                    field.element.types.damage.fields.amount
-                                    value=effect.amount
-                                    name=(concat 'system.power.tiers.' field.name '.' @index '.amount')
-                                }}
-                                {{formField
-                                    field.element.types.damage.fields.dType
-                                    value=effect.dType
-                                    name=(concat 'system.power.tiers.' field.name '.' @index '.dType')
-                                    localize=true
-                                }}
-                                {{#if @root.source.system.power.isResistance}}
-                                    {{formField
-                                        field.element.types.damage.fields.ending
-                                        value=effect.ending
-                                        name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
-                                    }}
+                                {{#if @root.item.isResistance}}
+                                    <div class='ds-property effect-damage-resistance'>
+                                        <div class='label'>{{field.element.types.damage.fields.ending.label}}</div>
+                                        <div class='value'>
+                                            {{formInput
+                                                field.element.types.damage.fields.ending
+                                                value=effect.ending
+                                                name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
+                                            }}
+                                        </div>
+                                    </div>
                                 {{/if}}
                             {{else if (eq effect.type 'knockback')}}
-                                {{formField
-                                    field.element.types.knockback.fields.distance
-                                    value=effect.distance
-                                    name=(concat 'system.power.tiers.' field.name '.' @index '.distance')
-                                }}
-                                {{#if @root.source.system.power.isResistance}}
-                                    {{formField
-                                        field.element.types.knockback.fields.ending
-                                        value=effect.ending
-                                        name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
-                                    }}
+                                <div class='ds-property effect-knockback-distance'>
+                                    <div class='label'>{{field.element.types.knockback.fields.distance.label}}</div>
+                                    <div class='value'>
+                                        {{formInput
+                                            field.element.types.knockback.fields.distance
+                                            value=effect.distance
+                                            name=(concat 'system.power.tiers.' field.name '.' @index '.distance')
+                                        }}
+                                    </div>
+                                </div>
+
+                                {{#if @root.item.isResistance}}
+                                    <div class='ds-property effect-knockback-resistance'>
+                                        <div class='label'>{{field.element.types.knockback.fields.ending.label}}</div>
+                                        <div class='value'>
+                                            {{formInput
+                                                field.element.types.knockback.fields.ending
+                                                value=effect.ending
+                                                name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
+                                            }}
+                                        </div>
+                                    </div>
                                 {{/if}}
                             {{else if (eq effect.type 'other')}}
-                                {{formField
-                                    field.element.types.other.fields.description
-                                    value=effect.description
-                                    name=(concat 'system.power.tiers.' field.name '.' @index '.description')
-                                }}
-                                {{#if @root.source.system.power.isResistance}}
-                                    {{formField
-                                        field.element.types.other.fields.ending
-                                        value=effect.ending
-                                        name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
-                                    }}
+                                <div class='ds-property effect-other-description'>
+                                    <div class='label'>{{field.element.types.other.fields.description.label}}</div>
+                                    <div class='value'>
+                                        {{formInput
+                                            field.element.types.other.fields.description
+                                            value=effect.description
+                                            name=(concat 'system.power.tiers.' field.name '.' @index '.description')
+                                        }}
+                                    </div>
+                                </div>
+
+                                {{#if @root.item.isResistance}}
+                                    <div class='ds-property effect-other-resistance'>
+                                        <div class='label'>{{field.element.types.other.fields.ending.label}}</div>
+                                        <div class='value'>
+                                            {{formInput
+                                                field.element.types.other.fields.ending
+                                                value=effect.ending
+                                                name=(concat 'system.power.tiers.' field.name '.' @index '.ending')
+                                            }}
+                                        </div>
+                                    </div>
                                 {{/if}}
                             {{/if}}
                         </div>

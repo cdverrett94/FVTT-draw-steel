@@ -108,37 +108,21 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         dd.bind(this.element);
     }
 
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-        if (partId === 'rules') {
-            htmlElement.querySelectorAll('textarea')?.forEach((element) => {
-                element.onkeydown = function (e) {
-                    if (e.keyCode == 9 || e.which == 9) {
-                        e.preventDefault();
-                        var s = this.selectionStart;
-                        this.value = this.value.substring(0, this.selectionStart) + '  ' + this.value.substring(this.selectionEnd);
-                        this.selectionEnd = s + 1;
-                    }
-                };
-            });
-        }
-    }
-
-    //#region Rule Management methods
+    //#region Effect Management methods
     static async addNewEffect() {
-        const created = await ActiveEffect.create({ name: 'New Active Effect' }, { parent: this.item });
+        const created = await ActiveEffect.create({ name: this.item.name }, { parent: this.item });
         created.sheet.render(true);
     }
 
     static async editEffect(event, target) {
-        const { effectId } = target.closest('.effect').dataset;
+        const { effectId } = target.closest('.item-effect').dataset;
         const effect = this.item.effects.find((effect) => effect.id === effectId);
 
         await effect.sheet.render(true);
     }
 
     static async deleteEffect(event, target) {
-        const { effectId } = target.closest('.effect').dataset;
+        const { effectId } = target.closest('.item-effect').dataset;
         this.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
     //#endregion

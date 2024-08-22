@@ -16,10 +16,10 @@ export class AbilitySheet extends BaseItemSheet {
         },
     };
 
-    tierVisibility = {
-        one: 'hidden',
-        two: 'hidden',
-        three: 'hidden',
+    tierVisibile = {
+        one: false,
+        two: false,
+        three: false,
     };
 
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, AbilitySheet.additionalOptions, { inplace: false });
@@ -65,7 +65,7 @@ export class AbilitySheet extends BaseItemSheet {
             {
                 constants: {
                     keywords: ABILITIES.KEYWORDS,
-                    tierVisibility: this.tierVisibility,
+                    tierVisibile: this.tierVisibile,
                     characteristics: CHARACTERISTICS,
                 },
             },
@@ -126,6 +126,6 @@ export class AbilitySheet extends BaseItemSheet {
         toggleButton.classList.add(newButtonClass);
 
         tierEffects.classList.toggle('hidden');
-        this.tierVisibility[tier] = currentlyHidden ? 'visible' : 'hidden';
+        this.tierVisibile[tier] = currentlyHidden ? true : false;
     }
 }

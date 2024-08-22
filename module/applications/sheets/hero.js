@@ -1,3 +1,4 @@
+import { EditLanguagesActorSheet } from '../configs/edit-languages.js';
 import { BaseActorSheet } from './base-actor.js';
 
 export class HeroSheet extends BaseActorSheet {
@@ -14,6 +15,9 @@ export class HeroSheet extends BaseActorSheet {
             deleteEffect: this.#deleteEffect,
             editItem: this.#editItem,
             deleteItem: this.#deleteItem,
+            editLanguages: this.#editLanguages,
+            catchBreath: this.#catchBreath,
+            spendHope: this.#spendHope,
         },
     };
 
@@ -44,6 +48,7 @@ export class HeroSheet extends BaseActorSheet {
             features: {
                 id: 'features',
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
+                scrollable: ['.features'],
             },
             items: {
                 id: 'items-tab',
@@ -110,5 +115,23 @@ export class HeroSheet extends BaseActorSheet {
     static async #deleteItem(event, target) {
         const { itemId } = target.dataset;
         await this.actor.deleteEmbeddedDocuments('Item', [itemId]);
+    }
+
+    static async #editLanguages(event, target) {
+        await new EditLanguagesActorSheet({ actor: this.actor }).render(true);
+    }
+
+    static async #catchBreath(event, target) {
+        const newStaminaValue = this.actor.system.stamina.current + this.actor.system.recoveries.value;
+        const newRecoveriesValue = Math.clamp(this.actor.system.recoveries.current - 1, 0, this.actor.system.recoveries.max);
+
+        await this.actor.update({ 'system.stamina.current': newStaminaValue, 'system.recoveries.current': newRecoveriesValue });
+    }
+
+    static async #spendHope(event, target) {
+        const newStaminaValue = this.actor.system.stamina.current + this.actor.system.recoveries.value;
+        const newHopeValue = Math.clamp(this.actor.system.hope - 1, 0, Infinity);
+
+        await this.actor.update({ 'system.stamina.current': newStaminaValue, 'system.hope': newHopeValue });
     }
 }

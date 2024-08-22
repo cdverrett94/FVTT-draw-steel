@@ -1,4 +1,5 @@
 import { MONSTER_ROLES, NEGOTIATION } from '../../constants/_index.js';
+import { MonsterIWSheet } from '../configs/monster-iw.js';
 import { BaseActorSheet } from './base-actor.js';
 
 export class MonsterSheet extends BaseActorSheet {
@@ -8,7 +9,9 @@ export class MonsterSheet extends BaseActorSheet {
             width: 800,
             height: 'auto',
         },
-        actions: {},
+        actions: {
+            editIW: this.#editIW,
+        },
     };
 
     /** @inheritDoc */
@@ -30,6 +33,11 @@ export class MonsterSheet extends BaseActorSheet {
                 id: 'abilities',
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/abilities/abilities-container.hbs',
                 scrollable: ['.abilities-list'],
+            },
+            features: {
+                id: 'features',
+                template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
+                scrollable: ['.features'],
             },
             skills: {
                 id: 'skills',
@@ -138,5 +146,9 @@ export class MonsterSheet extends BaseActorSheet {
         div.append(formFields);
 
         return div;
+    }
+
+    static async #editIW() {
+        await new MonsterIWSheet({ actor: this.actor }).render(true);
     }
 }

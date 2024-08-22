@@ -32,7 +32,17 @@
                 <div class='value'>{{minions.current}} / {{minions.max}}</div>
             </div>
         {{/if}}
-        <div class='iw'>WEAKNESS/IMMUNITY</div>
+        <div class='iw'>
+            Immunities:
+            {{#each actor.system.immunities as |immunity|}}
+                {{#if (ne immunity 0)}}{{@key}} {{immunity}}{{#unless @last}}, {{/unless}}{{/if}}
+            {{/each}}
+            <br />
+            Weaknesses:
+            {{#each actor.system.weaknesses as |weakness|}}
+                {{#if (ne weakness 0)}}{{@key}} {{weakness}}{{#unless @last}}, {{/unless}}{{/if}}
+            {{/each}}
+        </div>
     </div>
 
     <div class='speed-size-other header-row'>

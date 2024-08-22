@@ -1,0 +1,18 @@
+<div class='monster-iw'>
+    <div class='immunities'>
+        <div class='mcdmrpg-header'>Immunities</div>
+        <div class='value'>
+            {{#each fields.immunities as |immunity|}}
+                {{formGroup immunity value=(lookup @root.source.system.immunities immunity.name) localize=true}}
+            {{/each}}
+        </div>
+    </div>
+    <div class='weaknesses'>
+        <div class='mcdmrpg-header'>Weaknesses</div>
+        <div class='value'>
+            {{#each fields.weaknesses as |weakness|}}
+                {{formGroup weakness value=(lookup @root.source.system.weaknesses weakness.name) localize=true}}
+            {{/each}}
+        </div>
+    </div>
+</div>

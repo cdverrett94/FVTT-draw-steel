@@ -50,6 +50,7 @@ export class MCDMActiveEffect extends ActiveEffect {
 
     apply(actor, change) {
         // Allow roll data and math in active effect value
+
         const rollData = actor.getRollData();
         const formula = Roll.replaceFormulaData(change.value, rollData);
         let newValue;

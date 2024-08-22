@@ -207,6 +207,8 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     static #toggleMode(event, target) {
         this.mode = this.mode === 'view' ? 'edit' : 'view';
         this.render(true);
+
+        this.toggleControls(false);
     }
 
     static #editPortait(event, target) {

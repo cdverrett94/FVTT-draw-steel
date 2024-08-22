@@ -24,7 +24,7 @@ export class AbilityItem extends BaseItem {
             if (!match) return distance;
 
             const { baseDistance } = match.groups;
-            const calculatedDistance = baseDistance + Number(kit.system.distance);
+            const calculatedDistance = Number(baseDistance) + Number(kit.system.distance);
 
             distance = distance.replace(regexp, `Ranged ${calculatedDistance}`);
         } else if (isMagicRanged) {
@@ -56,7 +56,7 @@ export class AbilityItem extends BaseItem {
     // getter for ability power roll that also applies kit damage
     get power() {
         const power = foundry.utils.duplicate(this.system.power);
-        if (!this.doesDamage || !this.isOwned) return power;
+        if (!this.system.power.hasRoll || !this.isOwned) return power;
 
         const kitDamageBonus = this.kitDamageBonus;
 
@@ -145,10 +145,14 @@ export class AbilityItem extends BaseItem {
     }
 
     get isRollable() {
-        if (this.power.isResistance) return false;
+        if (this.isResistance) return false;
 
         if (this.power.tiers.one.length || this.power.tiers.two.length || this.power.tiers.three.length) return true;
         else return false;
+    }
+
+    get isResistance() {
+        return this.keywordsIncludes(['resistance']);
     }
 
     get doesDamage() {
@@ -226,7 +230,7 @@ export class AbilityItem extends BaseItem {
                 item: this.uuid,
                 actor: this.parent.uuid,
             },
-            isResistance: this.power.isResistance,
+            isResistance: this.isResistance,
         };
 
         await ChatMessage.create({
@@ -287,12 +291,13 @@ export class AbilityItem extends BaseItem {
         let bonusType = null;
 
         if (this.keywordsIncludes(['weapon', 'melee'])) bonusType = 'melee';
-        else if (this.keywordsIncludes(['weapon', 'ranged'])) bonusType = 'ranged';
+        else if (this.keywordsIncludes(['weapon', 'ranged'])) bonusType = 'range';
         else if (this.keywordsIncludes(['magic'])) bonusType = 'magic';
         if (bonusType === null) return [0, 0, 0];
 
         const kit = this.parent.kit;
-        return kit.system.damage[bonusType].some((bonus) => bonus != 0) ? kit.system.damage[bonusType] : [0, 0, 0];
+        const bonuses = kit.system.damage[bonusType];
+        return bonuses.some((bonus) => bonus != 0) ? kit.system.damage[bonusType] : [0, 0, 0];
     }
 
     keywordsIncludes(array) {

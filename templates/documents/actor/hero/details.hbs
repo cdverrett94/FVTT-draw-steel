@@ -30,8 +30,14 @@
             </div>
             
             <div class='event'>
-                <div class='label'>Inspiring Event</div>
-                <div class='value'>{{actor.event.name}}</div>
+                <div class='label'>Inciting Incident</div>
+                <div class='value'>
+                    {{#if isEditable}}
+                        {{formInput fields.incitingIncident value=source.system.incitingIncident}}
+                    {{else}}
+                    {{{source.system.incitingIncident}}}
+                    {{/if}}
+                </div>
             </div>
             
         </div>
@@ -59,8 +65,30 @@
             </div>
         </div>
         <div class='languages'>
-            <div class='mcdmrpg-header'>Languages</div>
-            <div class='value'>INSERT LANGUAGES HERE</div>
+            <div class='mcdmrpg-header'>
+                Languages
+                <span class="right-button" data-action="editLanguages"><i class="fa-solid fa-pencil"></i></span>
+            </div>
+            <div class='value'>
+                {{#unless source.system.languages}}No known Languages{{/unless}}
+                {{#each source.system.languages as |language|}}
+                    {{localize (concat 'system.languages.' language '.label')}}{{#unless @last}}, {{/unless}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="immunities">
+            <div class="mcdmrpg-header">Immunities and Weakness</div>
+            <div class="value">
+                Immunities: 
+                {{#each actor.system.immunities as |immunity|}}
+                {{#if (ne immunity 0)}}{{@key}} {{immunity}}{{#unless @last}}, {{/unless}}{{/if}}
+                {{/each}}
+                <br>
+                Weaknesses: 
+                {{#each actor.system.weaknesses as |weakness|}}
+                {{#if (ne weakness 0)}}{{@key}} {{weakness}}{{#unless @last}}, {{/unless}}{{/if}}
+                {{/each}}
+            </div>
         </div>
     </div>
 

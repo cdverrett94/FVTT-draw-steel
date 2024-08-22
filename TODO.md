@@ -1,14 +1,9 @@
 -   Actors
     -   ALL
         -   Add Base Actions and Manuevers
-        -   Add weakness and resistances
-        -   Switch skill config to be actor sheet
 -   Items
     -   Kit
         -   Sheet labels
-    -   Ability
-        -   keyword styling
-        -   change tier visibility to boolen and tierVisible
 -   Active Effects
     -   Switch config sheets to document sheets
 -   Chat Messages
@@ -20,18 +15,10 @@
     -   Move Victories to XP and make Victories 0
     -   Regain recoveries
     -   Regain stamina
--   Character creation
-    -   ancestry - complete
-    -   culture - complete
-    -   career - complete
-    -   class
-    -   kit
-    -   free strikes
-    -   complication
 -   ability
     -   add description'
--   multiple power roll characteristics - just need to be able to change the char on roll
--   add Power Roll + Char above power roll tiers
 -   add grabbed target
 -   character creator
--   immunity and weakness
+-   before Friday
+-   Refinements
+    -   subclass feature for class subclass, complication, class feature, etc

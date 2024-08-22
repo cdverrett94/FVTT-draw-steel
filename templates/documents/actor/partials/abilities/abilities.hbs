@@ -58,7 +58,7 @@
                             <div class='value'>{{ability.system.target}}</div>
                         </div>
                     {{/if}}
-                    {{#if ability.power.hasRoll}}
+                    {{#if (or ability.power.hasRoll ability.isResistance)}}
                         <div class='power-roll'>
                             {{ifThen (includes ability.system.keywords 'resistance') 'Resistance' 'Power'}}
                             Roll +

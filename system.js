@@ -64,7 +64,7 @@ Hooks.on('init', () => {
 });
 
 Hooks.on('ready', async () => {
-    game.actors.contents.find((actor) => actor.type === 'monster').sheet.render(true);
+    // game.actors.contents.find((actor) => actor.type === 'hero').sheet.render(true);
     // game.items.contents.find((item) => item.type === 'class').sheet.render(true);
     Knockback.registerGMSocket();
 });

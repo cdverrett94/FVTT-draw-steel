@@ -1,4 +1,4 @@
-import { CHARACTERISTICS, DAMAGE } from '../../constants/_index.js';
+import { ABILITIES, CHARACTERISTICS, DAMAGE } from '../../constants/_index.js';
 import { getDataModelChoices } from '../../helpers.js';
 
 export class BaseActorData extends foundry.abstract.TypeDataModel {
@@ -51,10 +51,12 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             weaknesses[damageType] = new fields.NumberField({
                 min: 0,
                 initial: 0,
+                label: DAMAGE.TYPES[damageType].label,
             });
             immunities[damageType] = new fields.NumberField({
                 min: 0,
                 initial: 0,
+                label: DAMAGE.TYPES[damageType].label,
             });
         }
         const iwKeywords = ['magic', 'psionic', 'weapon'];
@@ -62,29 +64,35 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             weaknesses[keyword] = new fields.NumberField({
                 min: 0,
                 initial: 0,
+                label: ABILITIES.KEYWORDS[keyword].label,
             });
             immunities[keyword] = new fields.NumberField({
                 min: 0,
                 initial: 0,
+                label: ABILITIES.KEYWORDS[keyword].label,
             });
         }
         weaknesses.forced = new fields.NumberField({
             min: 0,
             initial: 0,
+            label: 'Forced Move',
         });
         immunities.forced = new fields.NumberField({
             min: 0,
             initial: 0,
+            label: 'Forced Move',
         });
         weaknesses.all = new fields.NumberField({
             min: 0,
             initial: 0,
             nullable: true,
+            label: 'All',
         });
         immunities.all = new fields.NumberField({
             min: 0,
             initial: 0,
             nullable: true,
+            label: 'All',
         });
 
         schema.skills = new fields.SchemaField(skills);
@@ -162,5 +170,9 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
     prepareDerivedData() {
         this.stamina.winded = Math.floor(this.stamina.max / 2);
+    }
+
+    get highest() {
+        return Math.max(...Object.values(this.characteristics));
     }
 }

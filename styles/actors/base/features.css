@@ -1,0 +1,24 @@
+.sheet.actor .features-tab {
+    display: flex;
+    flex-direction: column;
+    height: calc(100%);
+    .features {
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 10px;
+
+        .feature {
+            background-color: var(--alternating-bg-color);
+
+            .feature-header {
+                font-weight: bold;
+                font-size: 1rem;
+                padding: 5px;
+            }
+            .feature-text {
+                padding: 0px 5px 5px 5px;
+            }
+        }
+    }
+}

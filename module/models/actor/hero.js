@@ -1,3 +1,5 @@
+import { LANGUAGES } from '../../constants/languages.js';
+import { getDataModelChoices } from '../../helpers.js';
 import { BaseActorData } from '../_index.js';
 
 export class HeroData extends BaseActorData {
@@ -54,6 +56,12 @@ export class HeroData extends BaseActorData {
                 integer: true,
                 min: 0,
             }),
+            languages: new fields.ArrayField(
+                new fields.StringField({
+                    choices: getDataModelChoices(LANGUAGES),
+                })
+            ),
+            incitingIncident: new fields.HTMLField(),
         };
     }
 
@@ -62,7 +70,7 @@ export class HeroData extends BaseActorData {
 
         this.stamina.max = this.calculateMaxStamina();
         this.recoveries.max = this.calculateMaxRecoveries();
-        this.recoveries.value = Math.floor(this.stamina.max / 3);
+
         this.speed = this.calculateSpeed();
         this.size = this.calculateSize();
         this.weight = this.calculateWeight();
@@ -136,5 +144,10 @@ export class HeroData extends BaseActorData {
     calculateMaxRecoveries() {
         const classRecoveries = this.parent?.class?.system.stamina.recoveries ?? 0;
         return classRecoveries;
+    }
+
+    prepareDerivedData() {
+        this.recoveries.value = Math.floor(this.stamina.max / 3) ?? 0;
+        this.stamina.winded = Math.floor(this.stamina.max / 2) ?? 0;
     }
 }

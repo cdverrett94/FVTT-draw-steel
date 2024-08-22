@@ -19,7 +19,12 @@
     </div>
 
     <div class='recoveries'>
-        <div class='mcdmrpg-header'>{{fields.recoveries.label}}</div>
+        <div class='mcdmrpg-header'>
+            {{fields.recoveries.label}}
+            {{#if (and (ne actor.system.recoveries.current 0) (ne actor.system.stamina.current actor.system.stamina.max))}}
+                <span class='right-button' data-action='catchBreath' data-tooltip='Catch Breath'><i class='fa-solid fa-lungs'></i></span>
+            {{/if}}
+        </div>
         <div class='recoveries-values'>
             <div class='current'>
                 <input type='number' name='system.recoveries.current' value='{{actor.system.recoveries.current}}' />
@@ -35,6 +40,17 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class='hope-tokens'>
+        <div class='mcdmrpg-header'>
+            Hope Tokens
+            {{#if (and (ne actor.system.hope 0) (ne actor.system.stamina.current actor.system.stamina.max))}}
+                <span class='right-button' data-action='spendHope' data-tooltip='Spend Hope'><i class='fa-solid fa-hand-holding-medical'></i></span>
+            {{/if}}
+
+        </div>
+        <div class='value'>{{formInput fields.hope value=source.system.hope}}</div>
     </div>
 
     <div class='victories'>

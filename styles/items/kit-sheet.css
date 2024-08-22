@@ -1,4 +1,22 @@
-.sheet.item.kit .kit-damage-bonus .value {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+.sheet.item.kit {
+    .kit-equipment {
+        multi-checkbox {
+            grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+        }
+    }
+
+    .kit-bonuses {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .kit-damage-bonus {
+            grid-column: 1 / -1;
+
+            .value {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: var(--grid-gap);
+            }
+        }
+    }
 }

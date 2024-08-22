@@ -4,43 +4,57 @@
 @import url('./career-sheet.css');
 @import url('./kit-sheet.css');
 
-.sheet.item.system:is(.ability, .ancestry, .kit) fieldset > div:not(.editor, .power-tiers, .granted-from, .items) {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    grid-gap: 5px;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.sheet.system.item div.header {
-    display: grid;
-    --header-size: 75px;
-    height: var(--header-size);
-    grid-template-columns: var(--header-size) 1fr;
-    align-items: center;
-    grid-gap: 5px;
-
-    .item-img img {
+.sheet.system.item {
+    div.header {
+        display: grid;
+        --header-size: 75px;
         height: var(--header-size);
-        width: var(--header-size);
+        grid-template-columns: var(--header-size) 1fr;
+        align-items: center;
+        grid-gap: 5px;
+
+        .item-img img {
+            height: var(--header-size);
+            width: var(--header-size);
+        }
     }
-}
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) fieldset label {
-    text-align: right;
-}
+    .granted-items-tab {
+        .granted-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 5px;
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr) 20px;
+            .granted-item {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                .name {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .item-drop {
+            padding-top: 10px;
+        }
+    }
 
-    grid-gap: 5px;
-    align-items: center;
-}
-.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule:not(:last-child) {
-    margin-bottom: 10px;
-}
+    .item-effects-tab {
+        .add-effect {
+            padding: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .item-effects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 5px;
 
-.sheet.item:is(.ability, .ancestry, .kit, .class) .rules .rule .rule-predicate {
-    grid-column: 1 / -1;
+            .item-effect {
+                display: grid;
+                grid-template-columns: 1fr var(--icon-grid-size) var(--icon-grid-size);
+                grid-gap: 5px;
+            }
+        }
+    }
 }

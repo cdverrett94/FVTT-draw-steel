@@ -81,7 +81,23 @@ span.roll-icons i {
 /* System Property Value Display */
 .ds-property {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 100px 1fr;
     align-items: center;
-    grid-gap: 5px;
+    grid-gap: var(--grid-gap);
+    margin-bottom: 5px;
+
+    .label {
+        text-align: right;
+    }
+}
+
+.ds-card {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.theme-dark {
+    .ds-card {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
 }

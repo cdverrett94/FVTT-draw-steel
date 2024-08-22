@@ -1,3 +1,4 @@
+import { DamageModification } from '../../applications/configs/damage-modification-config.js';
 import { createTargetButton, setEffectApplied } from './helpers.js';
 
 async function addButtonsToTargets(document, html) {
@@ -52,9 +53,12 @@ function registerDamageTargetListeners(element, document, index) {
         const { targetUuid, targetId, damageAmount, damageType } = element.dataset;
         if (!targetUuid) return ui.notifications.error('No target selected');
         const actor = await fromUuid(targetUuid);
-        await actor.applyDamage({ amount: damageAmount, type: damageType });
+        const keywords = (await fromUuid(document.system.origin.item)).system.keywords;
 
-        await setEffectApplied(document, targetId, index);
+        const clickData = { document, target: targetId, index, actor, amount: Number(damageAmount), type: damageType, keywords };
+
+        if (event.shiftKey) DamageButtonShiftClick(clickData);
+        else DamageButtonClick(clickData);
     });
 }
 
@@ -70,6 +74,16 @@ function registerKnockbackTargetListeners(element, document, index) {
             await setEffectApplied(document, targetId, index);
         }
     });
+}
+
+async function DamageButtonShiftClick({ document, target, index, actor, amount = 0, type = 'untyped', keywords }) {
+    new DamageModification({ document, target, index, actor, amount, type, keywords }).render(true);
+}
+
+export async function DamageButtonClick({ document, target, index, actor, amount = 0, type = 'untyped', keywords }) {
+    await actor.applyDamage({ amount, type, keywords });
+
+    await setEffectApplied(document, target, index);
 }
 
 export { addButtonsToTargets };

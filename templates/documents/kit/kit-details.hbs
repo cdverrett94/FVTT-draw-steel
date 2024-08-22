@@ -4,7 +4,7 @@
         {{formInput fields.type value=source.system.type classes='kit-type'}}
     </fieldset>
 
-    <fieldset>
+    <fieldset class='kit-equipment'>
         <legend>Equipment</legend>
         Armor
         <multi-checkbox name='system.armor'>
@@ -24,23 +24,38 @@
             </multi-checkbox>
         {{/if}}
     </fieldset>
-    <fieldset>
+    <fieldset class='kit-bonuses'>
         <legend>Bonuses</legend>
 
-        {{formField fields.stamina value=source.system.stamina classes='kit-stamina'}}
-        {{formField fields.speed value=source.system.speed classes='kit-speed'}}
-        {{formField fields.stability value=source.system.stability classes='kit-stability'}}
-        {{formField fields.distance value=source.system.distance classes='kit-distance'}}
+        <div class='ds-property'>
+            <div class='label'>{{fields.stamina.label}}</div>
+            <div class='value'>{{formInput fields.stamina value=source.system.stamina classes='kit-stamina'}}</div>
+        </div>
+
+        <div class='ds-property'>
+            <div class='label'>{{fields.speed.label}}</div>
+            <div class='value'>{{formInput fields.speed value=source.system.speed classes='kit-speed'}}</div>
+        </div>
+        <div class='ds-property'>
+            <div class='label'>{{fields.stability.label}}</div>
+            <div class='value'>{{formInput fields.stability value=source.system.stability classes='kit-stability'}}</div>
+        </div>
+        <div class='ds-property'>
+            <div class='label'>{{fields.distance.label}}</div>
+            <div class='value'>{{formInput fields.distance value=source.system.distance classes='kit-distance'}}</div>
+        </div>
 
         {{#if (eq source.system.type 'martial')}}
-
-            {{formField fields.reach value=source.system.reach classes='kit-reach'}}
+            <div class='ds-property'>
+                <div class='label'>{{fields.reach.label}}</div>
+                <div class='value'>{{formInput fields.reach value=source.system.reach classes='kit-reach'}}</div>
+            </div>
             {{! MARTIAL }}
-            <div class='kit-damage-melee kit-damage-bonus'>
+            <div class='kit-damage-melee kit-damage-bonus ds-property'>
                 <label class='label'>Melee Damage Bonus</label>
                 <div class='value'>
                     {{#each source.system.damage.melee as |bonus|}}
-                        {{formField
+                        {{formInput
                             @root.fields.damage.fields.melee.element
                             name=(concat 'system.damage.melee.' @index)
                             value=bonus
@@ -49,13 +64,13 @@
                     {{/each}}
                 </div>
             </div>
-            <div class='kit-damage-range kit-damage-bonus'>
+            <div class='kit-damage-range kit-damage-bonus ds-property'>
                 <label class='label'>Range Damage Bonus</label>
                 <div class='value'>
                     {{#each source.system.damage.range as |bonus|}}
-                        {{formField
+                        {{formInput
                             @root.fields.damage.fields.range.element
-                            name=(concat 'system.damage.melee.' @index)
+                            name=(concat 'system.damage.range.' @index)
                             value=bonus
                             classes='kit-damage-range'
                         }}
@@ -84,6 +99,6 @@
     </fieldset>
     <fieldset>
         <legend>Description</legend>
-        {{formInput fields.description value=source.system.description}}
+        {{formInput fields.description value=source.system.description height=300}}
     </fieldset>
 </div>

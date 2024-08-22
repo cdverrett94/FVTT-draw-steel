@@ -105,10 +105,9 @@ export class BaseActor extends Actor {
 
         characteristic ??= foundSkill?.characteristic;
 
-        let edges = foundSkill?.proficient ? 1 : 0;
-        edges += this.system.edges.tests;
+        const bonuses = foundSkill?.proficient ? 2 : 0;
+        const edges = this.system.edges.tests;
         let banes = this.system.banes.tests;
-        let bonuses = 0;
 
         const rollData = {
             actor: this,
@@ -125,12 +124,41 @@ export class BaseActor extends Actor {
         await new TestRollDialog(rollData).render(true);
     }
 
-    async applyDamage({ amount = 0, type = 'untyped' } = {}) {
-        // TODO: LATER APPLY WEAKNESSES AND IMMUNITIES
+    async applyDamage({ amount = 0, type = 'untyped', keywords = [] } = {}) {
+        const originalAmount = amount;
+        keywords = keywords.filter((keyword) => ['magic', 'weapon', 'psionic'].includes(keyword));
+        const types = [type, ...keywords];
+
+        //apply weakness
+        const weakness = this.findHighestIWValue(this.system.weaknesses, types);
+        if (weakness !== 0) amount += weakness;
+
+        //apply immunities
+        const immunity = this.findHighestIWValue(this.system.immunities, types);
+        if (immunity !== 0) amount = Math.clamp(amount - immunity, 0, Infinity);
+
         const currentHP = this.system.stamina.current;
         const newHP = currentHP - amount;
-
         await this.update({ 'system.stamina.current': newHP });
+
+        let messageText = `${this.name} took ${amount} ${type !== 'untyped' ? type + ' ' : ''}damage`;
+        if (weakness !== 0) messageText = `${messageText} with applied weakness of ${weakness}`;
+        if (weakness !== 0 && immunity !== 0) messageText = `${messageText} and`;
+        if (immunity !== 0) messageText = `${messageText} with applied immunity of ${immunity}`;
+        if (originalAmount !== amount) messageText = `${messageText}. Original damage was ${originalAmount}`;
+        messageText = `${messageText}.`;
+
+        ChatMessage.create({
+            content: messageText,
+        });
+    }
+
+    findHighestIWValue(iws, types) {
+        const filteredEntries = Object.entries(iws).filter((iw) => types.includes(iw[0]));
+        const filteredValues = filteredEntries.map((iw) => iw[1]);
+        const highestValue = Math.max(...filteredValues);
+
+        return highestValue;
     }
 
     async _preUpdate(changed, options, user) {

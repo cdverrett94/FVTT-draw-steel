@@ -1,5 +1,12 @@
 <fieldset class='size tab {{ifThen (eq activeTabs.main "details") "active" ""}}' data-group='main' data-tab='details'>
     <legend>{{fields.size.label}}</legend>
-    {{formField fields.size value=source.system.size localize=true classes='ancestry-weight'}}
-    {{formField fields.weight value=source.system.weight localize=true classes='ancestry-weight'}}
+    <div class='ds-property'>
+        <div class='label'>{{fields.size.label}}</div>
+        <div class='value'>{{formInput fields.size value=source.system.size localize=true classes='ancestry-weight'}}</div>
+    </div>
+
+    <div class='ds-property'>
+        <div class='label'>{{fields.weight.label}}</div>
+        <div class='value'>{{formInput fields.weight value=source.system.weight localize=true classes='ancestry-weight'}}</div>
+    </div>
 </fieldset>

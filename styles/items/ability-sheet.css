@@ -1,62 +1,42 @@
-.sheet.item.ability .keywords multi-checkbox {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
+.sheet.item.ability {
+    .keywords multi-checkbox {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
 
-.sheet.item.ability multi-checkbox.power-characteristics {
-    grid-template-columns: repeat(5, 1fr);
-}
+    .power-roll {
+        multi-checkbox.power-characteristics {
+            grid-template-columns: repeat(5, 1fr);
+        }
 
-.sheet.item.ability .keywords .ability-value input:nth-child(1) {
-    margin-left: 0px;
-}
+        .power-tier {
+            margin-bottom: 5px;
 
-.sheet.item.ability .power-tier {
-    margin-bottom: 5px;
-}
+            .tier-label {
+                text-align: center;
+                font-weight: bold;
+                font-size: large;
+            }
 
-.sheet.item.ability .tier-label {
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-}
-.sheet.item.ability .tier-effects {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: var(--grid-gap);
-    padding-top: 5px;
-}
+            .tier-effects {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: var(--grid-gap);
+                padding-top: 5px;
 
-.sheet.item.ability .tier-effects.hidden {
-    display: none;
-}
+                &.hidden {
+                    display: none;
+                }
 
-.sheet.item.ability .tier-effects .no-effects {
-    text-align: center;
-    grid-column: 1 / 3;
-}
+                .no-effects {
+                    text-align: center;
+                    grid-column: 1 / 3;
+                }
 
-.sheet.item.ability div.tier-effect > div {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    grid-gap: var(--grid-gap);
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.sheet.item.ability div.tier-effect > div.tier-type {
-    display: grid;
-    grid-template-columns: 100px 1fr 25px;
-    grid-gap: 5px;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.sheet.item.ability .tier-effect {
-    background-color: var(--alternating-bg-color);
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.sheet.item.ability .effect .editor {
-    height: 300px;
+                div.tier-type {
+                    grid-template-columns: 100px 1fr 25px;
+                    align-items: center;
+                }
+            }
+        }
+    }
 }
