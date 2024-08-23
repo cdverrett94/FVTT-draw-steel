@@ -11,12 +11,22 @@
     grid-gap: 5px;
 }
 
-.sheet.actor.hero .sidebar .stamina .stamina-values .current input,
-.sheet.actor.hero .sidebar .recoveries .recoveries-values .current input,
-.sheet.actor.hero .sidebar .resources .resource .resource-current input,
-.sheet.actor.hero .sidebar .victories input {
-    height: 100%;
-    font-size: 2rem;
+.sheet.actor.hero .sidebar {
+    .stamina .stamina-values,
+    .recoveries .recoveries-values,
+    .resources .resource.has-max {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        grid-gap: 5px;
+    }
+
+    .stamina .stamina-values .current input,
+    .recoveries .recoveries-values .current input,
+    .resources .resource .resource-current input,
+    .sidebar .victories input {
+        height: 100%;
+        font-size: 2rem;
+    }
 }
 
 .sheet.actor.hero .sidebar {

@@ -48,9 +48,13 @@ export class BaseActor extends Actor {
         return this.items.filter((item) => item.type === 'feature');
     }
 
+    get itemTree() {
+        return this.items.filter((item) => !item.system.grantedFrom || !this.items.find((item2) => item2.id === item.system.grantedFrom));
+    }
+
     async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
         if (['taunted', 'frightened'].includes(statusId)) active = true;
-        else if (statusId === 'prone') {
+        else if (statusId === 'prone' && this.effects.get(toId('prone'))) {
             const unconscious = this.effects.get(toId('unconscious'));
             if (unconscious) {
                 active = true;

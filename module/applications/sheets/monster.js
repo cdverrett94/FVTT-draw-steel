@@ -39,6 +39,11 @@ export class MonsterSheet extends BaseActorSheet {
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
                 scrollable: ['.features'],
             },
+            items: {
+                id: 'items-tab',
+                template: 'systems/mcdmrpg/templates/documents/actor/hero/items.hbs',
+                scrollable: ['.items'],
+            },
             skills: {
                 id: 'skills',
                 template: 'systems/mcdmrpg/templates/documents/actor/partials/skills/skills.hbs',

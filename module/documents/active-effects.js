@@ -29,6 +29,7 @@ export class MCDMActiveEffect extends ActiveEffect {
                 update = current && delta;
                 break;
             case 'number':
+                debugger;
                 update = Math.floor(current * delta);
                 break;
         }

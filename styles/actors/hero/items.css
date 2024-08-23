@@ -1,4 +1,4 @@
-.sheet.system.hero .items-tab {
+.sheet.system.actor .items-tab {
     height: calc(100%);
     display: flex;
     flex-direction: column;
@@ -30,4 +30,8 @@
             padding: 5px 0px 5px 10px;
         }
     }
+}
+
+.sheet.system.monster .tab {
+    padding-top: 5px;
 }

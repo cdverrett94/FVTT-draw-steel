@@ -9,14 +9,12 @@
 -   Chat Messages
     -   localize
 -   Rolls
--   Hope Tokens
-    -   Add to hero sheet and add recovery functionality
 -   Respite
     -   Move Victories to XP and make Victories 0
     -   Regain recoveries
     -   Regain stamina
 -   ability
-    -   add description'
+    -   add description
 -   add grabbed target
 -   character creator
 -   before Friday

@@ -326,7 +326,8 @@
                 "description": "When your Health has been reduced to half your Health maximum or lower, you are bloodied. Although the bloodied condition has no effects on its own, certain ancestry, class, item, and title abilities affect bloodied creatures."
             },
             "bleeding": {
-                "label": "Bleeding"
+                "label": "Bleeding",
+                "description": "While you are bleeding, you can’t regain Stamina."
             }
         },
         "damage": {

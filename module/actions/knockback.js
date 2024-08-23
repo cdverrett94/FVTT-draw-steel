@@ -93,7 +93,7 @@ class Knockback {
         let polygon;
         // Grid circle
         if (game.settings.get('core', 'gridTemplates')) {
-            polygon = new PIXI.Polygon(canvas.grid.getCircle({ x, y }, distance));
+            polygon = new PIXI.Polygon(canvas.grid.getCircle({ x, y }, distance + 0.5));
         } else {
             // Euclidean circle
             polygon = new PIXI.Circle(x, y, distance * canvas.dimensions.distancePixels);

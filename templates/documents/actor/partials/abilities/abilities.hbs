@@ -34,12 +34,6 @@
                             {{#unless ability.system.keywords}} &mdash; {{/unless}}
                         </div>
                     </div>
-                    {{#if ability.system.trigger}}
-                        <div class='property ability-trigger'>
-                            <div class='label'>{{localize 'system.items.ability.FIELDS.trigger.label'}}</div>
-                            <div class='value'>{{ability.system.trigger}}</div>
-                        </div>
-                    {{/if}}
                     {{#if ability.system.type}}
                         <div class='property ability-time'>
                             <div class='label'>{{localize 'system.items.ability.FIELDS.type.label'}}</div>
@@ -56,6 +50,12 @@
                         <div class='property ability-target'>
                             <div class='label'>{{localize 'system.items.ability.FIELDS.target.label'}}</div>
                             <div class='value'>{{ability.system.target}}</div>
+                        </div>
+                    {{/if}}
+                    {{#if ability.system.trigger}}
+                        <div class='property ability-trigger'>
+                            <div class='label'>{{localize 'system.items.ability.FIELDS.trigger.label'}}</div>
+                            <div class='value'>{{ability.system.trigger}}</div>
                         </div>
                     {{/if}}
                     {{#if (or ability.power.hasRoll ability.isResistance)}}

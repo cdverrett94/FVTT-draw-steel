@@ -25,10 +25,6 @@ export class HeroActor extends BaseActor {
         };
     }
 
-    get itemTree() {
-        return this.items.filter((item) => !item.system.grantedFrom || !this.items.find((item2) => item2.id === item.system.grantedFrom));
-    }
-
     _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
         super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
 

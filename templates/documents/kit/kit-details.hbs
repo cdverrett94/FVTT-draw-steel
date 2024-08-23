@@ -80,12 +80,15 @@
 
         {{else if (eq source.system.type 'caster')}}
             {{! CASTER }}
-            {{formField fields.area value=source.system.area classes='kit-area'}}
-            <div class='kit-damage-magic kit-damage-bonus'>
+            <div class='ds-property'>
+                <div class='label'>{{fields.area.label}}</div>
+                <div class='value'>{{formInput fields.area value=source.system.area classes='kit-area'}}</div>
+            </div>
+            <div class='kit-damage-magic kit-damage-bonus ds-property'>
                 <label class='label'>Magic Damage Bonus</label>
                 <div class='value'>
                     {{#each source.system.damage.magic as |bonus|}}
-                        {{formField
+                        {{formInput
                             @root.fields.damage.fields.magic.element
                             name=(concat 'system.damage.magic.' @index)
                             value=bonus

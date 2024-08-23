@@ -1,5 +1,6 @@
 import { Knockback } from '../../actions/knockback.js';
 import { SKILLS } from '../../constants/skills.js';
+import { knockbackMacroPrompt } from '../../macros/knockback-macro.js';
 
 export function registerSystemConstants() {
     const formattedCustomSkills = {
@@ -20,6 +21,9 @@ export function registerSystemConstants() {
     game.mcdmrpg = {
         actions: {
             knockback: Knockback.do,
+        },
+        macros: {
+            knockback: knockbackMacroPrompt,
         },
         skills: foundry.utils.mergeObject(SKILLS, formattedCustomSkills),
     };
