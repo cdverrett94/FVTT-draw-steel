@@ -41,8 +41,8 @@ export class MCDMCombat extends Combat {
     get heroes() {
         const heroes = this.combatants.filter((combatant) => combatant.token.disposition === 1);
         heroes.sort((a, b) => {
-            if (a.system.turnCompleted < b.system.turnCompleted) return -1;
-            if (a.system.turnCompleted > b.system.turnCompleted) return 1;
+            if (a.system.turns.left < b.system.turns.left) return 1;
+            if (a.system.turns.left > b.system.turns.left) return -1;
             if (a.name < b.name) return -1;
             if (a.name > b.name) return 1;
 
@@ -54,8 +54,8 @@ export class MCDMCombat extends Combat {
     get enemies() {
         const enemies = this.combatants.filter((combatant) => combatant.token.disposition === -1);
         enemies.sort((a, b) => {
-            if (a.system.turnCompleted < b.system.turnCompleted) return -1;
-            if (a.system.turnCompleted > b.system.turnCompleted) return 1;
+            if (a.system.turns.left < b.system.turns.left) return 1;
+            if (a.system.turns.left > b.system.turns.left) return -1;
             if (a.name < b.name) return -1;
             if (a.name > b.name) return 1;
 

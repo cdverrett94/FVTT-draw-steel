@@ -170,9 +170,18 @@ export class AbilityItem extends BaseItem {
         const rollData = {
             edges: 0,
             banes: 0,
+            bonuses: 0,
         };
-        if (this.parent?.system.banes.attacker) rollData.banes += Number(this.parent.system.banes.attacker);
-        if (this.parent?.system.edges.attacker) rollData.edges += Number(this.parent.system.edges.attacker);
+        const parent = this.parent;
+        if (!parent) return rollData;
+
+        if (parent.system.banes.attacker) rollData.banes += Number(parent.system.banes.attacker);
+        if (parent.system.edges.attacker) rollData.edges += Number(parent.system.edges.attacker);
+        if (parent.system.bonuses.attacker) rollData.bonuses += Number(parent.system.bonuses.attacker);
+
+        if (this.isResistance && parent.system.banes.resistance) rollData.banes += Number(parent.system.banes.resistance);
+        if (this.isResistance && parent.system.edges.resistance) rollData.edges += Number(parent.system.edges.resistance);
+        if (this.isResistance && parent.system.bonuses.resistance) rollData.bonuses += Number(parent.system.bonuses.resistance);
         return rollData;
     }
 
@@ -281,6 +290,7 @@ export class AbilityItem extends BaseItem {
     //parse tier knockback effect into string
     parseKnockbackEffect(effect) {
         return game.i18n.format('system.terms.knockback.linkLabel', {
+            subtype: effect.subtype,
             distance: effect.distance ?? 0,
         });
     }

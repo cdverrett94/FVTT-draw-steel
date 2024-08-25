@@ -23,9 +23,15 @@
     .stamina .stamina-values .current input,
     .recoveries .recoveries-values .current input,
     .resources .resource .resource-current input,
-    .sidebar .victories input {
+    .victories input,
+    .hope-tokens input {
         height: 100%;
         font-size: 2rem;
+    }
+
+    .temporary-stamina {
+        grid-column: 1 / -1;
+        grid-template-columns: auto 1fr;
     }
 }
 

@@ -20,3 +20,4 @@
 -   before Friday
 -   Refinements
     -   subclass feature for class subclass, complication, class feature, etc
+    -   bonuses to weapon damage

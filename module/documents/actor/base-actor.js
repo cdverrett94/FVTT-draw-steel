@@ -141,9 +141,20 @@ export class BaseActor extends Actor {
         const immunity = this.findHighestIWValue(this.system.immunities, types);
         if (immunity !== 0) amount = Math.clamp(amount - immunity, 0, Infinity);
 
-        const currentHP = this.system.stamina.current;
-        const newHP = currentHP - amount;
-        await this.update({ 'system.stamina.current': newHP });
+        const currentTempStamina = this.system.stamina.temporary;
+        const currentStamina = this.system.stamina.current;
+
+        let newStamina = currentStamina;
+        let newTemp = currentTempStamina;
+        if (currentTempStamina > 0) {
+            const damageToTemp = currentTempStamina > amount ? amount : currentTempStamina;
+            const damageToStamina = amount - damageToTemp;
+
+            newTemp -= damageToTemp;
+            newStamina -= damageToStamina;
+        } else newStamina -= amount;
+
+        await this.update({ 'system.stamina.current': newStamina, 'system.stamina.temporary': newTemp });
 
         let messageText = `${this.name} took ${amount} ${type !== 'untyped' ? type + ' ' : ''}damage`;
         if (weakness !== 0) messageText = `${messageText} with applied weakness of ${weakness}`;

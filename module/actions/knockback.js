@@ -22,48 +22,15 @@ class Knockback {
 
     // start the request to knockback
     async request() {
-        if (!this.action || !(this.action === 'prone' || this.action === 'knockback')) {
-            this.action = await this.#requestDialog();
-            if (!this.action || !(this.action === 'prone' || this.action === 'knockback')) return false;
+        this.distance = Math.max(this.distance - this.token.actor.system.stability, 0);
+
+        if (this.distance === 0) {
+            ui.notifications.warn('The forced move distance is 0. The targets stability could be causing the reduction');
+            return true;
         }
 
-        if (this.action === 'knockback') this.result = await this.#knockBack();
-        else this.result = await this.#knockProne();
-
+        this.result = await this.#knockBack();
         return this.result;
-    }
-
-    // dialog that shows to requesting user to make a choice of knockback or knock prone
-    async #requestDialog() {
-        const dialogResult = await new Promise((resolve, reject) => {
-            new foundry.applications.api.DialogV2({
-                window: { title: 'Choose an option' },
-                content: `
-                   <label><input type="radio" name="choice" value="knockback" checked> Knockback</label>
-                     <label><input type="radio" name="choice" value="prone"> Knock Prone</label>
-                   `,
-                buttons: [
-                    {
-                        action: 'choice',
-                        label: 'Knockback Action Choice',
-                        default: true,
-                        callback: (event, button, dialog) => button.form.elements.choice.value,
-                    },
-                    {
-                        action: 'cancel',
-                        label: 'Cancel',
-                        default: true,
-                        callback: (event, button, dialog) => dialog.close(),
-                    },
-                ],
-                submit: (result) => {
-                    if (result === 'cancel') resolve(undefined);
-                    else resolve(result);
-                },
-            }).render({ force: true });
-        });
-
-        return dialogResult;
     }
 
     // create the graphics for the hightlighted areas

@@ -84,7 +84,7 @@ export class PowerRoll extends Roll {
     static type = 'power';
 
     get isCritical() {
-        return this.terms.find((term) => term.formula === '2d10')?.total === 20;
+        return this.terms.find((term) => term.formula === '2d10')?.total >= 19;
     }
 
     static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/power-roll.hbs';

@@ -89,6 +89,17 @@
                                             field.element.types.knockback.fields.distance
                                             value=effect.distance
                                             name=(concat 'system.power.tiers.' field.name '.' @index '.distance')
+                                            valueAttr='key'
+                                        }}
+                                    </div>
+                                </div>
+                                <div class='ds-property effect-knockback-subtype'>
+                                    <div class='label'>{{field.element.types.knockback.fields.subtype.label}}</div>
+                                    <div class='value'>
+                                        {{formInput
+                                            field.element.types.knockback.fields.subtype
+                                            value=effect.subtype
+                                            name=(concat 'system.power.tiers.' field.name '.' @index '.subtype')
                                         }}
                                     </div>
                                 </div>

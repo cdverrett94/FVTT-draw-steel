@@ -1341,7 +1341,7 @@
         "terms": {
             "knockback": {
                 "label": "Knockback",
-                "linkLabel": "Knockback {distance}",
+                "linkLabel": "{subtype} {distance}",
                 "applied": "Target Knocked Back"
             }
         }

@@ -88,6 +88,15 @@ class TierField {
                                 blank: false,
                                 label: tierTypeLocalization.knockback.type,
                             }),
+                            subtype: new fields.StringField({
+                                initial: 'push',
+                                choices: {
+                                    push: { label: 'Push' },
+                                    pull: { label: 'Pull' },
+                                    slide: { label: 'Slide' },
+                                },
+                                label: 'Subtype',
+                            }),
                             distance: new fields.NumberField({
                                 label: tierTypeLocalization.knockback.distance,
                             }),

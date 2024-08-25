@@ -22,11 +22,29 @@ function resistanceRollListeners(element, document, index) {
         const ability = await fromUuid(document.system.origin.item);
         const characteristic = ability?.power.characteristic;
 
+        const modifiers = getResistanceModifiers(rollingActor);
         new ResistanceRollDialog({
             actor: rollingActor,
             origin: originActor,
             characteristic,
             ability,
+            general: {
+                ...modifiers,
+            },
         }).render(true);
     });
+}
+
+function getResistanceModifiers(actor) {
+    const rollData = {
+        edges: 0,
+        banes: 0,
+        bonuses: 0,
+    };
+
+    if (actor.system.banes.resistance) rollData.banes += Number(actor.system.banes.resistance);
+    if (actor.system.edges.resistance) rollData.edges += Number(actor.system.edges.resistance);
+    if (actor.system.bonuses.resistance) rollData.bonuses += Number(actor.system.bonuses.resistance);
+
+    return rollData;
 }

@@ -109,6 +109,12 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                     integer: true,
                     nullable: false,
                 }),
+                temporary: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    nullable: false,
+                }),
                 max: new fields.NumberField({
                     required: true,
                     initial: 0,
@@ -130,7 +136,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             stability: new fields.NumberField(),
             combat: new fields.SchemaField({
                 turns: new fields.NumberField({
-                    initial: 2,
+                    initial: 1,
                 }),
             }),
             notes: new fields.HTMLField(),
@@ -153,6 +159,12 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
             resistance: 0,
         };
         this.banes = {
+            attacker: 0,
+            attacked: 0,
+            tests: 0,
+            resistance: 0,
+        };
+        this.bonuses = {
             attacker: 0,
             attacked: 0,
             tests: 0,
