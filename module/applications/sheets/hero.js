@@ -21,7 +21,6 @@ export class HeroSheet extends BaseActorSheet {
         },
     };
 
-    /** @inheritDoc */
     static DEFAULT_OPTIONS = foundry.utils.mergeObject(super.DEFAULT_OPTIONS, HeroSheet.additionalOptions, { inplace: false });
 
     /** @override */
@@ -30,43 +29,43 @@ export class HeroSheet extends BaseActorSheet {
         {
             header: {
                 id: 'header',
-                template: 'systems/mcdmrpg/templates/documents/actor/hero/header.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/hero/header.hbs',
             },
             sidebar: {
                 id: 'sidebar',
-                template: 'systems/mcdmrpg/templates/documents/actor/hero/sidebar.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/hero/sidebar.hbs',
             },
             details: {
                 id: 'details',
-                template: 'systems/mcdmrpg/templates/documents/actor/hero/details.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/hero/details.hbs',
             },
             abilities: {
                 id: 'abilities',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/abilities/abilities-container.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/abilities/abilities-container.hbs',
                 scrollable: ['.abilities-list'],
             },
             features: {
                 id: 'features',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/features.hbs',
                 scrollable: ['.features'],
             },
             items: {
                 id: 'items-tab',
-                template: 'systems/mcdmrpg/templates/documents/actor/hero/items.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/hero/items.hbs',
                 scrollable: ['.items'],
             },
             skills: {
                 id: 'skills',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/skills/skills.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/skills/skills.hbs',
                 scrollable: ['.skills-tab', '.skills'],
             },
             notes: {
                 id: 'notes',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/notes.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/notes.hbs',
             },
             effects: {
                 id: 'effects',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/effects.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/effects.hbs',
             },
         },
         { inplace: false }

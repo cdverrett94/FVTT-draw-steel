@@ -1,6 +1,6 @@
 <div class='sidebar'>
     <div class='stamina'>
-        <div class='mcdmrpg-header'>{{fields.stamina.label}}</div>
+        <div class='draw-steel-header'>{{fields.stamina.label}}</div>
         <div class='stamina-values'>
             <div class='current'>
                 {{formInput fields.stamina.fields.current value=actor.system.stamina.current}}
@@ -23,7 +23,7 @@
     </div>
 
     <div class='recoveries'>
-        <div class='mcdmrpg-header'>
+        <div class='draw-steel-header'>
             {{fields.recoveries.label}}
             {{#if (and (ne actor.system.recoveries.current 0) (ne actor.system.stamina.current actor.system.stamina.max))}}
                 <span class='right-button' data-action='catchBreath' data-tooltip='Catch Breath'><i class='fa-solid fa-lungs'></i></span>
@@ -47,7 +47,7 @@
     </div>
 
     <div class='hope-tokens'>
-        <div class='mcdmrpg-header'>
+        <div class='draw-steel-header'>
             Hope Tokens
             {{#if (and (ne actor.system.hope 0) (ne actor.system.stamina.current actor.system.stamina.max))}}
                 <span class='right-button' data-action='spendHope' data-tooltip='Spend Hope'><i class='fa-solid fa-hand-holding-medical'></i></span>
@@ -58,14 +58,14 @@
     </div>
 
     <div class='victories'>
-        <div class='mcdmrpg-header'>
+        <div class='draw-steel-header'>
             {{fields.victories.label}}
         </div>
         {{formInput fields.victories value=actor.system.victories}}
     </div>
 
     <div class='resources'>
-        <div class='mcdmrpg-header'>
+        <div class='draw-steel-header'>
             {{localize fields.currentResources.label}}
             <span class='resources-info right-button' data-tooltip='{{actor.class.system.resourceGain}}' data-tooltip-direction='UP'>
                 <i class='fa-solid fa-question'></i>

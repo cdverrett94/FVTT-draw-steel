@@ -14,7 +14,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
             title: 'Configure Frightened',
         },
         tag: 'form',
-        classes: ['mcdmrpg', 'sheet', 'taunted-config', 'system'],
+        classes: ['draw-steel', 'sheet', 'taunted-config', 'system'],
         position: {
             width: 500,
             height: 'auto',
@@ -37,7 +37,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
     static PARTS = {
         list: {
             id: 'list',
-            template: 'systems/mcdmrpg/templates/condition-configs/taunted.hbs',
+            template: 'systems/draw-steel/templates/condition-configs/taunted.hbs',
         },
     };
 
@@ -50,7 +50,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
 
         return {
             effect: this.effect,
-            titles: this.effect.flags.mcdmrpg?.titles ?? [],
+            titles: this.effect.flags['draw-steel']?.titles ?? [],
             headerLabel: CONDITIONS.frightened.name,
             actors,
         };
@@ -60,7 +60,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
         let updateData = {
             changes: [],
             flags: {
-                mcdmrpg: {
+                'draw-steel': {
                     titles: [],
                 },
             },
@@ -76,7 +76,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
                 mode: 2,
             };
 
-            updateData.flags.mcdmrpg.titles[index] = title;
+            updateData.flags['draw-steel'].titles[index] = title;
         }
         await this.effect.update(updateData);
     }
@@ -86,8 +86,8 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
         let updateData = {
             changes: foundry.utils.duplicate(this.effect.changes),
             flags: {
-                mcdmrpg: {
-                    titles: foundry.utils.duplicate(this.effect.flags?.mcdmrpg?.titles ?? []),
+                'draw-steel': {
+                    titles: foundry.utils.duplicate(this.effect.flags?.['draw-steel']?.titles ?? []),
                 },
             },
         };
@@ -99,7 +99,7 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
                 mode: 2,
             });
 
-            updateData.flags.mcdmrpg.titles.push(token.actor.name);
+            updateData.flags['draw-steel'].titles.push(token.actor.name);
         }
 
         await this.effect.update(updateData);
@@ -113,15 +113,15 @@ export class FrightenedConfig extends HandlebarsApplicationMixin(ApplicationV2) 
         let updateData = {
             changes: foundry.utils.duplicate(this.effect.changes),
             flags: {
-                mcdmrpg: {
-                    titles: foundry.utils.duplicate(this.effect.flags?.mcdmrpg?.titles),
+                'draw-steel': {
+                    titles: foundry.utils.duplicate(this.effect.flags?.['draw-steel']?.titles),
                 },
             },
         };
 
         updateData.changes.splice(index, 1);
 
-        updateData.flags.mcdmrpg.titles.splice(index, 1);
+        updateData.flags['draw-steel'].titles.splice(index, 1);
 
         await this.effect.update(updateData);
         await this.render({ parts: ['list'] });

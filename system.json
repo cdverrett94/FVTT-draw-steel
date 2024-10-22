@@ -1,12 +1,12 @@
 {
-    "name": "mcdmrpg",
-    "title": "MCDM RPG",
+    "name": "draw-steel",
+    "title": "Draw Steel",
     "description": "",
     "version": "0.0.1",
     "compatibility": {
-        "minimum": "12",
-        "verified": "12",
-        "maximum": "12"
+        "minimum": "13",
+        "verified": "13",
+        "maximum": "13"
     },
     "authors": [
         {
@@ -29,25 +29,74 @@
         }
     ],
     "socket": true,
-    "url": "https://github.com/cdverrett94/FVTT-mcdmrpg",
-    "bugs": "https://github.com/cdverrett94/FVTT-mcdmrpg/issues",
-    "manifest": "https://github.com/cdverrett94/FVTT-mcdmrpg/releases/latest/download/module.json",
-    "download": "https://github.com/cdverrett94/FVTT-mcdmrpg/releases/download/0.1.0/package.zip",
-    "changelog": "https://github.com/cdverrett94/FVTT-mcdmrpg/blob/main/Changelog.md",
+    "url": "https://github.com/cdverrett94/FVTT-draw-steel",
+    "bugs": "https://github.com/cdverrett94/FVTT-draw-steel/issues",
+    "manifest": "https://github.com/cdverrett94/FVTT-draw-steel/releases/latest/download/module.json",
+    "download": "https://github.com/cdverrett94/FVTT-draw-steel/releases/download/0.1.0/package.zip",
+    "changelog": "https://github.com/cdverrett94/FVTT-draw-steel/blob/main/Changelog.md",
     "packs": [
         {
-            "name": "mcdmrpg-heroes",
-            "system": "mcdmrpg",
+            "name": "draw-steel-heroes",
+            "system": "draw-steel",
             "label": "Heroes",
             "path": "./packs/heroes",
             "type": "Actor"
         },
         {
-            "name": "mcdmrpg-monsters",
-            "system": "mcdmrpg",
+            "name": "draw-steel-monsters",
+            "system": "draw-steel",
             "label": "Monsters",
             "path": "./packs/monsters",
             "type": "Actor"
+        },
+        {
+            "name": "draw-steel-ancestries",
+            "system": "draw-steel",
+            "label": "Ancestries",
+            "path": "./packs/ancestries",
+            "type": "Item"
+        },
+        {
+            "name": "draw-steel-abilities",
+            "system": "draw-steel",
+            "label": "Abilities",
+            "path": "./packs/abilities",
+            "type": "Item"
+        },
+        {
+            "name": "draw-steel-classes",
+            "system": "draw-steel",
+            "label": "Classes",
+            "path": "./packs/classes",
+            "type": "Item"
+        },
+        {
+            "name": "draw-steel-kits",
+            "system": "draw-steel",
+            "label": "Kits",
+            "path": "./packs/kits",
+            "type": "Item"
+        },
+        {
+            "name": "draw-steel-features",
+            "system": "draw-steel",
+            "label": "Features",
+            "path": "./packs/features",
+            "type": "Item"
+        },
+        {
+            "name": "draw-steel-culture",
+            "system": "draw-steel",
+            "label": "Culture",
+            "path": "./packs/culture",
+            "type": "Item"
+        },
+        {
+            "name": "draw-steel-careers",
+            "system": "draw-steel",
+            "label": "Careers",
+            "path": "./packs/careers",
+            "type": "Item"
         }
     ],
     "flags": {
@@ -71,10 +120,10 @@
             "career": {}
         },
         "Combat": {
-            "mcdmrpg": {}
+            "draw-steel": {}
         },
         "Combatant": {
-            "mcdmrpg": {}
+            "draw-steel": {}
         },
         "ChatMessage": {
             "ability": {}

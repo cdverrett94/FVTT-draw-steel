@@ -1,4 +1,4 @@
-<section class='tab sidebar-tab directory flexcol combat-sidebar mcdmrpg' id='combat' data-tab='combat'>
+<section class='tab sidebar-tab directory flexcol combat-sidebar draw-steel' id='combat' data-tab='combat'>
     <header class='combat-tracker-header'>
         {{#if user.isGM}}
             <nav class='encounters flexrow' aria-label='{{localize "COMBAT.NavLabel"}}'>
@@ -181,7 +181,7 @@
         {{#if hasCombat}}
             {{#each order as |side|}}
                 <div class="combat-side combat-{{@key}}">
-                    <div class='mcdmrpg-header'>
+                    <div class='draw-steel-header'>
                         {{#if (eq @key 'heroes')}}
                             Heroes
                         {{else}}
@@ -202,7 +202,7 @@
                     </div>
                     <ol id='combat-tracker' class='directory-list'>
                         {{#each side as |combatant|}}
-                            {{> "systems/mcdmrpg/templates/combat/partials/combatant.hbs" combatant=combatant}}
+                            {{> "systems/draw-steel/templates/combat/partials/combatant.hbs" combatant=combatant}}
                         {{/each}}
                     </ol>
                 </div>

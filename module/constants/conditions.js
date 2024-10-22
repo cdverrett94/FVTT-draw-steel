@@ -39,7 +39,7 @@ const CONDITIONS = {
             },
         ],
         flags: {
-            mcdmrpg: {
+            'draw-steel': {
                 titles: ['New Frightened'],
             },
         },
@@ -153,7 +153,7 @@ const CONDITIONS = {
             },
         ],
         flags: {
-            mcdmrpg: {
+            'draw-steel': {
                 titles: ['New Taunted'],
             },
         },

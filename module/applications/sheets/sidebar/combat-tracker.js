@@ -1,9 +1,9 @@
 export class MCDMCombatTracker extends CombatTracker {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ['mcdmrpg'],
+            classes: ['draw-steel'],
             id: 'combat',
-            template: 'systems/mcdmrpg/templates/combat/combat-tracker.hbs',
+            template: 'systems/draw-steel/templates/combat/combat-tracker.hbs',
             title: 'MCDM Combat Tracker',
             scrollY: ['.directory-list'],
         });
@@ -87,7 +87,7 @@ export class MCDMCombatTracker extends CombatTracker {
         event.preventDefault();
         let scene = game.scenes.current;
         const cls = getDocumentClass('Combat');
-        const combat = await cls.create({ scene: scene?.id, type: 'mcdmrpg' });
+        const combat = await cls.create({ scene: scene?.id, type: 'draw-steel' });
         await combat.activate({ render: false });
     }
 }

@@ -41,7 +41,7 @@
             </div>
         </div>
         {{#unless context.hasTargets}}
-             {{> 'systems/mcdmrpg/templates/rolls/power-roll/partials/formula-button.hbs' roll=context.baseRoll}}
+             {{> 'systems/draw-steel/templates/rolls/power-roll/partials/formula-button.hbs' roll=context.baseRoll}}
         {{/unless}}
     </div>
 
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            {{> 'systems/mcdmrpg/templates/rolls/power-roll/partials/formula-button.hbs' roll=target.roll token=@key}}
+            {{> 'systems/draw-steel/templates/rolls/power-roll/partials/formula-button.hbs' roll=target.roll token=@key}}
         </div>
     {{/each}}
 </div>

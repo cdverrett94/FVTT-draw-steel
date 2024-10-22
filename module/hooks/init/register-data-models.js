@@ -28,8 +28,8 @@ export function registerDataModels() {
     CONFIG.Item.dataModels.career = CareerData;
 
     // Set System Combat Data Models
-    CONFIG.Combat.dataModels.mcdmrpg = CombatData;
-    CONFIG.Combatant.dataModels.mcdmrpg = CombatantData;
+    CONFIG.Combat.dataModels['draw-steel'] = CombatData;
+    CONFIG.Combatant.dataModels['draw-steel'] = CombatantData;
 
     // Set Chat Message Data Models
     CONFIG.ChatMessage.dataModels.ability = AbilityMessageData;

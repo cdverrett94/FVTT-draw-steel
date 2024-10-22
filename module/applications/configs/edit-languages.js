@@ -34,7 +34,7 @@ export class EditLanguagesActorSheet extends HandlebarsApplicationMixin(Applicat
         {
             languages: {
                 id: 'languages',
-                template: 'systems/mcdmrpg/templates/documents/actor/hero/languages.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/hero/languages.hbs',
             },
         },
         { inplace: false }

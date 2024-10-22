@@ -246,7 +246,7 @@ export class AbilityItem extends BaseItem {
             type: 'ability',
             user: game.user.id,
             system: systemData,
-            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-message.hbs', {
+            content: await renderTemplate('systems/draw-steel/templates/chat-messages/ability-message.hbs', {
                 ability: this,
                 actor: this.parent,
             }),

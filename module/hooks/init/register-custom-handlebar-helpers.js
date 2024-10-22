@@ -30,6 +30,6 @@ export function registerCustomHandlebarHelpers() {
     });
 
     Handlebars.registerHelper('getSkillLabelPath', function (category, skill) {
-        return game.mcdmrpg.skills[category][skill].label;
+        return game['draw-steel'].skills[category][skill].label;
     });
 }

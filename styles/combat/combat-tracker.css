@@ -1,15 +1,15 @@
-.combat-sidebar.mcdmrpg .combatant.turn-completed {
+.combat-sidebar.draw-steel .combatant.turn-completed {
     opacity: 50%;
 }
 
-.combat-sidebar.mcdmrpg .mcdmrpg-header {
+.combat-sidebar.draw-steel .draw-steel-header {
     margin: 0px;
 }
 
-.combat-sidebar.mcdmrpg .combat-side:is(:first-child) {
+.combat-sidebar.draw-steel .combat-side:is(:first-child) {
     margin-bottom: 5px;
 }
 
-.combat-sidebar.mcdmrpg .token-turns {
+.combat-sidebar.draw-steel .token-turns {
     line-height: normal;
 }

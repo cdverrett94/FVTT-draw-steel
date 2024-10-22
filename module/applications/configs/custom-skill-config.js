@@ -6,7 +6,7 @@ export class CustomSkillsSettings extends HandlebarsApplicationMixin(Application
     constructor(...args) {
         super(...args);
 
-        this.customSkills = game.settings.get('mcdmrpg', 'customSkills') ?? [];
+        this.customSkills = game.settings.get('draw-steel', 'customSkills') ?? [];
     }
     static additionalOptions = {
         window: {
@@ -17,7 +17,7 @@ export class CustomSkillsSettings extends HandlebarsApplicationMixin(Application
         position: {
             width: 400,
         },
-        classes: ['mcdmrpg', 'settings', 'customSkills', 'system'],
+        classes: ['draw-steel', 'settings', 'customSkills', 'system'],
         tag: 'form',
         form: {
             closeOnSubmit: false,
@@ -36,7 +36,7 @@ export class CustomSkillsSettings extends HandlebarsApplicationMixin(Application
         {
             customSkills: {
                 id: 'customSkills',
-                template: 'systems/mcdmrpg/templates/settings/custom-skills.hbs',
+                template: 'systems/draw-steel/templates/settings/custom-skills.hbs',
             },
         },
         { inplace: false }
@@ -81,6 +81,6 @@ export class CustomSkillsSettings extends HandlebarsApplicationMixin(Application
             customSkills.push(data.customSkills[index]);
         }
 
-        await game.settings.set('mcdmrpg', 'customSkills', customSkills);
+        await game.settings.set('draw-steel', 'customSkills', customSkills);
     }
 }

@@ -34,7 +34,7 @@ export class DamageModification extends HandlebarsApplicationMixin(ApplicationV2
         {
             modifyDamage: {
                 id: 'modify-damage',
-                template: 'systems/mcdmrpg/templates/chat-messages/modify-damage-config.hbs',
+                template: 'systems/draw-steel/templates/chat-messages/modify-damage-config.hbs',
             },
         },
         { inplace: false }

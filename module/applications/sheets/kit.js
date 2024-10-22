@@ -16,7 +16,7 @@ export class KitSheet extends BaseItemSheet {
         {
             details: {
                 id: 'details',
-                template: '/systems/mcdmrpg/templates/documents/kit/kit-details.hbs',
+                template: '/systems/draw-steel/templates/documents/kit/kit-details.hbs',
             },
         },
         { inplace: false }

@@ -16,11 +16,11 @@ export class CultureSheet extends BaseItemSheet {
         {
             details: {
                 id: 'details',
-                template: 'systems/mcdmrpg/templates/documents/culture/culture-details.hbs',
+                template: 'systems/draw-steel/templates/documents/culture/culture-details.hbs',
             },
             skills: {
                 id: 'skills',
-                template: 'systems/mcdmrpg/templates/documents/culture/culture-skills.hbs',
+                template: 'systems/draw-steel/templates/documents/culture/culture-skills.hbs',
                 scrollable: ['.skills'],
             },
         },
@@ -30,7 +30,7 @@ export class CultureSheet extends BaseItemSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        context.constants.skills = game.mcdmrpg.skills;
+        context.constants.skills = game['draw-steel'].skills;
 
         return context;
     }

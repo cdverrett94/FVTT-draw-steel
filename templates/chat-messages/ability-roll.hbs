@@ -6,7 +6,7 @@
         <div class='dice-formula'>{{baseRoll.formula}}</div>
         {{{baseRoll.options.tooltip}}}
         {{#unless rolls}}
-            {{> 'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs' roll=baseRoll}}
+            {{> 'systems/draw-steel/templates/chat-messages/partials/dice-total.hbs' roll=baseRoll}}
         {{/unless}}
     </div>
 </div>
@@ -22,7 +22,7 @@
                 <div class='dice-flavor'>{{roll.flavor}}</div>
             {{/if}}
             <div class='dice-result'>
-                {{> 'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs' roll=roll}}
+                {{> 'systems/draw-steel/templates/chat-messages/partials/dice-total.hbs' roll=roll}}
             </div>
         </div>
         <div class="target-buttons" data-target-uuid="{{roll.options.target.uuid}}" data-target-id="{{roll.options.target.id}}" data-token-uuid="{{roll.options.token.uuid}}"></div>

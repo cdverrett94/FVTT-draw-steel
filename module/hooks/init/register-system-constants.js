@@ -10,7 +10,7 @@ export function registerSystemConstants() {
         intrigue: {},
         lore: {},
     };
-    const customSkills = game.settings.get('mcdmrpg', 'customSkills');
+    const customSkills = game.settings.get('draw-steel', 'customSkills') ?? [];
     for (const skill of customSkills) {
         formattedCustomSkills[skill.category][skill.name.slugify()] = {
             label: skill.name,
@@ -18,7 +18,7 @@ export function registerSystemConstants() {
             isCustom: true,
         };
     }
-    game.mcdmrpg = {
+    game['draw-steel'] = {
         actions: {
             knockback: Knockback.do,
         },

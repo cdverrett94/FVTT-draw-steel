@@ -15,7 +15,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             positioned: true,
             resizable: true,
             controls: [
-                ...super.DEFAULT_OPTIONS.window.controls,
                 {
                     icon: 'fa-solid fa-pencil',
                     label: 'Swap Edit/View Mode',
@@ -23,7 +22,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
                 },
             ],
         },
-        classes: ['mcdmrpg', 'sheet', 'actor', 'system'],
+        classes: ['draw-steel', 'sheet', 'actor', 'system'],
         form: {
             closeOnSubmit: false,
             submitOnChange: true,
@@ -37,13 +36,12 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
             postAbility: this.#postAbility,
             toggleCondition: this.#toggleCondition,
             toggleMode: this.#toggleMode,
-            editPortrait: this.#editPortait,
         },
     };
 
     async _prepareContext(options) {
         const skills = {};
-        Object.keys(game.mcdmrpg.skills).forEach((category) => {
+        Object.keys(game['draw-steel'].skills).forEach((category) => {
             if (category === 'customSkills') return false;
             for (const skill in this.actor.system.skills[category]) {
                 if (this.actor.system.skills[category][skill].proficient || this.actor.system.skills[category][skill].display) {
@@ -63,7 +61,7 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
                 damages: DAMAGE.TYPES,
                 abilities: ABILITIES,
                 conditions: CONDITIONS,
-                skills: game.mcdmrpg.skills,
+                skills: game['draw-steel'].skills,
                 characteristics: CHARACTERISTICS,
             },
             isEditable: this.mode === 'edit' && this.actor.canUserModify(game.user, 'update'),
@@ -209,20 +207,6 @@ export class BaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         this.render(true);
 
         this.toggleControls(false);
-    }
-
-    static #editPortait(event, target) {
-        const current = foundry.utils.getProperty(this.actor, 'img');
-        const fp = new FilePicker({
-            current,
-            type: 'image',
-            callback: (path) => {
-                this.actor.update({ img: path });
-            },
-            top: this.position.top + 40,
-            left: this.position.left + 10,
-        });
-        return fp.browse();
     }
 
     #filterAbilities(event, searchTerm, regexp, html) {

@@ -12,7 +12,7 @@ export class DamageRoll extends Roll {
         return this.terms.find((term) => term.formula === '2d6')?.total >= 11;
     }
 
-    static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/damage-message.hbs';
+    static CHAT_TEMPLATE = 'systems/draw-steel/templates/chat-messages/damage-message.hbs';
 
     async toMessage(messageData = {}, { rollMode, create = true } = {}) {
         // Perform the roll, if it has not yet been rolled

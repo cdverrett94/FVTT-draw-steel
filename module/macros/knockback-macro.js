@@ -34,7 +34,7 @@ export async function knockbackMacroPrompt() {
 
         console.log(knockbackData);
 
-        await game.mcdmrpg.actions.knockback(knockbackData).request();
+        await game['draw-steel'].actions.knockback(knockbackData).request();
     }
 
     console.log(dialog);

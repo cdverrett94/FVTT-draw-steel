@@ -87,7 +87,7 @@ export class PowerRoll extends Roll {
         return this.terms.find((term) => term.formula === '2d10')?.total >= 19;
     }
 
-    static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/power-roll.hbs';
+    static CHAT_TEMPLATE = 'systems/draw-steel/templates/chat-messages/power-roll.hbs';
 
     static combineModifiers(sources) {
         const modifiers = {

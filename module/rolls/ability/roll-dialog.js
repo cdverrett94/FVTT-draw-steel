@@ -86,7 +86,7 @@ export class AbilityRollDialog extends PowerRollDialog {
             user: game.user.id,
             sound: CONFIG.sounds.dice,
             rolls,
-            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/ability-message.hbs', {
+            content: await renderTemplate('systems/draw-steel/templates/chat-messages/ability-message.hbs', {
                 rolls,
                 baseRoll,
                 ability: this.context.ability,

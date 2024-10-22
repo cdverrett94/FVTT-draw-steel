@@ -3,7 +3,7 @@
     <div class='name'>{{actor.name}}</div>
 </div>
 
-<div class='mcdmrpg-header'>{{title}}</div>
+<div class='draw-steel-header'>{{title}}</div>
 <div class='dice-roll'>
     {{#if roll.flavor}}
         <div class='dice-flavor'>{{roll.flavor}}</div>
@@ -11,6 +11,6 @@
     <div class='dice-result'>
         <div class='dice-formula'>{{roll.formula}}</div>
         {{{roll.options.tooltip}}}
-        {{> 'systems/mcdmrpg/templates/chat-messages/partials/dice-total.hbs' roll=roll}}
+        {{> 'systems/draw-steel/templates/chat-messages/partials/dice-total.hbs' roll=roll}}
     </div>
 </div>

@@ -13,12 +13,12 @@ import {
 export function registerDocumentSheets() {
     // Register Actor Sheets
     Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('mcdmrpg', HeroSheet, {
+    Actors.registerSheet('draw-steel', HeroSheet, {
         types: ['hero'],
         makeDefault: true,
         label: 'Hero Sheet',
     });
-    Actors.registerSheet('mcdmrpg', MonsterSheet, {
+    Actors.registerSheet('draw-steel', MonsterSheet, {
         types: ['monster'],
         makeDefault: true,
         label: 'Monster Sheet',
@@ -26,38 +26,38 @@ export function registerDocumentSheets() {
 
     // Register Item Sheets
     Items.unregisterSheet('core', ItemSheet);
-    Items.registerSheet('mcdmrpg', AbilitySheet, {
+    Items.registerSheet('draw-steel', AbilitySheet, {
         types: ['ability'],
         makeDefault: true,
         label: 'Ability Sheet',
     });
-    Items.registerSheet('mcdmrpg', AncestrySheet, {
+    Items.registerSheet('draw-steel', AncestrySheet, {
         types: ['ancestry'],
         makeDefault: true,
         label: 'Ancestry Sheet',
     });
-    Items.registerSheet('mcdmrpg', ClassSheet, {
+    Items.registerSheet('draw-steel', ClassSheet, {
         types: ['class'],
         makeDefault: true,
         label: 'Class Sheet',
     });
-    Items.registerSheet('mcdmrpg', KitSheet, {
+    Items.registerSheet('draw-steel', KitSheet, {
         types: ['kit'],
         makeDefault: true,
         label: 'Kit Sheet',
     });
 
-    Items.registerSheet('mcdmrpg', FeatureSheet, {
+    Items.registerSheet('draw-steel', FeatureSheet, {
         types: ['feature'],
         makeDefault: true,
         label: 'Feature Sheet',
     });
-    Items.registerSheet('mcdmrpg', CultureSheet, {
+    Items.registerSheet('draw-steel', CultureSheet, {
         types: ['culture'],
         makeDefault: true,
         label: 'Culture Sheet',
     });
-    Items.registerSheet('mcdmrpg', CareerSheet, {
+    Items.registerSheet('draw-steel', CareerSheet, {
         types: ['career'],
         makeDefault: true,
         label: 'Career Sheet',

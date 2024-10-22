@@ -6,7 +6,7 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             icon: 'fas fa-suitcase',
             positioned: true,
         },
-        classes: ['mcdmrpg', 'sheet', 'item', 'system'],
+        classes: ['draw-steel', 'sheet', 'item', 'system'],
         form: {
             closeOnSubmit: false,
             submitOnChange: true,
@@ -15,7 +15,6 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             addNewEffect: this.addNewEffect,
             editEffect: this.editEffect,
             deleteEffect: this.deleteEffect,
-            editImage: this.#editImage,
             deleteGrantedItem: this.#deleteGrantedItem,
         },
     };
@@ -46,19 +45,19 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+            template: 'systems/draw-steel/templates/documents/partials/item-header.hbs',
         },
         tabs: {
             id: 'tabs',
-            template: 'systems/mcdmrpg/templates/documents/partials/item-tabs.hbs',
+            template: 'systems/draw-steel/templates/documents/partials/item-tabs.hbs',
         },
         grantedItems: {
             id: 'granted-items',
-            template: 'systems/mcdmrpg/templates/documents/partials/item-granted-items.hbs',
+            template: 'systems/draw-steel/templates/documents/partials/item-granted-items.hbs',
         },
         effects: {
             id: 'effects',
-            template: 'systems/mcdmrpg/templates/documents/partials/item-effects.hbs',
+            template: 'systems/draw-steel/templates/documents/partials/item-effects.hbs',
         },
     };
 
@@ -190,18 +189,4 @@ export class BaseItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         this.setPosition({ height: 'auto' });
     }
     //#endregion
-
-    static #editImage(event, target) {
-        const current = foundry.utils.getProperty(this.item, 'img');
-        const fp = new FilePicker({
-            current,
-            type: 'image',
-            callback: (path) => {
-                this.item.update({ img: path });
-            },
-            top: this.position.top + 40,
-            left: this.position.left + 10,
-        });
-        return fp.browse();
-    }
 }

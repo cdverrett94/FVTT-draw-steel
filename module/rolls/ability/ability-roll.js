@@ -1,7 +1,7 @@
 import { PowerRoll } from '../_index.js';
 
 export class AbilityRoll extends PowerRoll {
-    static CHAT_TEMPLATE = 'systems/mcdmrpg/templates/chat-messages/ability-message.hbs';
+    static CHAT_TEMPLATE = 'systems/draw-steel/templates/chat-messages/ability-message.hbs';
 
     get abilityTierEffect() {
         if (!this.ability) return null;

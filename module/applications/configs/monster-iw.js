@@ -31,7 +31,7 @@ export class MonsterIWSheet extends HandlebarsApplicationMixin(ApplicationV2) {
         {
             iw: {
                 id: 'iw',
-                template: 'systems/mcdmrpg/templates/documents/actor/monster/iw.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/monster/iw.hbs',
             },
         },
         { inplace: false }

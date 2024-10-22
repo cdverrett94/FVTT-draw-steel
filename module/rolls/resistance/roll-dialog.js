@@ -52,9 +52,9 @@ export class ResistanceRollDialog extends PowerRollDialog {
             sound: CONFIG.sounds.dice,
             rolls: [roll],
             flags: {
-                mcdmrpg: [], //chatSystemData,
+                'draw-steel': [], //chatSystemData,
             },
-            content: await renderTemplate('systems/mcdmrpg/templates/chat-messages/test-roll.hbs', {
+            content: await renderTemplate('systems/draw-steel/templates/chat-messages/test-roll.hbs', {
                 title: this.title,
                 isCritical: roll.isCritical,
                 roll,

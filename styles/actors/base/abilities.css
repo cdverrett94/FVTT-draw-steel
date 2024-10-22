@@ -6,7 +6,7 @@
     height: calc(100%);
 }
 
-.sheet.actor div.actor-abilities .mcdmrpg-header .add-ability:hover {
+.sheet.actor div.actor-abilities .draw-steel-header .add-ability:hover {
     cursor: pointer;
 }
 

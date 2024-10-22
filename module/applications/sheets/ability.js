@@ -29,24 +29,24 @@ export class AbilitySheet extends BaseItemSheet {
         {
             keywords: {
                 id: 'size',
-                template: 'systems/mcdmrpg/templates/documents/ability/ability-keywords.hbs',
+                template: 'systems/draw-steel/templates/documents/ability/ability-keywords.hbs',
             },
             properties: {
                 id: 'properties',
-                template: 'systems/mcdmrpg/templates/documents/ability/ability-properties.hbs',
+                template: 'systems/draw-steel/templates/documents/ability/ability-properties.hbs',
             },
 
             tiers: {
                 id: 'tiers',
-                template: 'systems/mcdmrpg/templates/documents/ability/ability-tiers.hbs',
+                template: 'systems/draw-steel/templates/documents/ability/ability-tiers.hbs',
             },
             effect: {
                 id: 'effect',
-                template: 'systems/mcdmrpg/templates/documents/ability/ability-effect.hbs',
+                template: 'systems/draw-steel/templates/documents/ability/ability-effect.hbs',
             },
             rules: {
                 id: 'rules',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-effects.hbs',
+                template: 'systems/draw-steel/templates/documents/partials/item-effects.hbs',
             },
         },
         { inplace: false }

@@ -16,15 +16,15 @@ export class AncestrySheet extends BaseItemSheet {
         {
             size: {
                 id: 'size',
-                template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-size.hbs',
+                template: 'systems/draw-steel/templates/documents/ancestry/ancestry-size.hbs',
             },
             details: {
                 id: 'details',
-                template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-details.hbs',
+                template: 'systems/draw-steel/templates/documents/ancestry/ancestry-details.hbs',
             },
             description: {
                 id: 'description',
-                template: 'systems/mcdmrpg/templates/documents/ancestry/ancestry-description.hbs',
+                template: 'systems/draw-steel/templates/documents/ancestry/ancestry-description.hbs',
             },
         },
         { inplace: false }

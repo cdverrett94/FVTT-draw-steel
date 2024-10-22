@@ -21,7 +21,7 @@ export class CareerSheet extends BaseItemSheet {
         {
             details: {
                 id: 'details',
-                template: 'systems/mcdmrpg/templates/documents/career/career-details.hbs',
+                template: 'systems/draw-steel/templates/documents/career/career-details.hbs',
                 scrollable: ['.details-tab'],
             },
         },
@@ -31,7 +31,7 @@ export class CareerSheet extends BaseItemSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext();
 
-        context.constants.skills = game.mcdmrpg.skills;
+        context.constants.skills = game['draw-steel'].skills;
 
         return context;
     }

@@ -7,7 +7,7 @@
 
         .creation,
         .size-and-speed {
-            & > div:not(.mcdmrpg-header) {
+            & > div:not(.draw-steel-header) {
                 display: grid;
                 grid-template-columns: 70px 1fr;
             }

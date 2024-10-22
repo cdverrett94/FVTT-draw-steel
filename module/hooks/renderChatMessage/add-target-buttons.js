@@ -68,7 +68,7 @@ function registerKnockbackTargetListeners(element, document, index) {
         if (!targetUuid) return ui.notifications.error('No target selected');
         const token = await fromUuid(tokenUuid);
         if (!token.parent._view) return ui.notifications.error(`Target token's scene is not viewed. Please view scene ${token.parent.name}`);
-        const actionTaken = await game.mcdmrpg.actions.knockback({ token: token, distance: knockbackDistance }).request();
+        const actionTaken = await game['draw-steel'].actions.knockback({ token: token, distance: knockbackDistance }).request();
 
         if (actionTaken) {
             await setEffectApplied(document, targetId, index);

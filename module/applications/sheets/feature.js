@@ -17,7 +17,7 @@ export class FeatureSheet extends BaseItemSheet {
         {
             details: {
                 id: 'details',
-                template: 'systems/mcdmrpg/templates/documents/feature/feature-description.hbs',
+                template: 'systems/draw-steel/templates/documents/feature/feature-description.hbs',
             },
         },
         { inplace: false }

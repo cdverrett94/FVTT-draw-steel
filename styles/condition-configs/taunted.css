@@ -6,10 +6,10 @@
     align-items: center;
 }
 
-.sheet.taunted-config .mcdmrpg-header .add {
+.sheet.taunted-config .draw-steel-header .add {
     cursor: pointer;
 }
 
-.sheet.taunted-config .mcdmrpg-header .add:hover {
+.sheet.taunted-config .draw-steel-header .add:hover {
     color: var(--add-color);
 }

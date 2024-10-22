@@ -22,9 +22,9 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
 
         // Skills
         const skills = {};
-        for (const skillCategory in game.mcdmrpg.skills) {
+        for (const skillCategory in game['draw-steel'].skills) {
             if (skillCategory === 'label') continue;
-            const category = game.mcdmrpg.skills[skillCategory];
+            const category = game['draw-steel'].skills[skillCategory];
             const subskills = {};
             for (const skill in category) {
                 if (skill === 'label') continue;
@@ -33,7 +33,7 @@ export class BaseActorData extends foundry.abstract.TypeDataModel {
                         initial: false,
                     }),
                     characteristic: new fields.StringField({
-                        initial: game.mcdmrpg.skills[skillCategory][skill].default,
+                        initial: game['draw-steel'].skills[skillCategory][skill].default,
                         choices: getDataModelChoices(CHARACTERISTICS),
                     }),
                     display: new fields.BooleanField({

@@ -15,7 +15,7 @@ class Knockback {
     #clickListener = this.#knockbackClick.bind(this);
     #moveListener = this.#knockbackMove.bind(this);
 
-    // function to add the knockback action to the game.mcdmrpg.actions namespace
+    // function to add the knockback action to the game.draw-steel.actions namespace
     static do({ token, distance, action } = {}) {
         return new Knockback({ token, distance, action });
     }
@@ -198,8 +198,8 @@ class Knockback {
             },
         };
         let approved = await new Promise((resolveSocket) => {
-            game.socket.emit('system.mcdmrpg', request);
-            game.socket.on('system.mcdmrpg', (response) => {
+            game.socket.emit('system.draw-steel', request);
+            game.socket.on('system.draw-steel', (response) => {
                 if (response.action === 'knockback-response' && this.requestId === response.payload.randomId) {
                     resolveSocket(response.payload.approved);
                 }
@@ -211,7 +211,7 @@ class Knockback {
 
     // regiser the sockets for the GM to listen to
     static registerGMSocket() {
-        game.socket.on('system.mcdmrpg', async (response) => {
+        game.socket.on('system.draw-steel', async (response) => {
             if (response.action === 'knockback-request') {
                 if (game.user !== game.users.activeGM) return false;
 
@@ -229,7 +229,7 @@ class Knockback {
                 }
 
                 response.action = 'knockback-response';
-                game.socket.emit('system.mcdmrpg', response);
+                game.socket.emit('system.draw-steel', response);
             }
         });
     }

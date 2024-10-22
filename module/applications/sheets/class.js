@@ -22,19 +22,19 @@ export class ClassSheet extends BaseItemSheet {
         {
             header: {
                 id: 'header',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-header.hbs',
+                template: 'systems/draw-steel/templates/documents/partials/item-header.hbs',
             },
             resources: {
                 id: 'resources',
-                template: 'systems/mcdmrpg/templates/documents/class/class-resources.hbs',
+                template: 'systems/draw-steel/templates/documents/class/class-resources.hbs',
             },
             details: {
                 id: 'details',
-                template: 'systems/mcdmrpg/templates/documents/class/class-details.hbs',
+                template: 'systems/draw-steel/templates/documents/class/class-details.hbs',
             },
             effects: {
                 id: 'effects',
-                template: 'systems/mcdmrpg/templates/documents/partials/item-effects.hbs',
+                template: 'systems/draw-steel/templates/documents/partials/item-effects.hbs',
             },
         },
         { inplace: false }

@@ -48,19 +48,19 @@ export class PowerRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/header.hbs',
+            template: 'systems/draw-steel/templates/rolls/power-roll/header.hbs',
         },
         characteristic: {
             id: 'characteristic-select',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/characteristic-select.hbs',
+            template: 'systems/draw-steel/templates/rolls/power-roll/characteristic-select.hbs',
         },
         adjustments: {
             id: 'dice-adjustments',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/dice-adjustments.hbs',
+            template: 'systems/draw-steel/templates/rolls/power-roll/dice-adjustments.hbs',
         },
         roll: {
             id: 'roll',
-            template: 'systems/mcdmrpg/templates/rolls/power-roll/roll-button.hbs',
+            template: 'systems/draw-steel/templates/rolls/power-roll/roll-button.hbs',
         },
     };
 

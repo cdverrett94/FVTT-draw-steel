@@ -1,6 +1,6 @@
 export class MCDMCombat extends Combat {
     constructor(data, context) {
-        data.type = 'mcdmrpg';
+        data.type = 'draw-steel';
         super(data, context);
     }
 

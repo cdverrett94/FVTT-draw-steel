@@ -23,43 +23,43 @@ export class MonsterSheet extends BaseActorSheet {
         {
             header: {
                 id: 'header',
-                template: 'systems/mcdmrpg/templates/documents/actor/monster/header.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/monster/header.hbs',
             },
             tabs: {
                 id: 'tabs',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/tabs.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/tabs.hbs',
             },
             abilities: {
                 id: 'abilities',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/abilities/abilities-container.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/abilities/abilities-container.hbs',
                 scrollable: ['.abilities-list'],
             },
             features: {
                 id: 'features',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/features.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/features.hbs',
                 scrollable: ['.features'],
             },
             items: {
                 id: 'items-tab',
-                template: 'systems/mcdmrpg/templates/documents/actor/hero/items.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/hero/items.hbs',
                 scrollable: ['.items'],
             },
             skills: {
                 id: 'skills',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/skills/skills.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/skills/skills.hbs',
                 scrollable: ['.skills-tab', '.skills'],
             },
             notes: {
                 id: 'notes',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/notes.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/notes.hbs',
             },
             effects: {
                 id: 'effects',
-                template: 'systems/mcdmrpg/templates/documents/actor/partials/effects.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/partials/effects.hbs',
             },
             negotiation: {
                 id: 'negotiation',
-                template: 'systems/mcdmrpg/templates/documents/actor/monster/negotiation.hbs',
+                template: 'systems/draw-steel/templates/documents/actor/monster/negotiation.hbs',
             },
         },
         { inplace: false }
